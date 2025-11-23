@@ -503,6 +503,129 @@
             align-items: center;
         }
 
+        /* Goals */
+        .goal-item {
+            background: rgba(0,0,0,0.05);
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            border-left: 5px solid var(--primary-color);
+        }
+
+        .goal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .goal-title {
+            font-size: 1.3em;
+            font-weight: bold;
+            color: var(--text-primary);
+        }
+
+        .goal-status {
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            font-weight: 600;
+        }
+
+        .goal-status.active {
+            background: var(--success-color);
+            color: white;
+        }
+
+        .goal-status.completed {
+            background: var(--info-color);
+            color: white;
+        }
+
+        .progress-bar-container {
+            background: rgba(0,0,0,0.1);
+            border-radius: 10px;
+            height: 25px;
+            overflow: hidden;
+            margin-bottom: 10px;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, var(--success-color), #20c997);
+            transition: width 0.5s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 0.9em;
+        }
+
+        .goal-details {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            font-size: 0.9em;
+            color: var(--text-secondary);
+        }
+
+        /* Hunt Spots Comparator */
+        .spot-item {
+            background: rgba(0,0,0,0.05);
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            border-left: 5px solid var(--info-color);
+        }
+
+        .spot-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .spot-name {
+            font-size: 1.3em;
+            font-weight: bold;
+            color: var(--text-primary);
+        }
+
+        .spot-rating {
+            display: flex;
+            gap: 5px;
+            font-size: 1.5em;
+        }
+
+        .spot-stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .spot-stat {
+            text-align: center;
+        }
+
+        .spot-stat-value {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+
+        .spot-stat-label {
+            font-size: 0.8em;
+            color: var(--text-secondary);
+        }
+
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
         /* Messages */
         .error-message, .success-message {
             padding: 12px;
@@ -571,6 +694,9 @@
             .hunt-item-details {
                 grid-template-columns: repeat(2, 1fr);
             }
+            .spot-stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
         }
 
         /* Tip Box */
@@ -591,22 +717,6 @@
             color: #856404;
             font-size: 0.9em;
             line-height: 1.5;
-        }
-
-        /* Loading spinner */
-        .spinner {
-            border: 3px solid rgba(255,255,255,0.3);
-            border-top: 3px solid white;
-            border-radius: 50%;
-            width: 40px;
-            height: 40px;
-            animation: spin 1s linear infinite;
-            margin: 20px auto;
-        }
-
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
         }
     </style>
 </head>
@@ -695,6 +805,8 @@
                 <button class="main-tab active" onclick="switchMainTab('dashboard')">📊 Dashboard</button>
                 <button class="main-tab" onclick="switchMainTab('addHunt')">➕ Add Hunt</button>
                 <button class="main-tab" onclick="switchMainTab('teamHunt')">👥 Team Hunt</button>
+                <button class="main-tab" onclick="switchMainTab('goals')">🎯 Goals</button>
+                <button class="main-tab" onclick="switchMainTab('comparator')">🔍 Hunt Spots</button>
                 <button class="main-tab" onclick="switchMainTab('charts')">📈 Charts</button>
                 <button class="main-tab" onclick="switchMainTab('history')">📜 History</button>
             </div>
@@ -746,6 +858,15 @@
                             <h3 style="color: var(--text-secondary); font-size: 0.9em; margin-bottom: 10px;">Efficiency</h3>
                             <p style="color: var(--primary-color); font-size: 1.5em; margin-bottom: 5px;">Profit/Hour: <span id="dashProfitPerHour">0 gp</span></p>
                             <p style="color: var(--info-color); font-size: 1.5em;">XP/Hour: <span id="dashXPPerHour">0</span></p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h2>Active Goals</h2>
+                    <div id="dashboardGoals">
+                        <div class="empty-state">
+                            <p>No active goals. Create one in the Goals tab!</p>
                         </div>
                     </div>
                 </div>
@@ -820,6 +941,35 @@ Balance: -488
                     <p style="color: var(--text-secondary); margin-bottom: 20px;">Calculate profit splits for team hunts</p>
 
                     <div class="input-group">
+                        <label for="partyHuntData">📋 Paste Party Hunt Analyser (from Tibia)</label>
+                        <textarea id="partyHuntData" placeholder="Paste the Party Hunt Analyser text from Tibia here...
+
+Example:
+Session data: From 2025-11-17, 03:28:28 to 2025-11-17, 03:41:36
+Session: 02:43h
+Loot Type: Leader
+Loot: 51,190,619
+Supplies: 21,395,364
+Balance: 29,795,255
+
+Ke vinho
+  Loot: 8,563,582
+  Supplies: 44,421,915
+  Balance: -35,858,333
+
+Galll
+  Loot: 9,236,871
+  Supplies: 64,085,582
+  Balance: -54,848,711
+..." style="min-height: 200px;"></textarea>
+                        <button class="btn-primary" onclick="parsePartyHuntData()" style="margin-top: 10px; width: 100%;">🔍 Auto-Calculate from Tibia Data</button>
+                    </div>
+
+                    <div style="text-align: center; margin: 20px 0; color: var(--text-secondary);">
+                        <strong>OR ENTER MANUALLY</strong>
+                    </div>
+
+                    <div class="input-group">
                         <label for="teamLoot">Total Team Loot (gp)</label>
                         <input type="number" id="teamLoot" placeholder="Total loot from hunt">
                     </div>
@@ -849,6 +999,73 @@ Balance: -488
                         <div class="team-results">
                             <h3 style="margin-bottom: 15px;">💎 Split Results</h3>
                             <div id="teamResultsContent"></div>
+                        </div>
+                    </div>
+
+                    <div class="tip-box">
+                        <h4>💡 Tip</h4>
+                        <p>In Tibia, after your party hunt, press Ctrl+C on the Party Hunt Analyser window, then paste it here!</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Goals Tab -->
+            <div class="main-tab-content" id="goalsTab">
+                <div class="card">
+                    <h2>🎯 Goals & Objectives</h2>
+                    <p style="color: var(--text-secondary); margin-bottom: 20px;">Set and track your hunting goals</p>
+
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                        <div class="input-group">
+                            <label for="goalName">Goal Name</label>
+                            <input type="text" id="goalName" placeholder="e.g., Make 10kk profit this week">
+                        </div>
+
+                        <div class="input-group">
+                            <label for="goalType">Goal Type</label>
+                            <select id="goalType">
+                                <option value="profit">Profit Goal</option>
+                                <option value="xp">XP Goal</option>
+                                <option value="hunts">Hunt Count Goal</option>
+                                <option value="time">Time Goal (hours)</option>
+                            </select>
+                        </div>
+
+                        <div class="input-group">
+                            <label for="goalTarget">Target Amount</label>
+                            <input type="number" id="goalTarget" placeholder="Enter target number">
+                        </div>
+
+                        <div class="input-group">
+                            <label for="goalDeadline">Deadline (Optional)</label>
+                            <input type="date" id="goalDeadline">
+                        </div>
+                    </div>
+
+                    <button class="btn-primary" onclick="addGoal()" style="width: 100%; margin-top: 10px;">
+                        ➕ Create Goal
+                    </button>
+                </div>
+
+                <div class="card">
+                    <h2>Your Goals</h2>
+                    <div id="goalsList">
+                        <div class="empty-state">
+                            <p>No goals yet. Create your first goal above!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Hunt Spot Comparator Tab -->
+            <div class="main-tab-content" id="comparatorTab">
+                <div class="card">
+                    <h2>🔍 Hunt Spot Comparator</h2>
+                    <p style="color: var(--text-secondary); margin-bottom: 20px;">Compare different hunting spots based on your data</p>
+
+                    <div class="comparison-grid" id="spotComparison">
+                        <div class="empty-state">
+                            <p>Add hunts to different locations to see comparisons!</p>
                         </div>
                     </div>
                 </div>
@@ -898,6 +1115,7 @@ Balance: -488
         // Global State
         let currentUser = null;
         let hunts = [];
+        let goals = [];
         let isDarkMode = localStorage.getItem('darkMode') === 'true';
         let teamMemberCount = 1;
 
@@ -952,21 +1170,20 @@ Balance: -488
         }
 
         function switchMainTab(tab) {
-            // Hide all tab contents
             document.querySelectorAll('.main-tab-content').forEach(content => {
                 content.classList.remove('active');
             });
 
-            // Deactivate all tabs
             document.querySelectorAll('.main-tab').forEach(tabBtn => {
                 tabBtn.classList.remove('active');
             });
 
-            // Activate selected tab
             const tabMap = {
                 'dashboard': 'dashboardTab',
                 'addHunt': 'addHuntTab',
                 'teamHunt': 'teamHuntTab',
+                'goals': 'goalsTab',
+                'comparator': 'comparatorTab',
                 'charts': 'chartsTab',
                 'history': 'historyTab'
             };
@@ -974,11 +1191,14 @@ Balance: -488
             document.getElementById(tabMap[tab]).classList.add('active');
             event.target.classList.add('active');
 
-            // Redraw charts if charts tab is selected
             if (tab === 'charts') {
-                setTimeout(() => {
-                    drawCharts();
-                }, 100);
+                setTimeout(() => drawCharts(), 100);
+            } else if (tab === 'comparator') {
+                updateSpotComparison();
+            } else if (tab === 'goals') {
+                updateGoalsList();
+            } else if (tab === 'dashboard') {
+                updateDashboardGoals();
             }
         }
 
@@ -1043,7 +1263,8 @@ Balance: -488
             users[username] = {
                 password: btoa(password),
                 createdAt: new Date().toISOString(),
-                hunts: []
+                hunts: [],
+                goals: []
             };
 
             localStorage.setItem('tibiaUsers', JSON.stringify(users));
@@ -1084,6 +1305,7 @@ Balance: -488
             currentUser = username;
             localStorage.setItem('currentUser', username);
             hunts = users[username].hunts || [];
+            goals = users[username].goals || [];
 
             showApp();
         }
@@ -1093,6 +1315,7 @@ Balance: -488
                 currentUser = null;
                 localStorage.removeItem('currentUser');
                 hunts = [];
+                goals = [];
 
                 document.getElementById('loginUsername').value = '';
                 document.getElementById('loginPassword').value = '';
@@ -1110,6 +1333,7 @@ Balance: -488
                 if (users[savedUser]) {
                     currentUser = savedUser;
                     hunts = users[savedUser].hunts || [];
+                    goals = users[savedUser].goals || [];
                     showApp();
                     return;
                 }
@@ -1154,6 +1378,7 @@ Balance: -488
             const users = JSON.parse(localStorage.getItem('tibiaUsers')) || {};
             if (users[currentUser]) {
                 users[currentUser].hunts = hunts;
+                users[currentUser].goals = goals;
                 localStorage.setItem('tibiaUsers', JSON.stringify(users));
             }
         }
@@ -1233,6 +1458,7 @@ Balance: -488
             hunts.unshift(hunt);
             saveUserData();
             updateDisplay();
+            updateGoalsProgress();
             clearForm();
 
             showNotification(`Hunt added! Profit: ${formatNumber(profit)} gp`, 'success');
@@ -1244,6 +1470,7 @@ Balance: -488
                 hunts = hunts.filter(h => h.id !== id);
                 saveUserData();
                 updateDisplay();
+                updateGoalsProgress();
                 showNotification('Hunt deleted', 'info');
             }
         }
@@ -1266,17 +1493,83 @@ Balance: -488
         }
 
         function exportData() {
-            const dataStr = JSON.stringify(hunts, null, 2);
+            const exportObj = {
+                hunts: hunts,
+                goals: goals,
+                exportDate: new Date().toISOString(),
+                user: currentUser
+            };
+            const dataStr = JSON.stringify(exportObj, null, 2);
             const dataBlob = new Blob([dataStr], { type: 'application/json' });
             const url = URL.createObjectURL(dataBlob);
             const link = document.createElement('a');
             link.href = url;
-            link.download = `tibia-hunts-${currentUser}-${new Date().toISOString().split('T')[0]}.json`;
+            link.download = `tibia-data-${currentUser}-${new Date().toISOString().split('T')[0]}.json`;
             link.click();
             showNotification('Data exported successfully!', 'success');
         }
 
-        // Team Hunt Calculator
+        // Team Hunt Calculator with Tibia Parser
+        function parsePartyHuntData() {
+            const partyData = document.getElementById('partyHuntData').value;
+
+            if (!partyData.trim()) {
+                showNotification('⚠️ Please paste Party Hunt Analyser data first!', 'warning');
+                return;
+            }
+
+            try {
+                // Parse total loot
+                const lootMatch = partyData.match(/Loot:\s*([\d,]+)/i);
+                const totalLoot = lootMatch ? parseInt(lootMatch[1].replace(/,/g, '')) : 0;
+
+                // Clear existing members
+                document.getElementById('teamMembers').innerHTML = '';
+                teamMemberCount = 0;
+
+                // Parse each player
+                const playerPattern = /([A-Za-z\s]+)\n\s+Loot:\s*([\d,]+)\n\s+Supplies:\s*([\d,]+)\n\s+Balance:\s*(-?[\d,]+)/g;
+                let match;
+
+                while ((match = playerPattern.exec(partyData)) !== null) {
+                    const playerName = match[1].trim();
+                    const supplies = parseInt(match[3].replace(/,/g, ''));
+
+                    teamMemberCount++;
+                    const memberDiv = document.createElement('div');
+                    memberDiv.className = 'team-member';
+                    memberDiv.id = `member${teamMemberCount}`;
+                    memberDiv.innerHTML = `
+                        <h4 style="color: var(--text-primary); margin-bottom: 10px;">Member ${teamMemberCount}</h4>
+                        <div style="display: grid; grid-template-columns: 2fr 1fr 50px; gap: 10px; align-items: end;">
+                            <div class="input-group" style="margin-bottom: 0;">
+                                <label>Name</label>
+                                <input type="text" class="member-name" placeholder="Player name" value="${playerName}">
+                            </div>
+                            <div class="input-group" style="margin-bottom: 0;">
+                                <label>Supplies (gp)</label>
+                                <input type="number" class="member-supplies" placeholder="0" value="${supplies}">
+                            </div>
+                            <button class="btn-danger" onclick="removeTeamMember(${teamMemberCount})" style="padding: 12px;">✕</button>
+                        </div>
+                    `;
+                    document.getElementById('teamMembers').appendChild(memberDiv);
+                }
+
+                // Set total loot
+                document.getElementById('teamLoot').value = totalLoot;
+
+                // Auto calculate
+                calculateTeamHunt();
+
+                showNotification('✅ Party Hunt data parsed successfully!', 'success');
+
+            } catch (error) {
+                console.error('Parse error:', error);
+                showNotification('❌ Error parsing Party Hunt data. Check format and try again.', 'error');
+            }
+        }
+
         function addTeamMember() {
             teamMemberCount++;
             const memberDiv = document.createElement('div');
@@ -1352,11 +1645,250 @@ Balance: -488
             document.getElementById('teamResults').style.display = 'block';
         }
 
+        // Goals System
+        function addGoal() {
+            const name = document.getElementById('goalName').value.trim();
+            const type = document.getElementById('goalType').value;
+            const target = parseInt(document.getElementById('goalTarget').value) || 0;
+            const deadline = document.getElementById('goalDeadline').value;
+
+            if (!name || !target) {
+                showNotification('Please fill in goal name and target!', 'warning');
+                return;
+            }
+
+            const goal = {
+                id: Date.now(),
+                name: name,
+                type: type,
+                target: target,
+                current: 0,
+                deadline: deadline,
+                status: 'active',
+                createdAt: new Date().toISOString()
+            };
+
+            goals.push(goal);
+            saveUserData();
+            updateGoalsList();
+            updateGoalsProgress();
+
+            document.getElementById('goalName').value = '';
+            document.getElementById('goalTarget').value = '';
+            document.getElementById('goalDeadline').value = '';
+
+            showNotification('Goal created successfully!', 'success');
+        }
+
+        function deleteGoal(id) {
+            if (confirm('Delete this goal?')) {
+                goals = goals.filter(g => g.id !== id);
+                saveUserData();
+                updateGoalsList();
+                showNotification('Goal deleted', 'info');
+            }
+        }
+
+        function updateGoalsProgress() {
+            goals.forEach(goal => {
+                let current = 0;
+
+                switch(goal.type) {
+                    case 'profit':
+                        current = hunts.reduce((sum, h) => sum + h.profit, 0);
+                        break;
+                    case 'xp':
+                        current = hunts.reduce((sum, h) => sum + h.experience, 0);
+                        break;
+                    case 'hunts':
+                        current = hunts.length;
+                        break;
+                    case 'time':
+                        current = Math.floor(hunts.reduce((sum, h) => sum + h.duration, 0) / 60);
+                        break;
+                }
+
+                goal.current = current;
+
+                if (current >= goal.target && goal.status === 'active') {
+                    goal.status = 'completed';
+                    showNotification(`🎉 Goal "${goal.name}" completed!`, 'success');
+                }
+            });
+
+            saveUserData();
+            updateGoalsList();
+            updateDashboardGoals();
+        }
+
+        function updateGoalsList() {
+            const goalsList = document.getElementById('goalsList');
+
+            if (goals.length === 0) {
+                goalsList.innerHTML = '<div class="empty-state"><p>No goals yet. Create your first goal above!</p></div>';
+                return;
+            }
+
+            goalsList.innerHTML = goals.map(goal => {
+                const progress = Math.min((goal.current / goal.target) * 100, 100);
+                const typeLabels = {
+                    'profit': 'gp',
+                    'xp': 'XP',
+                    'hunts': 'hunts',
+                    'time': 'hours'
+                };
+
+                const daysLeft = goal.deadline ? Math.ceil((new Date(goal.deadline) - new Date()) / (1000 * 60 * 60 * 24)) : null;
+
+                return `
+                    <div class="goal-item">
+                        <div class="goal-header">
+                            <div class="goal-title">${goal.name}</div>
+                            <div style="display: flex; gap: 10px; align-items: center;">
+                                <div class="goal-status ${goal.status}">${goal.status.toUpperCase()}</div>
+                                <button class="delete-btn" onclick="deleteGoal(${goal.id})">✕</button>
+                            </div>
+                        </div>
+                        <div class="progress-bar-container">
+                            <div class="progress-bar" style="width: ${progress}%">
+                                ${progress.toFixed(0)}%
+                            </div>
+                        </div>
+                        <div class="goal-details">
+                            <div class="detail-item">
+                                <span class="detail-label">Progress</span>
+                                <span>${formatNumber(goal.current)} / ${formatNumber(goal.target)} ${typeLabels[goal.type]}</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Type</span>
+                                <span>${goal.type.charAt(0).toUpperCase() + goal.type.slice(1)}</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Deadline</span>
+                                <span>${daysLeft !== null ? (daysLeft > 0 ? `${daysLeft} days left` : 'Expired') : 'No deadline'}</span>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function updateDashboardGoals() {
+            const dashboardGoals = document.getElementById('dashboardGoals');
+            const activeGoals = goals.filter(g => g.status === 'active');
+
+            if (activeGoals.length === 0) {
+                dashboardGoals.innerHTML = '<div class="empty-state"><p>No active goals. Create one in the Goals tab!</p></div>';
+                return;
+            }
+
+            dashboardGoals.innerHTML = activeGoals.slice(0, 3).map(goal => {
+                const progress = Math.min((goal.current / goal.target) * 100, 100);
+                const typeLabels = {
+                    'profit': 'gp',
+                    'xp': 'XP',
+                    'hunts': 'hunts',
+                    'time': 'hours'
+                };
+
+                return `
+                    <div class="goal-item" style="margin-bottom: 10px;">
+                        <div style="margin-bottom: 10px;">
+                            <div class="goal-title" style="font-size: 1.1em;">${goal.name}</div>
+                        </div>
+                        <div class="progress-bar-container">
+                            <div class="progress-bar" style="width: ${progress}%">
+                                ${progress.toFixed(0)}%
+                            </div>
+                        </div>
+                        <div style="margin-top: 5px; color: var(--text-secondary); font-size: 0.9em;">
+                            ${formatNumber(goal.current)} / ${formatNumber(goal.target)} ${typeLabels[goal.type]}
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        // Hunt Spot Comparator
+        function updateSpotComparison() {
+            const spotStats = {};
+
+            hunts.forEach(hunt => {
+                const spotName = hunt.name.split('(')[0].trim();
+
+                if (!spotStats[spotName]) {
+                    spotStats[spotName] = {
+                        hunts: [],
+                        totalProfit: 0,
+                        totalXP: 0,
+                        totalTime: 0
+                    };
+                }
+
+                spotStats[spotName].hunts.push(hunt);
+                spotStats[spotName].totalProfit += hunt.profit;
+                spotStats[spotName].totalXP += hunt.experience;
+                spotStats[spotName].totalTime += hunt.duration;
+            });
+
+            const sortedSpots = Object.entries(spotStats)
+                .sort((a, b) => b[1].totalProfit - a[1].totalProfit)
+                .slice(0, 10);
+
+            const comparisonDiv = document.getElementById('spotComparison');
+
+            if (sortedSpots.length === 0) {
+                comparisonDiv.innerHTML = '<div class="empty-state"><p>Add hunts to different locations to see comparisons!</p></div>';
+                return;
+            }
+
+            comparisonDiv.innerHTML = sortedSpots.map(([name, stats]) => {
+                const avgProfit = stats.totalProfit / stats.hunts.length;
+                const avgXP = stats.totalXP / stats.hunts.length;
+                const profitPerHour = stats.totalTime > 0 ? (stats.totalProfit / stats.totalTime) * 60 : 0;
+                const xpPerHour = stats.totalTime > 0 ? (stats.totalXP / stats.totalTime) * 60 : 0;
+
+                const rating = Math.min(5, Math.max(1, Math.round((avgProfit / 100000) + 1)));
+                const stars = '⭐'.repeat(rating);
+
+                return `
+                    <div class="spot-item">
+                        <div class="spot-header">
+                            <div class="spot-name">${name}</div>
+                            <div class="spot-rating">${stars}</div>
+                        </div>
+                        <div class="spot-stats">
+                            <div class="spot-stat">
+                                <div class="spot-stat-value">${formatShort(avgProfit)}</div>
+                                <div class="spot-stat-label">Avg Profit</div>
+                            </div>
+                            <div class="spot-stat">
+                                <div class="spot-stat-value">${formatShort(avgXP)}</div>
+                                <div class="spot-stat-label">Avg XP</div>
+                            </div>
+                            <div class="spot-stat">
+                                <div class="spot-stat-value">${formatShort(profitPerHour)}</div>
+                                <div class="spot-stat-label">Profit/h</div>
+                            </div>
+                            <div class="spot-stat">
+                                <div class="spot-stat-value">${formatShort(xpPerHour)}</div>
+                                <div class="spot-stat-label">XP/h</div>
+                            </div>
+                        </div>
+                        <div style="margin-top: 10px; color: var(--text-secondary); font-size: 0.9em;">
+                            Based on ${stats.hunts.length} hunt${stats.hunts.length > 1 ? 's' : ''}
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
         // Display Updates
         function updateDisplay() {
             updateDashboard();
             updateHuntList();
             updateUserStats();
+            updateGoalsProgress();
         }
 
         function updateDashboard() {
@@ -1382,7 +1914,6 @@ Balance: -488
             document.getElementById('dashProfitPerHour').textContent = formatNumber(Math.round(profitPerHour));
             document.getElementById('dashXPPerHour').textContent = formatShort(Math.round(xpPerHour));
 
-            // Profit change indicator
             if (totalHunts >= 2) {
                 const lastProfit = hunts[0].profit;
                 const prevProfit = hunts[1].profit;
@@ -1486,7 +2017,6 @@ Balance: -488
             const chartHeight = canvas.height - padding * 2;
             const barWidth = chartWidth / recentHunts.length;
 
-            // Draw axes
             ctx.strokeStyle = getComputedStyle(document.documentElement).getPropertyValue('--text-secondary');
             ctx.lineWidth = 2;
             ctx.beginPath();
@@ -1495,7 +2025,6 @@ Balance: -488
             ctx.lineTo(canvas.width - padding, canvas.height - padding);
             ctx.stroke();
 
-            // Draw bars
             recentHunts.forEach((hunt, index) => {
                 const barHeight = (Math.abs(hunt.profit) / maxProfit) * chartHeight * 0.8;
                 const x = padding + index * barWidth + barWidth * 0.1;
@@ -1505,14 +2034,12 @@ Balance: -488
                 ctx.fillStyle = hunt.profit >= 0 ? '#28a745' : '#dc3545';
                 ctx.fillRect(x, y, width, barHeight);
 
-                // Labels
                 ctx.fillStyle = getComputedStyle(document.documentElement).getPropertyValue('--text-primary');
                 ctx.font = '12px Arial';
                 ctx.textAlign = 'center';
                 ctx.fillText(`#${recentHunts.length - index}`, x + width / 2, canvas.height - padding + 20);
             });
 
-            // Title
             ctx.fillStyle = getComputedStyle(document.documentElement).getPropertyValue('--text-primary');
             ctx.font = 'bold 16px Arial';
             ctx.textAlign = 'left';
@@ -1544,7 +2071,6 @@ Balance: -488
             const chartWidth = canvas.width - padding * 2;
             const chartHeight = canvas.height - padding * 2;
 
-            // Draw axes
             ctx.strokeStyle = getComputedStyle(document.documentElement).getPropertyValue('--text-secondary');
             ctx.lineWidth = 2;
             ctx.beginPath();
@@ -1553,7 +2079,6 @@ Balance: -488
             ctx.lineTo(canvas.width - padding, canvas.height - padding);
             ctx.stroke();
 
-            // Draw line
             ctx.strokeStyle = '#667eea';
             ctx.lineWidth = 3;
             ctx.beginPath();
@@ -1568,7 +2093,6 @@ Balance: -488
                     ctx.lineTo(x, y);
                 }
 
-                // Draw points
                 ctx.fillStyle = '#667eea';
                 ctx.beginPath();
                 ctx.arc(x, y, 5, 0, Math.PI * 2);
@@ -1577,7 +2101,6 @@ Balance: -488
 
             ctx.stroke();
 
-            // Title
             ctx.fillStyle = getComputedStyle(document.documentElement).getPropertyValue('--text-primary');
             ctx.font = 'bold 16px Arial';
             ctx.textAlign = 'left';
