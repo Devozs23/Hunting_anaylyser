@@ -23,6 +23,161 @@
             margin: 0 auto;
         }
 
+        /* Login Screen Styles */
+        .login-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .login-card {
+            background: white;
+            border-radius: 20px;
+            padding: 50px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            max-width: 450px;
+            width: 100%;
+            animation: slideUp 0.5s ease-out;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .login-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .login-header h1 {
+            font-size: 2.5em;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 10px;
+        }
+
+        .login-header p {
+            color: #666;
+            font-size: 1.1em;
+        }
+
+        .login-tabs {
+            display: flex;
+            margin-bottom: 30px;
+            border-radius: 10px;
+            overflow: hidden;
+            background: #f0f0f0;
+        }
+
+        .login-tab {
+            flex: 1;
+            padding: 15px;
+            text-align: center;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+            border: none;
+            background: transparent;
+            color: #666;
+        }
+
+        .login-tab.active {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+            animation: fadeIn 0.3s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* Main App Styles */
+        .app-container {
+            display: none;
+        }
+
+        .app-container.active {
+            display: block;
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        .user-bar {
+            background: rgba(255,255,255,0.2);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 15px 25px;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: white;
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .user-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5em;
+            font-weight: bold;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .user-details h3 {
+            font-size: 1.2em;
+            margin-bottom: 3px;
+        }
+
+        .user-details p {
+            font-size: 0.9em;
+            opacity: 0.9;
+        }
+
+        .btn-logout {
+            background: rgba(255,255,255,0.3);
+            border: 2px solid white;
+            color: white;
+            padding: 10px 25px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .btn-logout:hover {
+            background: white;
+            color: #667eea;
+        }
+
         .header {
             text-align: center;
             color: white;
@@ -224,11 +379,6 @@
             margin-bottom: 2px;
         }
 
-        .chart-container {
-            height: 300px;
-            margin-top: 20px;
-        }
-
         .delete-btn {
             background: #dc3545;
             color: white;
@@ -295,35 +445,168 @@
             font-size: 1.2em;
             opacity: 0.9;
         }
+
+        .error-message {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            display: none;
+        }
+
+        .error-message.show {
+            display: block;
+            animation: shake 0.5s;
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-10px); }
+            75% { transform: translateX(10px); }
+        }
+
+        .success-message {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            display: none;
+        }
+
+        .success-message.show {
+            display: block;
+        }
+
+        .password-strength {
+            height: 5px;
+            border-radius: 3px;
+            margin-top: 5px;
+            background: #ddd;
+            transition: all 0.3s;
+        }
+
+        .password-strength.weak {
+            width: 33%;
+            background: #dc3545;
+        }
+
+        .password-strength.medium {
+            width: 66%;
+            background: #ffc107;
+        }
+
+        .password-strength.strong {
+            width: 100%;
+            background: #28a745;
+        }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="header">
-            <h1>⚔️ Tibia Hunt Analyzer</h1>
-            <p>Track your profits, analyze your hunts, dominate Tibia!</p>
-        </div>
+    <!-- Login Screen -->
+    <div class="login-container" id="loginScreen">
+        <div class="login-card">
+            <div class="login-header">
+                <h1>⚔️ Tibia Hunt Analyzer</h1>
+                <p>Track your profits, analyze your hunts!</p>
+            </div>
 
-        <!-- Total Profit Summary -->
-        <div class="summary-card" id="summaryCard">
-            <p>Total Profit</p>
-            <h2 id="totalProfit">0 gp</h2>
-            <p id="huntCount">0 hunts tracked</p>
-        </div>
+            <div class="login-tabs">
+                <button class="login-tab active" onclick="switchTab('login')">Login</button>
+                <button class="login-tab" onclick="switchTab('register')">Register</button>
+            </div>
 
-        <div class="main-grid">
-            <!-- Input Section -->
-            <div class="card">
-                <h2>📝 Add Hunt Data</h2>
+            <!-- Login Form -->
+            <div class="tab-content active" id="loginTab">
+                <div class="error-message" id="loginError"></div>
+                <div class="success-message" id="loginSuccess"></div>
 
                 <div class="input-group">
-                    <label for="huntName">Hunt Name / Location</label>
-                    <input type="text" id="huntName" placeholder="e.g., Roshamuul, Prison, Werehyaenas...">
+                    <label for="loginUsername">Username</label>
+                    <input type="text" id="loginUsername" placeholder="Enter your username" autocomplete="username">
                 </div>
 
                 <div class="input-group">
-                    <label for="huntData">📋 Paste Hunt Analyzer Data (Optional)</label>
-                    <textarea id="huntData" placeholder="Paste your Hunt Analyzer text here...
+                    <label for="loginPassword">Password</label>
+                    <input type="password" id="loginPassword" placeholder="Enter your password" autocomplete="current-password">
+                </div>
+
+                <button class="btn-primary" onclick="handleLogin()" style="width: 100%; margin-top: 20px;">
+                    Login
+                </button>
+            </div>
+
+            <!-- Register Form -->
+            <div class="tab-content" id="registerTab">
+                <div class="error-message" id="registerError"></div>
+                <div class="success-message" id="registerSuccess"></div>
+
+                <div class="input-group">
+                    <label for="registerUsername">Username</label>
+                    <input type="text" id="registerUsername" placeholder="Choose a username" autocomplete="username">
+                </div>
+
+                <div class="input-group">
+                    <label for="registerPassword">Password</label>
+                    <input type="password" id="registerPassword" placeholder="Choose a password" autocomplete="new-password" oninput="checkPasswordStrength()">
+                    <div class="password-strength" id="passwordStrength"></div>
+                </div>
+
+                <div class="input-group">
+                    <label for="registerPasswordConfirm">Confirm Password</label>
+                    <input type="password" id="registerPasswordConfirm" placeholder="Confirm your password" autocomplete="new-password">
+                </div>
+
+                <button class="btn-primary" onclick="handleRegister()" style="width: 100%; margin-top: 20px;">
+                    Create Account
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main App (Hidden until login) -->
+    <div class="app-container" id="appContainer">
+        <!-- User Bar -->
+        <div class="user-bar">
+            <div class="user-info">
+                <div class="user-avatar" id="userAvatar">U</div>
+                <div class="user-details">
+                    <h3 id="userName">User</h3>
+                    <p id="userStats">Loading...</p>
+                </div>
+            </div>
+            <button class="btn-logout" onclick="handleLogout()">Logout</button>
+        </div>
+
+        <div class="container">
+            <div class="header">
+                <h1>⚔️ Tibia Hunt Analyzer</h1>
+                <p>Track your profits, analyze your hunts, dominate Tibia!</p>
+            </div>
+
+            <!-- Total Profit Summary -->
+            <div class="summary-card" id="summaryCard">
+                <p>Total Profit</p>
+                <h2 id="totalProfit">0 gp</h2>
+                <p id="huntCount">0 hunts tracked</p>
+            </div>
+
+            <div class="main-grid">
+                <!-- Input Section -->
+                <div class="card">
+                    <h2>📝 Add Hunt Data</h2>
+
+                    <div class="input-group">
+                        <label for="huntName">Hunt Name / Location</label>
+                        <input type="text" id="huntName" placeholder="e.g., Roshamuul, Prison, Werehyaenas...">
+                    </div>
+
+                    <div class="input-group">
+                        <label for="huntData">📋 Paste Hunt Analyzer Data (Optional)</label>
+                        <textarea id="huntData" placeholder="Paste your Hunt Analyzer text here...
 Session data: From 2025-11-17, 03:28:28 to 2025-11-17, 03:41:36
 Session: 00:13h
 XP Gain: 0
@@ -331,113 +614,332 @@ Loot: 0
 Supplies: 488
 Balance: -488
 ..."></textarea>
-                    <button class="btn-secondary" onclick="parseHuntData()" style="margin-top: 10px; width: 100%;">🔍 Auto-Fill from Paste</button>
-                </div>
-
-                <div style="text-align: center; margin: 15px 0; color: #999;">
-                    <strong>OR</strong>
-                </div>
-
-                <div class="input-group">
-                    <label for="loot">Loot (gp)</label>
-                    <input type="number" id="loot" placeholder="Total loot value">
-                </div>
-
-                <div class="input-group">
-                    <label for="supplies">Supplies Used (gp)</label>
-                    <input type="number" id="supplies" placeholder="Potions, runes, ammo...">
-                </div>
-
-                <div class="input-group">
-                    <label for="experience">Experience Gained</label>
-                    <input type="number" id="experience" placeholder="Total XP">
-                </div>
-
-                <div class="input-group">
-                    <label for="duration">Duration (minutes)</label>
-                    <input type="number" id="duration" placeholder="Hunt duration">
-                </div>
-
-                <div class="button-group">
-                    <button class="btn-primary" onclick="addHunt()">➕ Add Hunt</button>
-                    <button class="btn-secondary" onclick="clearForm()">🗑️ Clear</button>
-                </div>
-
-                <div class="tip-box">
-                    <h4>💡 How to Use</h4>
-                    <p><strong>Easy Mode:</strong> Copy entire Hunt Analyzer text from Tibia → Paste in text area → Click "Auto-Fill" → Add Hunt!</p>
-                    <p><strong>Manual Mode:</strong> Just fill in the numbers directly below.</p>
-                </div>
-            </div>
-
-            <!-- Statistics Section -->
-            <div class="card">
-                <h2>📊 Statistics</h2>
-
-                <div class="stats-grid">
-                    <div class="stat-box">
-                        <h3>Total Loot</h3>
-                        <p id="statTotalLoot">0</p>
+                        <button class="btn-secondary" onclick="parseHuntData()" style="margin-top: 10px; width: 100%;">🔍 Auto-Fill from Paste</button>
                     </div>
-                    <div class="stat-box">
-                        <h3>Total Supplies</h3>
-                        <p id="statTotalSupplies">0</p>
+
+                    <div style="text-align: center; margin: 15px 0; color: #999;">
+                        <strong>OR</strong>
                     </div>
-                    <div class="stat-box">
-                        <h3>Total XP</h3>
-                        <p id="statTotalXP">0</p>
+
+                    <div class="input-group">
+                        <label for="loot">Loot (gp)</label>
+                        <input type="number" id="loot" placeholder="Total loot value">
                     </div>
-                    <div class="stat-box">
-                        <h3>Avg Profit/Hunt</h3>
-                        <p id="statAvgProfit">0</p>
+
+                    <div class="input-group">
+                        <label for="supplies">Supplies Used (gp)</label>
+                        <input type="number" id="supplies" placeholder="Potions, runes, ammo...">
                     </div>
-                    <div class="stat-box">
-                        <h3>Best Hunt</h3>
-                        <p id="statBestHunt">0</p>
+
+                    <div class="input-group">
+                        <label for="experience">Experience Gained</label>
+                        <input type="number" id="experience" placeholder="Total XP">
                     </div>
-                    <div class="stat-box">
-                        <h3>Total Time</h3>
-                        <p id="statTotalTime">0h</p>
+
+                    <div class="input-group">
+                        <label for="duration">Duration (minutes)</label>
+                        <input type="number" id="duration" placeholder="Hunt duration">
+                    </div>
+
+                    <div class="button-group">
+                        <button class="btn-primary" onclick="addHunt()">➕ Add Hunt</button>
+                        <button class="btn-secondary" onclick="clearForm()">🗑️ Clear</button>
+                    </div>
+
+                    <div class="tip-box">
+                        <h4>💡 How to Use</h4>
+                        <p><strong>Easy Mode:</strong> Copy entire Hunt Analyzer text from Tibia → Paste in text area → Click "Auto-Fill" → Add Hunt!</p>
+                        <p><strong>Manual Mode:</strong> Just fill in the numbers directly below.</p>
                     </div>
                 </div>
 
-                <h3 style="margin-top: 20px; color: #667eea;">Recent Activity</h3>
-                <div class="hunt-list" id="huntList">
-                    <div class="empty-state">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                        </svg>
-                        <p>No hunts yet. Add your first hunt to start tracking!</p>
-                    </div>
-                </div>
+                <!-- Statistics Section -->
+                <div class="card">
+                    <h2>📊 Statistics</h2>
 
-                <div class="button-group" style="margin-top: 20px;">
-                    <button class="btn-secondary" onclick="exportData()">📥 Export Data</button>
-                    <button class="btn-secondary" onclick="clearAllData()">🗑️ Clear All</button>
+                    <div class="stats-grid">
+                        <div class="stat-box">
+                            <h3>Total Loot</h3>
+                            <p id="statTotalLoot">0</p>
+                        </div>
+                        <div class="stat-box">
+                            <h3>Total Supplies</h3>
+                            <p id="statTotalSupplies">0</p>
+                        </div>
+                        <div class="stat-box">
+                            <h3>Total XP</h3>
+                            <p id="statTotalXP">0</p>
+                        </div>
+                        <div class="stat-box">
+                            <h3>Avg Profit/Hunt</h3>
+                            <p id="statAvgProfit">0</p>
+                        </div>
+                        <div class="stat-box">
+                            <h3>Best Hunt</h3>
+                            <p id="statBestHunt">0</p>
+                        </div>
+                        <div class="stat-box">
+                            <h3>Total Time</h3>
+                            <p id="statTotalTime">0h</p>
+                        </div>
+                    </div>
+
+                    <h3 style="margin-top: 20px; color: #667eea;">Recent Activity</h3>
+                    <div class="hunt-list" id="huntList">
+                        <div class="empty-state">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                            </svg>
+                            <p>No hunts yet. Add your first hunt to start tracking!</p>
+                        </div>
+                    </div>
+
+                    <div class="button-group" style="margin-top: 20px;">
+                        <button class="btn-secondary" onclick="exportData()">📥 Export Data</button>
+                        <button class="btn-secondary" onclick="clearAllData()">🗑️ Clear All</button>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 
     <script>
-        // Data storage
-        let hunts = JSON.parse(localStorage.getItem('tibiaHunts')) || [];
+        // Global state
+        let currentUser = null;
+        let hunts = [];
 
-        // Load data on startup
+        // Initialize app
         window.onload = function() {
-            updateDisplay();
+            checkAuth();
+
+            // Add enter key listeners for login forms
+            document.getElementById('loginPassword').addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') handleLogin();
+            });
+            document.getElementById('registerPasswordConfirm').addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') handleRegister();
+            });
         };
+
+        // Authentication Functions
+        function switchTab(tab) {
+            const loginTab = document.getElementById('loginTab');
+            const registerTab = document.getElementById('registerTab');
+            const tabs = document.querySelectorAll('.login-tab');
+
+            tabs.forEach(t => t.classList.remove('active'));
+
+            if (tab === 'login') {
+                loginTab.classList.add('active');
+                registerTab.classList.remove('active');
+                tabs[0].classList.add('active');
+            } else {
+                registerTab.classList.add('active');
+                loginTab.classList.remove('active');
+                tabs[1].classList.add('active');
+            }
+        }
+
+        function checkPasswordStrength() {
+            const password = document.getElementById('registerPassword').value;
+            const strengthBar = document.getElementById('passwordStrength');
+
+            if (password.length === 0) {
+                strengthBar.className = 'password-strength';
+                return;
+            }
+
+            let strength = 0;
+            if (password.length >= 6) strength++;
+            if (password.length >= 10) strength++;
+            if (/[A-Z]/.test(password)) strength++;
+            if (/[0-9]/.test(password)) strength++;
+            if (/[^A-Za-z0-9]/.test(password)) strength++;
+
+            if (strength <= 2) {
+                strengthBar.className = 'password-strength weak';
+            } else if (strength <= 3) {
+                strengthBar.className = 'password-strength medium';
+            } else {
+                strengthBar.className = 'password-strength strong';
+            }
+        }
+
+        function handleRegister() {
+            const username = document.getElementById('registerUsername').value.trim();
+            const password = document.getElementById('registerPassword').value;
+            const passwordConfirm = document.getElementById('registerPasswordConfirm').value;
+            const errorEl = document.getElementById('registerError');
+            const successEl = document.getElementById('registerSuccess');
+
+            errorEl.classList.remove('show');
+            successEl.classList.remove('show');
+
+            if (!username || !password) {
+                showError('registerError', 'Please fill in all fields');
+                return;
+            }
+
+            if (username.length < 3) {
+                showError('registerError', 'Username must be at least 3 characters');
+                return;
+            }
+
+            if (password.length < 6) {
+                showError('registerError', 'Password must be at least 6 characters');
+                return;
+            }
+
+            if (password !== passwordConfirm) {
+                showError('registerError', 'Passwords do not match');
+                return;
+            }
+
+            // Get users from localStorage
+            const users = JSON.parse(localStorage.getItem('tibiaUsers')) || {};
+
+            if (users[username]) {
+                showError('registerError', 'Username already exists');
+                return;
+            }
+
+            // Create new user
+            users[username] = {
+                password: btoa(password), // Simple encoding (not secure, but ok for demo)
+                createdAt: new Date().toISOString(),
+                hunts: []
+            };
+
+            localStorage.setItem('tibiaUsers', JSON.stringify(users));
+
+            showSuccess('registerSuccess', 'Account created successfully! You can now login.');
+
+            // Clear form
+            document.getElementById('registerUsername').value = '';
+            document.getElementById('registerPassword').value = '';
+            document.getElementById('registerPasswordConfirm').value = '';
+            document.getElementById('passwordStrength').className = 'password-strength';
+
+            // Switch to login tab after 1.5 seconds
+            setTimeout(() => {
+                switchTab('login');
+                document.getElementById('loginUsername').value = username;
+            }, 1500);
+        }
+
+        function handleLogin() {
+            const username = document.getElementById('loginUsername').value.trim();
+            const password = document.getElementById('loginPassword').value;
+            const errorEl = document.getElementById('loginError');
+
+            errorEl.classList.remove('show');
+
+            if (!username || !password) {
+                showError('loginError', 'Please fill in all fields');
+                return;
+            }
+
+            const users = JSON.parse(localStorage.getItem('tibiaUsers')) || {};
+
+            if (!users[username]) {
+                showError('loginError', 'Username not found');
+                return;
+            }
+
+            if (users[username].password !== btoa(password)) {
+                showError('loginError', 'Incorrect password');
+                return;
+            }
+
+            // Login successful
+            currentUser = username;
+            localStorage.setItem('currentUser', username);
+
+            // Load user's hunts
+            hunts = users[username].hunts || [];
+
+            showApp();
+        }
+
+        function handleLogout() {
+            if (confirm('Are you sure you want to logout?')) {
+                currentUser = null;
+                localStorage.removeItem('currentUser');
+                hunts = [];
+
+                // Clear login form
+                document.getElementById('loginUsername').value = '';
+                document.getElementById('loginPassword').value = '';
+
+                showLogin();
+            }
+        }
+
+        function checkAuth() {
+            const savedUser = localStorage.getItem('currentUser');
+
+            if (savedUser) {
+                const users = JSON.parse(localStorage.getItem('tibiaUsers')) || {};
+
+                if (users[savedUser]) {
+                    currentUser = savedUser;
+                    hunts = users[savedUser].hunts || [];
+                    showApp();
+                    return;
+                }
+            }
+
+            showLogin();
+        }
+
+        function showLogin() {
+            document.getElementById('loginScreen').style.display = 'flex';
+            document.getElementById('appContainer').classList.remove('active');
+        }
+
+        function showApp() {
+            document.getElementById('loginScreen').style.display = 'none';
+            document.getElementById('appContainer').classList.add('active');
+
+            // Update user info
+            document.getElementById('userName').textContent = currentUser;
+            document.getElementById('userAvatar').textContent = currentUser[0].toUpperCase();
+
+            updateDisplay();
+        }
+
+        function showError(elementId, message) {
+            const el = document.getElementById(elementId);
+            el.textContent = message;
+            el.classList.add('show');
+        }
+
+        function showSuccess(elementId, message) {
+            const el = document.getElementById(elementId);
+            el.textContent = message;
+            el.classList.add('show');
+        }
+
+        // Hunt Management Functions
+        function saveUserData() {
+            if (!currentUser) return;
+
+            const users = JSON.parse(localStorage.getItem('tibiaUsers')) || {};
+            if (users[currentUser]) {
+                users[currentUser].hunts = hunts;
+                localStorage.setItem('tibiaUsers', JSON.stringify(users));
+            }
+        }
 
         function parseHuntData() {
             const huntData = document.getElementById('huntData').value;
 
             if (!huntData.trim()) {
-                showNotification('⚠️ Please paste Hunt Analyzer data first!');
+                showNotification('⚠️ Please paste Hunt Analyzer data first!', 'warning');
                 return;
             }
 
             try {
-                // Extract Session duration (e.g., "Session: 00:13h" or "Session: 01:25h")
                 const sessionMatch = huntData.match(/Session:\s*(\d+):(\d+)h/i);
                 let duration = 0;
                 if (sessionMatch) {
@@ -446,49 +948,37 @@ Balance: -488
                     duration = (hours * 60) + minutes;
                 }
 
-                // Extract XP Gain (try both "XP Gain:" and "Raw XP Gain:")
                 const xpMatch = huntData.match(/(?:Raw )?XP Gain:\s*([\d,]+)/i);
                 const experience = xpMatch ? parseInt(xpMatch[1].replace(/,/g, '')) : 0;
 
-                // Extract Loot
                 const lootMatch = huntData.match(/Loot:\s*([\d,]+)/i);
                 const loot = lootMatch ? parseInt(lootMatch[1].replace(/,/g, '')) : 0;
 
-                // Extract Supplies
                 const suppliesMatch = huntData.match(/Supplies:\s*([\d,]+)/i);
                 const supplies = suppliesMatch ? parseInt(suppliesMatch[1].replace(/,/g, '')) : 0;
 
-                // Extract Balance (optional, as backup)
-                const balanceMatch = huntData.match(/Balance:\s*(-?[\d,]+)/i);
-                const balance = balanceMatch ? parseInt(balanceMatch[1].replace(/,/g, '')) : null;
-
-                // Try to extract location from the data or use default
                 const fromMatch = huntData.match(/From\s*(\d{4}-\d{2}-\d{2})/i);
                 const dateStr = fromMatch ? fromMatch[1] : new Date().toISOString().split('T')[0];
 
-                // Fill form fields
                 document.getElementById('loot').value = loot;
                 document.getElementById('supplies').value = supplies;
                 document.getElementById('experience').value = experience;
                 document.getElementById('duration').value = duration;
 
-                // Auto-generate hunt name if empty
                 if (!document.getElementById('huntName').value) {
                     const profit = loot - supplies;
                     const profitStr = profit >= 0 ? `+${formatNumber(profit)}` : formatNumber(profit);
                     document.getElementById('huntName').value = `Hunt ${dateStr} (${profitStr} gp)`;
                 }
 
-                // Clear the paste area
                 document.getElementById('huntData').value = '';
 
-                // Show success
                 const profit = loot - supplies;
-                showNotification(`✅ Data parsed! Profit: ${formatNumber(profit)} gp`);
+                showNotification(`✅ Data parsed! Profit: ${formatNumber(profit)} gp`, 'success');
 
             } catch (error) {
                 console.error('Parse error:', error);
-                showNotification('❌ Error parsing data. Check format and try again.');
+                showNotification('❌ Error parsing data. Check format and try again.', 'error');
             }
         }
 
@@ -514,21 +1004,20 @@ Balance: -488
             };
 
             hunts.unshift(hunt);
-            localStorage.setItem('tibiaHunts', JSON.stringify(hunts));
+            saveUserData();
 
             updateDisplay();
             clearForm();
 
-            // Show success feedback
-            showNotification(`Hunt added! Profit: ${formatNumber(profit)} gp`);
+            showNotification(`Hunt added! Profit: ${formatNumber(profit)} gp`, 'success');
         }
 
         function deleteHunt(id) {
             if (confirm('Delete this hunt?')) {
                 hunts = hunts.filter(h => h.id !== id);
-                localStorage.setItem('tibiaHunts', JSON.stringify(hunts));
+                saveUserData();
                 updateDisplay();
-                showNotification('Hunt deleted');
+                showNotification('Hunt deleted', 'info');
             }
         }
 
@@ -536,6 +1025,13 @@ Balance: -488
             updateSummary();
             updateStats();
             updateHuntList();
+            updateUserStats();
+        }
+
+        function updateUserStats() {
+            const totalHunts = hunts.length;
+            const totalProfit = hunts.reduce((sum, h) => sum + h.profit, 0);
+            document.getElementById('userStats').textContent = `${totalHunts} hunts • ${formatNumber(totalProfit)} gp profit`;
         }
 
         function updateSummary() {
@@ -545,7 +1041,6 @@ Balance: -488
             document.getElementById('totalProfit').textContent = formatNumber(totalProfit) + ' gp';
             document.getElementById('huntCount').textContent = `${hunts.length} hunt${hunts.length !== 1 ? 's' : ''} tracked`;
 
-            // Change color based on profit
             if (totalProfit > 0) {
                 summaryCard.style.background = 'linear-gradient(135deg, #28a745 0%, #20c997 100%)';
             } else if (totalProfit < 0) {
@@ -637,11 +1132,11 @@ Balance: -488
         }
 
         function clearAllData() {
-            if (confirm('Are you sure you want to delete ALL hunt data? This cannot be undone!')) {
+            if (confirm('Are you sure you want to delete ALL your hunt data? This cannot be undone!')) {
                 hunts = [];
-                localStorage.removeItem('tibiaHunts');
+                saveUserData();
                 updateDisplay();
-                showNotification('All data cleared');
+                showNotification('All data cleared', 'info');
             }
         }
 
@@ -651,11 +1146,12 @@ Balance: -488
             const url = URL.createObjectURL(dataBlob);
             const link = document.createElement('a');
             link.href = url;
-            link.download = `tibia-hunts-${new Date().toISOString().split('T')[0]}.json`;
+            link.download = `tibia-hunts-${currentUser}-${new Date().toISOString().split('T')[0]}.json`;
             link.click();
-            showNotification('Data exported successfully!');
+            showNotification('Data exported successfully!', 'success');
         }
 
+        // Utility Functions
         function formatNumber(num) {
             return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
         }
@@ -678,20 +1174,22 @@ Balance: -488
             return `${mins}m`;
         }
 
-        function showNotification(message) {
-            // Simple notification (you can enhance this)
+        function showNotification(message, type = 'success') {
             const notification = document.createElement('div');
+            const bgColor = type === 'success' ? '#28a745' : type === 'error' ? '#dc3545' : type === 'warning' ? '#ffc107' : '#17a2b8';
+
             notification.style.cssText = `
                 position: fixed;
                 top: 20px;
                 right: 20px;
-                background: #28a745;
+                background: ${bgColor};
                 color: white;
                 padding: 15px 25px;
                 border-radius: 8px;
                 box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-                z-index: 1000;
+                z-index: 10000;
                 animation: slideIn 0.3s ease-out;
+                max-width: 300px;
             `;
             notification.textContent = message;
             document.body.appendChild(notification);
