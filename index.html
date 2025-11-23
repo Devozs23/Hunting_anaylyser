@@ -1107,72 +1107,85 @@ Galll
                     <h3>➕ Add Rare Item</h3>
 
                     <div class="input-group">
-                        <label for="rareItemSelect">Item Name</label>
-                        <select id="rareItemSelect" onchange="fillItemPrice()" style="padding: 12px; border: 1px solid var(--border-color); border-radius: 8px; background: var(--card-bg); color: var(--text-primary); width: 100%;">
-                            <optgroup label="⚔️ Weapons">
-                                <option value="Falcon Battleaxe">Falcon Battleaxe</option>
-                                <option value="Falcon Bow">Falcon Bow</option>
-                                <option value="Falcon Mace">Falcon Mace</option>
-                                <option value="Falcon Longsword">Falcon Longsword</option>
-                                <option value="Soulcutter">Soulcutter</option>
-                                <option value="Souleater">Souleater</option>
-                                <option value="Soulshredder">Soulshredder</option>
-                                <option value="Soulbiter">Soulbiter</option>
-                                <option value="Gnome Sword">Gnome Sword</option>
-                                <option value="Cobra Sword">Cobra Sword</option>
-                                <option value="Cobra Axe">Cobra Axe</option>
-                                <option value="Cobra Club">Cobra Club</option>
-                            </optgroup>
-                            <optgroup label="🛡️ Armor & Equipment">
-                                <option value="Falcon Plate">Falcon Plate</option>
-                                <option value="Falcon Greaves">Falcon Greaves</option>
-                                <option value="Falcon Coif">Falcon Coif</option>
-                                <option value="Soulshell">Soulshell</option>
-                                <option value="Soulmantle">Soulmantle</option>
-                                <option value="Soulshanks">Soulshanks</option>
-                                <option value="Soulbastion">Soulbastion</option>
-                                <option value="Gnome Armor">Gnome Armor</option>
-                                <option value="Gnome Helmet">Gnome Helmet</option>
-                                <option value="Gnome Legs">Gnome Legs</option>
-                                <option value="Cobra Hood">Cobra Hood</option>
-                                <option value="Cobra Boots">Cobra Boots</option>
-                            </optgroup>
-                            <optgroup label="📿 Special Items">
-                                <option value="Gilded Eldritch Bow">Gilded Eldritch Bow</option>
-                                <option value="Gilded Eldritch Wand">Gilded Eldritch Wand</option>
-                                <option value="Gilded Eldritch Rod">Gilded Eldritch Rod</option>
-                                <option value="Enchanted Theurgic Amulet">Enchanted Theurgic Amulet</option>
-                                <option value="Enchanted Pendulet">Enchanted Pendulet</option>
-                                <option value="Arcanomancer Folio">Arcanomancer Folio</option>
-                                <option value="Arcanomancer Regalia">Arcanomancer Regalia</option>
-                                <option value="Arboreal Crown">Arboreal Crown</option>
-                                <option value="Arboreal Ring">Arboreal Ring</option>
-                            </optgroup>
-                            <optgroup label="👑 Boss Drops">
-                                <option value="Ferumbras' Hat">Ferumbras' Hat</option>
-                                <option value="Orshabaal's Brain">Orshabaal's Brain</option>
-                                <option value="Morgaroth's Heart">Morgaroth's Heart</option>
-                                <option value="Demon Shield">Demon Shield</option>
-                                <option value="Golden Armor">Golden Armor</option>
-                                <option value="Magic Plate Armor">Magic Plate Armor</option>
-                                <option value="Mastermind Shield">Mastermind Shield</option>
-                                <option value="Demonrage Sword">Demonrage Sword</option>
-                                <option value="Emerald Sword">Emerald Sword</option>
-                            </optgroup>
-                            <optgroup label="🎁 Other Valuable Items">
-                                <option value="Supreme Cube">Supreme Cube</option>
-                                <option value="Primal Bag">Primal Bag</option>
-                                <option value="Giant Shimmering Pearl">Giant Shimmering Pearl</option>
-                                <option value="Giant Shimmering Pearl (Green)">Giant Shimmering Pearl (Green)</option>
-                                <option value="Bag You Desire">Bag You Desire</option>
-                                <option value="Custom Item">-- Custom Item (type below) --</option>
-                            </optgroup>
-                        </select>
+                        <label for="customItemName">Item Name</label>
+                        <input type="text" id="customItemName" placeholder="e.g., Falcon Bow, Ferumbras' Hat, Cobra Sword..." list="bossItems">
+                        <datalist id="bossItems">
+                            <option value="Ferumbras' Hat">
+                            <option value="Orshabaal's Brain">
+                            <option value="Morgaroth's Heart">
+                            <option value="Demon Shield">
+                            <option value="Mastermind Shield">
+                            <option value="Magic Plate Armor">
+                            <option value="Golden Armor">
+                            <option value="Falcon Battleaxe">
+                            <option value="Falcon Bow">
+                            <option value="Falcon Mace">
+                            <option value="Falcon Longsword">
+                            <option value="Falcon Plate">
+                            <option value="Falcon Greaves">
+                            <option value="Falcon Coif">
+                            <option value="Soulcutter">
+                            <option value="Souleater">
+                            <option value="Soulshredder">
+                            <option value="Soulbiter">
+                            <option value="Soulshell">
+                            <option value="Soulmantle">
+                            <option value="Soulshanks">
+                            <option value="Soulbastion">
+                            <option value="Cobra Sword">
+                            <option value="Cobra Axe">
+                            <option value="Cobra Club">
+                            <option value="Cobra Hood">
+                            <option value="Cobra Boots">
+                            <option value="Gnome Sword">
+                            <option value="Gnome Armor">
+                            <option value="Gnome Helmet">
+                            <option value="Gnome Legs">
+                            <option value="Emerald Sword">
+                            <option value="Supreme Cube">
+                            <option value="Primal Bag">
+                            <option value="Bag You Desire">
+                        </datalist>
+                        <small style="color: var(--text-secondary); margin-top: 5px; display: block;">💡 Type to see suggestions or enter any item name</small>
                     </div>
 
                     <div class="input-group">
-                        <label for="customItemName">Custom Item Name (if not in list)</label>
-                        <input type="text" id="customItemName" placeholder="e.g., Rare Mount Item">
+                        <label for="itemBoss">Boss / Source</label>
+                        <input type="text" id="itemBoss" placeholder="e.g., Ferumbras, Oberon, Goshnar..." list="bossNames">
+                        <datalist id="bossNames">
+                            <option value="Ferumbras">
+                            <option value="Orshabaal">
+                            <option value="Morgaroth">
+                            <option value="Ghazbaran">
+                            <option value="Grand Master Oberon">
+                            <option value="Drume">
+                            <option value="Lloyd">
+                            <option value="The Enraged Thorn Knight">
+                            <option value="The Duke of The Depths">
+                            <option value="The Count of The Core">
+                            <option value="The Baron from Below">
+                            <option value="Scarlett Etzel">
+                            <option value="Goshnar's Malice">
+                            <option value="Goshnar's Spite">
+                            <option value="Goshnar's Greed">
+                            <option value="Goshnar's Cruelty">
+                            <option value="Goshnar's Hatred">
+                            <option value="Goshnar's Megalomania">
+                            <option value="King Zelos">
+                            <option value="The Brainstealer">
+                            <option value="The Souldespoiler">
+                            <option value="The Manhunter">
+                            <option value="Timira the Many-Headed">
+                            <option value="Razzagorn">
+                            <option value="Ragiaz">
+                            <option value="Plagirath">
+                            <option value="Ferumbras Ascendant">
+                            <option value="Mazoran">
+                            <option value="Razzagorn">
+                            <option value="Shulgrax">
+                            <option value="Tarbaz">
+                            <option value="Ethershreck">
+                        </datalist>
                     </div>
 
                     <div class="input-group">
@@ -1187,18 +1200,186 @@ Galll
                     </div>
 
                     <div class="input-group">
-                        <label for="itemBoss">Boss / Source (optional)</label>
-                        <input type="text" id="itemBoss" placeholder="e.g., Ferumbras, Lloyd, Drume...">
+                        <label for="itemDate">Date Dropped</label>
+                        <input type="date" id="itemDate">
                     </div>
 
                     <div class="input-group">
-                        <label for="itemDate">Date Dropped</label>
-                        <input type="date" id="itemDate">
+                        <label for="itemTier">Item Tier (optional)</label>
+                        <select id="itemTier" style="padding: 12px; border: 1px solid var(--border-color); border-radius: 8px; background: var(--card-bg); color: var(--text-primary); width: 100%;">
+                            <option value="0">Tier 0 (Base item)</option>
+                            <option value="1">Tier 1</option>
+                            <option value="2">Tier 2</option>
+                            <option value="3">Tier 3</option>
+                            <option value="4">Tier 4</option>
+                            <option value="5">Tier 5</option>
+                            <option value="6">Tier 6</option>
+                            <option value="7">Tier 7</option>
+                            <option value="8">Tier 8</option>
+                            <option value="9">Tier 9</option>
+                            <option value="10">Tier 10 (MAX)</option>
+                        </select>
+                        <small style="color: var(--text-secondary); margin-top: 5px; display: block;">If this item is upgraded at Exaltation Forge</small>
                     </div>
 
                     <button class="btn-primary" onclick="addRareItem()" style="width: 100%; margin-top: 10px;">
                         💎 Add Rare Item
                     </button>
+                </div>
+
+                <!-- Boss Loot Database -->
+                <div class="card" style="margin-top: 20px;">
+                    <h3 onclick="toggleBossDatabase()" style="cursor: pointer; user-select: none;">👑 Boss Loot Database <span id="bossDbToggle">▼</span></h3>
+                    <div id="bossDatabase" style="display: none; margin-top: 15px;">
+                        <p style="color: var(--text-secondary); margin-bottom: 15px;">Complete list of major Tibia bosses and their most valuable drops</p>
+
+                        <div style="display: grid; gap: 10px;">
+                            <details style="background: rgba(102, 126, 234, 0.05); padding: 12px; border-radius: 8px; border-left: 3px solid var(--primary-color);">
+                                <summary style="cursor: pointer; font-weight: bold; color: var(--primary-color);">🔥 World Change Bosses</summary>
+                                <div style="padding-left: 15px; margin-top: 10px; color: var(--text-primary);">
+                                    <p><strong>Ferumbras:</strong> Ferumbras' Hat (guaranteed), Magic Plate Armor, Demon Shield, various rare weapons</p>
+                                    <p><strong>Orshabaal:</strong> Orshabaal's Brain, Demon Shield, Mastermind Shield, Magic Plate Armor, Golden Legs, Fire Axe</p>
+                                    <p><strong>Morgaroth:</strong> Morgaroth's Heart, Thunder Hammer, Royal Crossbow, Obsidian Truncheon, The Stomper</p>
+                                    <p><strong>Ghazbaran:</strong> Teddy Bear, Havoc Blade, Oceanborn Leviathan Armor, Spellbook of Warding</p>
+                                </div>
+                            </details>
+
+                            <details style="background: rgba(102, 126, 234, 0.05); padding: 12px; border-radius: 8px; border-left: 3px solid var(--success-color);">
+                                <summary style="cursor: pointer; font-weight: bold; color: var(--success-color);">🦅 Falcon Bastion (Oberon)</summary>
+                                <div style="padding-left: 15px; margin-top: 10px; color: var(--text-primary);">
+                                    <p><strong>Grand Master Oberon:</strong> Falcon items (Battleaxe, Bow, Mace, Longsword, Plate, Greaves, Coif, Rod, Wand, Circlet, Escutcheon)</p>
+                                    <p><strong>Preceptor Lazare:</strong> Falcon items</p>
+                                    <p style="color: var(--text-secondary); font-size: 0.9em;">Classification: 3-4 | Tier potential: 0-10</p>
+                                </div>
+                            </details>
+
+                            <details style="background: rgba(102, 126, 234, 0.05); padding: 12px; border-radius: 8px; border-left: 3px solid var(--warning-color);">
+                                <summary style="cursor: pointer; font-weight: bold; color: var(--warning-color);">⚔️ Soul War (Goshnar's Taints)</summary>
+                                <div style="padding-left: 15px; margin-top: 10px; color: var(--text-primary);">
+                                    <p><strong>All Taints:</strong> Soul Set items via Bag You Desire</p>
+                                    <p><strong>Weapons:</strong> Soulcutter, Souleater, Soulshredder, Soulbiter, Soulcrusher, Soulmaimer, Soulbleeder, Soulpiercer, Soultainter, Soulhexer</p>
+                                    <p><strong>Armor:</strong> Soulshell, Soulmantel, Soulshroud, Soulshanks, Soulstrider, Soulbastion, Soulwalkers, Soulstalkers</p>
+                                    <p style="color: var(--text-secondary); font-size: 0.9em;">Classification: 4 | Tier potential: 0-10</p>
+                                </div>
+                            </details>
+
+                            <details style="background: rgba(102, 126, 234, 0.05); padding: 12px; border-radius: 8px; border-left: 3px solid var(--danger-color);">
+                                <summary style="cursor: pointer; font-weight: bold; color: var(--danger-color);">🐍 Cobra Bastion</summary>
+                                <div style="padding-left: 15px; margin-top: 10px; color: var(--text-primary);">
+                                    <p><strong>Bosses:</strong> Scarlett Etzel, King Zelos, The Brainstealer, The Souldespoiler, The Manhunter</p>
+                                    <p><strong>Drops:</strong> Cobra items (Sword, Axe, Club, Crossbow, Rod, Wand, Hood, Amulet, Boots, Tongue)</p>
+                                    <p style="color: var(--text-secondary); font-size: 0.9em;">Classification: 4 | Tier potential: 0-10</p>
+                                </div>
+                            </details>
+
+                            <details style="background: rgba(102, 126, 234, 0.05); padding: 12px; border-radius: 8px; border-left: 3px solid var(--info-color);">
+                                <summary style="cursor: pointer; font-weight: bold; color: var(--info-color);">⛏️ Dangerous Depths (Gnome Set)</summary>
+                                <div style="padding-left: 15px; margin-top: 10px; color: var(--text-primary);">
+                                    <p><strong>The Duke of The Depths:</strong> Gnome Sword, Gnome Armor, Gnome Helmet, Gnome Legs</p>
+                                    <p><strong>The Baron from Below:</strong> Gnome items</p>
+                                    <p><strong>The Count of The Core:</strong> Gnome items</p>
+                                    <p style="color: var(--text-secondary); font-size: 0.9em;">Classification: 3 | Tier potential: 0-10</p>
+                                </div>
+                            </details>
+
+                            <details style="background: rgba(102, 126, 234, 0.05); padding: 12px; border-radius: 8px; border-left: 3px solid #9c27b0;">
+                                <summary style="cursor: pointer; font-weight: bold; color: #9c27b0;">🌟 Other Major Bosses</summary>
+                                <div style="padding-left: 15px; margin-top: 10px; color: var(--text-primary);">
+                                    <p><strong>Ferumbras Ascendant:</strong> Ferumbras' Hat, various high-level items</p>
+                                    <p><strong>Timira the Many-Headed:</strong> Supreme Cube, Primal Bag, Lion items</p>
+                                    <p><strong>Razzagorn/Ragiaz/Plagirath:</strong> Dream items, Phantasmal weapons</p>
+                                    <p><strong>The Enraged Thorn Knight:</strong> Draken Elite Helmet, Zaoan items</p>
+                                    <p><strong>Drume:</strong> Pair of Dreamwalkers, various rare items</p>
+                                    <p><strong>Lloyd:</strong> Lloyd's Beacon, various rare items</p>
+                                </div>
+                            </details>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tier Cost Calculator -->
+                <div class="card" style="margin-top: 20px;">
+                    <h3 onclick="toggleTierCalc()" style="cursor: pointer; user-select: none;">🔧 Tier Upgrade Cost Calculator <span id="tierCalcToggle">▼</span></h3>
+                    <div id="tierCalculator" style="display: none; margin-top: 15px;">
+                        <p style="color: var(--text-secondary); margin-bottom: 15px;">Calculate costs to upgrade items at Exaltation Forge</p>
+
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 20px;">
+                            <div>
+                                <label style="display: block; margin-bottom: 5px; color: var(--text-primary);">Item Classification</label>
+                                <select id="calcClass" onchange="calculateTierCost()" style="width: 100%; padding: 10px; border: 1px solid var(--border-color); border-radius: 5px; background: var(--card-bg); color: var(--text-primary);">
+                                    <option value="1">Class 1 (Common)</option>
+                                    <option value="2">Class 2 (Uncommon)</option>
+                                    <option value="3">Class 3 (Rare)</option>
+                                    <option value="4">Class 4 (Very Rare)</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label style="display: block; margin-bottom: 5px; color: var(--text-primary);">Target Tier</label>
+                                <select id="calcTier" onchange="calculateTierCost()" style="width: 100%; padding: 10px; border: 1px solid var(--border-color); border-radius: 5px; background: var(--card-bg); color: var(--text-primary);">
+                                    <option value="1">Tier 1</option>
+                                    <option value="2">Tier 2</option>
+                                    <option value="3">Tier 3</option>
+                                    <option value="4">Tier 4</option>
+                                    <option value="5">Tier 5</option>
+                                    <option value="6">Tier 6</option>
+                                    <option value="7">Tier 7</option>
+                                    <option value="8">Tier 8</option>
+                                    <option value="9">Tier 9</option>
+                                    <option value="10">Tier 10</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div id="tierCostResult" style="background: linear-gradient(135deg, var(--primary-color), var(--secondary-color)); padding: 20px; border-radius: 10px; color: white;">
+                            <h4 style="margin-bottom: 15px;">Cost to reach Tier 1 (Class 1):</h4>
+                            <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 15px;">
+                                <div>
+                                    <p style="font-size: 0.9em; opacity: 0.9;">Dust</p>
+                                    <p style="font-size: 1.5em; font-weight: bold;" id="costDust">100</p>
+                                </div>
+                                <div>
+                                    <p style="font-size: 0.9em; opacity: 0.9;">Gold</p>
+                                    <p style="font-size: 1.5em; font-weight: bold;" id="costGold">75,000</p>
+                                </div>
+                                <div>
+                                    <p style="font-size: 0.9em; opacity: 0.9;">Cores (optional)</p>
+                                    <p style="font-size: 1.5em; font-weight: bold;" id="costCores">0-2</p>
+                                </div>
+                            </div>
+                            <p style="margin-top: 15px; font-size: 0.9em; opacity: 0.9;">* Fusion has 50% success rate (65% with core). Transfer always succeeds but reduces tier by 1.</p>
+                        </div>
+
+                        <details style="margin-top: 15px; padding: 12px; background: rgba(102, 126, 234, 0.05); border-radius: 8px;">
+                            <summary style="cursor: pointer; font-weight: bold; color: var(--primary-color);">📊 Complete Tier Cost Table</summary>
+                            <div style="padding: 10px; margin-top: 10px; overflow-x: auto;">
+                                <table style="width: 100%; border-collapse: collapse; color: var(--text-primary); font-size: 0.9em;">
+                                    <thead>
+                                        <tr style="background: rgba(102, 126, 234, 0.1);">
+                                            <th style="padding: 8px; border: 1px solid var(--border-color);">Tier</th>
+                                            <th style="padding: 8px; border: 1px solid var(--border-color);">Class 1 Gold</th>
+                                            <th style="padding: 8px; border: 1px solid var(--border-color);">Class 2 Gold</th>
+                                            <th style="padding: 8px; border: 1px solid var(--border-color);">Class 3 Gold</th>
+                                            <th style="padding: 8px; border: 1px solid var(--border-color);">Class 4 Gold</th>
+                                            <th style="padding: 8px; border: 1px solid var(--border-color);">Dust</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr><td style="padding: 8px; border: 1px solid var(--border-color); text-align: center;">1</td><td style="padding: 8px; border: 1px solid var(--border-color);">75k</td><td style="padding: 8px; border: 1px solid var(--border-color);">250k</td><td style="padding: 8px; border: 1px solid var(--border-color);">750k</td><td style="padding: 8px; border: 1px solid var(--border-color);">1.5M</td><td style="padding: 8px; border: 1px solid var(--border-color);">100</td></tr>
+                                        <tr><td style="padding: 8px; border: 1px solid var(--border-color); text-align: center;">2</td><td style="padding: 8px; border: 1px solid var(--border-color);">150k</td><td style="padding: 8px; border: 1px solid var(--border-color);">500k</td><td style="padding: 8px; border: 1px solid var(--border-color);">1.5M</td><td style="padding: 8px; border: 1px solid var(--border-color);">3M</td><td style="padding: 8px; border: 1px solid var(--border-color);">100</td></tr>
+                                        <tr><td style="padding: 8px; border: 1px solid var(--border-color); text-align: center;">3</td><td style="padding: 8px; border: 1px solid var(--border-color);">300k</td><td style="padding: 8px; border: 1px solid var(--border-color);">1M</td><td style="padding: 8px; border: 1px solid var(--border-color);">3M</td><td style="padding: 8px; border: 1px solid var(--border-color);">6M</td><td style="padding: 8px; border: 1px solid var(--border-color);">100</td></tr>
+                                        <tr><td style="padding: 8px; border: 1px solid var(--border-color); text-align: center;">4</td><td style="padding: 8px; border: 1px solid var(--border-color);">600k</td><td style="padding: 8px; border: 1px solid var(--border-color);">2M</td><td style="padding: 8px; border: 1px solid var(--border-color);">6M</td><td style="padding: 8px; border: 1px solid var(--border-color);">12M</td><td style="padding: 8px; border: 1px solid var(--border-color);">100</td></tr>
+                                        <tr><td style="padding: 8px; border: 1px solid var(--border-color); text-align: center;">5</td><td style="padding: 8px; border: 1px solid var(--border-color);">1.2M</td><td style="padding: 8px; border: 1px solid var(--border-color);">4M</td><td style="padding: 8px; border: 1px solid var(--border-color);">12M</td><td style="padding: 8px; border: 1px solid var(--border-color);">24M</td><td style="padding: 8px; border: 1px solid var(--border-color);">100</td></tr>
+                                        <tr><td style="padding: 8px; border: 1px solid var(--border-color); text-align: center;">6</td><td style="padding: 8px; border: 1px solid var(--border-color);">2.4M</td><td style="padding: 8px; border: 1px solid var(--border-color);">8M</td><td style="padding: 8px; border: 1px solid var(--border-color);">24M</td><td style="padding: 8px; border: 1px solid var(--border-color);">48M</td><td style="padding: 8px; border: 1px solid var(--border-color);">100</td></tr>
+                                        <tr><td style="padding: 8px; border: 1px solid var(--border-color); text-align: center;">7</td><td style="padding: 8px; border: 1px solid var(--border-color);">4.8M</td><td style="padding: 8px; border: 1px solid var(--border-color);">16M</td><td style="padding: 8px; border: 1px solid var(--border-color);">48M</td><td style="padding: 8px; border: 1px solid var(--border-color);">96M</td><td style="padding: 8px; border: 1px solid var(--border-color);">100</td></tr>
+                                        <tr><td style="padding: 8px; border: 1px solid var(--border-color); text-align: center;">8</td><td style="padding: 8px; border: 1px solid var(--border-color);">9.6M</td><td style="padding: 8px; border: 1px solid var(--border-color);">32M</td><td style="padding: 8px; border: 1px solid var(--border-color);">96M</td><td style="padding: 8px; border: 1px solid var(--border-color);">192M</td><td style="padding: 8px; border: 1px solid var(--border-color);">100</td></tr>
+                                        <tr><td style="padding: 8px; border: 1px solid var(--border-color); text-align: center;">9</td><td style="padding: 8px; border: 1px solid var(--border-color);">19.2M</td><td style="padding: 8px; border: 1px solid var(--border-color);">64M</td><td style="padding: 8px; border: 1px solid var(--border-color);">192M</td><td style="padding: 8px; border: 1px solid var(--border-color);">384M</td><td style="padding: 8px; border: 1px solid var(--border-color);">100</td></tr>
+                                        <tr><td style="padding: 8px; border: 1px solid var(--border-color); text-align: center;">10</td><td style="padding: 8px; border: 1px solid var(--border-color);">38.4M</td><td style="padding: 8px; border: 1px solid var(--border-color);">128M</td><td style="padding: 8px; border: 1px solid var(--border-color);">384M</td><td style="padding: 8px; border: 1px solid var(--border-color);">768M</td><td style="padding: 8px; border: 1px solid var(--border-color);">100</td></tr>
+                                    </tbody>
+                                </table>
+                                <p style="margin-top: 10px; font-size: 0.85em; color: var(--text-secondary);">* These are fusion costs per attempt. Total cost depends on success rate and number of attempts needed.</p>
+                            </div>
+                        </details>
+                    </div>
                 </div>
 
                 <!-- Rare Items List -->
@@ -1285,57 +1466,6 @@ Galll
         let serverType = 'green';
         let isDarkMode = localStorage.getItem('darkMode') === 'true';
         let teamMemberCount = 1;
-
-        // Item Prices Database (average prices by server type in gold pieces)
-        const itemPrices = {
-            'Falcon Battleaxe': { green: 8000000, yellow: 7000000, retro_open: 15000000, retro_hardcore: 20000000, optional_pvp: 6000000 },
-            'Falcon Bow': { green: 8500000, yellow: 7500000, retro_open: 16000000, retro_hardcore: 21000000, optional_pvp: 6500000 },
-            'Falcon Mace': { green: 7500000, yellow: 6500000, retro_open: 14000000, retro_hardcore: 19000000, optional_pvp: 5500000 },
-            'Falcon Longsword': { green: 7500000, yellow: 6500000, retro_open: 14000000, retro_hardcore: 19000000, optional_pvp: 5500000 },
-            'Soulcutter': { green: 12000000, yellow: 10000000, retro_open: 20000000, retro_hardcore: 25000000, optional_pvp: 9000000 },
-            'Souleater': { green: 12000000, yellow: 10000000, retro_open: 20000000, retro_hardcore: 25000000, optional_pvp: 9000000 },
-            'Soulshredder': { green: 12000000, yellow: 10000000, retro_open: 20000000, retro_hardcore: 25000000, optional_pvp: 9000000 },
-            'Soulbiter': { green: 12000000, yellow: 10000000, retro_open: 20000000, retro_hardcore: 25000000, optional_pvp: 9000000 },
-            'Gnome Sword': { green: 5000000, yellow: 4500000, retro_open: 9000000, retro_hardcore: 12000000, optional_pvp: 4000000 },
-            'Cobra Sword': { green: 15000000, yellow: 13000000, retro_open: 25000000, retro_hardcore: 30000000, optional_pvp: 12000000 },
-            'Cobra Axe': { green: 15000000, yellow: 13000000, retro_open: 25000000, retro_hardcore: 30000000, optional_pvp: 12000000 },
-            'Cobra Club': { green: 15000000, yellow: 13000000, retro_open: 25000000, retro_hardcore: 30000000, optional_pvp: 12000000 },
-            'Falcon Plate': { green: 6000000, yellow: 5500000, retro_open: 11000000, retro_hardcore: 15000000, optional_pvp: 5000000 },
-            'Falcon Greaves': { green: 5000000, yellow: 4500000, retro_open: 9000000, retro_hardcore: 12000000, optional_pvp: 4000000 },
-            'Falcon Coif': { green: 5500000, yellow: 5000000, retro_open: 10000000, retro_hardcore: 13000000, optional_pvp: 4500000 },
-            'Soulshell': { green: 10000000, yellow: 9000000, retro_open: 18000000, retro_hardcore: 22000000, optional_pvp: 8000000 },
-            'Soulmantle': { green: 10000000, yellow: 9000000, retro_open: 18000000, retro_hardcore: 22000000, optional_pvp: 8000000 },
-            'Soulshanks': { green: 10000000, yellow: 9000000, retro_open: 18000000, retro_hardcore: 22000000, optional_pvp: 8000000 },
-            'Soulbastion': { green: 11000000, yellow: 10000000, retro_open: 19000000, retro_hardcore: 23000000, optional_pvp: 9000000 },
-            'Gnome Armor': { green: 4000000, yellow: 3500000, retro_open: 7000000, retro_hardcore: 9000000, optional_pvp: 3000000 },
-            'Gnome Helmet': { green: 3500000, yellow: 3000000, retro_open: 6000000, retro_hardcore: 8000000, optional_pvp: 2500000 },
-            'Gnome Legs': { green: 3500000, yellow: 3000000, retro_open: 6000000, retro_hardcore: 8000000, optional_pvp: 2500000 },
-            'Cobra Hood': { green: 12000000, yellow: 11000000, retro_open: 20000000, retro_hardcore: 25000000, optional_pvp: 10000000 },
-            'Cobra Boots': { green: 12000000, yellow: 11000000, retro_open: 20000000, retro_hardcore: 25000000, optional_pvp: 10000000 },
-            'Gilded Eldritch Bow': { green: 20000000, yellow: 18000000, retro_open: 35000000, retro_hardcore: 45000000, optional_pvp: 16000000 },
-            'Gilded Eldritch Wand': { green: 20000000, yellow: 18000000, retro_open: 35000000, retro_hardcore: 45000000, optional_pvp: 16000000 },
-            'Gilded Eldritch Rod': { green: 20000000, yellow: 18000000, retro_open: 35000000, retro_hardcore: 45000000, optional_pvp: 16000000 },
-            'Enchanted Theurgic Amulet': { green: 8000000, yellow: 7000000, retro_open: 14000000, retro_hardcore: 18000000, optional_pvp: 6000000 },
-            'Enchanted Pendulet': { green: 8000000, yellow: 7000000, retro_open: 14000000, retro_hardcore: 18000000, optional_pvp: 6000000 },
-            'Arcanomancer Folio': { green: 15000000, yellow: 13000000, retro_open: 25000000, retro_hardcore: 30000000, optional_pvp: 12000000 },
-            'Arcanomancer Regalia': { green: 15000000, yellow: 13000000, retro_open: 25000000, retro_hardcore: 30000000, optional_pvp: 12000000 },
-            'Arboreal Crown': { green: 10000000, yellow: 9000000, retro_open: 18000000, retro_hardcore: 22000000, optional_pvp: 8000000 },
-            'Arboreal Ring': { green: 10000000, yellow: 9000000, retro_open: 18000000, retro_hardcore: 22000000, optional_pvp: 8000000 },
-            "Ferumbras' Hat": { green: 50000000, yellow: 45000000, retro_open: 80000000, retro_hardcore: 100000000, optional_pvp: 40000000 },
-            "Orshabaal's Brain": { green: 30000000, yellow: 28000000, retro_open: 50000000, retro_hardcore: 65000000, optional_pvp: 25000000 },
-            "Morgaroth's Heart": { green: 30000000, yellow: 28000000, retro_open: 50000000, retro_hardcore: 65000000, optional_pvp: 25000000 },
-            'Demon Shield': { green: 40000000, yellow: 35000000, retro_open: 70000000, retro_hardcore: 90000000, optional_pvp: 30000000 },
-            'Golden Armor': { green: 25000000, yellow: 22000000, retro_open: 40000000, retro_hardcore: 50000000, optional_pvp: 20000000 },
-            'Magic Plate Armor': { green: 35000000, yellow: 30000000, retro_open: 60000000, retro_hardcore: 75000000, optional_pvp: 28000000 },
-            'Mastermind Shield': { green: 45000000, yellow: 40000000, retro_open: 75000000, retro_hardcore: 95000000, optional_pvp: 35000000 },
-            'Demonrage Sword': { green: 30000000, yellow: 28000000, retro_open: 50000000, retro_hardcore: 65000000, optional_pvp: 25000000 },
-            'Emerald Sword': { green: 60000000, yellow: 55000000, retro_open: 100000000, retro_hardcore: 130000000, optional_pvp: 50000000 },
-            'Supreme Cube': { green: 5000000, yellow: 4500000, retro_open: 8000000, retro_hardcore: 10000000, optional_pvp: 4000000 },
-            'Primal Bag': { green: 8000000, yellow: 7000000, retro_open: 14000000, retro_hardcore: 18000000, optional_pvp: 6000000 },
-            'Giant Shimmering Pearl': { green: 6000000, yellow: 5500000, retro_open: 10000000, retro_hardcore: 13000000, optional_pvp: 5000000 },
-            'Giant Shimmering Pearl (Green)': { green: 7000000, yellow: 6500000, retro_open: 12000000, retro_hardcore: 15000000, optional_pvp: 6000000 },
-            'Bag You Desire': { green: 4000000, yellow: 3500000, retro_open: 7000000, retro_hardcore: 9000000, optional_pvp: 3000000 }
-        };
 
         // Initialize App
         window.onload = function() {
@@ -2403,49 +2533,84 @@ Galll
 
         // ==================== RARE LOOT FUNCTIONS ====================
 
-        // Fill item price based on selection
-        function fillItemPrice() {
-            const selectedItem = document.getElementById('rareItemSelect').value;
-            const priceInput = document.getElementById('itemPrice');
-
-            if (selectedItem !== 'Custom Item' && itemPrices[selectedItem]) {
-                priceInput.value = itemPrices[selectedItem][serverType];
+        // Toggle Boss Database
+        function toggleBossDatabase() {
+            const db = document.getElementById('bossDatabase');
+            const toggle = document.getElementById('bossDbToggle');
+            if (db.style.display === 'none') {
+                db.style.display = 'block';
+                toggle.textContent = '▲';
             } else {
-                priceInput.value = '';
+                db.style.display = 'none';
+                toggle.textContent = '▼';
             }
+        }
+
+        // Toggle Tier Calculator
+        function toggleTierCalc() {
+            const calc = document.getElementById('tierCalculator');
+            const toggle = document.getElementById('tierCalcToggle');
+            if (calc.style.display === 'none') {
+                calc.style.display = 'block';
+                toggle.textContent = '▲';
+            } else {
+                calc.style.display = 'none';
+                toggle.textContent = '▼';
+            }
+        }
+
+        // Calculate Tier Cost
+        function calculateTierCost() {
+            const tierClass = parseInt(document.getElementById('calcClass').value);
+            const targetTier = parseInt(document.getElementById('calcTier').value);
+
+            const goldCosts = {
+                1: [75000, 150000, 300000, 600000, 1200000, 2400000, 4800000, 9600000, 19200000, 38400000],
+                2: [250000, 500000, 1000000, 2000000, 4000000, 8000000, 16000000, 32000000, 64000000, 128000000],
+                3: [750000, 1500000, 3000000, 6000000, 12000000, 24000000, 48000000, 96000000, 192000000, 384000000],
+                4: [1500000, 3000000, 6000000, 12000000, 24000000, 48000000, 96000000, 192000000, 384000000, 768000000]
+            };
+
+            const dust = 100;
+            const gold = goldCosts[tierClass][targetTier - 1];
+            const cores = "0-2";
+
+            const className = {1: 'Common', 2: 'Uncommon', 3: 'Rare', 4: 'Very Rare'}[tierClass];
+
+            document.getElementById('costDust').textContent = formatNumber(dust);
+            document.getElementById('costGold').textContent = formatNumber(gold);
+            document.getElementById('costCores').textContent = cores;
+            document.querySelector('#tierCostResult h4').textContent = `Cost to reach Tier ${targetTier} (Class ${tierClass} - ${className}):`;
         }
 
         // Update server type
         function updateServerType() {
             serverType = document.getElementById('serverType').value;
             saveUserData();
-            fillItemPrice(); // Update price field
             updateRareLootStats();
-            showNotification(`Server type changed. Item prices updated!`);
+            showNotification(`Server type changed to ${serverType.replace('_', ' ')}!`);
         }
 
         // Add rare item
         function addRareItem() {
-            const selectEl = document.getElementById('rareItemSelect');
             const customNameEl = document.getElementById('customItemName');
             const quantityEl = document.getElementById('itemQuantity');
             const priceEl = document.getElementById('itemPrice');
             const bossEl = document.getElementById('itemBoss');
             const dateEl = document.getElementById('itemDate');
+            const tierEl = document.getElementById('itemTier');
 
-            let itemName = selectEl.value;
-            if (itemName === 'Custom Item') {
-                itemName = customNameEl.value.trim();
-                if (!itemName) {
-                    showNotification('Please enter a custom item name');
-                    return;
-                }
+            const itemName = customNameEl.value.trim();
+            if (!itemName) {
+                showNotification('Please enter an item name');
+                return;
             }
 
             const quantity = parseInt(quantityEl.value) || 1;
             const price = parseInt(priceEl.value);
             const boss = bossEl.value.trim();
             const date = dateEl.value || new Date().toISOString().split('T')[0];
+            const tier = parseInt(tierEl.value) || 0;
 
             if (!price || price <= 0) {
                 showNotification('Please enter a valid price');
@@ -2463,6 +2628,7 @@ Galll
                 serverType: serverType,
                 boss: boss,
                 date: date,
+                tier: tier,
                 createdAt: new Date().toISOString()
             };
 
@@ -2470,12 +2636,12 @@ Galll
             saveUserData();
 
             // Clear form
-            selectEl.selectedIndex = 0;
             customNameEl.value = '';
             quantityEl.value = 1;
             priceEl.value = '';
             bossEl.value = '';
             dateEl.value = '';
+            tierEl.value = 0;
 
             updateRareLootStats();
             displayRareItems();
@@ -2544,11 +2710,13 @@ Galll
                     'optional_pvp': 'Optional PvP'
                 };
 
+                const tierDisplay = item.tier && item.tier > 0 ? `<span style="background: linear-gradient(135deg, gold, orange); padding: 2px 8px; border-radius: 4px; font-size: 0.85em; font-weight: bold; color: white; margin-left: 8px;">Tier ${item.tier}</span>` : '';
+
                 html += `
                     <div style="background: rgba(102, 126, 234, 0.1); border-left: 4px solid var(--primary-color); padding: 15px; border-radius: 8px;">
                         <div style="display: flex; justify-content: space-between; align-items: start;">
                             <div style="flex: 1;">
-                                <h4 style="color: var(--primary-color); margin-bottom: 5px;">💎 ${item.itemName}</h4>
+                                <h4 style="color: var(--primary-color); margin-bottom: 5px; display: flex; align-items: center;">💎 ${item.itemName}${tierDisplay}</h4>
                                 <p style="color: var(--text-primary); margin: 5px 0;"><strong>Value:</strong> ${formatNumber(item.totalValue)} gp</p>
                                 <p style="color: var(--text-secondary); font-size: 0.9em; margin: 3px 0;">
                                     ${item.quantity}x @ ${formatNumber(item.pricePerUnit)} gp each
