@@ -806,6 +806,7 @@
                 <button class="main-tab" onclick="switchMainTab('addHunt')">➕ Add Hunt</button>
                 <button class="main-tab" onclick="switchMainTab('teamHunt')">👥 Team Hunt</button>
                 <button class="main-tab" onclick="switchMainTab('goals')">🎯 Goals</button>
+                <button class="main-tab" onclick="switchMainTab('rareLoot')">💎 Rare Loot</button>
                 <button class="main-tab" onclick="switchMainTab('comparator')">🔍 Hunt Spots</button>
                 <button class="main-tab" onclick="switchMainTab('charts')">📈 Charts</button>
                 <button class="main-tab" onclick="switchMainTab('history')">📜 History</button>
@@ -1057,6 +1058,170 @@ Galll
                 </div>
             </div>
 
+            <!-- Rare Loot Tab -->
+            <div class="main-tab-content" id="rareLootTab">
+                <div class="card">
+                    <h2>💎 Rare Loot Tracker</h2>
+                    <p style="color: var(--text-secondary); margin-bottom: 20px;">Track valuable items from bosses and hunting. Monitor your total loot value across different server types.</p>
+
+                    <!-- Server Type Selection -->
+                    <div class="input-group">
+                        <label for="serverType">🌍 Your Server Type</label>
+                        <select id="serverType" onchange="updateServerType()" style="padding: 12px; border: 1px solid var(--border-color); border-radius: 8px; background: var(--card-bg); color: var(--text-primary); width: 100%;">
+                            <option value="green">Green - BattlEye Protected</option>
+                            <option value="yellow">Yellow - BattlEye Optional</option>
+                            <option value="retro_open">Retro Open PvP</option>
+                            <option value="retro_hardcore">Retro Hardcore PvP</option>
+                            <option value="optional_pvp">Optional PvP</option>
+                        </select>
+                        <small style="color: var(--text-secondary); margin-top: 5px; display: block;">Prices vary significantly between server types</small>
+                    </div>
+                </div>
+
+                <!-- Monthly Statistics -->
+                <div class="dashboard-grid" style="margin-top: 20px;">
+                    <div class="stat-card">
+                        <h3>Total Value (All Time)</h3>
+                        <p id="rareLootTotalValue" style="color: var(--success-color);">0 gp</p>
+                        <small>All rare items</small>
+                    </div>
+                    <div class="stat-card">
+                        <h3>This Month</h3>
+                        <p id="rareLootMonthValue" style="color: var(--primary-color);">0 gp</p>
+                        <small id="rareLootMonthName">Current month</small>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Total Items</h3>
+                        <p id="rareLootTotalItems">0</p>
+                        <small>Rare drops</small>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Most Valuable</h3>
+                        <p id="rareLootMostValuable" style="color: var(--warning-color);">-</p>
+                        <small>Single item</small>
+                    </div>
+                </div>
+
+                <!-- Add Rare Item -->
+                <div class="card" style="margin-top: 20px;">
+                    <h3>➕ Add Rare Item</h3>
+
+                    <div class="input-group">
+                        <label for="rareItemSelect">Item Name</label>
+                        <select id="rareItemSelect" onchange="fillItemPrice()" style="padding: 12px; border: 1px solid var(--border-color); border-radius: 8px; background: var(--card-bg); color: var(--text-primary); width: 100%;">
+                            <optgroup label="⚔️ Weapons">
+                                <option value="Falcon Battleaxe">Falcon Battleaxe</option>
+                                <option value="Falcon Bow">Falcon Bow</option>
+                                <option value="Falcon Mace">Falcon Mace</option>
+                                <option value="Falcon Longsword">Falcon Longsword</option>
+                                <option value="Soulcutter">Soulcutter</option>
+                                <option value="Souleater">Souleater</option>
+                                <option value="Soulshredder">Soulshredder</option>
+                                <option value="Soulbiter">Soulbiter</option>
+                                <option value="Gnome Sword">Gnome Sword</option>
+                                <option value="Cobra Sword">Cobra Sword</option>
+                                <option value="Cobra Axe">Cobra Axe</option>
+                                <option value="Cobra Club">Cobra Club</option>
+                            </optgroup>
+                            <optgroup label="🛡️ Armor & Equipment">
+                                <option value="Falcon Plate">Falcon Plate</option>
+                                <option value="Falcon Greaves">Falcon Greaves</option>
+                                <option value="Falcon Coif">Falcon Coif</option>
+                                <option value="Soulshell">Soulshell</option>
+                                <option value="Soulmantle">Soulmantle</option>
+                                <option value="Soulshanks">Soulshanks</option>
+                                <option value="Soulbastion">Soulbastion</option>
+                                <option value="Gnome Armor">Gnome Armor</option>
+                                <option value="Gnome Helmet">Gnome Helmet</option>
+                                <option value="Gnome Legs">Gnome Legs</option>
+                                <option value="Cobra Hood">Cobra Hood</option>
+                                <option value="Cobra Boots">Cobra Boots</option>
+                            </optgroup>
+                            <optgroup label="📿 Special Items">
+                                <option value="Gilded Eldritch Bow">Gilded Eldritch Bow</option>
+                                <option value="Gilded Eldritch Wand">Gilded Eldritch Wand</option>
+                                <option value="Gilded Eldritch Rod">Gilded Eldritch Rod</option>
+                                <option value="Enchanted Theurgic Amulet">Enchanted Theurgic Amulet</option>
+                                <option value="Enchanted Pendulet">Enchanted Pendulet</option>
+                                <option value="Arcanomancer Folio">Arcanomancer Folio</option>
+                                <option value="Arcanomancer Regalia">Arcanomancer Regalia</option>
+                                <option value="Arboreal Crown">Arboreal Crown</option>
+                                <option value="Arboreal Ring">Arboreal Ring</option>
+                            </optgroup>
+                            <optgroup label="👑 Boss Drops">
+                                <option value="Ferumbras' Hat">Ferumbras' Hat</option>
+                                <option value="Orshabaal's Brain">Orshabaal's Brain</option>
+                                <option value="Morgaroth's Heart">Morgaroth's Heart</option>
+                                <option value="Demon Shield">Demon Shield</option>
+                                <option value="Golden Armor">Golden Armor</option>
+                                <option value="Magic Plate Armor">Magic Plate Armor</option>
+                                <option value="Mastermind Shield">Mastermind Shield</option>
+                                <option value="Demonrage Sword">Demonrage Sword</option>
+                                <option value="Emerald Sword">Emerald Sword</option>
+                            </optgroup>
+                            <optgroup label="🎁 Other Valuable Items">
+                                <option value="Supreme Cube">Supreme Cube</option>
+                                <option value="Primal Bag">Primal Bag</option>
+                                <option value="Giant Shimmering Pearl">Giant Shimmering Pearl</option>
+                                <option value="Giant Shimmering Pearl (Green)">Giant Shimmering Pearl (Green)</option>
+                                <option value="Bag You Desire">Bag You Desire</option>
+                                <option value="Custom Item">-- Custom Item (type below) --</option>
+                            </optgroup>
+                        </select>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="customItemName">Custom Item Name (if not in list)</label>
+                        <input type="text" id="customItemName" placeholder="e.g., Rare Mount Item">
+                    </div>
+
+                    <div class="input-group">
+                        <label for="itemQuantity">Quantity</label>
+                        <input type="number" id="itemQuantity" value="1" min="1" placeholder="1">
+                    </div>
+
+                    <div class="input-group">
+                        <label for="itemPrice">Price per Unit (in your server)</label>
+                        <input type="number" id="itemPrice" placeholder="e.g., 5000000">
+                        <small style="color: var(--text-secondary); margin-top: 5px; display: block;">💡 Check market prices in your world</small>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="itemBoss">Boss / Source (optional)</label>
+                        <input type="text" id="itemBoss" placeholder="e.g., Ferumbras, Lloyd, Drume...">
+                    </div>
+
+                    <div class="input-group">
+                        <label for="itemDate">Date Dropped</label>
+                        <input type="date" id="itemDate">
+                    </div>
+
+                    <button class="btn-primary" onclick="addRareItem()" style="width: 100%; margin-top: 10px;">
+                        💎 Add Rare Item
+                    </button>
+                </div>
+
+                <!-- Rare Items List -->
+                <div class="card" style="margin-top: 20px;">
+                    <h3>📋 Your Rare Drops</h3>
+                    <div id="rareItemsList">
+                        <div class="empty-state">
+                            <p>No rare items yet. Add your first drop above!</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Monthly Breakdown -->
+                <div class="card" style="margin-top: 20px;">
+                    <h3>📊 Monthly Breakdown</h3>
+                    <div id="monthlyBreakdown">
+                        <div class="empty-state">
+                            <p>Add items to see monthly statistics</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <!-- Hunt Spot Comparator Tab -->
             <div class="main-tab-content" id="comparatorTab">
                 <div class="card">
@@ -1116,8 +1281,61 @@ Galll
         let currentUser = null;
         let hunts = [];
         let goals = [];
+        let rareLoot = [];
+        let serverType = 'green';
         let isDarkMode = localStorage.getItem('darkMode') === 'true';
         let teamMemberCount = 1;
+
+        // Item Prices Database (average prices by server type in gold pieces)
+        const itemPrices = {
+            'Falcon Battleaxe': { green: 8000000, yellow: 7000000, retro_open: 15000000, retro_hardcore: 20000000, optional_pvp: 6000000 },
+            'Falcon Bow': { green: 8500000, yellow: 7500000, retro_open: 16000000, retro_hardcore: 21000000, optional_pvp: 6500000 },
+            'Falcon Mace': { green: 7500000, yellow: 6500000, retro_open: 14000000, retro_hardcore: 19000000, optional_pvp: 5500000 },
+            'Falcon Longsword': { green: 7500000, yellow: 6500000, retro_open: 14000000, retro_hardcore: 19000000, optional_pvp: 5500000 },
+            'Soulcutter': { green: 12000000, yellow: 10000000, retro_open: 20000000, retro_hardcore: 25000000, optional_pvp: 9000000 },
+            'Souleater': { green: 12000000, yellow: 10000000, retro_open: 20000000, retro_hardcore: 25000000, optional_pvp: 9000000 },
+            'Soulshredder': { green: 12000000, yellow: 10000000, retro_open: 20000000, retro_hardcore: 25000000, optional_pvp: 9000000 },
+            'Soulbiter': { green: 12000000, yellow: 10000000, retro_open: 20000000, retro_hardcore: 25000000, optional_pvp: 9000000 },
+            'Gnome Sword': { green: 5000000, yellow: 4500000, retro_open: 9000000, retro_hardcore: 12000000, optional_pvp: 4000000 },
+            'Cobra Sword': { green: 15000000, yellow: 13000000, retro_open: 25000000, retro_hardcore: 30000000, optional_pvp: 12000000 },
+            'Cobra Axe': { green: 15000000, yellow: 13000000, retro_open: 25000000, retro_hardcore: 30000000, optional_pvp: 12000000 },
+            'Cobra Club': { green: 15000000, yellow: 13000000, retro_open: 25000000, retro_hardcore: 30000000, optional_pvp: 12000000 },
+            'Falcon Plate': { green: 6000000, yellow: 5500000, retro_open: 11000000, retro_hardcore: 15000000, optional_pvp: 5000000 },
+            'Falcon Greaves': { green: 5000000, yellow: 4500000, retro_open: 9000000, retro_hardcore: 12000000, optional_pvp: 4000000 },
+            'Falcon Coif': { green: 5500000, yellow: 5000000, retro_open: 10000000, retro_hardcore: 13000000, optional_pvp: 4500000 },
+            'Soulshell': { green: 10000000, yellow: 9000000, retro_open: 18000000, retro_hardcore: 22000000, optional_pvp: 8000000 },
+            'Soulmantle': { green: 10000000, yellow: 9000000, retro_open: 18000000, retro_hardcore: 22000000, optional_pvp: 8000000 },
+            'Soulshanks': { green: 10000000, yellow: 9000000, retro_open: 18000000, retro_hardcore: 22000000, optional_pvp: 8000000 },
+            'Soulbastion': { green: 11000000, yellow: 10000000, retro_open: 19000000, retro_hardcore: 23000000, optional_pvp: 9000000 },
+            'Gnome Armor': { green: 4000000, yellow: 3500000, retro_open: 7000000, retro_hardcore: 9000000, optional_pvp: 3000000 },
+            'Gnome Helmet': { green: 3500000, yellow: 3000000, retro_open: 6000000, retro_hardcore: 8000000, optional_pvp: 2500000 },
+            'Gnome Legs': { green: 3500000, yellow: 3000000, retro_open: 6000000, retro_hardcore: 8000000, optional_pvp: 2500000 },
+            'Cobra Hood': { green: 12000000, yellow: 11000000, retro_open: 20000000, retro_hardcore: 25000000, optional_pvp: 10000000 },
+            'Cobra Boots': { green: 12000000, yellow: 11000000, retro_open: 20000000, retro_hardcore: 25000000, optional_pvp: 10000000 },
+            'Gilded Eldritch Bow': { green: 20000000, yellow: 18000000, retro_open: 35000000, retro_hardcore: 45000000, optional_pvp: 16000000 },
+            'Gilded Eldritch Wand': { green: 20000000, yellow: 18000000, retro_open: 35000000, retro_hardcore: 45000000, optional_pvp: 16000000 },
+            'Gilded Eldritch Rod': { green: 20000000, yellow: 18000000, retro_open: 35000000, retro_hardcore: 45000000, optional_pvp: 16000000 },
+            'Enchanted Theurgic Amulet': { green: 8000000, yellow: 7000000, retro_open: 14000000, retro_hardcore: 18000000, optional_pvp: 6000000 },
+            'Enchanted Pendulet': { green: 8000000, yellow: 7000000, retro_open: 14000000, retro_hardcore: 18000000, optional_pvp: 6000000 },
+            'Arcanomancer Folio': { green: 15000000, yellow: 13000000, retro_open: 25000000, retro_hardcore: 30000000, optional_pvp: 12000000 },
+            'Arcanomancer Regalia': { green: 15000000, yellow: 13000000, retro_open: 25000000, retro_hardcore: 30000000, optional_pvp: 12000000 },
+            'Arboreal Crown': { green: 10000000, yellow: 9000000, retro_open: 18000000, retro_hardcore: 22000000, optional_pvp: 8000000 },
+            'Arboreal Ring': { green: 10000000, yellow: 9000000, retro_open: 18000000, retro_hardcore: 22000000, optional_pvp: 8000000 },
+            "Ferumbras' Hat": { green: 50000000, yellow: 45000000, retro_open: 80000000, retro_hardcore: 100000000, optional_pvp: 40000000 },
+            "Orshabaal's Brain": { green: 30000000, yellow: 28000000, retro_open: 50000000, retro_hardcore: 65000000, optional_pvp: 25000000 },
+            "Morgaroth's Heart": { green: 30000000, yellow: 28000000, retro_open: 50000000, retro_hardcore: 65000000, optional_pvp: 25000000 },
+            'Demon Shield': { green: 40000000, yellow: 35000000, retro_open: 70000000, retro_hardcore: 90000000, optional_pvp: 30000000 },
+            'Golden Armor': { green: 25000000, yellow: 22000000, retro_open: 40000000, retro_hardcore: 50000000, optional_pvp: 20000000 },
+            'Magic Plate Armor': { green: 35000000, yellow: 30000000, retro_open: 60000000, retro_hardcore: 75000000, optional_pvp: 28000000 },
+            'Mastermind Shield': { green: 45000000, yellow: 40000000, retro_open: 75000000, retro_hardcore: 95000000, optional_pvp: 35000000 },
+            'Demonrage Sword': { green: 30000000, yellow: 28000000, retro_open: 50000000, retro_hardcore: 65000000, optional_pvp: 25000000 },
+            'Emerald Sword': { green: 60000000, yellow: 55000000, retro_open: 100000000, retro_hardcore: 130000000, optional_pvp: 50000000 },
+            'Supreme Cube': { green: 5000000, yellow: 4500000, retro_open: 8000000, retro_hardcore: 10000000, optional_pvp: 4000000 },
+            'Primal Bag': { green: 8000000, yellow: 7000000, retro_open: 14000000, retro_hardcore: 18000000, optional_pvp: 6000000 },
+            'Giant Shimmering Pearl': { green: 6000000, yellow: 5500000, retro_open: 10000000, retro_hardcore: 13000000, optional_pvp: 5000000 },
+            'Giant Shimmering Pearl (Green)': { green: 7000000, yellow: 6500000, retro_open: 12000000, retro_hardcore: 15000000, optional_pvp: 6000000 },
+            'Bag You Desire': { green: 4000000, yellow: 3500000, retro_open: 7000000, retro_hardcore: 9000000, optional_pvp: 3000000 }
+        };
 
         // Initialize App
         window.onload = function() {
@@ -1183,6 +1401,7 @@ Galll
                 'addHunt': 'addHuntTab',
                 'teamHunt': 'teamHuntTab',
                 'goals': 'goalsTab',
+                'rareLoot': 'rareLootTab',
                 'comparator': 'comparatorTab',
                 'charts': 'chartsTab',
                 'history': 'historyTab'
@@ -1197,6 +1416,10 @@ Galll
                 updateSpotComparison();
             } else if (tab === 'goals') {
                 updateGoalsList();
+            } else if (tab === 'rareLoot') {
+                updateRareLootStats();
+                displayRareItems();
+                displayMonthlyBreakdown();
             } else if (tab === 'dashboard') {
                 updateDashboardGoals();
             }
@@ -1306,6 +1529,11 @@ Galll
             localStorage.setItem('currentUser', username);
             hunts = users[username].hunts || [];
             goals = users[username].goals || [];
+            rareLoot = users[username].rareLoot || [];
+            serverType = users[username].serverType || 'green';
+
+            // Update server type selector
+            document.getElementById('serverType').value = serverType;
 
             showApp();
         }
@@ -1316,6 +1544,8 @@ Galll
                 localStorage.removeItem('currentUser');
                 hunts = [];
                 goals = [];
+                rareLoot = [];
+                serverType = 'green';
 
                 document.getElementById('loginUsername').value = '';
                 document.getElementById('loginPassword').value = '';
@@ -1334,6 +1564,12 @@ Galll
                     currentUser = savedUser;
                     hunts = users[savedUser].hunts || [];
                     goals = users[savedUser].goals || [];
+                    rareLoot = users[savedUser].rareLoot || [];
+                    serverType = users[savedUser].serverType || 'green';
+
+                    // Update server type selector
+                    document.getElementById('serverType').value = serverType;
+
                     showApp();
                     return;
                 }
@@ -1379,6 +1615,8 @@ Galll
             if (users[currentUser]) {
                 users[currentUser].hunts = hunts;
                 users[currentUser].goals = goals;
+                users[currentUser].rareLoot = rareLoot;
+                users[currentUser].serverType = serverType;
                 localStorage.setItem('tibiaUsers', JSON.stringify(users));
             }
         }
@@ -2162,6 +2400,249 @@ Galll
             }
         `;
         document.head.appendChild(style);
+
+        // ==================== RARE LOOT FUNCTIONS ====================
+
+        // Fill item price based on selection
+        function fillItemPrice() {
+            const selectedItem = document.getElementById('rareItemSelect').value;
+            const priceInput = document.getElementById('itemPrice');
+
+            if (selectedItem !== 'Custom Item' && itemPrices[selectedItem]) {
+                priceInput.value = itemPrices[selectedItem][serverType];
+            } else {
+                priceInput.value = '';
+            }
+        }
+
+        // Update server type
+        function updateServerType() {
+            serverType = document.getElementById('serverType').value;
+            saveUserData();
+            fillItemPrice(); // Update price field
+            updateRareLootStats();
+            showNotification(`Server type changed. Item prices updated!`);
+        }
+
+        // Add rare item
+        function addRareItem() {
+            const selectEl = document.getElementById('rareItemSelect');
+            const customNameEl = document.getElementById('customItemName');
+            const quantityEl = document.getElementById('itemQuantity');
+            const priceEl = document.getElementById('itemPrice');
+            const bossEl = document.getElementById('itemBoss');
+            const dateEl = document.getElementById('itemDate');
+
+            let itemName = selectEl.value;
+            if (itemName === 'Custom Item') {
+                itemName = customNameEl.value.trim();
+                if (!itemName) {
+                    showNotification('Please enter a custom item name');
+                    return;
+                }
+            }
+
+            const quantity = parseInt(quantityEl.value) || 1;
+            const price = parseInt(priceEl.value);
+            const boss = bossEl.value.trim();
+            const date = dateEl.value || new Date().toISOString().split('T')[0];
+
+            if (!price || price <= 0) {
+                showNotification('Please enter a valid price');
+                return;
+            }
+
+            const totalValue = quantity * price;
+
+            const rareItem = {
+                id: Date.now(),
+                itemName: itemName,
+                quantity: quantity,
+                pricePerUnit: price,
+                totalValue: totalValue,
+                serverType: serverType,
+                boss: boss,
+                date: date,
+                createdAt: new Date().toISOString()
+            };
+
+            rareLoot.push(rareItem);
+            saveUserData();
+
+            // Clear form
+            selectEl.selectedIndex = 0;
+            customNameEl.value = '';
+            quantityEl.value = 1;
+            priceEl.value = '';
+            bossEl.value = '';
+            dateEl.value = '';
+
+            updateRareLootStats();
+            displayRareItems();
+            displayMonthlyBreakdown();
+
+            showNotification(`💎 ${itemName} added! Value: ${formatNumber(totalValue)} gp`);
+        }
+
+        // Update rare loot statistics
+        function updateRareLootStats() {
+            const totalValue = rareLoot.reduce((sum, item) => sum + item.totalValue, 0);
+            const totalItems = rareLoot.reduce((sum, item) => sum + item.quantity, 0);
+
+            // Calculate this month's value
+            const now = new Date();
+            const currentMonth = now.getMonth();
+            const currentYear = now.getFullYear();
+            const monthValue = rareLoot
+                .filter(item => {
+                    const itemDate = new Date(item.date);
+                    return itemDate.getMonth() === currentMonth && itemDate.getFullYear() === currentYear;
+                })
+                .reduce((sum, item) => sum + item.totalValue, 0);
+
+            // Find most valuable item
+            const mostValuable = rareLoot.length > 0
+                ? rareLoot.reduce((max, item) => item.totalValue > max.totalValue ? item : max, rareLoot[0])
+                : null;
+
+            document.getElementById('rareLootTotalValue').textContent = formatNumber(totalValue) + ' gp';
+            document.getElementById('rareLootMonthValue').textContent = formatNumber(monthValue) + ' gp';
+            document.getElementById('rareLootTotalItems').textContent = totalItems;
+
+            const monthNames = ['January', 'February', 'March', 'April', 'May', 'June',
+                              'July', 'August', 'September', 'October', 'November', 'December'];
+            document.getElementById('rareLootMonthName').textContent = monthNames[currentMonth] + ' ' + currentYear;
+
+            if (mostValuable) {
+                document.getElementById('rareLootMostValuable').textContent =
+                    `${mostValuable.itemName} (${formatNumber(mostValuable.totalValue)} gp)`;
+            } else {
+                document.getElementById('rareLootMostValuable').textContent = '-';
+            }
+        }
+
+        // Display rare items list
+        function displayRareItems() {
+            const container = document.getElementById('rareItemsList');
+
+            if (rareLoot.length === 0) {
+                container.innerHTML = '<div class="empty-state"><p>No rare items yet. Add your first drop above!</p></div>';
+                return;
+            }
+
+            // Sort by date (most recent first)
+            const sortedItems = [...rareLoot].sort((a, b) => new Date(b.date) - new Date(a.date));
+
+            let html = '<div style="display: grid; gap: 15px;">';
+
+            sortedItems.forEach(item => {
+                const serverTypeNames = {
+                    'green': 'Green BattlEye',
+                    'yellow': 'Yellow BattlEye',
+                    'retro_open': 'Retro Open PvP',
+                    'retro_hardcore': 'Retro Hardcore',
+                    'optional_pvp': 'Optional PvP'
+                };
+
+                html += `
+                    <div style="background: rgba(102, 126, 234, 0.1); border-left: 4px solid var(--primary-color); padding: 15px; border-radius: 8px;">
+                        <div style="display: flex; justify-content: space-between; align-items: start;">
+                            <div style="flex: 1;">
+                                <h4 style="color: var(--primary-color); margin-bottom: 5px;">💎 ${item.itemName}</h4>
+                                <p style="color: var(--text-primary); margin: 5px 0;"><strong>Value:</strong> ${formatNumber(item.totalValue)} gp</p>
+                                <p style="color: var(--text-secondary); font-size: 0.9em; margin: 3px 0;">
+                                    ${item.quantity}x @ ${formatNumber(item.pricePerUnit)} gp each
+                                </p>
+                                ${item.boss ? `<p style="color: var(--text-secondary); font-size: 0.9em; margin: 3px 0;">
+                                    <strong>Boss:</strong> ${item.boss}</p>` : ''}
+                                <p style="color: var(--text-secondary); font-size: 0.9em; margin: 3px 0;">
+                                    <strong>Server:</strong> ${serverTypeNames[item.serverType]} | <strong>Date:</strong> ${formatDate(item.date)}
+                                </p>
+                            </div>
+                            <button onclick="deleteRareItem(${item.id})" style="background: var(--danger-color); color: white; border: none; padding: 8px 15px; border-radius: 5px; cursor: pointer; font-size: 0.9em;">
+                                🗑️ Delete
+                            </button>
+                        </div>
+                    </div>
+                `;
+            });
+
+            html += '</div>';
+            container.innerHTML = html;
+        }
+
+        // Display monthly breakdown
+        function displayMonthlyBreakdown() {
+            const container = document.getElementById('monthlyBreakdown');
+
+            if (rareLoot.length === 0) {
+                container.innerHTML = '<div class="empty-state"><p>Add items to see monthly statistics</p></div>';
+                return;
+            }
+
+            // Group items by month
+            const monthlyData = {};
+            rareLoot.forEach(item => {
+                const date = new Date(item.date);
+                const monthKey = `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}`;
+
+                if (!monthlyData[monthKey]) {
+                    monthlyData[monthKey] = {
+                        value: 0,
+                        items: 0,
+                        year: date.getFullYear(),
+                        month: date.getMonth()
+                    };
+                }
+
+                monthlyData[monthKey].value += item.totalValue;
+                monthlyData[monthKey].items += item.quantity;
+            });
+
+            // Sort by date (most recent first)
+            const sortedMonths = Object.keys(monthlyData).sort().reverse();
+
+            const monthNames = ['January', 'February', 'March', 'April', 'May', 'June',
+                              'July', 'August', 'September', 'October', 'November', 'December'];
+
+            let html = '<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px;">';
+
+            sortedMonths.forEach(monthKey => {
+                const data = monthlyData[monthKey];
+                const monthName = monthNames[data.month];
+
+                html += `
+                    <div style="background: linear-gradient(135deg, var(--success-color), var(--primary-color)); padding: 20px; border-radius: 10px; color: white; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+                        <h4 style="margin-bottom: 10px; font-size: 1.1em;">${monthName} ${data.year}</h4>
+                        <p style="font-size: 1.8em; font-weight: bold; margin: 10px 0;">${formatNumber(data.value)} gp</p>
+                        <p style="font-size: 0.9em; opacity: 0.9;">${data.items} items dropped</p>
+                    </div>
+                `;
+            });
+
+            html += '</div>';
+            container.innerHTML = html;
+        }
+
+        // Delete rare item
+        function deleteRareItem(id) {
+            if (confirm('Are you sure you want to delete this rare item?')) {
+                rareLoot = rareLoot.filter(item => item.id !== id);
+                saveUserData();
+                updateRareLootStats();
+                displayRareItems();
+                displayMonthlyBreakdown();
+                showNotification('Rare item deleted');
+            }
+        }
+
+        // Helper function to format date
+        function formatDate(dateString) {
+            const date = new Date(dateString);
+            const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+            return `${months[date.getMonth()]} ${date.getDate()}, ${date.getFullYear()}`;
+        }
+
     </script>
 </body>
 </html>
