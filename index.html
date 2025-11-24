@@ -1501,138 +1501,12 @@ Galll
                     </button>
                 </div>
 
-                <!-- Tier Cost Calculator -->
-                <div class="card" style="margin-top: 20px;">
-                    <h3 onclick="toggleTierCalc()" style="cursor: pointer; user-select: none;">🔧 Tier Upgrade Cost Calculator <span id="tierCalcToggle">▼</span></h3>
-                    <div id="tierCalculator" style="display: none; margin-top: 15px;">
-                        <p style="color: var(--text-secondary); margin-bottom: 20px;">Calculate costs to upgrade items at Exaltation Forge. Choose between two methods: CHEAP (using dust) or EXPENSIVE (buying cores).</p>
-
-                        <!-- Input Grid -->
-                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px; margin-bottom: 20px;">
-                            <div>
-                                <label style="display: block; margin-bottom: 5px; color: var(--text-primary); font-weight: 600;">Item Class</label>
-                                <select id="calcClass" onchange="calculateAdvancedTierCost()" style="width: 100%; padding: 10px; border: 2px solid var(--border-color); border-radius: 8px; background: var(--card-bg); color: var(--text-primary); font-weight: 600;">
-                                    <option value="1">Class 1 (Common)</option>
-                                    <option value="2">Class 2 (Uncommon)</option>
-                                    <option value="3">Class 3 (Rare)</option>
-                                    <option value="4">Class 4 (Very Rare)</option>
-                                </select>
-                            </div>
-                            <div>
-                                <label style="display: block; margin-bottom: 5px; color: var(--text-primary); font-weight: 600;">From Tier</label>
-                                <select id="calcFromTier" onchange="calculateAdvancedTierCost()" style="width: 100%; padding: 10px; border: 2px solid var(--border-color); border-radius: 8px; background: var(--card-bg); color: var(--text-primary); font-weight: 600;">
-                                    <option value="0">Tier 0 (Base)</option>
-                                    <option value="1">Tier 1</option>
-                                    <option value="2">Tier 2</option>
-                                    <option value="3">Tier 3</option>
-                                    <option value="4">Tier 4</option>
-                                    <option value="5">Tier 5</option>
-                                    <option value="6">Tier 6</option>
-                                    <option value="7">Tier 7</option>
-                                    <option value="8">Tier 8</option>
-                                    <option value="9">Tier 9</option>
-                                </select>
-                            </div>
-                            <div>
-                                <label style="display: block; margin-bottom: 5px; color: var(--text-primary); font-weight: 600;">To Tier</label>
-                                <select id="calcToTier" onchange="calculateAdvancedTierCost()" style="width: 100%; padding: 10px; border: 2px solid var(--border-color); border-radius: 8px; background: var(--card-bg); color: var(--text-primary); font-weight: 600;">
-                                    <option value="1">Tier 1</option>
-                                    <option value="2">Tier 2</option>
-                                    <option value="3">Tier 3</option>
-                                    <option value="4">Tier 4</option>
-                                    <option value="5">Tier 5</option>
-                                    <option value="6">Tier 6</option>
-                                    <option value="7">Tier 7</option>
-                                    <option value="8">Tier 8</option>
-                                    <option value="9">Tier 9</option>
-                                    <option value="10">Tier 10</option>
-                                </select>
-                            </div>
-                            <div>
-                                <label style="display: block; margin-bottom: 5px; color: var(--text-primary); font-weight: 600;">Sliver Price (gp)</label>
-                                <input type="number" id="sliverPrice" value="7000" onchange="calculateAdvancedTierCost()" style="width: 100%; padding: 10px; border: 2px solid var(--border-color); border-radius: 8px; background: var(--card-bg); color: var(--text-primary); font-weight: 600;">
-                            </div>
-                        </div>
-
-                        <!-- Results -->
-                        <div id="tierCalcResults"></div>
-
-                        <details style="margin-top: 20px; padding: 15px; background: rgba(102, 126, 234, 0.05); border-radius: 10px; border: 2px solid rgba(102, 126, 234, 0.2);">
-                            <summary style="cursor: pointer; font-weight: bold; color: var(--primary-color); font-size: 1.1em;">📚 How Tier Upgrades Work</summary>
-                            <div style="padding: 15px; margin-top: 10px; color: var(--text-primary); line-height: 1.6;">
-                                <h4 style="color: var(--primary-color); margin-bottom: 10px;">🔹 Fusion Method</h4>
-                                <ul style="margin-left: 20px; margin-bottom: 15px;">
-                                    <li><strong>Requirements:</strong> 2 identical items at SAME tier + 100 Dust + Gold</li>
-                                    <li><strong>Success Rate:</strong> 50% base (65% with 1 core, costs extra)</li>
-                                    <li><strong>On Failure:</strong> One item loses 1 tier (100% chance, or 50% with core)</li>
-                                    <li><strong>Result:</strong> On success, get 1 item at next tier</li>
-                                </ul>
-
-                                <h4 style="color: var(--success-color); margin-bottom: 10px;">💰 Two Cost Methods</h4>
-                                <ul style="margin-left: 20px; margin-bottom: 15px;">
-                                    <li><strong>CHEAP Method:</strong> Farm dust from Influenced Creatures, convert 60 dust → 3 slivers → cores when needed. Time-intensive but saves gold!</li>
-                                    <li><strong>EXPENSIVE Method:</strong> Buy slivers from market, convert to cores (50 slivers = 1 core). Fast but costs more gold!</li>
-                                </ul>
-
-                                <h4 style="color: var(--danger-color); margin-bottom: 10px;">⚡ Resource Conversions</h4>
-                                <ul style="margin-left: 20px;">
-                                    <li>60 Dust → 3 Slivers (at Exaltation Forge)</li>
-                                    <li>50 Slivers → 1 Exalted Core</li>
-                                    <li>1 Core increases success rate 50% → 65%</li>
-                                    <li>1 Core reduces failure penalty 100% → 50%</li>
-                                </ul>
-                            </div>
-                        </details>
-
-                        <details style="margin-top: 15px; padding: 12px; background: rgba(102, 126, 234, 0.05); border-radius: 8px;">
-                            <summary style="cursor: pointer; font-weight: bold; color: var(--primary-color);">📊 Complete Tier Cost Table</summary>
-                            <div style="padding: 10px; margin-top: 10px; overflow-x: auto;">
-                                <table style="width: 100%; border-collapse: collapse; color: var(--text-primary); font-size: 0.9em;">
-                                    <thead>
-                                        <tr style="background: rgba(102, 126, 234, 0.1);">
-                                            <th style="padding: 8px; border: 1px solid var(--border-color);">Tier</th>
-                                            <th style="padding: 8px; border: 1px solid var(--border-color);">Class 1</th>
-                                            <th style="padding: 8px; border: 1px solid var(--border-color);">Class 2</th>
-                                            <th style="padding: 8px; border: 1px solid var(--border-color);">Class 3</th>
-                                            <th style="padding: 8px; border: 1px solid var(--border-color);">Class 4</th>
-                                            <th style="padding: 8px; border: 1px solid var(--border-color);">Dust</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr><td style="padding: 8px; border: 1px solid var(--border-color); text-align: center;">1</td><td style="padding: 8px; border: 1px solid var(--border-color);">75k</td><td style="padding: 8px; border: 1px solid var(--border-color);">250k</td><td style="padding: 8px; border: 1px solid var(--border-color);">750k</td><td style="padding: 8px; border: 1px solid var(--border-color);">1.5kk</td><td style="padding: 8px; border: 1px solid var(--border-color);">100</td></tr>
-                                        <tr><td style="padding: 8px; border: 1px solid var(--border-color); text-align: center;">2</td><td style="padding: 8px; border: 1px solid var(--border-color);">150k</td><td style="padding: 8px; border: 1px solid var(--border-color);">500k</td><td style="padding: 8px; border: 1px solid var(--border-color);">1.5kk</td><td style="padding: 8px; border: 1px solid var(--border-color);">3kk</td><td style="padding: 8px; border: 1px solid var(--border-color);">100</td></tr>
-                                        <tr><td style="padding: 8px; border: 1px solid var(--border-color); text-align: center;">3</td><td style="padding: 8px; border: 1px solid var(--border-color);">300k</td><td style="padding: 8px; border: 1px solid var(--border-color);">1kk</td><td style="padding: 8px; border: 1px solid var(--border-color);">3kk</td><td style="padding: 8px; border: 1px solid var(--border-color);">6kk</td><td style="padding: 8px; border: 1px solid var(--border-color);">100</td></tr>
-                                        <tr><td style="padding: 8px; border: 1px solid var(--border-color); text-align: center;">4</td><td style="padding: 8px; border: 1px solid var(--border-color);">600k</td><td style="padding: 8px; border: 1px solid var(--border-color);">2kk</td><td style="padding: 8px; border: 1px solid var(--border-color);">6kk</td><td style="padding: 8px; border: 1px solid var(--border-color);">12kk</td><td style="padding: 8px; border: 1px solid var(--border-color);">100</td></tr>
-                                        <tr><td style="padding: 8px; border: 1px solid var(--border-color); text-align: center;">5</td><td style="padding: 8px; border: 1px solid var(--border-color);">1.2kk</td><td style="padding: 8px; border: 1px solid var(--border-color);">4kk</td><td style="padding: 8px; border: 1px solid var(--border-color);">12kk</td><td style="padding: 8px; border: 1px solid var(--border-color);">24kk</td><td style="padding: 8px; border: 1px solid var(--border-color);">100</td></tr>
-                                        <tr><td style="padding: 8px; border: 1px solid var(--border-color); text-align: center;">6</td><td style="padding: 8px; border: 1px solid var(--border-color);">2.4kk</td><td style="padding: 8px; border: 1px solid var(--border-color);">8kk</td><td style="padding: 8px; border: 1px solid var(--border-color);">24kk</td><td style="padding: 8px; border: 1px solid var(--border-color);">48kk</td><td style="padding: 8px; border: 1px solid var(--border-color);">100</td></tr>
-                                        <tr><td style="padding: 8px; border: 1px solid var(--border-color); text-align: center;">7</td><td style="padding: 8px; border: 1px solid var(--border-color);">4.8kk</td><td style="padding: 8px; border: 1px solid var(--border-color);">16kk</td><td style="padding: 8px; border: 1px solid var(--border-color);">48kk</td><td style="padding: 8px; border: 1px solid var(--border-color);">96kk</td><td style="padding: 8px; border: 1px solid var(--border-color);">100</td></tr>
-                                        <tr><td style="padding: 8px; border: 1px solid var(--border-color); text-align: center;">8</td><td style="padding: 8px; border: 1px solid var(--border-color);">9.6kk</td><td style="padding: 8px; border: 1px solid var(--border-color);">32kk</td><td style="padding: 8px; border: 1px solid var(--border-color);">96kk</td><td style="padding: 8px; border: 1px solid var(--border-color);">192kk</td><td style="padding: 8px; border: 1px solid var(--border-color);">100</td></tr>
-                                        <tr><td style="padding: 8px; border: 1px solid var(--border-color); text-align: center;">9</td><td style="padding: 8px; border: 1px solid var(--border-color);">19.2kk</td><td style="padding: 8px; border: 1px solid var(--border-color);">64kk</td><td style="padding: 8px; border: 1px solid var(--border-color);">192kk</td><td style="padding: 8px; border: 1px solid var(--border-color);">384kk</td><td style="padding: 8px; border: 1px solid var(--border-color);">100</td></tr>
-                                        <tr><td style="padding: 8px; border: 1px solid var(--border-color); text-align: center;">10</td><td style="padding: 8px; border: 1px solid var(--border-color);">38.4kk</td><td style="padding: 8px; border: 1px solid var(--border-color);">128kk</td><td style="padding: 8px; border: 1px solid var(--border-color);">384kk</td><td style="padding: 8px; border: 1px solid var(--border-color);">768kk</td><td style="padding: 8px; border: 1px solid var(--border-color);">100</td></tr>
-                                    </tbody>
-                                </table>
-                                <p style="margin-top: 10px; font-size: 0.85em; color: var(--text-secondary);">* These are fusion costs PER ATTEMPT. Total cost depends on success rate and number of attempts needed.</p>
-                            </div>
-                        </details>
-                    </div>
-                </div>
-
                 <!-- Rare Items List -->
                 <div class="card" style="margin-top: 20px;">
                     <h3>📋 Your Rare Drops</h3>
                     <div id="rareItemsList">
                         <div class="empty-state">
                             <p>No rare items yet. Add your first drop above!</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Monthly Breakdown -->
-                <div class="card" style="margin-top: 20px;">
-                    <h3>📊 Monthly Breakdown</h3>
-                    <div id="monthlyBreakdown">
-                        <div class="empty-state">
-                            <p>Add items to see monthly statistics</p>
                         </div>
                     </div>
                 </div>
@@ -1724,55 +1598,6 @@ Galll
                             <p id="profitTrend" style="font-weight: bold; font-size: 1.2em;">-</p>
                         </div>
                     </div>
-                </div>
-
-                <!-- XP Chart -->
-                <div class="card" style="margin-top: 25px;">
-                    <h3 style="display: flex; align-items: center; justify-content: space-between;">
-                        <span>⚡ Experience Analysis</span>
-                        <span id="xpPeriodLabel" style="font-size: 0.9em; color: var(--text-secondary); font-weight: normal;">Last 7 Days</span>
-                    </h3>
-                    <div class="chart-container" style="position: relative; height: 350px; margin-top: 20px;">
-                        <canvas id="xpChart"></canvas>
-                    </div>
-                    <!-- XP Stats Below Chart -->
-                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px; margin-top: 20px; padding-top: 20px; border-top: 1px solid var(--border-color);">
-                        <div style="text-align: center;">
-                            <p style="color: var(--text-secondary); font-size: 0.9em;">Highest</p>
-                            <p id="xpHighest" style="color: var(--success-color); font-weight: bold; font-size: 1.2em;">0</p>
-                        </div>
-                        <div style="text-align: center;">
-                            <p style="color: var(--text-secondary); font-size: 0.9em;">Lowest</p>
-                            <p id="xpLowest" style="color: var(--danger-color); font-weight: bold; font-size: 1.2em;">0</p>
-                        </div>
-                        <div style="text-align: center;">
-                            <p style="color: var(--text-secondary); font-size: 0.9em;">Average</p>
-                            <p id="xpAverage" style="color: var(--primary-color); font-weight: bold; font-size: 1.2em;">0</p>
-                        </div>
-                        <div style="text-align: center;">
-                            <p style="color: var(--text-secondary); font-size: 0.9em;">Trend</p>
-                            <p id="xpTrend" style="font-weight: bold; font-size: 1.2em;">-</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Performance Comparison -->
-                <div class="card" style="margin-top: 25px;">
-                    <h3>📊 Profit vs XP Comparison</h3>
-                    <div class="chart-container" style="position: relative; height: 300px; margin-top: 20px;">
-                        <canvas id="comparisonChart"></canvas>
-                    </div>
-                </div>
-
-                <!-- Time Analysis -->
-                <div class="card" style="margin-top: 25px;">
-                    <h3>⏰ Hunting Time Distribution</h3>
-                    <div class="chart-container" style="position: relative; height: 300px; margin-top: 20px;">
-                        <canvas id="timeChart"></canvas>
-                    </div>
-                    <p style="text-align: center; color: var(--text-secondary); margin-top: 15px; font-size: 0.9em;">
-                        Total hunting time: <span id="totalHuntTime" style="font-weight: bold; color: var(--primary-color);">0h</span>
-                    </p>
                 </div>
             </div>
 
