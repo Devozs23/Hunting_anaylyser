@@ -305,9 +305,9 @@
         .card {
             background: var(--card-bg);
             border-radius: 20px;
-            padding: 30px;
+            padding: 20px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-            margin-bottom: 25px;
+            margin-bottom: 18px;
             transition: all 0.3s ease;
             border: 1px solid rgba(102, 126, 234, 0.1);
             position: relative;
@@ -338,10 +338,10 @@
 
         .card h2 {
             color: var(--primary-color);
-            margin-bottom: 20px;
-            font-size: 1.5em;
+            margin-bottom: 15px;
+            font-size: 1.3em;
             border-bottom: 2px solid var(--primary-color);
-            padding-bottom: 10px;
+            padding-bottom: 8px;
             position: relative;
         }
 
@@ -418,7 +418,7 @@
 
         /* Input Groups */
         .input-group {
-            margin-bottom: 15px;
+            margin-bottom: 12px;
         }
 
         .input-group label {
@@ -452,7 +452,7 @@
 
         /* Buttons */
         button {
-            padding: 15px;
+            padding: 12px;
             border: none;
             border-radius: 8px;
             font-size: 1em;
@@ -505,9 +505,9 @@
 
         .hunt-item {
             background: rgba(0,0,0,0.05);
-            padding: 15px;
+            padding: 12px;
             border-radius: 8px;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
             border-left: 4px solid var(--primary-color);
             transition: all 0.3s;
         }
@@ -581,24 +581,24 @@
         /* Team Hunt Calculator */
         .team-member {
             background: rgba(0,0,0,0.05);
-            padding: 15px;
+            padding: 12px;
             border-radius: 8px;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
         }
 
         .team-results {
             background: linear-gradient(135deg, var(--success-color) 0%, #20c997 100%);
             color: white;
-            padding: 20px;
+            padding: 16px;
             border-radius: 10px;
-            margin-top: 20px;
+            margin-top: 16px;
         }
 
         .payment-item {
             background: rgba(255,255,255,0.2);
-            padding: 15px;
+            padding: 12px;
             border-radius: 8px;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -607,9 +607,9 @@
         /* Goals */
         .goal-item {
             background: rgba(0,0,0,0.05);
-            padding: 20px;
+            padding: 16px;
             border-radius: 10px;
-            margin-bottom: 15px;
+            margin-bottom: 12px;
             border-left: 5px solid var(--primary-color);
         }
 
@@ -1126,56 +1126,56 @@
 
             <!-- Dashboard Tab -->
             <div class="main-tab-content active" id="dashboardTab">
-                <div class="dashboard-grid">
-                    <div class="stat-card">
-                        <h3>Total Profit</h3>
-                        <p id="dashTotalProfit">0 gp</p>
-                        <small id="dashProfitChange">No change</small>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; margin-bottom: 20px;">
+                    <div style="background: rgba(40, 167, 69, 0.1); padding: 15px; border-radius: 10px; border-left: 4px solid var(--success-color); transition: all 0.3s ease; cursor: pointer;" onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 4px 12px rgba(40,167,69,0.2)';" onmouseout="this.style.transform=''; this.style.boxShadow='';">
+                        <h3 style="color: var(--text-secondary); font-size: 0.7em; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px;">💰 Total Profit</h3>
+                        <p style="color: var(--success-color); font-size: 1.6em; font-weight: bold; margin: 0 0 4px 0;" id="dashTotalProfit">0 gp</p>
+                        <small style="color: var(--text-secondary); font-size: 0.7em;" id="dashProfitChange">No change</small>
                     </div>
-                    <div class="stat-card">
-                        <h3>Total Hunts</h3>
-                        <p id="dashTotalHunts">0</p>
-                        <small>Sessions tracked</small>
+                    <div style="background: rgba(255, 193, 7, 0.1); padding: 15px; border-radius: 10px; border-left: 4px solid #ffc107; transition: all 0.3s ease; cursor: pointer;" onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 4px 12px rgba(255,193,7,0.2)';" onmouseout="this.style.transform=''; this.style.boxShadow='';">
+                        <h3 style="color: var(--text-secondary); font-size: 0.7em; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px;">🎯 Total Hunts</h3>
+                        <p style="color: #ffc107; font-size: 1.6em; font-weight: bold; margin: 0 0 4px 0;" id="dashTotalHunts">0</p>
+                        <small style="color: var(--text-secondary); font-size: 0.7em;">Sessions tracked</small>
                     </div>
-                    <div class="stat-card">
-                        <h3>Avg Profit/Hunt</h3>
-                        <p id="dashAvgProfit">0 gp</p>
-                        <small>Per session</small>
+                    <div style="background: rgba(102, 126, 234, 0.1); padding: 15px; border-radius: 10px; border-left: 4px solid var(--primary-color); transition: all 0.3s ease; cursor: pointer;" onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 4px 12px rgba(102,126,234,0.2)';" onmouseout="this.style.transform=''; this.style.boxShadow='';">
+                        <h3 style="color: var(--text-secondary); font-size: 0.7em; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px;">📊 Avg Profit/Hunt</h3>
+                        <p style="color: var(--primary-color); font-size: 1.6em; font-weight: bold; margin: 0 0 4px 0;" id="dashAvgProfit">0 gp</p>
+                        <small style="color: var(--text-secondary); font-size: 0.7em;">Per session</small>
                     </div>
-                    <div class="stat-card">
-                        <h3>Total XP</h3>
-                        <p id="dashTotalXP">0</p>
-                        <small>Experience gained</small>
+                    <div style="background: rgba(156, 39, 176, 0.1); padding: 15px; border-radius: 10px; border-left: 4px solid #9c27b0; transition: all 0.3s ease; cursor: pointer;" onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 4px 12px rgba(156,39,176,0.2)';" onmouseout="this.style.transform=''; this.style.boxShadow='';">
+                        <h3 style="color: var(--text-secondary); font-size: 0.7em; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px;">✨ Total XP</h3>
+                        <p style="color: #9c27b0; font-size: 1.6em; font-weight: bold; margin: 0 0 4px 0;" id="dashTotalXP">0</p>
+                        <small style="color: var(--text-secondary); font-size: 0.7em;">Experience gained</small>
                     </div>
-                    <div class="stat-card">
-                        <h3>Best Hunt</h3>
-                        <p id="dashBestHunt">0 gp</p>
-                        <small>Highest profit</small>
+                    <div style="background: rgba(255, 152, 0, 0.1); padding: 15px; border-radius: 10px; border-left: 4px solid #ff9800; transition: all 0.3s ease; cursor: pointer;" onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 4px 12px rgba(255,152,0,0.2)';" onmouseout="this.style.transform=''; this.style.boxShadow='';">
+                        <h3 style="color: var(--text-secondary); font-size: 0.7em; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px;">🏆 Best Hunt</h3>
+                        <p style="color: #ff9800; font-size: 1.6em; font-weight: bold; margin: 0 0 4px 0;" id="dashBestHunt">0 gp</p>
+                        <small style="color: var(--text-secondary); font-size: 0.7em;">Highest profit</small>
                     </div>
-                    <div class="stat-card">
-                        <h3>Total Time</h3>
-                        <p id="dashTotalTime">0h</p>
-                        <small>Hunting time</small>
+                    <div style="background: rgba(23, 162, 184, 0.1); padding: 15px; border-radius: 10px; border-left: 4px solid var(--info-color); transition: all 0.3s ease; cursor: pointer;" onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 4px 12px rgba(23,162,184,0.2)';" onmouseout="this.style.transform=''; this.style.boxShadow='';">
+                        <h3 style="color: var(--text-secondary); font-size: 0.7em; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px;">⏱️ Total Time</h3>
+                        <p style="color: var(--info-color); font-size: 1.6em; font-weight: bold; margin: 0 0 4px 0;" id="dashTotalTime">0h</p>
+                        <small style="color: var(--text-secondary); font-size: 0.7em;">Hunting time</small>
                     </div>
                 </div>
 
                 <div class="card">
                     <h2 style="font-size: 1.3em;">📊 Quick Stats</h2>
-                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px; margin-top: 15px;">
-                        <div style="background: rgba(40, 167, 69, 0.1); padding: 15px; border-radius: 10px; border-left: 3px solid var(--success-color);">
-                            <h3 style="color: var(--text-secondary); font-size: 0.75em; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px;">💰 Total Loot</h3>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; margin-top: 15px;">
+                        <div style="background: rgba(40, 167, 69, 0.1); padding: 15px; border-radius: 10px; border-left: 4px solid var(--success-color); transition: all 0.3s ease; cursor: pointer;" onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 4px 12px rgba(40,167,69,0.2)';" onmouseout="this.style.transform=''; this.style.boxShadow='';">
+                            <h3 style="color: var(--text-secondary); font-size: 0.7em; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px;">💰 Total Loot</h3>
                             <p style="color: var(--success-color); font-size: 1.4em; font-weight: bold; margin: 0;" id="dashTotalLoot">0 gp</p>
                         </div>
-                        <div style="background: rgba(220, 53, 69, 0.1); padding: 15px; border-radius: 10px; border-left: 3px solid var(--danger-color);">
-                            <h3 style="color: var(--text-secondary); font-size: 0.75em; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px;">🛡️ Supplies Used</h3>
+                        <div style="background: rgba(220, 53, 69, 0.1); padding: 15px; border-radius: 10px; border-left: 4px solid var(--danger-color); transition: all 0.3s ease; cursor: pointer;" onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 4px 12px rgba(220,53,69,0.2)';" onmouseout="this.style.transform=''; this.style.boxShadow='';">
+                            <h3 style="color: var(--text-secondary); font-size: 0.7em; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px;">🛡️ Supplies Used</h3>
                             <p style="color: var(--danger-color); font-size: 1.4em; font-weight: bold; margin: 0;" id="dashTotalSupplies">0 gp</p>
                         </div>
-                        <div style="background: rgba(102, 126, 234, 0.1); padding: 15px; border-radius: 10px; border-left: 3px solid var(--primary-color);">
-                            <h3 style="color: var(--text-secondary); font-size: 0.75em; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px;">⚡ Profit/Hour</h3>
+                        <div style="background: rgba(102, 126, 234, 0.1); padding: 15px; border-radius: 10px; border-left: 4px solid var(--primary-color); transition: all 0.3s ease; cursor: pointer;" onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 4px 12px rgba(102,126,234,0.2)';" onmouseout="this.style.transform=''; this.style.boxShadow='';">
+                            <h3 style="color: var(--text-secondary); font-size: 0.7em; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px;">⚡ Profit/Hour</h3>
                             <p style="color: var(--primary-color); font-size: 1.4em; font-weight: bold; margin: 0;" id="dashProfitPerHour">0 gp</p>
                         </div>
-                        <div style="background: rgba(23, 162, 184, 0.1); padding: 15px; border-radius: 10px; border-left: 3px solid var(--info-color);">
-                            <h3 style="color: var(--text-secondary); font-size: 0.75em; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px;">✨ XP/Hour</h3>
+                        <div style="background: rgba(23, 162, 184, 0.1); padding: 15px; border-radius: 10px; border-left: 4px solid var(--info-color); transition: all 0.3s ease; cursor: pointer;" onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 4px 12px rgba(23,162,184,0.2)';" onmouseout="this.style.transform=''; this.style.boxShadow='';">
+                            <h3 style="color: var(--text-secondary); font-size: 0.7em; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px;">✨ XP/Hour</h3>
                             <p style="color: var(--info-color); font-size: 1.4em; font-weight: bold; margin: 0;" id="dashXPPerHour">0</p>
                         </div>
                     </div>
