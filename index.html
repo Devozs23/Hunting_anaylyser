@@ -1141,6 +1141,42 @@
                         </button>
                     </div>
                 </div>
+
+                <div class="card">
+                    <h2>💰 Tibia Coins Configuration</h2>
+                    <p style="color: var(--text-secondary); margin-bottom: 20px;">Configure TC price to see your profit in Tibia Coins</p>
+
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 15px;">
+                        <div class="input-group">
+                            <label for="tcPriceInput">TC Price (in gold)</label>
+                            <input type="number" id="tcPriceInput" placeholder="e.g., 41000" min="0" value="">
+                        </div>
+                        <div class="input-group">
+                            <label for="tibiaCharInput">Character Name (optional)</label>
+                            <input type="text" id="tibiaCharInput" placeholder="e.g., Your Character" value="">
+                        </div>
+                    </div>
+
+                    <button class="btn-primary" onclick="saveTCSettings()">💾 Save TC Settings</button>
+
+                    <div id="tcConversionDisplay" style="margin-top: 20px; padding: 20px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 15px; color: white; display: none;">
+                        <h3 style="margin-bottom: 15px; color: white;">📊 Profit in Tibia Coins</h3>
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px;">
+                            <div>
+                                <p style="font-size: 0.9em; opacity: 0.9;">Total Profit</p>
+                                <p style="font-size: 1.8em; font-weight: bold; margin: 5px 0;" id="tcTotalProfit">0 TC</p>
+                            </div>
+                            <div>
+                                <p style="font-size: 0.9em; opacity: 0.9;">Monthly Average</p>
+                                <p style="font-size: 1.8em; font-weight: bold; margin: 5px 0;" id="tcMonthlyProfit">0 TC</p>
+                            </div>
+                            <div>
+                                <p style="font-size: 0.9em; opacity: 0.9;">Per Hunt Average</p>
+                                <p style="font-size: 1.8em; font-weight: bold; margin: 5px 0;" id="tcAvgProfit">0 TC</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <!-- Add Hunt Tab -->
@@ -1786,6 +1822,8 @@ Galll
         let isDarkMode = localStorage.getItem('darkMode') === 'true';
         let teamMemberCount = 1;
         let currentPeriod = 'daily';
+        let tibiaCharName = '';
+        let tcPrice = 0; // Tibia Coin price in gold
 
         // Initialize App
         window.onload = function() {
@@ -1981,6 +2019,8 @@ Galll
             goals = users[username].goals || [];
             rareLoot = users[username].rareLoot || [];
             serverType = users[username].serverType || 'green';
+            tibiaCharName = users[username].tibiaCharName || '';
+            tcPrice = users[username].tcPrice || 0;
 
             // Update server type selector
             document.getElementById('serverType').value = serverType;
@@ -1996,6 +2036,8 @@ Galll
                 goals = [];
                 rareLoot = [];
                 serverType = 'green';
+                tibiaCharName = '';
+                tcPrice = 0;
 
                 document.getElementById('loginUsername').value = '';
                 document.getElementById('loginPassword').value = '';
@@ -2016,6 +2058,8 @@ Galll
                     goals = users[savedUser].goals || [];
                     rareLoot = users[savedUser].rareLoot || [];
                     serverType = users[savedUser].serverType || 'green';
+                    tibiaCharName = users[savedUser].tibiaCharName || '';
+                    tcPrice = users[savedUser].tcPrice || 0;
 
                     // Update server type selector
                     document.getElementById('serverType').value = serverType;
@@ -2040,7 +2084,12 @@ Galll
             document.getElementById('userName').textContent = currentUser;
             document.getElementById('userAvatar').textContent = currentUser[0].toUpperCase();
 
+            // Load TC settings into inputs
+            document.getElementById('tcPriceInput').value = tcPrice || '';
+            document.getElementById('tibiaCharInput').value = tibiaCharName || '';
+
             updateDisplay();
+            updateTCDisplay();
         }
 
         function showError(elementId, message) {
@@ -2067,6 +2116,8 @@ Galll
                 users[currentUser].goals = goals;
                 users[currentUser].rareLoot = rareLoot;
                 users[currentUser].serverType = serverType;
+                users[currentUser].tibiaCharName = tibiaCharName;
+                users[currentUser].tcPrice = tcPrice;
                 localStorage.setItem('tibiaUsers', JSON.stringify(users));
             }
         }
@@ -2635,6 +2686,9 @@ Galll
                 const changeText = change >= 0 ? `+${formatProfit(change)} from last hunt` : `${formatProfit(change)} from last hunt`;
                 document.getElementById('dashProfitChange').textContent = changeText;
             }
+
+            // Update TC display
+            updateTCDisplay();
         }
 
         function updateUserStats() {
@@ -3176,22 +3230,19 @@ Galll
         }
 
         function formatShort(num) {
-            if (num >= 1000000) return (num / 1000000).toFixed(1) + 'M';
-            if (num >= 1000) return (num / 1000).toFixed(1) + 'kk';
+            if (num >= 1000) return (num / 1000).toFixed(0) + 'kk';
             return Math.round(num).toString();
         }
 
         // Format profit specifically (always show in kk for easier reading)
         function formatProfit(num) {
-            if (num >= 1000000) return (num / 1000000).toFixed(2) + 'M gp';
-            if (num >= 1000) return (num / 1000).toFixed(1) + 'kk gp';
+            if (num >= 1000) return (num / 1000).toFixed(0) + 'kk gp';
             return Math.round(num) + ' gp';
         }
 
         // Format XP specifically
         function formatXP(num) {
-            if (num >= 1000000) return (num / 1000000).toFixed(2) + 'M';
-            if (num >= 1000) return (num / 1000).toFixed(1) + 'kk';
+            if (num >= 1000) return (num / 1000).toFixed(0) + 'kk';
             return Math.round(num).toString();
         }
 
@@ -3723,6 +3774,62 @@ Galll
                 }, 100);
             }
         };
+
+        // ==================== TIBIA COINS SYSTEM ====================
+
+        function saveTCSettings() {
+            const priceInput = document.getElementById('tcPriceInput').value;
+            const charInput = document.getElementById('tibiaCharInput').value.trim();
+
+            tcPrice = parseInt(priceInput) || 0;
+            tibiaCharName = charInput;
+
+            saveUserData();
+            updateTCDisplay();
+
+            if (tcPrice > 0) {
+                showToast(`TC price set to ${formatNumber(tcPrice)} gp!`, 'success');
+            } else {
+                showToast('TC settings saved', 'success');
+            }
+        }
+
+        function updateTCDisplay() {
+            const display = document.getElementById('tcConversionDisplay');
+
+            if (tcPrice > 0 && hunts.length > 0) {
+                const totalProfit = hunts.reduce((sum, h) => sum + h.profit, 0);
+                const totalTC = Math.floor(totalProfit / tcPrice);
+
+                // Calculate monthly average
+                const dates = hunts.map(h => new Date(h.date));
+                const minDate = new Date(Math.min(...dates));
+                const maxDate = new Date(Math.max(...dates));
+                const monthsDiff = Math.max(1, (maxDate.getFullYear() - minDate.getFullYear()) * 12 + (maxDate.getMonth() - minDate.getMonth()) + 1);
+                const monthlyAvgTC = Math.floor(totalTC / monthsDiff);
+
+                // Per hunt average
+                const avgProfitPerHunt = totalProfit / hunts.length;
+                const avgTCPerHunt = (avgProfitPerHunt / tcPrice).toFixed(1);
+
+                document.getElementById('tcTotalProfit').textContent = formatNumber(totalTC) + ' TC';
+                document.getElementById('tcMonthlyProfit').textContent = formatNumber(monthlyAvgTC) + ' TC/month';
+                document.getElementById('tcAvgProfit').textContent = avgTCPerHunt + ' TC/hunt';
+
+                display.style.display = 'block';
+            } else {
+                display.style.display = 'none';
+            }
+        }
+
+        // Format number for TC
+        function formatTC(profit) {
+            if (tcPrice > 0) {
+                const tc = (profit / tcPrice).toFixed(1);
+                return `${tc} TC`;
+            }
+            return '';
+        }
 
     </script>
 </body>
