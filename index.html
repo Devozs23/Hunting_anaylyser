@@ -673,11 +673,17 @@
 
         /* Hunt Spots Comparator */
         .spot-item {
-            background: rgba(0,0,0,0.05);
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.08) 0%, rgba(118, 75, 162, 0.08) 100%);
             padding: 20px;
-            border-radius: 10px;
+            border-radius: 12px;
             margin-bottom: 15px;
-            border-left: 5px solid var(--info-color);
+            border-left: 4px solid var(--primary-color);
+            transition: all 0.3s ease;
+        }
+
+        .spot-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
         }
 
         .spot-header {
@@ -685,40 +691,50 @@
             justify-content: space-between;
             align-items: center;
             margin-bottom: 15px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid rgba(102, 126, 234, 0.2);
         }
 
         .spot-name {
-            font-size: 1.3em;
+            font-size: 1.2em;
             font-weight: bold;
             color: var(--text-primary);
         }
 
         .spot-rating {
             display: flex;
-            gap: 5px;
-            font-size: 1.5em;
+            gap: 3px;
+            font-size: 1.2em;
         }
 
         .spot-stats {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 15px;
-            margin-bottom: 15px;
+            grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+            gap: 12px;
+            margin-bottom: 12px;
         }
 
         .spot-stat {
             text-align: center;
+            background: rgba(255, 255, 255, 0.5);
+            padding: 12px 8px;
+            border-radius: 8px;
         }
 
         .spot-stat-value {
-            font-size: 1.5em;
+            font-size: 1.3em;
             font-weight: bold;
             color: var(--primary-color);
+            margin-bottom: 4px;
+            white-space: nowrap;
         }
 
         .spot-stat-label {
-            font-size: 0.8em;
+            font-size: 0.7em;
             color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            white-space: nowrap;
         }
 
         .comparison-grid {
@@ -2660,29 +2676,29 @@ Galll
                 return `
                     <div class="spot-item">
                         <div class="spot-header">
-                            <div class="spot-name">${name}</div>
+                            <div class="spot-name">🗺️ ${name}</div>
                             <div class="spot-rating">${stars}</div>
                         </div>
                         <div class="spot-stats">
                             <div class="spot-stat">
-                                <div class="spot-stat-value">${formatShort(avgProfit)}</div>
+                                <div class="spot-stat-value">💰 ${formatShort(avgProfit)}</div>
                                 <div class="spot-stat-label">Avg Profit</div>
                             </div>
                             <div class="spot-stat">
-                                <div class="spot-stat-value">${formatShort(avgXP)}</div>
+                                <div class="spot-stat-value">✨ ${formatShort(avgXP)}</div>
                                 <div class="spot-stat-label">Avg XP</div>
                             </div>
                             <div class="spot-stat">
-                                <div class="spot-stat-value">${formatShort(profitPerHour)}</div>
+                                <div class="spot-stat-value">⚡ ${formatShort(profitPerHour)}</div>
                                 <div class="spot-stat-label">Profit/h</div>
                             </div>
                             <div class="spot-stat">
-                                <div class="spot-stat-value">${formatShort(xpPerHour)}</div>
+                                <div class="spot-stat-value">🔥 ${formatShort(xpPerHour)}</div>
                                 <div class="spot-stat-label">XP/h</div>
                             </div>
                         </div>
-                        <div style="margin-top: 10px; color: var(--text-secondary); font-size: 0.9em;">
-                            Based on ${stats.hunts.length} hunt${stats.hunts.length > 1 ? 's' : ''}
+                        <div style="margin-top: 8px; color: var(--text-secondary); font-size: 0.8em; text-align: center;">
+                            📊 Based on ${stats.hunts.length} hunt${stats.hunts.length > 1 ? 's' : ''}
                         </div>
                     </div>
                 `;
