@@ -2420,13 +2420,26 @@ Galll
             goalsList.innerHTML = goals.map(goal => {
                 const progress = Math.min((goal.current / goal.target) * 100, 100);
                 const typeLabels = {
-                    'profit': 'gp',
-                    'xp': 'XP',
+                    'profit': '',
+                    'xp': '',
                     'hunts': 'hunts',
                     'time': 'hours'
                 };
 
                 const daysLeft = goal.deadline ? Math.ceil((new Date(goal.deadline) - new Date()) / (1000 * 60 * 60 * 24)) : null;
+
+                // Format values based on type
+                let currentFormatted, targetFormatted;
+                if (goal.type === 'profit') {
+                    currentFormatted = formatProfit(goal.current);
+                    targetFormatted = formatProfit(goal.target);
+                } else if (goal.type === 'xp') {
+                    currentFormatted = formatXP(goal.current);
+                    targetFormatted = formatXP(goal.target);
+                } else {
+                    currentFormatted = formatNumber(goal.current);
+                    targetFormatted = formatNumber(goal.target);
+                }
 
                 return `
                     <div class="goal-item">
@@ -2445,7 +2458,7 @@ Galll
                         <div class="goal-details">
                             <div class="detail-item">
                                 <span class="detail-label">Progress</span>
-                                <span>${formatNumber(goal.current)} / ${formatNumber(goal.target)} ${typeLabels[goal.type]}</span>
+                                <span>${currentFormatted} / ${targetFormatted} ${typeLabels[goal.type]}</span>
                             </div>
                             <div class="detail-item">
                                 <span class="detail-label">Type</span>
@@ -2473,11 +2486,24 @@ Galll
             dashboardGoals.innerHTML = activeGoals.slice(0, 3).map(goal => {
                 const progress = Math.min((goal.current / goal.target) * 100, 100);
                 const typeLabels = {
-                    'profit': 'gp',
-                    'xp': 'XP',
+                    'profit': '',
+                    'xp': '',
                     'hunts': 'hunts',
                     'time': 'hours'
                 };
+
+                // Format values based on type
+                let currentFormatted, targetFormatted;
+                if (goal.type === 'profit') {
+                    currentFormatted = formatProfit(goal.current);
+                    targetFormatted = formatProfit(goal.target);
+                } else if (goal.type === 'xp') {
+                    currentFormatted = formatXP(goal.current);
+                    targetFormatted = formatXP(goal.target);
+                } else {
+                    currentFormatted = formatNumber(goal.current);
+                    targetFormatted = formatNumber(goal.target);
+                }
 
                 return `
                     <div class="goal-item" style="margin-bottom: 10px;">
@@ -2490,7 +2516,7 @@ Galll
                             </div>
                         </div>
                         <div style="margin-top: 5px; color: var(--text-secondary); font-size: 0.9em;">
-                            ${formatNumber(goal.current)} / ${formatNumber(goal.target)} ${typeLabels[goal.type]}
+                            ${currentFormatted} / ${targetFormatted} ${typeLabels[goal.type]}
                         </div>
                     </div>
                 `;
@@ -2591,22 +2617,22 @@ Galll
             const profitPerHour = totalTime > 0 ? (totalProfit / totalTime) * 60 : 0;
             const xpPerHour = totalTime > 0 ? (totalXP / totalTime) * 60 : 0;
 
-            document.getElementById('dashTotalProfit').textContent = formatNumber(totalProfit) + ' gp';
+            document.getElementById('dashTotalProfit').textContent = formatProfit(totalProfit);
             document.getElementById('dashTotalHunts').textContent = totalHunts;
-            document.getElementById('dashAvgProfit').textContent = formatNumber(Math.round(avgProfit)) + ' gp';
-            document.getElementById('dashTotalXP').textContent = formatShort(totalXP);
-            document.getElementById('dashBestHunt').textContent = formatNumber(bestHunt) + ' gp';
+            document.getElementById('dashAvgProfit').textContent = formatProfit(avgProfit);
+            document.getElementById('dashTotalXP').textContent = formatXP(totalXP);
+            document.getElementById('dashBestHunt').textContent = formatProfit(bestHunt);
             document.getElementById('dashTotalTime').textContent = formatTime(totalTime);
-            document.getElementById('dashTotalLoot').textContent = formatNumber(totalLoot);
-            document.getElementById('dashTotalSupplies').textContent = formatNumber(totalSupplies);
-            document.getElementById('dashProfitPerHour').textContent = formatNumber(Math.round(profitPerHour));
-            document.getElementById('dashXPPerHour').textContent = formatShort(Math.round(xpPerHour));
+            document.getElementById('dashTotalLoot').textContent = formatProfit(totalLoot);
+            document.getElementById('dashTotalSupplies').textContent = formatProfit(totalSupplies);
+            document.getElementById('dashProfitPerHour').textContent = formatProfit(profitPerHour);
+            document.getElementById('dashXPPerHour').textContent = formatXP(xpPerHour);
 
             if (totalHunts >= 2) {
                 const lastProfit = hunts[0].profit;
                 const prevProfit = hunts[1].profit;
                 const change = lastProfit - prevProfit;
-                const changeText = change >= 0 ? `+${formatNumber(change)} from last hunt` : `${formatNumber(change)} from last hunt`;
+                const changeText = change >= 0 ? `+${formatProfit(change)} from last hunt` : `${formatProfit(change)} from last hunt`;
                 document.getElementById('dashProfitChange').textContent = changeText;
             }
         }
@@ -2614,7 +2640,7 @@ Galll
         function updateUserStats() {
             const totalHunts = hunts.length;
             const totalProfit = hunts.reduce((sum, h) => sum + h.profit, 0);
-            document.getElementById('userStats').textContent = `${totalHunts} hunts • ${formatNumber(totalProfit)} gp profit`;
+            document.getElementById('userStats').textContent = `${totalHunts} hunts • ${formatProfit(totalProfit)} profit`;
         }
 
         function updateHuntList() {
@@ -2638,7 +2664,7 @@ Galll
                         <h4>${hunt.name}</h4>
                         <div>
                             <span class="hunt-item-profit ${hunt.profit >= 0 ? 'profit-positive' : 'profit-negative'}" style="font-size: 1.3em; font-weight: bold; margin-right: 10px;">
-                                ${hunt.profit >= 0 ? '+' : ''}${formatNumber(hunt.profit)} gp
+                                ${hunt.profit >= 0 ? '+' : ''}${formatProfit(hunt.profit)}
                             </span>
                             <button class="delete-btn" onclick="deleteHunt(${hunt.id})">✕</button>
                         </div>
@@ -2646,15 +2672,15 @@ Galll
                     <div class="hunt-item-details">
                         <div class="detail-item">
                             <span class="detail-label">Loot</span>
-                            <span>${formatNumber(hunt.loot)} gp</span>
+                            <span>${formatProfit(hunt.loot)}</span>
                         </div>
                         <div class="detail-item">
                             <span class="detail-label">Supplies</span>
-                            <span>${formatNumber(hunt.supplies)} gp</span>
+                            <span>${formatProfit(hunt.supplies)}</span>
                         </div>
                         <div class="detail-item">
                             <span class="detail-label">Experience</span>
-                            <span>${formatNumber(hunt.experience)}</span>
+                            <span>${formatXP(hunt.experience)}</span>
                         </div>
                         <div class="detail-item">
                             <span class="detail-label">Duration</span>
@@ -2662,7 +2688,7 @@ Galll
                         </div>
                         <div class="detail-item">
                             <span class="detail-label">XP/h</span>
-                            <span>${hunt.duration > 0 ? formatNumber(Math.round(hunt.experience / hunt.duration * 60)) : '0'}</span>
+                            <span>${hunt.duration > 0 ? formatXP(Math.round(hunt.experience / hunt.duration * 60)) : '0'}</span>
                         </div>
                         <div class="detail-item">
                             <span class="detail-label">Date</span>
@@ -2761,10 +2787,10 @@ Galll
                 }
             });
 
-            document.getElementById('statsTotalProfit').textContent = formatNumber(totalProfit) + ' gp';
-            document.getElementById('statsAvgProfit').textContent = `Avg: ${formatNumber(Math.round(avgProfit))} gp per hunt`;
-            document.getElementById('statsTotalXP').textContent = formatNumber(totalXP);
-            document.getElementById('statsAvgXP').textContent = `Avg: ${formatNumber(Math.round(avgXP))} per hunt`;
+            document.getElementById('statsTotalProfit').textContent = formatProfit(totalProfit);
+            document.getElementById('statsAvgProfit').textContent = `Avg: ${formatProfit(avgProfit)} per hunt`;
+            document.getElementById('statsTotalXP').textContent = formatXP(totalXP);
+            document.getElementById('statsAvgXP').textContent = `Avg: ${formatXP(avgXP)} per hunt`;
             document.getElementById('statsTotalHunts').textContent = totalHunts;
             document.getElementById('statsAvgDuration').textContent = `Avg: ${formatTime(avgDuration)} duration`;
 
@@ -2776,7 +2802,7 @@ Galll
                     year: 'numeric'
                 });
                 document.getElementById('statsBestDay').textContent = formattedDate;
-                document.getElementById('statsBestDayValue').textContent = `${formatNumber(bestValue)} gp profit`;
+                document.getElementById('statsBestDayValue').textContent = `${formatProfit(bestValue)} profit`;
             } else {
                 document.getElementById('statsBestDay').textContent = '-';
                 document.getElementById('statsBestDayValue').textContent = 'No data yet';
@@ -2872,9 +2898,9 @@ Galll
             const average = profits.reduce((sum, p) => sum + p, 0) / profits.length;
             const trend = profits.length > 1 ? profits[profits.length - 1] - profits[0] : 0;
 
-            document.getElementById('profitHighest').textContent = formatNumber(Math.round(highest)) + ' gp';
-            document.getElementById('profitLowest').textContent = formatNumber(Math.round(lowest)) + ' gp';
-            document.getElementById('profitAverage').textContent = formatNumber(Math.round(average)) + ' gp';
+            document.getElementById('profitHighest').textContent = formatProfit(highest);
+            document.getElementById('profitLowest').textContent = formatProfit(lowest);
+            document.getElementById('profitAverage').textContent = formatProfit(average);
             document.getElementById('profitTrend').textContent = trend > 0 ? `📈 +${formatShort(trend)}` : trend < 0 ? `📉 ${formatShort(trend)}` : '➡️ Stable';
             document.getElementById('profitTrend').style.color = trend > 0 ? '#28a745' : trend < 0 ? '#dc3545' : '#6c757d';
 
@@ -2971,9 +2997,9 @@ Galll
             const average = xpValues.reduce((sum, xp) => sum + xp, 0) / xpValues.length;
             const trend = xpValues.length > 1 ? xpValues[xpValues.length - 1] - xpValues[0] : 0;
 
-            document.getElementById('xpHighest').textContent = formatNumber(Math.round(highest));
-            document.getElementById('xpLowest').textContent = formatNumber(Math.round(lowest));
-            document.getElementById('xpAverage').textContent = formatNumber(Math.round(average));
+            document.getElementById('xpHighest').textContent = formatXP(highest);
+            document.getElementById('xpLowest').textContent = formatXP(lowest);
+            document.getElementById('xpAverage').textContent = formatXP(average);
             document.getElementById('xpTrend').textContent = trend > 0 ? `📈 +${formatShort(trend)}` : trend < 0 ? `📉 ${formatShort(trend)}` : '➡️ Stable';
             document.getElementById('xpTrend').style.color = trend > 0 ? '#28a745' : trend < 0 ? '#dc3545' : '#6c757d';
 
@@ -3151,8 +3177,22 @@ Galll
 
         function formatShort(num) {
             if (num >= 1000000) return (num / 1000000).toFixed(1) + 'M';
-            if (num >= 1000) return (num / 1000).toFixed(1) + 'K';
-            return formatNumber(Math.round(num));
+            if (num >= 1000) return (num / 1000).toFixed(1) + 'kk';
+            return Math.round(num).toString();
+        }
+
+        // Format profit specifically (always show in kk for easier reading)
+        function formatProfit(num) {
+            if (num >= 1000000) return (num / 1000000).toFixed(2) + 'M gp';
+            if (num >= 1000) return (num / 1000).toFixed(1) + 'kk gp';
+            return Math.round(num) + ' gp';
+        }
+
+        // Format XP specifically
+        function formatXP(num) {
+            if (num >= 1000000) return (num / 1000000).toFixed(2) + 'M';
+            if (num >= 1000) return (num / 1000).toFixed(1) + 'kk';
+            return Math.round(num).toString();
         }
 
         function formatTime(minutes) {
