@@ -672,69 +672,102 @@
         }
 
         /* Hunt Spots Comparator */
-        .spot-item {
-            background: linear-gradient(135deg, rgba(102, 126, 234, 0.08) 0%, rgba(118, 75, 162, 0.08) 100%);
-            padding: 20px;
-            border-radius: 12px;
-            margin-bottom: 15px;
-            border-left: 4px solid var(--primary-color);
+        .spot-ranking-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0 10px;
+        }
+
+        .spot-rank-row {
+            background: white;
             transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
         }
 
-        .spot-item:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        .spot-rank-row:hover {
+            transform: translateX(5px);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
         }
 
-        .spot-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 15px;
-            padding-bottom: 12px;
-            border-bottom: 2px solid rgba(102, 126, 234, 0.2);
+        .spot-rank-row.rank-1 {
+            background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+            color: white;
         }
 
-        .spot-name {
-            font-size: 1.2em;
+        .spot-rank-row.rank-2 {
+            background: linear-gradient(135deg, #C0C0C0 0%, #A8A8A8 100%);
+            color: white;
+        }
+
+        .spot-rank-row.rank-3 {
+            background: linear-gradient(135deg, #CD7F32 0%, #B8732D 100%);
+            color: white;
+        }
+
+        .spot-rank-row td {
+            padding: 15px 12px;
+            border: none;
+        }
+
+        .spot-rank-row td:first-child {
+            border-radius: 10px 0 0 10px;
+        }
+
+        .spot-rank-row td:last-child {
+            border-radius: 0 10px 10px 0;
+        }
+
+        .rank-position {
+            font-size: 1.5em;
             font-weight: bold;
-            color: var(--text-primary);
-        }
-
-        .spot-rating {
-            display: flex;
-            gap: 3px;
-            font-size: 1.2em;
-        }
-
-        .spot-stats {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-            gap: 12px;
-            margin-bottom: 12px;
-        }
-
-        .spot-stat {
             text-align: center;
-            background: rgba(255, 255, 255, 0.5);
-            padding: 12px 8px;
-            border-radius: 8px;
+            width: 60px;
         }
 
-        .spot-stat-value {
-            font-size: 1.3em;
+        .rank-medal {
+            font-size: 2em;
+        }
+
+        .spot-name-cell {
+            font-size: 1.1em;
+            font-weight: 600;
+            min-width: 150px;
+        }
+
+        .spot-stat-cell {
+            text-align: center;
+            font-weight: 500;
+            min-width: 90px;
+        }
+
+        .stat-value {
+            font-size: 1.1em;
             font-weight: bold;
-            color: var(--primary-color);
-            margin-bottom: 4px;
-            white-space: nowrap;
+            display: block;
         }
 
-        .spot-stat-label {
+        .stat-label {
             font-size: 0.7em;
-            color: var(--text-secondary);
+            opacity: 0.8;
             text-transform: uppercase;
             letter-spacing: 0.5px;
-            white-space: nowrap;
+            display: block;
+            margin-top: 2px;
+        }
+
+        .spot-hunts-badge {
+            display: inline-block;
+            background: rgba(0,0,0,0.15);
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 0.75em;
+            font-weight: 500;
+        }
+
+        .spot-rank-row.rank-1 .spot-hunts-badge,
+        .spot-rank-row.rank-2 .spot-hunts-badge,
+        .spot-rank-row.rank-3 .spot-hunts-badge {
+            background: rgba(255,255,255,0.25);
         }
 
         .comparison-grid {
@@ -1560,12 +1593,12 @@ Galll
             <!-- Hunt Spot Comparator Tab -->
             <div class="main-tab-content" id="comparatorTab">
                 <div class="card">
-                    <h2>🔍 Hunt Spot Comparator</h2>
-                    <p style="color: var(--text-secondary); margin-bottom: 20px;">Compare different hunting spots based on your data</p>
+                    <h2>🏆 Hunt Spot Rankings</h2>
+                    <p style="color: var(--text-secondary); margin-bottom: 20px;">Your best hunting spots ranked by performance</p>
 
-                    <div class="comparison-grid" id="spotComparison">
+                    <div id="spotComparison">
                         <div class="empty-state">
-                            <p>Add hunts to different locations to see comparisons!</p>
+                            <p>Add hunts to different locations to see rankings!</p>
                         </div>
                     </div>
                 </div>
@@ -2664,45 +2697,53 @@ Galll
                 return;
             }
 
-            comparisonDiv.innerHTML = sortedSpots.map(([name, stats]) => {
-                const avgProfit = stats.totalProfit / stats.hunts.length;
-                const avgXP = stats.totalXP / stats.hunts.length;
-                const profitPerHour = stats.totalTime > 0 ? (stats.totalProfit / stats.totalTime) * 60 : 0;
-                const xpPerHour = stats.totalTime > 0 ? (stats.totalXP / stats.totalTime) * 60 : 0;
+            const tableHTML = `
+                <table class="spot-ranking-table">
+                    <tbody>
+                        ${sortedSpots.map(([name, stats], index) => {
+                            const avgProfit = stats.totalProfit / stats.hunts.length;
+                            const avgXP = stats.totalXP / stats.hunts.length;
+                            const profitPerHour = stats.totalTime > 0 ? (stats.totalProfit / stats.totalTime) * 60 : 0;
+                            const xpPerHour = stats.totalTime > 0 ? (stats.totalXP / stats.totalTime) * 60 : 0;
 
-                const rating = Math.min(5, Math.max(1, Math.round((avgProfit / 100000) + 1)));
-                const stars = '⭐'.repeat(rating);
+                            const position = index + 1;
+                            const rankClass = position <= 3 ? `rank-${position}` : '';
+                            const medal = position === 1 ? '🥇' : position === 2 ? '🥈' : position === 3 ? '🥉' : '';
 
-                return `
-                    <div class="spot-item">
-                        <div class="spot-header">
-                            <div class="spot-name">🗺️ ${name}</div>
-                            <div class="spot-rating">${stars}</div>
-                        </div>
-                        <div class="spot-stats">
-                            <div class="spot-stat">
-                                <div class="spot-stat-value">💰 ${formatShort(avgProfit)}</div>
-                                <div class="spot-stat-label">Avg Profit</div>
-                            </div>
-                            <div class="spot-stat">
-                                <div class="spot-stat-value">✨ ${formatShort(avgXP)}</div>
-                                <div class="spot-stat-label">Avg XP</div>
-                            </div>
-                            <div class="spot-stat">
-                                <div class="spot-stat-value">⚡ ${formatShort(profitPerHour)}</div>
-                                <div class="spot-stat-label">Profit/h</div>
-                            </div>
-                            <div class="spot-stat">
-                                <div class="spot-stat-value">🔥 ${formatShort(xpPerHour)}</div>
-                                <div class="spot-stat-label">XP/h</div>
-                            </div>
-                        </div>
-                        <div style="margin-top: 8px; color: var(--text-secondary); font-size: 0.8em; text-align: center;">
-                            📊 Based on ${stats.hunts.length} hunt${stats.hunts.length > 1 ? 's' : ''}
-                        </div>
-                    </div>
-                `;
-            }).join('');
+                            return `
+                                <tr class="spot-rank-row ${rankClass}">
+                                    <td class="rank-position">
+                                        ${medal ? `<span class="rank-medal">${medal}</span>` : `#${position}`}
+                                    </td>
+                                    <td class="spot-name-cell">
+                                        <strong>${name}</strong>
+                                        <br>
+                                        <span class="spot-hunts-badge">${stats.hunts.length} hunt${stats.hunts.length > 1 ? 's' : ''}</span>
+                                    </td>
+                                    <td class="spot-stat-cell">
+                                        <span class="stat-value">${formatShort(avgProfit)}</span>
+                                        <span class="stat-label">Avg Profit</span>
+                                    </td>
+                                    <td class="spot-stat-cell">
+                                        <span class="stat-value">${formatShort(profitPerHour)}</span>
+                                        <span class="stat-label">Profit/h</span>
+                                    </td>
+                                    <td class="spot-stat-cell">
+                                        <span class="stat-value">${formatShort(avgXP)}</span>
+                                        <span class="stat-label">Avg XP</span>
+                                    </td>
+                                    <td class="spot-stat-cell">
+                                        <span class="stat-value">${formatShort(xpPerHour)}</span>
+                                        <span class="stat-label">XP/h</span>
+                                    </td>
+                                </tr>
+                            `;
+                        }).join('')}
+                    </tbody>
+                </table>
+            `;
+
+            comparisonDiv.innerHTML = tableHTML;
         }
 
         // Display Updates
