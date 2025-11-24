@@ -1274,17 +1274,124 @@ Galll
             <!-- Charts Tab -->
             <div class="main-tab-content" id="chartsTab">
                 <div class="card">
-                    <h2>📈 Profit & XP Charts</h2>
-                    <div class="chart-container">
-                        <canvas id="profitChart"></canvas>
+                    <h2>📊 Advanced Statistics & Analytics</h2>
+                    <p style="color: var(--text-secondary); margin-bottom: 20px;">Analyze your hunting performance with detailed charts and trends</p>
+
+                    <!-- Period Selector -->
+                    <div style="display: flex; gap: 10px; margin-bottom: 25px; justify-content: center; flex-wrap: wrap;">
+                        <button class="period-btn active" onclick="switchPeriod('daily')" data-period="daily" style="padding: 12px 24px; border: 2px solid var(--primary-color); background: var(--primary-color); color: white; border-radius: 8px; cursor: pointer; font-weight: bold; transition: all 0.3s;">
+                            📅 Daily
+                        </button>
+                        <button class="period-btn" onclick="switchPeriod('weekly')" data-period="weekly" style="padding: 12px 24px; border: 2px solid var(--primary-color); background: transparent; color: var(--primary-color); border-radius: 8px; cursor: pointer; font-weight: bold; transition: all 0.3s;">
+                            📆 Weekly
+                        </button>
+                        <button class="period-btn" onclick="switchPeriod('monthly')" data-period="monthly" style="padding: 12px 24px; border: 2px solid var(--primary-color); background: transparent; color: var(--primary-color); border-radius: 8px; cursor: pointer; font-weight: bold; transition: all 0.3s;">
+                            📈 Monthly
+                        </button>
+                    </div>
+
+                    <!-- Key Stats Summary -->
+                    <div class="dashboard-grid" style="margin-bottom: 30px;">
+                        <div class="stat-card" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white;">
+                            <h3 style="color: white;">Total Profit</h3>
+                            <p id="statsTotalProfit" style="font-size: 2em; font-weight: bold; margin: 10px 0;">0 gp</p>
+                            <small id="statsAvgProfit">Avg: 0 gp per hunt</small>
+                        </div>
+                        <div class="stat-card" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); color: white;">
+                            <h3 style="color: white;">Total XP</h3>
+                            <p id="statsTotalXP" style="font-size: 2em; font-weight: bold; margin: 10px 0;">0</p>
+                            <small id="statsAvgXP">Avg: 0 per hunt</small>
+                        </div>
+                        <div class="stat-card" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); color: white;">
+                            <h3 style="color: white;">Best Day</h3>
+                            <p id="statsBestDay" style="font-size: 1.5em; font-weight: bold; margin: 10px 0;">-</p>
+                            <small id="statsBestDayValue">No data yet</small>
+                        </div>
+                        <div class="stat-card" style="background: linear-gradient(135deg, #fa709a 0%, #fee140 100%); color: white;">
+                            <h3 style="color: white;">Total Hunts</h3>
+                            <p id="statsTotalHunts" style="font-size: 2em; font-weight: bold; margin: 10px 0;">0</p>
+                            <small id="statsAvgDuration">Avg: 0h duration</small>
+                        </div>
                     </div>
                 </div>
 
-                <div class="card">
-                    <h2>📊 Hunt Performance</h2>
-                    <div class="chart-container">
-                        <canvas id="performanceChart"></canvas>
+                <!-- Profit Chart -->
+                <div class="card" style="margin-top: 25px;">
+                    <h3 style="display: flex; align-items: center; justify-content: space-between;">
+                        <span>💰 Profit Analysis</span>
+                        <span id="profitPeriodLabel" style="font-size: 0.9em; color: var(--text-secondary); font-weight: normal;">Last 7 Days</span>
+                    </h3>
+                    <div class="chart-container" style="position: relative; height: 350px; margin-top: 20px;">
+                        <canvas id="profitChart"></canvas>
                     </div>
+                    <!-- Profit Stats Below Chart -->
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px; margin-top: 20px; padding-top: 20px; border-top: 1px solid var(--border-color);">
+                        <div style="text-align: center;">
+                            <p style="color: var(--text-secondary); font-size: 0.9em;">Highest</p>
+                            <p id="profitHighest" style="color: var(--success-color); font-weight: bold; font-size: 1.2em;">0 gp</p>
+                        </div>
+                        <div style="text-align: center;">
+                            <p style="color: var(--text-secondary); font-size: 0.9em;">Lowest</p>
+                            <p id="profitLowest" style="color: var(--danger-color); font-weight: bold; font-size: 1.2em;">0 gp</p>
+                        </div>
+                        <div style="text-align: center;">
+                            <p style="color: var(--text-secondary); font-size: 0.9em;">Average</p>
+                            <p id="profitAverage" style="color: var(--primary-color); font-weight: bold; font-size: 1.2em;">0 gp</p>
+                        </div>
+                        <div style="text-align: center;">
+                            <p style="color: var(--text-secondary); font-size: 0.9em;">Trend</p>
+                            <p id="profitTrend" style="font-weight: bold; font-size: 1.2em;">-</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- XP Chart -->
+                <div class="card" style="margin-top: 25px;">
+                    <h3 style="display: flex; align-items: center; justify-content: space-between;">
+                        <span>⚡ Experience Analysis</span>
+                        <span id="xpPeriodLabel" style="font-size: 0.9em; color: var(--text-secondary); font-weight: normal;">Last 7 Days</span>
+                    </h3>
+                    <div class="chart-container" style="position: relative; height: 350px; margin-top: 20px;">
+                        <canvas id="xpChart"></canvas>
+                    </div>
+                    <!-- XP Stats Below Chart -->
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px; margin-top: 20px; padding-top: 20px; border-top: 1px solid var(--border-color);">
+                        <div style="text-align: center;">
+                            <p style="color: var(--text-secondary); font-size: 0.9em;">Highest</p>
+                            <p id="xpHighest" style="color: var(--success-color); font-weight: bold; font-size: 1.2em;">0</p>
+                        </div>
+                        <div style="text-align: center;">
+                            <p style="color: var(--text-secondary); font-size: 0.9em;">Lowest</p>
+                            <p id="xpLowest" style="color: var(--danger-color); font-weight: bold; font-size: 1.2em;">0</p>
+                        </div>
+                        <div style="text-align: center;">
+                            <p style="color: var(--text-secondary); font-size: 0.9em;">Average</p>
+                            <p id="xpAverage" style="color: var(--primary-color); font-weight: bold; font-size: 1.2em;">0</p>
+                        </div>
+                        <div style="text-align: center;">
+                            <p style="color: var(--text-secondary); font-size: 0.9em;">Trend</p>
+                            <p id="xpTrend" style="font-weight: bold; font-size: 1.2em;">-</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Performance Comparison -->
+                <div class="card" style="margin-top: 25px;">
+                    <h3>📊 Profit vs XP Comparison</h3>
+                    <div class="chart-container" style="position: relative; height: 300px; margin-top: 20px;">
+                        <canvas id="comparisonChart"></canvas>
+                    </div>
+                </div>
+
+                <!-- Time Analysis -->
+                <div class="card" style="margin-top: 25px;">
+                    <h3>⏰ Hunting Time Distribution</h3>
+                    <div class="chart-container" style="position: relative; height: 300px; margin-top: 20px;">
+                        <canvas id="timeChart"></canvas>
+                    </div>
+                    <p style="text-align: center; color: var(--text-secondary); margin-top: 15px; font-size: 0.9em;">
+                        Total hunting time: <span id="totalHuntTime" style="font-weight: bold; color: var(--primary-color);">0h</span>
+                    </p>
                 </div>
             </div>
 
@@ -1320,6 +1427,7 @@ Galll
         let serverType = 'green';
         let isDarkMode = localStorage.getItem('darkMode') === 'true';
         let teamMemberCount = 1;
+        let currentPeriod = 'daily';
 
         // Initialize App
         window.onload = function() {
@@ -2207,12 +2315,119 @@ Galll
             `).join('');
         }
 
-        // Charts
-        function drawCharts() {
-            drawProfitChart();
-            drawPerformanceChart();
+        // ==================== ADVANCED CHARTS SYSTEM ====================
+
+        // Switch period (daily/weekly/monthly)
+        function switchPeriod(period) {
+            currentPeriod = period;
+
+            // Update button styles
+            document.querySelectorAll('.period-btn').forEach(btn => {
+                const btnPeriod = btn.getAttribute('data-period');
+                if (btnPeriod === period) {
+                    btn.style.background = 'var(--primary-color)';
+                    btn.style.color = 'white';
+                } else {
+                    btn.style.background = 'transparent';
+                    btn.style.color = 'var(--primary-color)';
+                }
+            });
+
+            // Redraw all charts
+            drawAdvancedCharts();
         }
 
+        // Group hunts by period
+        function groupHuntsByPeriod() {
+            if (hunts.length === 0) return {};
+
+            const grouped = {};
+            const now = new Date();
+
+            hunts.forEach(hunt => {
+                const huntDate = new Date(hunt.date);
+                let key;
+
+                if (currentPeriod === 'daily') {
+                    key = huntDate.toISOString().split('T')[0]; // YYYY-MM-DD
+                } else if (currentPeriod === 'weekly') {
+                    const weekStart = new Date(huntDate);
+                    weekStart.setDate(huntDate.getDate() - huntDate.getDay());
+                    key = weekStart.toISOString().split('T')[0];
+                } else { // monthly
+                    key = `${huntDate.getFullYear()}-${String(huntDate.getMonth() + 1).padStart(2, '0')}`;
+                }
+
+                if (!grouped[key]) {
+                    grouped[key] = { profit: 0, xp: 0, hunts: 0, duration: 0 };
+                }
+
+                grouped[key].profit += hunt.profit;
+                grouped[key].xp += hunt.experience;
+                grouped[key].hunts += 1;
+                grouped[key].duration += hunt.duration || 0;
+            });
+
+            return grouped;
+        }
+
+        // Main chart drawing function
+        function drawAdvancedCharts() {
+            updateStatsSummary();
+            drawProfitChart();
+            drawXPChart();
+            drawComparisonChart();
+            drawTimeChart();
+        }
+
+        // Update stats summary cards
+        function updateStatsSummary() {
+            const grouped = groupHuntsByPeriod();
+            const values = Object.values(grouped);
+
+            const totalProfit = hunts.reduce((sum, h) => sum + h.profit, 0);
+            const totalXP = hunts.reduce((sum, h) => sum + h.experience, 0);
+            const totalHunts = hunts.length;
+            const avgProfit = totalHunts > 0 ? totalProfit / totalHunts : 0;
+            const avgXP = totalHunts > 0 ? totalXP / totalHunts : 0;
+            const totalDuration = hunts.reduce((sum, h) => sum + (h.duration || 0), 0);
+            const avgDuration = totalHunts > 0 ? totalDuration / totalHunts : 0;
+
+            // Find best day/week/month
+            let bestPeriod = null;
+            let bestValue = 0;
+            Object.entries(grouped).forEach(([key, data]) => {
+                if (data.profit > bestValue) {
+                    bestValue = data.profit;
+                    bestPeriod = key;
+                }
+            });
+
+            document.getElementById('statsTotalProfit').textContent = formatNumber(totalProfit) + ' gp';
+            document.getElementById('statsAvgProfit').textContent = `Avg: ${formatNumber(Math.round(avgProfit))} gp per hunt`;
+            document.getElementById('statsTotalXP').textContent = formatNumber(totalXP);
+            document.getElementById('statsAvgXP').textContent = `Avg: ${formatNumber(Math.round(avgXP))} per hunt`;
+            document.getElementById('statsTotalHunts').textContent = totalHunts;
+            document.getElementById('statsAvgDuration').textContent = `Avg: ${formatTime(avgDuration)} duration`;
+
+            if (bestPeriod) {
+                const periodLabel = currentPeriod === 'daily' ? 'Day' : currentPeriod === 'weekly' ? 'Week' : 'Month';
+                const formattedDate = new Date(bestPeriod).toLocaleDateString('en-US', {
+                    month: 'short',
+                    day: currentPeriod !== 'monthly' ? 'numeric' : undefined,
+                    year: 'numeric'
+                });
+                document.getElementById('statsBestDay').textContent = formattedDate;
+                document.getElementById('statsBestDayValue').textContent = `${formatNumber(bestValue)} gp profit`;
+            } else {
+                document.getElementById('statsBestDay').textContent = '-';
+                document.getElementById('statsBestDayValue').textContent = 'No data yet';
+            }
+
+            document.getElementById('totalHuntTime').textContent = formatTime(totalDuration);
+        }
+
+        // Draw Profit Chart
         function drawProfitChart() {
             const canvas = document.getElementById('profitChart');
             if (!canvas) return;
@@ -2220,80 +2435,129 @@ Galll
             const ctx = canvas.getContext('2d');
             const rect = canvas.parentElement.getBoundingClientRect();
             canvas.width = rect.width;
-            canvas.height = rect.height;
+            canvas.height = 350;
 
             ctx.clearRect(0, 0, canvas.width, canvas.height);
 
             if (hunts.length === 0) {
                 ctx.fillStyle = getComputedStyle(document.documentElement).getPropertyValue('--text-secondary');
-                ctx.font = '20px Arial';
+                ctx.font = '18px Arial';
                 ctx.textAlign = 'center';
-                ctx.fillText('No data to display', canvas.width / 2, canvas.height / 2);
+                ctx.fillText('No data to display - Add hunts to see statistics', canvas.width / 2, canvas.height / 2);
                 return;
             }
 
-            const recentHunts = hunts.slice(0, 10).reverse();
-            const maxProfit = Math.max(...recentHunts.map(h => Math.abs(h.profit)));
-            const padding = 50;
+            const grouped = groupHuntsByPeriod();
+            const sortedKeys = Object.keys(grouped).sort();
+            const displayKeys = sortedKeys.slice(-14); // Last 14 periods
+
+            const profits = displayKeys.map(key => grouped[key].profit);
+            const maxProfit = Math.max(...profits.map(Math.abs), 1);
+
+            const padding = 60;
             const chartWidth = canvas.width - padding * 2;
             const chartHeight = canvas.height - padding * 2;
-            const barWidth = chartWidth / recentHunts.length;
+            const barWidth = chartWidth / displayKeys.length;
 
-            ctx.strokeStyle = getComputedStyle(document.documentElement).getPropertyValue('--text-secondary');
+            // Draw axes
+            ctx.strokeStyle = getComputedStyle(document.documentElement).getPropertyValue('--border-color');
             ctx.lineWidth = 2;
             ctx.beginPath();
+            const zeroY = canvas.height - padding - (chartHeight / 2);
             ctx.moveTo(padding, padding);
             ctx.lineTo(padding, canvas.height - padding);
             ctx.lineTo(canvas.width - padding, canvas.height - padding);
             ctx.stroke();
 
-            recentHunts.forEach((hunt, index) => {
-                const barHeight = (Math.abs(hunt.profit) / maxProfit) * chartHeight * 0.8;
-                const x = padding + index * barWidth + barWidth * 0.1;
-                const width = barWidth * 0.8;
-                const y = hunt.profit >= 0 ? canvas.height - padding - barHeight : canvas.height - padding;
+            // Draw zero line
+            ctx.strokeStyle = '#666';
+            ctx.lineWidth = 1;
+            ctx.setLineDash([5, 5]);
+            ctx.beginPath();
+            ctx.moveTo(padding, zeroY);
+            ctx.lineTo(canvas.width - padding, zeroY);
+            ctx.stroke();
+            ctx.setLineDash([]);
 
-                ctx.fillStyle = hunt.profit >= 0 ? '#28a745' : '#dc3545';
+            // Draw bars
+            displayKeys.forEach((key, index) => {
+                const profit = grouped[key].profit;
+                const barHeight = (Math.abs(profit) / maxProfit) * (chartHeight / 2) * 0.9;
+                const x = padding + index * barWidth + barWidth * 0.15;
+                const width = barWidth * 0.7;
+                const y = profit >= 0 ? zeroY - barHeight : zeroY;
+
+                // Gradient
+                const gradient = ctx.createLinearGradient(x, y, x, y + barHeight);
+                if (profit >= 0) {
+                    gradient.addColorStop(0, '#28a745');
+                    gradient.addColorStop(1, '#20c997');
+                } else {
+                    gradient.addColorStop(0, '#dc3545');
+                    gradient.addColorStop(1, '#c82333');
+                }
+
+                ctx.fillStyle = gradient;
                 ctx.fillRect(x, y, width, barHeight);
 
-                ctx.fillStyle = getComputedStyle(document.documentElement).getPropertyValue('--text-primary');
-                ctx.font = '12px Arial';
+                // Label
+                ctx.fillStyle = getComputedStyle(document.documentElement).getPropertyValue('--text-secondary');
+                ctx.font = '10px Arial';
                 ctx.textAlign = 'center';
-                ctx.fillText(`#${recentHunts.length - index}`, x + width / 2, canvas.height - padding + 20);
+                const label = formatPeriodLabel(key);
+                ctx.fillText(label, x + width / 2, canvas.height - padding + 15);
             });
 
-            ctx.fillStyle = getComputedStyle(document.documentElement).getPropertyValue('--text-primary');
-            ctx.font = 'bold 16px Arial';
-            ctx.textAlign = 'left';
-            ctx.fillText('Last 10 Hunts Profit', padding, padding - 20);
+            // Update stats below chart
+            const highest = Math.max(...profits);
+            const lowest = Math.min(...profits);
+            const average = profits.reduce((sum, p) => sum + p, 0) / profits.length;
+            const trend = profits.length > 1 ? profits[profits.length - 1] - profits[0] : 0;
+
+            document.getElementById('profitHighest').textContent = formatNumber(Math.round(highest)) + ' gp';
+            document.getElementById('profitLowest').textContent = formatNumber(Math.round(lowest)) + ' gp';
+            document.getElementById('profitAverage').textContent = formatNumber(Math.round(average)) + ' gp';
+            document.getElementById('profitTrend').textContent = trend > 0 ? `📈 +${formatShort(trend)}` : trend < 0 ? `📉 ${formatShort(trend)}` : '➡️ Stable';
+            document.getElementById('profitTrend').style.color = trend > 0 ? '#28a745' : trend < 0 ? '#dc3545' : '#6c757d';
+
+            const periodLabel = currentPeriod === 'daily' ? 'Days' : currentPeriod === 'weekly' ? 'Weeks' : 'Months';
+            document.getElementById('profitPeriodLabel').textContent = `Last ${displayKeys.length} ${periodLabel}`;
         }
 
-        function drawPerformanceChart() {
-            const canvas = document.getElementById('performanceChart');
+        // Draw XP Chart
+        function drawXPChart() {
+            const canvas = document.getElementById('xpChart');
             if (!canvas) return;
 
             const ctx = canvas.getContext('2d');
             const rect = canvas.parentElement.getBoundingClientRect();
             canvas.width = rect.width;
-            canvas.height = rect.height;
+            canvas.height = 350;
 
             ctx.clearRect(0, 0, canvas.width, canvas.height);
 
             if (hunts.length === 0) {
                 ctx.fillStyle = getComputedStyle(document.documentElement).getPropertyValue('--text-secondary');
-                ctx.font = '20px Arial';
+                ctx.font = '18px Arial';
                 ctx.textAlign = 'center';
-                ctx.fillText('No data to display', canvas.width / 2, canvas.height / 2);
+                ctx.fillText('No data to display - Add hunts to see statistics', canvas.width / 2, canvas.height / 2);
                 return;
             }
 
-            const recentHunts = hunts.slice(0, 10).reverse();
-            const maxXP = Math.max(...recentHunts.map(h => h.experience));
-            const padding = 50;
+            const grouped = groupHuntsByPeriod();
+            const sortedKeys = Object.keys(grouped).sort();
+            const displayKeys = sortedKeys.slice(-14); // Last 14 periods
+
+            const xpValues = displayKeys.map(key => grouped[key].xp);
+            const maxXP = Math.max(...xpValues, 1);
+
+            const padding = 60;
             const chartWidth = canvas.width - padding * 2;
             const chartHeight = canvas.height - padding * 2;
+            const barWidth = chartWidth / displayKeys.length;
 
-            ctx.strokeStyle = getComputedStyle(document.documentElement).getPropertyValue('--text-secondary');
+            // Draw axes
+            ctx.strokeStyle = getComputedStyle(document.documentElement).getPropertyValue('--border-color');
             ctx.lineWidth = 2;
             ctx.beginPath();
             ctx.moveTo(padding, padding);
@@ -2301,32 +2565,225 @@ Galll
             ctx.lineTo(canvas.width - padding, canvas.height - padding);
             ctx.stroke();
 
-            ctx.strokeStyle = '#667eea';
-            ctx.lineWidth = 3;
-            ctx.beginPath();
+            // Draw bars
+            displayKeys.forEach((key, index) => {
+                const xp = grouped[key].xp;
+                const barHeight = (xp / maxXP) * chartHeight * 0.9;
+                const x = padding + index * barWidth + barWidth * 0.15;
+                const width = barWidth * 0.7;
+                const y = canvas.height - padding - barHeight;
 
-            recentHunts.forEach((hunt, index) => {
-                const x = padding + (index / (recentHunts.length - 1)) * chartWidth;
-                const y = canvas.height - padding - (hunt.experience / maxXP) * chartHeight * 0.8;
+                // Gradient
+                const gradient = ctx.createLinearGradient(x, y, x, y + barHeight);
+                gradient.addColorStop(0, '#667eea');
+                gradient.addColorStop(1, '#764ba2');
+
+                ctx.fillStyle = gradient;
+                ctx.fillRect(x, y, width, barHeight);
+
+                // Label
+                ctx.fillStyle = getComputedStyle(document.documentElement).getPropertyValue('--text-secondary');
+                ctx.font = '10px Arial';
+                ctx.textAlign = 'center';
+                const label = formatPeriodLabel(key);
+                ctx.fillText(label, x + width / 2, canvas.height - padding + 15);
+            });
+
+            // Draw line overlay
+            ctx.strokeStyle = '#fff';
+            ctx.lineWidth = 2;
+            ctx.beginPath();
+            displayKeys.forEach((key, index) => {
+                const xp = grouped[key].xp;
+                const barHeight = (xp / maxXP) * chartHeight * 0.9;
+                const x = padding + index * barWidth + barWidth * 0.5;
+                const y = canvas.height - padding - barHeight;
 
                 if (index === 0) {
                     ctx.moveTo(x, y);
                 } else {
                     ctx.lineTo(x, y);
                 }
-
-                ctx.fillStyle = '#667eea';
-                ctx.beginPath();
-                ctx.arc(x, y, 5, 0, Math.PI * 2);
-                ctx.fill();
             });
-
             ctx.stroke();
 
+            // Update stats below chart
+            const highest = Math.max(...xpValues);
+            const lowest = Math.min(...xpValues);
+            const average = xpValues.reduce((sum, xp) => sum + xp, 0) / xpValues.length;
+            const trend = xpValues.length > 1 ? xpValues[xpValues.length - 1] - xpValues[0] : 0;
+
+            document.getElementById('xpHighest').textContent = formatNumber(Math.round(highest));
+            document.getElementById('xpLowest').textContent = formatNumber(Math.round(lowest));
+            document.getElementById('xpAverage').textContent = formatNumber(Math.round(average));
+            document.getElementById('xpTrend').textContent = trend > 0 ? `📈 +${formatShort(trend)}` : trend < 0 ? `📉 ${formatShort(trend)}` : '➡️ Stable';
+            document.getElementById('xpTrend').style.color = trend > 0 ? '#28a745' : trend < 0 ? '#dc3545' : '#6c757d';
+
+            const periodLabel = currentPeriod === 'daily' ? 'Days' : currentPeriod === 'weekly' ? 'Weeks' : 'Months';
+            document.getElementById('xpPeriodLabel').textContent = `Last ${displayKeys.length} ${periodLabel}`;
+        }
+
+        // Draw Comparison Chart (Profit vs XP)
+        function drawComparisonChart() {
+            const canvas = document.getElementById('comparisonChart');
+            if (!canvas) return;
+
+            const ctx = canvas.getContext('2d');
+            const rect = canvas.parentElement.getBoundingClientRect();
+            canvas.width = rect.width;
+            canvas.height = 300;
+
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            if (hunts.length === 0) {
+                ctx.fillStyle = getComputedStyle(document.documentElement).getPropertyValue('--text-secondary');
+                ctx.font = '18px Arial';
+                ctx.textAlign = 'center';
+                ctx.fillText('No data to display', canvas.width / 2, canvas.height / 2);
+                return;
+            }
+
+            const grouped = groupHuntsByPeriod();
+            const sortedKeys = Object.keys(grouped).sort();
+            const displayKeys = sortedKeys.slice(-10); // Last 10 periods
+
+            const profitValues = displayKeys.map(key => Math.abs(grouped[key].profit));
+            const xpValues = displayKeys.map(key => grouped[key].xp);
+            const maxProfit = Math.max(...profitValues, 1);
+            const maxXP = Math.max(...xpValues, 1);
+
+            const padding = 60;
+            const chartWidth = canvas.width - padding * 2;
+            const chartHeight = canvas.height - padding * 2;
+
+            // Draw axes
+            ctx.strokeStyle = getComputedStyle(document.documentElement).getPropertyValue('--border-color');
+            ctx.lineWidth = 2;
+            ctx.beginPath();
+            ctx.moveTo(padding, padding);
+            ctx.lineTo(padding, canvas.height - padding);
+            ctx.lineTo(canvas.width - padding, canvas.height - padding);
+            ctx.stroke();
+
+            // Draw lines
+            ctx.lineWidth = 3;
+
+            // Profit line
+            ctx.strokeStyle = '#28a745';
+            ctx.beginPath();
+            displayKeys.forEach((key, index) => {
+                const x = padding + (index / (displayKeys.length - 1)) * chartWidth;
+                const y = canvas.height - padding - (profitValues[index] / maxProfit) * chartHeight * 0.8;
+                if (index === 0) ctx.moveTo(x, y);
+                else ctx.lineTo(x, y);
+            });
+            ctx.stroke();
+
+            // XP line
+            ctx.strokeStyle = '#667eea';
+            ctx.beginPath();
+            displayKeys.forEach((key, index) => {
+                const x = padding + (index / (displayKeys.length - 1)) * chartWidth;
+                const y = canvas.height - padding - (xpValues[index] / maxXP) * chartHeight * 0.8;
+                if (index === 0) ctx.moveTo(x, y);
+                else ctx.lineTo(x, y);
+            });
+            ctx.stroke();
+
+            // Legend
+            ctx.fillStyle = '#28a745';
+            ctx.fillRect(padding, 20, 20, 20);
             ctx.fillStyle = getComputedStyle(document.documentElement).getPropertyValue('--text-primary');
-            ctx.font = 'bold 16px Arial';
+            ctx.font = '14px Arial';
             ctx.textAlign = 'left';
-            ctx.fillText('XP Progression', padding, padding - 20);
+            ctx.fillText('Profit', padding + 30, 35);
+
+            ctx.fillStyle = '#667eea';
+            ctx.fillRect(padding + 100, 20, 20, 20);
+            ctx.fillStyle = getComputedStyle(document.documentElement).getPropertyValue('--text-primary');
+            ctx.fillText('Experience', padding + 130, 35);
+        }
+
+        // Draw Time Distribution Chart
+        function drawTimeChart() {
+            const canvas = document.getElementById('timeChart');
+            if (!canvas) return;
+
+            const ctx = canvas.getContext('2d');
+            const rect = canvas.parentElement.getBoundingClientRect();
+            canvas.width = rect.width;
+            canvas.height = 300;
+
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            if (hunts.length === 0) {
+                ctx.fillStyle = getComputedStyle(document.documentElement).getPropertyValue('--text-secondary');
+                ctx.font = '18px Arial';
+                ctx.textAlign = 'center';
+                ctx.fillText('No data to display', canvas.width / 2, canvas.height / 2);
+                return;
+            }
+
+            const grouped = groupHuntsByPeriod();
+            const sortedKeys = Object.keys(grouped).sort();
+            const displayKeys = sortedKeys.slice(-10);
+
+            const durations = displayKeys.map(key => grouped[key].duration);
+            const maxDuration = Math.max(...durations, 1);
+
+            const padding = 60;
+            const chartWidth = canvas.width - padding * 2;
+            const chartHeight = canvas.height - padding * 2;
+            const barWidth = chartWidth / displayKeys.length;
+
+            // Draw axes
+            ctx.strokeStyle = getComputedStyle(document.documentElement).getPropertyValue('--border-color');
+            ctx.lineWidth = 2;
+            ctx.beginPath();
+            ctx.moveTo(padding, padding);
+            ctx.lineTo(padding, canvas.height - padding);
+            ctx.lineTo(canvas.width - padding, canvas.height - padding);
+            ctx.stroke();
+
+            // Draw bars
+            displayKeys.forEach((key, index) => {
+                const duration = grouped[key].duration;
+                const barHeight = (duration / maxDuration) * chartHeight * 0.9;
+                const x = padding + index * barWidth + barWidth * 0.15;
+                const width = barWidth * 0.7;
+                const y = canvas.height - padding - barHeight;
+
+                const gradient = ctx.createLinearGradient(x, y, x, y + barHeight);
+                gradient.addColorStop(0, '#4facfe');
+                gradient.addColorStop(1, '#00f2fe');
+
+                ctx.fillStyle = gradient;
+                ctx.fillRect(x, y, width, barHeight);
+
+                // Label
+                ctx.fillStyle = getComputedStyle(document.documentElement).getPropertyValue('--text-secondary');
+                ctx.font = '10px Arial';
+                ctx.textAlign = 'center';
+                const label = formatPeriodLabel(key);
+                ctx.fillText(label, x + width / 2, canvas.height - padding + 15);
+            });
+        }
+
+        // Format period label
+        function formatPeriodLabel(dateString) {
+            const date = new Date(dateString);
+            if (currentPeriod === 'daily') {
+                return `${date.getMonth() + 1}/${date.getDate()}`;
+            } else if (currentPeriod === 'weekly') {
+                return `W${Math.ceil(date.getDate() / 7)}`;
+            } else {
+                return date.toLocaleDateString('en-US', { month: 'short' });
+            }
+        }
+
+        // Alias for compatibility
+        function drawCharts() {
+            drawAdvancedCharts();
         }
 
         // Utility Functions
