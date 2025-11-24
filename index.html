@@ -142,15 +142,52 @@
 
         /* Top Navigation */
         .top-nav {
-            background: rgba(255,255,255,0.2);
-            backdrop-filter: blur(10px);
-            border-radius: 15px;
-            padding: 15px 25px;
-            margin-bottom: 20px;
+            background: rgba(255,255,255,0.15);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            padding: 20px 30px;
+            margin-bottom: 25px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
             display: flex;
             justify-content: space-between;
             align-items: center;
             color: white;
+            border: 1px solid rgba(255,255,255,0.2);
+            transition: all 0.3s ease;
+        }
+
+        .top-nav:hover {
+            box-shadow: 0 12px 50px rgba(0,0,0,0.25);
+        }
+
+        .app-logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-right: 30px;
+        }
+
+        .app-logo-icon {
+            font-size: 2.5em;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .app-logo-text h2 {
+            font-size: 1.5em;
+            margin: 0;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .app-logo-text p {
+            font-size: 0.8em;
+            margin: 0;
+            opacity: 0.8;
         }
 
         .user-info {
@@ -267,10 +304,35 @@
         /* Cards */
         .card {
             background: var(--card-bg);
-            border-radius: 15px;
-            padding: 25px;
+            border-radius: 20px;
+            padding: 30px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-            margin-bottom: 20px;
+            margin-bottom: 25px;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(102, 126, 234, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.05) 0%, rgba(118, 75, 162, 0.05) 100%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.25);
+        }
+
+        .card:hover::before {
+            opacity: 1;
         }
 
         .card h2 {
@@ -279,6 +341,7 @@
             font-size: 1.5em;
             border-bottom: 2px solid var(--primary-color);
             padding-bottom: 10px;
+            position: relative;
         }
 
         /* Dashboard Grid */
@@ -291,23 +354,54 @@
 
         .stat-card {
             background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
-            padding: 25px;
-            border-radius: 15px;
+            padding: 30px;
+            border-radius: 20px;
             text-align: center;
             color: white;
             box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            transition: all 0.4s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stat-card::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.2);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+        }
+
+        .stat-card:hover::after {
+            width: 400px;
+            height: 400px;
         }
 
         .stat-card h3 {
             font-size: 0.9em;
             margin-bottom: 10px;
             opacity: 0.9;
+            position: relative;
+            z-index: 1;
         }
 
         .stat-card p {
             font-size: 2.5em;
             font-weight: bold;
             margin-bottom: 5px;
+            position: relative;
+            z-index: 1;
         }
 
         .stat-card small {
@@ -669,6 +763,151 @@
         .password-strength.medium { width: 66%; background: var(--warning-color); }
         .password-strength.strong { width: 100%; background: var(--success-color); }
 
+        /* Toast Notifications */
+        .toast-container {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 10000;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .toast {
+            background: white;
+            color: #333;
+            padding: 16px 24px;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+            min-width: 300px;
+            max-width: 400px;
+            animation: slideInRight 0.3s ease-out;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            border-left: 4px solid var(--primary-color);
+        }
+
+        .toast.success {
+            border-left-color: var(--success-color);
+        }
+
+        .toast.error {
+            border-left-color: var(--danger-color);
+        }
+
+        .toast.warning {
+            border-left-color: var(--warning-color);
+        }
+
+        .toast.info {
+            border-left-color: var(--info-color);
+        }
+
+        .toast-icon {
+            font-size: 1.5em;
+        }
+
+        .toast-message {
+            flex: 1;
+            font-weight: 500;
+        }
+
+        .toast-close {
+            background: none;
+            border: none;
+            font-size: 1.2em;
+            cursor: pointer;
+            opacity: 0.5;
+            transition: opacity 0.2s;
+        }
+
+        .toast-close:hover {
+            opacity: 1;
+        }
+
+        @keyframes slideInRight {
+            from {
+                transform: translateX(400px);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideOutRight {
+            from {
+                transform: translateX(0);
+                opacity: 1;
+            }
+            to {
+                transform: translateX(400px);
+                opacity: 0;
+            }
+        }
+
+        /* Tooltips */
+        .tooltip {
+            position: relative;
+            display: inline-block;
+        }
+
+        .tooltip .tooltiptext {
+            visibility: hidden;
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            border-radius: 8px;
+            padding: 8px 12px;
+            position: absolute;
+            z-index: 1000;
+            bottom: 125%;
+            left: 50%;
+            transform: translateX(-50%);
+            opacity: 0;
+            transition: opacity 0.3s, visibility 0.3s;
+            white-space: nowrap;
+            font-size: 0.9em;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+        }
+
+        .tooltip .tooltiptext::after {
+            content: "";
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            margin-left: -5px;
+            border-width: 5px;
+            border-style: solid;
+            border-color: #333 transparent transparent transparent;
+        }
+
+        .tooltip:hover .tooltiptext {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        /* Export Button Styles */
+        .export-btn {
+            background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(40, 167, 69, 0.3);
+        }
+
+        .export-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(40, 167, 69, 0.4);
+        }
+
         /* Empty State */
         .empty-state {
             text-align: center;
@@ -787,15 +1026,27 @@
         <div class="container">
             <!-- Top Navigation -->
             <div class="top-nav">
-                <div class="user-info">
-                    <div class="user-avatar" id="userAvatar">U</div>
-                    <div class="user-details">
-                        <h3 id="userName">User</h3>
-                        <p id="userStats">Loading...</p>
+                <div style="display: flex; align-items: center; gap: 30px;">
+                    <div class="app-logo">
+                        <div class="app-logo-icon">⚔️</div>
+                        <div class="app-logo-text">
+                            <h2>Tibia Hunt Analyzer</h2>
+                            <p>Professional Tracking System</p>
+                        </div>
+                    </div>
+                    <div class="user-info">
+                        <div class="user-avatar" id="userAvatar">U</div>
+                        <div class="user-details">
+                            <h3 id="userName">User</h3>
+                            <p id="userStats">Loading...</p>
+                        </div>
                     </div>
                 </div>
                 <div class="top-nav-actions">
-                    <button class="theme-toggle" onclick="toggleTheme()" id="themeToggle">🌙</button>
+                    <button class="theme-toggle tooltip" onclick="toggleTheme()" id="themeToggle">
+                        🌙
+                        <span class="tooltiptext">Toggle Theme</span>
+                    </button>
                     <button class="btn-logout" onclick="handleLogout()">Logout</button>
                 </div>
             </div>
@@ -809,8 +1060,12 @@
                 <button class="main-tab" onclick="switchMainTab('rareLoot')">💎 Rare Loot</button>
                 <button class="main-tab" onclick="switchMainTab('comparator')">🔍 Hunt Spots</button>
                 <button class="main-tab" onclick="switchMainTab('charts')">📈 Charts</button>
+                <button class="main-tab" onclick="switchMainTab('calculators')">🧮 Calculators</button>
                 <button class="main-tab" onclick="switchMainTab('history')">📜 History</button>
             </div>
+
+            <!-- Toast Container -->
+            <div class="toast-container" id="toastContainer"></div>
 
             <!-- Dashboard Tab -->
             <div class="main-tab-content active" id="dashboardTab">
@@ -869,6 +1124,21 @@
                         <div class="empty-state">
                             <p>No active goals. Create one in the Goals tab!</p>
                         </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h2>📦 Export Data</h2>
+                    <p style="color: var(--text-secondary); margin-bottom: 20px;">Download your hunting data for backup or analysis</p>
+                    <div style="display: flex; gap: 15px; flex-wrap: wrap;">
+                        <button class="export-btn tooltip" onclick="exportData('json')">
+                            📄 Export as JSON
+                            <span class="tooltiptext">Download all data as JSON file</span>
+                        </button>
+                        <button class="export-btn tooltip" onclick="exportData('csv')">
+                            📊 Export as CSV
+                            <span class="tooltiptext">Download hunt data as CSV for Excel</span>
+                        </button>
                     </div>
                 </div>
             </div>
@@ -1411,6 +1681,94 @@ Galll
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                             </svg>
                             <p>No hunts yet. Add your first hunt to start tracking!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Calculators Tab -->
+            <div class="main-tab-content" id="calculatorsTab">
+                <div class="card">
+                    <h2>🧮 Tibia Calculators</h2>
+                    <p style="color: var(--text-secondary); margin-bottom: 25px;">Useful tools to help you plan your progression</p>
+
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 25px;">
+                        <!-- XP Calculator -->
+                        <div class="card" style="margin-bottom: 0;">
+                            <h3 style="color: var(--primary-color); margin-bottom: 15px;">📊 XP to Level Calculator</h3>
+                            <div class="input-group">
+                                <label>Current Level</label>
+                                <input type="number" id="calcCurrentLevel" placeholder="e.g., 350" min="1" max="9999">
+                            </div>
+                            <div class="input-group">
+                                <label>Target Level</label>
+                                <input type="number" id="calcTargetLevel" placeholder="e.g., 400" min="1" max="9999">
+                            </div>
+                            <button class="btn-primary" onclick="calculateXP()">Calculate XP Needed</button>
+                            <div id="xpResult" style="margin-top: 15px; padding: 15px; background: rgba(102, 126, 234, 0.1); border-radius: 10px; display: none;">
+                                <p style="font-size: 1.1em; color: var(--text-primary); margin-bottom: 10px;"><strong>XP Needed:</strong> <span id="xpNeeded">0</span></p>
+                                <p style="font-size: 0.9em; color: var(--text-secondary);">At your current XP/h rate: <span id="xpTimeEstimate">-</span></p>
+                            </div>
+                        </div>
+
+                        <!-- Stamina Calculator -->
+                        <div class="card" style="margin-bottom: 0;">
+                            <h3 style="color: var(--primary-color); margin-bottom: 15px;">⚡ Stamina Calculator</h3>
+                            <div class="input-group">
+                                <label>Hunting Time (hours)</label>
+                                <input type="number" id="calcHuntHours" placeholder="e.g., 4" min="0" step="0.5">
+                            </div>
+                            <div class="input-group">
+                                <label>Current Stamina (minutes)</label>
+                                <input type="number" id="calcCurrentStamina" placeholder="e.g., 2520 (42h)" min="0" max="2520">
+                            </div>
+                            <button class="btn-primary" onclick="calculateStamina()">Calculate Result</button>
+                            <div id="staminaResult" style="margin-top: 15px; padding: 15px; background: rgba(102, 126, 234, 0.1); border-radius: 10px; display: none;">
+                                <p style="font-size: 1.1em; color: var(--text-primary); margin-bottom: 10px;"><strong>Stamina After Hunt:</strong> <span id="staminaAfter">0</span> min</p>
+                                <p style="font-size: 0.9em; color: var(--text-secondary);"><strong>Bonus:</strong> <span id="staminaBonus">Happy Hour</span></p>
+                                <p style="font-size: 0.9em; color: var(--text-secondary); margin-top: 5px;">Recovery time to full: <span id="staminaRecovery">-</span></p>
+                            </div>
+                        </div>
+
+                        <!-- Exercise Weapons Calculator -->
+                        <div class="card" style="margin-bottom: 0;">
+                            <h3 style="color: var(--primary-color); margin-bottom: 15px;">⚔️ Exercise Weapons Calculator</h3>
+                            <div class="input-group">
+                                <label>Current Skill Level</label>
+                                <input type="number" id="calcCurrentSkill" placeholder="e.g., 110" min="10" max="150">
+                            </div>
+                            <div class="input-group">
+                                <label>Target Skill Level</label>
+                                <input type="number" id="calcTargetSkill" placeholder="e.g., 120" min="10" max="150">
+                            </div>
+                            <div class="input-group">
+                                <label>Weapon Type</label>
+                                <select id="calcWeaponType">
+                                    <option value="25">Exercise Weapon (25 charges)</option>
+                                    <option value="500">Lasting Exercise Weapon (500 charges)</option>
+                                    <option value="14400">Durable Exercise Weapon (14400 charges)</option>
+                                </select>
+                            </div>
+                            <button class="btn-primary" onclick="calculateExercise()">Calculate Cost</button>
+                            <div id="exerciseResult" style="margin-top: 15px; padding: 15px; background: rgba(102, 126, 234, 0.1); border-radius: 10px; display: none;">
+                                <p style="font-size: 1.1em; color: var(--text-primary); margin-bottom: 10px;"><strong>Weapons Needed:</strong> <span id="weaponsNeeded">0</span></p>
+                                <p style="font-size: 0.9em; color: var(--text-secondary);"><strong>Total Training Time:</strong> <span id="trainingTime">0</span> hours</p>
+                            </div>
+                        </div>
+
+                        <!-- XP Share Range Calculator -->
+                        <div class="card" style="margin-bottom: 0;">
+                            <h3 style="color: var(--primary-color); margin-bottom: 15px;">👥 Party Share Range Calculator</h3>
+                            <div class="input-group">
+                                <label>Your Level</label>
+                                <input type="number" id="calcYourLevel" placeholder="e.g., 400" min="1" max="9999">
+                            </div>
+                            <button class="btn-primary" onclick="calculateShareRange()">Calculate Range</button>
+                            <div id="shareResult" style="margin-top: 15px; padding: 15px; background: rgba(102, 126, 234, 0.1); border-radius: 10px; display: none;">
+                                <p style="font-size: 1.1em; color: var(--text-primary); margin-bottom: 10px;"><strong>Valid Range:</strong></p>
+                                <p style="font-size: 1.2em; color: var(--success-color);"><span id="shareMin">0</span> - <span id="shareMax">0</span></p>
+                                <p style="font-size: 0.9em; color: var(--text-secondary); margin-top: 10px;">Players within this level range can share XP with you</p>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -3102,6 +3460,229 @@ Galll
             const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
             return `${months[date.getMonth()]} ${date.getDate()}, ${date.getFullYear()}`;
         }
+
+        // ==================== TOAST NOTIFICATIONS ====================
+        function showToast(message, type = 'info') {
+            const container = document.getElementById('toastContainer');
+            const toast = document.createElement('div');
+            toast.className = `toast ${type}`;
+
+            const icons = {
+                success: '✅',
+                error: '❌',
+                warning: '⚠️',
+                info: 'ℹ️'
+            };
+
+            toast.innerHTML = `
+                <span class="toast-icon">${icons[type]}</span>
+                <span class="toast-message">${message}</span>
+                <button class="toast-close" onclick="this.parentElement.remove()">✕</button>
+            `;
+
+            container.appendChild(toast);
+
+            // Auto remove after 5 seconds
+            setTimeout(() => {
+                toast.style.animation = 'slideOutRight 0.3s ease-out';
+                setTimeout(() => toast.remove(), 300);
+            }, 5000);
+        }
+
+        // ==================== EXPORT DATA ====================
+        function exportData(format = 'json') {
+            if (hunts.length === 0) {
+                showToast('No data to export!', 'warning');
+                return;
+            }
+
+            const data = {
+                user: currentUser,
+                hunts: hunts,
+                goals: goals,
+                rareLoot: rareLoot,
+                exportDate: new Date().toISOString()
+            };
+
+            if (format === 'json') {
+                const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = `tibia-hunt-data-${currentUser}-${new Date().toISOString().split('T')[0]}.json`;
+                a.click();
+                URL.revokeObjectURL(url);
+                showToast('Data exported successfully as JSON!', 'success');
+            } else if (format === 'csv') {
+                let csv = 'Date,Location,Duration,Loot,Supplies,Profit,Experience,Profit/Hour,XP/Hour\n';
+                hunts.forEach(hunt => {
+                    const duration = hunt.duration || 0;
+                    const profitPerHour = duration > 0 ? Math.round((hunt.profit / duration) * 60) : 0;
+                    const xpPerHour = duration > 0 ? Math.round((hunt.experience / duration) * 60) : 0;
+                    csv += `${hunt.date},${hunt.location},${duration}m,${hunt.loot},${hunt.supplies},${hunt.profit},${hunt.experience},${profitPerHour},${xpPerHour}\n`;
+                });
+
+                const blob = new Blob([csv], { type: 'text/csv' });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = `tibia-hunts-${currentUser}-${new Date().toISOString().split('T')[0]}.csv`;
+                a.click();
+                URL.revokeObjectURL(url);
+                showToast('Hunt data exported successfully as CSV!', 'success');
+            }
+        }
+
+        // ==================== CALCULATORS ====================
+
+        // XP Calculator
+        function calculateXP() {
+            const currentLevel = parseInt(document.getElementById('calcCurrentLevel').value);
+            const targetLevel = parseInt(document.getElementById('calcTargetLevel').value);
+
+            if (!currentLevel || !targetLevel || targetLevel <= currentLevel) {
+                showToast('Please enter valid level values', 'error');
+                return;
+            }
+
+            // Tibia XP formula: (50/3) * level^3 - 100 * level^2 + (850/3) * level - 200
+            function getXPForLevel(level) {
+                return Math.round((50/3) * Math.pow(level, 3) - 100 * Math.pow(level, 2) + (850/3) * level - 200);
+            }
+
+            const currentXP = getXPForLevel(currentLevel);
+            const targetXP = getXPForLevel(targetLevel);
+            const xpNeeded = targetXP - currentXP;
+
+            document.getElementById('xpNeeded').textContent = formatNumber(xpNeeded);
+
+            // Calculate time estimate based on average XP/h from hunts
+            if (hunts.length > 0) {
+                const totalXP = hunts.reduce((sum, h) => sum + h.experience, 0);
+                const totalTime = hunts.reduce((sum, h) => sum + (h.duration || 0), 0);
+                const avgXPPerHour = totalTime > 0 ? (totalXP / totalTime) * 60 : 0;
+
+                if (avgXPPerHour > 0) {
+                    const hoursNeeded = xpNeeded / avgXPPerHour;
+                    document.getElementById('xpTimeEstimate').textContent = `~${Math.ceil(hoursNeeded)} hours`;
+                } else {
+                    document.getElementById('xpTimeEstimate').textContent = 'Track some hunts first!';
+                }
+            } else {
+                document.getElementById('xpTimeEstimate').textContent = 'Track some hunts first!';
+            }
+
+            document.getElementById('xpResult').style.display = 'block';
+            showToast('XP calculation complete!', 'success');
+        }
+
+        // Stamina Calculator
+        function calculateStamina() {
+            const huntHours = parseFloat(document.getElementById('calcHuntHours').value);
+            const currentStamina = parseInt(document.getElementById('calcCurrentStamina').value);
+
+            if (!huntHours || !currentStamina) {
+                showToast('Please enter valid stamina values', 'error');
+                return;
+            }
+
+            const huntMinutes = huntHours * 60;
+            const staminaAfter = Math.max(0, currentStamina - huntMinutes);
+
+            let bonus = 'None';
+            if (staminaAfter >= 2400) {
+                bonus = 'Happy Hour (50% bonus XP)';
+            } else if (staminaAfter >= 840) {
+                bonus = 'Normal (100% XP)';
+            } else {
+                bonus = 'Reduced (50% XP)';
+            }
+
+            const staminaNeeded = 2520 - staminaAfter;
+            const recoveryHours = Math.ceil(staminaNeeded / 180); // 3 minutes per minute offline
+
+            document.getElementById('staminaAfter').textContent = staminaAfter;
+            document.getElementById('staminaBonus').textContent = bonus;
+            document.getElementById('staminaRecovery').textContent = `${recoveryHours} hours offline`;
+            document.getElementById('staminaResult').style.display = 'block';
+            showToast('Stamina calculation complete!', 'success');
+        }
+
+        // Exercise Weapons Calculator
+        function calculateExercise() {
+            const currentSkill = parseInt(document.getElementById('calcCurrentSkill').value);
+            const targetSkill = parseInt(document.getElementById('calcTargetSkill').value);
+            const weaponCharges = parseInt(document.getElementById('calcWeaponType').value);
+
+            if (!currentSkill || !targetSkill || targetSkill <= currentSkill) {
+                showToast('Please enter valid skill values', 'error');
+                return;
+            }
+
+            // Approximate formula for skill training (simplified)
+            function getChargesForSkill(from, to) {
+                let totalCharges = 0;
+                for (let skill = from; skill < to; skill++) {
+                    // Exponential growth formula (approximation)
+                    totalCharges += Math.floor(Math.pow(1.1, skill) * 10);
+                }
+                return totalCharges;
+            }
+
+            const chargesNeeded = getChargesForSkill(currentSkill, targetSkill);
+            const weaponsNeeded = Math.ceil(chargesNeeded / weaponCharges);
+            const trainingTime = (chargesNeeded * 2) / 3600; // 2 seconds per charge, converted to hours
+
+            document.getElementById('weaponsNeeded').textContent = formatNumber(weaponsNeeded);
+            document.getElementById('trainingTime').textContent = Math.round(trainingTime);
+            document.getElementById('exerciseResult').style.display = 'block';
+            showToast('Exercise calculation complete!', 'success');
+        }
+
+        // Party Share Range Calculator
+        function calculateShareRange() {
+            const yourLevel = parseInt(document.getElementById('calcYourLevel').value);
+
+            if (!yourLevel || yourLevel < 1) {
+                showToast('Please enter a valid level', 'error');
+                return;
+            }
+
+            // Tibia party share formula: 2/3 to 3/2 of your level
+            const minLevel = Math.max(1, Math.floor(yourLevel * 2 / 3));
+            const maxLevel = Math.floor(yourLevel * 3 / 2);
+
+            document.getElementById('shareMin').textContent = minLevel;
+            document.getElementById('shareMax').textContent = maxLevel;
+            document.getElementById('shareResult').style.display = 'block';
+            showToast('Share range calculated!', 'success');
+        }
+
+        // Update switchMainTab to include calculators
+        const originalSwitchMainTab = switchMainTab;
+        switchMainTab = function(tabName) {
+            originalSwitchMainTab(tabName);
+
+            // Show toast on tab switch
+            const tabNames = {
+                'dashboard': 'Dashboard',
+                'addHunt': 'Add Hunt',
+                'teamHunt': 'Team Hunt',
+                'goals': 'Goals',
+                'rareLoot': 'Rare Loot',
+                'comparator': 'Hunt Spots',
+                'charts': 'Charts',
+                'calculators': 'Calculators',
+                'history': 'History'
+            };
+
+            if (tabNames[tabName]) {
+                // Small delay to avoid toast spam
+                setTimeout(() => {
+                    // showToast(`Switched to ${tabNames[tabName]}`, 'info');
+                }, 100);
+            }
+        };
 
     </script>
 </body>
