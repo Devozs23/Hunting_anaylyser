@@ -1061,6 +1061,7 @@
                 <button class="main-tab" onclick="switchMainTab('rareLoot')">💎 Rare Loot</button>
                 <button class="main-tab" onclick="switchMainTab('comparator')">🔍 Hunt Spots</button>
                 <button class="main-tab" onclick="switchMainTab('charts')">📈 Charts</button>
+                <button class="main-tab" onclick="switchMainTab('tcConfig')">💰 TC Config</button>
                 <button class="main-tab" onclick="switchMainTab('calculators')">🧮 Calculators</button>
                 <button class="main-tab" onclick="switchMainTab('history')">📜 History</button>
             </div>
@@ -1070,43 +1071,6 @@
 
             <!-- Dashboard Tab -->
             <div class="main-tab-content active" id="dashboardTab">
-                <!-- TC Config Section -->
-                <div class="card" style="margin-bottom: 20px;">
-                    <h2 style="font-size: 1.2em; margin-bottom: 10px;">💰 TC Config</h2>
-                    <p style="color: var(--text-secondary); margin-bottom: 12px; font-size: 0.85em;">Set TC price to see profit in coins</p>
-
-                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 10px;">
-                        <div class="input-group" style="margin-bottom: 0;">
-                            <label for="tcPriceInput" style="font-size: 0.8em; margin-bottom: 5px;">TC Price (gp)</label>
-                            <input type="number" id="tcPriceInput" placeholder="41000" min="0">
-                        </div>
-                        <div class="input-group" style="margin-bottom: 0;">
-                            <label for="tibiaCharInput" style="font-size: 0.8em; margin-bottom: 5px;">Character</label>
-                            <input type="text" id="tibiaCharInput" placeholder="Optional">
-                        </div>
-                    </div>
-
-                    <button class="btn-primary" onclick="saveTCSettings()" style="width: 100%; padding: 10px;">💾 Save</button>
-
-                    <div id="tcConversionDisplay" style="margin-top: 12px; padding: 12px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 10px; color: white; display: none;">
-                        <h3 style="margin-bottom: 10px; color: white; font-size: 1em;">📊 Profit in TC</h3>
-                        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; text-align: center;">
-                            <div>
-                                <p style="font-size: 0.7em; opacity: 0.9; margin-bottom: 3px;">Total</p>
-                                <p style="font-size: 1.3em; font-weight: bold; margin: 0;" id="tcTotalProfit">0 TC</p>
-                            </div>
-                            <div>
-                                <p style="font-size: 0.7em; opacity: 0.9; margin-bottom: 3px;">Monthly</p>
-                                <p style="font-size: 1.3em; font-weight: bold; margin: 0;" id="tcMonthlyProfit">0 TC</p>
-                            </div>
-                            <div>
-                                <p style="font-size: 0.7em; opacity: 0.9; margin-bottom: 3px;">Per Hunt</p>
-                                <p style="font-size: 1.3em; font-weight: bold; margin: 0;" id="tcAvgProfit">0 TC</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
                 <div class="dashboard-grid">
                     <div class="stat-card">
                         <h3>Total Profit</h3>
@@ -1724,6 +1688,65 @@ Galll
                 </div>
             </div>
 
+            <!-- TC Config Tab -->
+            <div class="main-tab-content" id="tcConfigTab">
+                <div class="card">
+                    <h2>💰 Tibia Coins Configuration</h2>
+                    <p style="color: var(--text-secondary); margin-bottom: 25px;">Configure TC price to see your profit converted to Tibia Coins</p>
+
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px;">
+                        <div class="input-group">
+                            <label for="tcPriceInput">TC Price (in gold)</label>
+                            <input type="number" id="tcPriceInput" placeholder="e.g., 41000" min="0">
+                        </div>
+                        <div class="input-group">
+                            <label for="tibiaCharInput">Character Name (optional)</label>
+                            <input type="text" id="tibiaCharInput" placeholder="e.g., Your Character">
+                        </div>
+                    </div>
+
+                    <button class="btn-primary" onclick="saveTCSettings()" style="width: 100%;">💾 Save TC Settings</button>
+
+                    <div id="tcConversionDisplay" style="margin-top: 25px; padding: 25px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 15px; color: white; display: none;">
+                        <h3 style="margin-bottom: 20px; color: white; font-size: 1.5em;">📊 Your Profit in Tibia Coins</h3>
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px;">
+                            <div style="text-align: center;">
+                                <p style="font-size: 0.9em; opacity: 0.9; margin-bottom: 8px;">Total Profit</p>
+                                <p style="font-size: 2.5em; font-weight: bold; margin: 0;" id="tcTotalProfit">0 TC</p>
+                            </div>
+                            <div style="text-align: center;">
+                                <p style="font-size: 0.9em; opacity: 0.9; margin-bottom: 8px;">Monthly Average</p>
+                                <p style="font-size: 2.5em; font-weight: bold; margin: 0;" id="tcMonthlyProfit">0 TC</p>
+                            </div>
+                            <div style="text-align: center;">
+                                <p style="font-size: 0.9em; opacity: 0.9; margin-bottom: 8px;">Per Hunt Average</p>
+                                <p style="font-size: 2.5em; font-weight: bold; margin: 0;" id="tcAvgProfit">0 TC</p>
+                            </div>
+                        </div>
+
+                        <div style="margin-top: 25px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.3);">
+                            <p style="font-size: 0.9em; opacity: 0.8;">💡 This shows how many Tibia Coins your profit is worth based on the TC price you set.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card" style="margin-top: 20px;">
+                    <h3 style="color: var(--primary-color); margin-bottom: 15px;">ℹ️ How to Use TC Config</h3>
+                    <div style="background: rgba(102, 126, 234, 0.1); padding: 20px; border-radius: 10px;">
+                        <ol style="line-height: 2; color: var(--text-primary);">
+                            <li><strong>Check TC Price:</strong> Go to your Tibia world and check the current TC market price</li>
+                            <li><strong>Enter Price:</strong> Type the TC price in the field above (e.g., 41000)</li>
+                            <li><strong>Optional:</strong> Add your character name for reference</li>
+                            <li><strong>Save:</strong> Click the "Save TC Settings" button</li>
+                            <li><strong>View Results:</strong> Your profit will automatically convert to TC!</li>
+                        </ol>
+                        <p style="margin-top: 15px; color: var(--text-secondary); font-style: italic;">
+                            💰 Example: If you made 2050kk profit and TC is 41k, that's <strong>50 TC</strong>!
+                        </p>
+                    </div>
+                </div>
+            </div>
+
             <!-- Calculators Tab -->
             <div class="main-tab-content" id="calculatorsTab">
                 <div class="card">
@@ -1894,6 +1917,8 @@ Galll
                 'rareLoot': 'rareLootTab',
                 'comparator': 'comparatorTab',
                 'charts': 'chartsTab',
+                'tcConfig': 'tcConfigTab',
+                'calculators': 'calculatorsTab',
                 'history': 'historyTab'
             };
 
@@ -1906,6 +1931,8 @@ Galll
                 updateSpotComparison();
             } else if (tab === 'goals') {
                 updateGoalsList();
+            } else if (tab === 'tcConfig') {
+                updateTCDisplay();
             } else if (tab === 'rareLoot') {
                 updateRareLootStats();
                 displayRareItems();
@@ -3765,6 +3792,7 @@ Galll
                 'rareLoot': 'Rare Loot',
                 'comparator': 'Hunt Spots',
                 'charts': 'Charts',
+                'tcConfig': 'TC Config',
                 'calculators': 'Calculators',
                 'history': 'History'
             };
