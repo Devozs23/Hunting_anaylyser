@@ -2490,6 +2490,12 @@ Galll
 
         function updateDashboardGoals() {
             const dashboardGoals = document.getElementById('dashboardGoals');
+
+            // Check if element exists (it was removed from the new dashboard design)
+            if (!dashboardGoals) {
+                return;
+            }
+
             const activeGoals = goals.filter(g => g.status === 'active');
 
             if (activeGoals.length === 0) {
@@ -2628,37 +2634,8 @@ Galll
         }
 
         function updateDashboard() {
-            const totalHunts = hunts.length;
-            const totalProfit = hunts.reduce((sum, h) => sum + h.profit, 0);
-            const totalLoot = hunts.reduce((sum, h) => sum + h.loot, 0);
-            const totalSupplies = hunts.reduce((sum, h) => sum + h.supplies, 0);
-            const totalXP = hunts.reduce((sum, h) => sum + h.experience, 0);
-            const totalTime = hunts.reduce((sum, h) => sum + h.duration, 0);
-            const avgProfit = totalHunts > 0 ? totalProfit / totalHunts : 0;
-            const bestHunt = totalHunts > 0 ? Math.max(...hunts.map(h => h.profit)) : 0;
-            const profitPerHour = totalTime > 0 ? (totalProfit / totalTime) * 60 : 0;
-            const xpPerHour = totalTime > 0 ? (totalXP / totalTime) * 60 : 0;
-
-            document.getElementById('dashTotalProfit').textContent = formatProfit(totalProfit);
-            document.getElementById('dashTotalHunts').textContent = totalHunts;
-            document.getElementById('dashAvgProfit').textContent = formatProfit(avgProfit);
-            document.getElementById('dashTotalXP').textContent = formatXP(totalXP);
-            document.getElementById('dashBestHunt').textContent = formatProfit(bestHunt);
-            document.getElementById('dashTotalTime').textContent = formatTime(totalTime);
-            document.getElementById('dashTotalLoot').textContent = formatProfit(totalLoot);
-            document.getElementById('dashTotalSupplies').textContent = formatProfit(totalSupplies);
-            document.getElementById('dashProfitPerHour').textContent = formatProfit(profitPerHour);
-            document.getElementById('dashXPPerHour').textContent = formatXP(xpPerHour);
-
-            if (totalHunts >= 2) {
-                const lastProfit = hunts[0].profit;
-                const prevProfit = hunts[1].profit;
-                const change = lastProfit - prevProfit;
-                const changeText = change >= 0 ? `+${formatProfit(change)} from last hunt` : `${formatProfit(change)} from last hunt`;
-                document.getElementById('dashProfitChange').textContent = changeText;
-            }
-
-            // Update TC display
+            // Dashboard is now a visual landing page, so we only update TC display
+            // and skip the old stat cards that were removed
             updateTCDisplay();
         }
 
