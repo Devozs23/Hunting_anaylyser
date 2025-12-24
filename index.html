@@ -1623,7 +1623,46 @@ Galll
                 <div class="card">
                     <h2>🎯 Goals & Objectives</h2>
                     <p style="color: var(--text-secondary); margin-bottom: 20px;">Set and track your hunting goals</p>
+                </div>
 
+                <!-- Goals Stats Overview -->
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin-bottom: 25px;">
+                    <!-- Total Goals Card -->
+                    <div style="background: rgba(102, 126, 234, 0.1); backdrop-filter: blur(10px); border: 2px solid rgba(102, 126, 234, 0.3); border-radius: 20px; padding: 25px 20px; text-align: center; position: relative; overflow: hidden; transition: all 0.3s ease; box-shadow: 0 8px 32px rgba(102, 126, 234, 0.2);" onmouseover="this.style.transform='translateY(-5px)'; this.style.borderColor='#667eea'; this.style.boxShadow='0 12px 48px rgba(102, 126, 234, 0.4)';" onmouseout="this.style.transform=''; this.style.borderColor='rgba(102, 126, 234, 0.3)'; this.style.boxShadow='0 8px 32px rgba(102, 126, 234, 0.2)';">
+                        <div style="position: absolute; top: -50px; right: -50px; width: 150px; height: 150px; background: radial-gradient(circle, rgba(102, 126, 234, 0.3) 0%, transparent 70%); border-radius: 50%;"></div>
+                        <div style="font-size: 3.5em; margin-bottom: 10px; filter: drop-shadow(0 4px 8px rgba(102, 126, 234, 0.5));">🎯</div>
+                        <div id="goalsTotalCount" style="font-size: 2.2em; font-weight: 900; color: #667eea; margin-bottom: 5px; text-shadow: 0 2px 10px rgba(102, 126, 234, 0.3);">0</div>
+                        <div style="font-size: 0.85em; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 1px; font-weight: 600;">Total Goals</div>
+                    </div>
+
+                    <!-- Completed Goals Card -->
+                    <div style="background: rgba(40, 167, 69, 0.1); backdrop-filter: blur(10px); border: 2px solid rgba(40, 167, 69, 0.3); border-radius: 20px; padding: 25px 20px; text-align: center; position: relative; overflow: hidden; transition: all 0.3s ease; box-shadow: 0 8px 32px rgba(40, 167, 69, 0.2);" onmouseover="this.style.transform='translateY(-5px)'; this.style.borderColor='#28a745'; this.style.boxShadow='0 12px 48px rgba(40, 167, 69, 0.4)';" onmouseout="this.style.transform=''; this.style.borderColor='rgba(40, 167, 69, 0.3)'; this.style.boxShadow='0 8px 32px rgba(40, 167, 69, 0.2)';">
+                        <div style="position: absolute; top: -50px; right: -50px; width: 150px; height: 150px; background: radial-gradient(circle, rgba(40, 167, 69, 0.3) 0%, transparent 70%); border-radius: 50%;"></div>
+                        <div style="font-size: 3.5em; margin-bottom: 10px; filter: drop-shadow(0 4px 8px rgba(40, 167, 69, 0.5));">✅</div>
+                        <div id="goalsCompletedCount" style="font-size: 2.2em; font-weight: 900; color: #28a745; margin-bottom: 5px; text-shadow: 0 2px 10px rgba(40, 167, 69, 0.3);">0</div>
+                        <div style="font-size: 0.85em; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 1px; font-weight: 600;">Completed</div>
+                    </div>
+
+                    <!-- In Progress Goals Card -->
+                    <div style="background: rgba(255, 193, 7, 0.1); backdrop-filter: blur(10px); border: 2px solid rgba(255, 193, 7, 0.3); border-radius: 20px; padding: 25px 20px; text-align: center; position: relative; overflow: hidden; transition: all 0.3s ease; box-shadow: 0 8px 32px rgba(255, 193, 7, 0.2);" onmouseover="this.style.transform='translateY(-5px)'; this.style.borderColor='#ffc107'; this.style.boxShadow='0 12px 48px rgba(255, 193, 7, 0.4)';" onmouseout="this.style.transform=''; this.style.borderColor='rgba(255, 193, 7, 0.3)'; this.style.boxShadow='0 8px 32px rgba(255, 193, 7, 0.2)';">
+                        <div style="position: absolute; top: -50px; right: -50px; width: 150px; height: 150px; background: radial-gradient(circle, rgba(255, 193, 7, 0.3) 0%, transparent 70%); border-radius: 50%;"></div>
+                        <div style="font-size: 3.5em; margin-bottom: 10px; filter: drop-shadow(0 4px 8px rgba(255, 193, 7, 0.5));">⚡</div>
+                        <div id="goalsInProgressCount" style="font-size: 2.2em; font-weight: 900; color: #ffc107; margin-bottom: 5px; text-shadow: 0 2px 10px rgba(255, 193, 7, 0.3);">0</div>
+                        <div style="font-size: 0.85em; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 1px; font-weight: 600;">In Progress</div>
+                    </div>
+
+                    <!-- Completion Rate Card -->
+                    <div style="background: rgba(156, 39, 176, 0.1); backdrop-filter: blur(10px); border: 2px solid rgba(156, 39, 176, 0.3); border-radius: 20px; padding: 25px 20px; text-align: center; position: relative; overflow: hidden; transition: all 0.3s ease; box-shadow: 0 8px 32px rgba(156, 39, 176, 0.2);" onmouseover="this.style.transform='translateY(-5px)'; this.style.borderColor='#9c27b0'; this.style.boxShadow='0 12px 48px rgba(156, 39, 176, 0.4)';" onmouseout="this.style.transform=''; this.style.borderColor='rgba(156, 39, 176, 0.3)'; this.style.boxShadow='0 8px 32px rgba(156, 39, 176, 0.2)';">
+                        <div style="position: absolute; top: -50px; right: -50px; width: 150px; height: 150px; background: radial-gradient(circle, rgba(156, 39, 176, 0.3) 0%, transparent 70%); border-radius: 50%;"></div>
+                        <div style="font-size: 3.5em; margin-bottom: 10px; filter: drop-shadow(0 4px 8px rgba(156, 39, 176, 0.5));">📊</div>
+                        <div id="goalsCompletionRate" style="font-size: 2.2em; font-weight: 900; color: #9c27b0; margin-bottom: 5px; text-shadow: 0 2px 10px rgba(156, 39, 176, 0.3);">0%</div>
+                        <div style="font-size: 0.85em; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 1px; font-weight: 600;">Success Rate</div>
+                    </div>
+                </div>
+
+                <!-- Add Goal Form -->
+                <div class="card">
+                    <h3 style="margin-bottom: 15px;">➕ Create New Goal</h3>
                     <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
                         <div class="input-group">
                             <label for="goalName">Goal Name</label>
@@ -2007,9 +2046,16 @@ Galll
                                 <input type="number" id="calcTargetLevel" placeholder="e.g., 400" min="1" max="9999">
                             </div>
                             <button class="btn-primary" onclick="calculateXP()">Calculate XP Needed</button>
-                            <div id="xpResult" style="margin-top: 15px; padding: 15px; background: rgba(102, 126, 234, 0.1); border-radius: 10px; display: none;">
-                                <p style="font-size: 1.1em; color: var(--text-primary); margin-bottom: 10px;"><strong>XP Needed:</strong> <span id="xpNeeded">0</span></p>
-                                <p style="font-size: 0.9em; color: var(--text-secondary);">At your current XP/h rate: <span id="xpTimeEstimate">-</span></p>
+                            <div id="xpResult" style="margin-top: 15px; padding: 20px; background: rgba(240, 147, 251, 0.1); backdrop-filter: blur(10px); border: 2px solid rgba(240, 147, 251, 0.3); border-radius: 15px; display: none; box-shadow: 0 4px 16px rgba(245, 87, 108, 0.15);">
+                                <div style="font-size: 2.5em; text-align: center; margin-bottom: 15px;">⭐</div>
+                                <div style="text-align: center; margin-bottom: 15px;">
+                                    <div style="font-size: 0.85em; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 5px;">XP Needed</div>
+                                    <div style="font-size: 2em; font-weight: 900; color: #f5576c; text-shadow: 0 2px 10px rgba(245, 87, 108, 0.3);" id="xpNeeded">0</div>
+                                </div>
+                                <div style="background: rgba(0,0,0,0.2); padding: 12px; border-radius: 10px; text-align: center;">
+                                    <div style="font-size: 0.75em; color: var(--text-secondary); margin-bottom: 5px;">⏱️ TIME ESTIMATE</div>
+                                    <div style="font-size: 1.2em; font-weight: 700; color: var(--text-primary);" id="xpTimeEstimate">-</div>
+                                </div>
                             </div>
                         </div>
 
@@ -2025,10 +2071,22 @@ Galll
                                 <input type="number" id="calcCurrentStamina" placeholder="e.g., 2520 (42h)" min="0" max="2520">
                             </div>
                             <button class="btn-primary" onclick="calculateStamina()">Calculate Result</button>
-                            <div id="staminaResult" style="margin-top: 15px; padding: 15px; background: rgba(102, 126, 234, 0.1); border-radius: 10px; display: none;">
-                                <p style="font-size: 1.1em; color: var(--text-primary); margin-bottom: 10px;"><strong>Stamina After Hunt:</strong> <span id="staminaAfter">0</span> min</p>
-                                <p style="font-size: 0.9em; color: var(--text-secondary);"><strong>Bonus:</strong> <span id="staminaBonus">Happy Hour</span></p>
-                                <p style="font-size: 0.9em; color: var(--text-secondary); margin-top: 5px;">Recovery time to full: <span id="staminaRecovery">-</span></p>
+                            <div id="staminaResult" style="margin-top: 15px; padding: 20px; background: rgba(255, 193, 7, 0.1); backdrop-filter: blur(10px); border: 2px solid rgba(255, 193, 7, 0.3); border-radius: 15px; display: none; box-shadow: 0 4px 16px rgba(255, 193, 7, 0.15);">
+                                <div style="font-size: 2.5em; text-align: center; margin-bottom: 15px;">⚡</div>
+                                <div style="text-align: center; margin-bottom: 15px;">
+                                    <div style="font-size: 0.85em; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 5px;">Stamina After Hunt</div>
+                                    <div style="font-size: 2em; font-weight: 900; color: #ffc107; text-shadow: 0 2px 10px rgba(255, 193, 7, 0.3);"><span id="staminaAfter">0</span> min</div>
+                                </div>
+                                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+                                    <div style="background: rgba(0,0,0,0.2); padding: 12px; border-radius: 10px; text-align: center;">
+                                        <div style="font-size: 0.75em; color: var(--text-secondary); margin-bottom: 5px;">🎁 BONUS</div>
+                                        <div style="font-size: 1.1em; font-weight: 700; color: var(--text-primary);" id="staminaBonus">Happy Hour</div>
+                                    </div>
+                                    <div style="background: rgba(0,0,0,0.2); padding: 12px; border-radius: 10px; text-align: center;">
+                                        <div style="font-size: 0.75em; color: var(--text-secondary); margin-bottom: 5px;">🔄 RECOVERY</div>
+                                        <div style="font-size: 1.1em; font-weight: 700; color: var(--text-primary);" id="staminaRecovery">-</div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
 
@@ -2892,24 +2950,57 @@ Galll
             const splitPerMember = netProfit / members.length;
 
             let resultsHTML = `
-                <div style="margin-bottom: 20px;">
-                    <h4>Total Loot: ${formatNumber(totalLoot)} gp</h4>
-                    <h4>Total Supplies: ${formatNumber(totalSupplies)} gp</h4>
-                    <h4 style="font-size: 1.5em; margin-top: 10px;">Net Profit: ${formatNumber(netProfit)} gp</h4>
-                    <p>Split per member: ${formatNumber(Math.round(splitPerMember))} gp</p>
+                <!-- Summary Cards -->
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 15px; margin-bottom: 25px;">
+                    <div style="background: rgba(255, 193, 7, 0.1); backdrop-filter: blur(10px); border: 2px solid rgba(255, 193, 7, 0.3); border-radius: 15px; padding: 20px; text-align: center;">
+                        <div style="font-size: 2.5em; margin-bottom: 8px;">💰</div>
+                        <div style="font-size: 1.8em; font-weight: 900; color: #ffc107; text-shadow: 0 2px 10px rgba(255, 193, 7, 0.3);">${formatNumber(totalLoot)}</div>
+                        <div style="font-size: 0.8em; color: var(--text-secondary); text-transform: uppercase; margin-top: 5px;">Total Loot</div>
+                    </div>
+                    <div style="background: rgba(220, 53, 69, 0.1); backdrop-filter: blur(10px); border: 2px solid rgba(220, 53, 69, 0.3); border-radius: 15px; padding: 20px; text-align: center;">
+                        <div style="font-size: 2.5em; margin-bottom: 8px;">💸</div>
+                        <div style="font-size: 1.8em; font-weight: 900; color: #dc3545; text-shadow: 0 2px 10px rgba(220, 53, 69, 0.3);">${formatNumber(totalSupplies)}</div>
+                        <div style="font-size: 0.8em; color: var(--text-secondary); text-transform: uppercase; margin-top: 5px;">Total Supplies</div>
+                    </div>
+                    <div style="background: rgba(40, 167, 69, 0.1); backdrop-filter: blur(10px); border: 2px solid rgba(40, 167, 69, 0.3); border-radius: 15px; padding: 20px; text-align: center;">
+                        <div style="font-size: 2.5em; margin-bottom: 8px;">✨</div>
+                        <div style="font-size: 1.8em; font-weight: 900; color: #28a745; text-shadow: 0 2px 10px rgba(40, 167, 69, 0.3);">${formatNumber(netProfit)}</div>
+                        <div style="font-size: 0.8em; color: var(--text-secondary); text-transform: uppercase; margin-top: 5px;">Net Profit</div>
+                    </div>
+                    <div style="background: rgba(102, 126, 234, 0.1); backdrop-filter: blur(10px); border: 2px solid rgba(102, 126, 234, 0.3); border-radius: 15px; padding: 20px; text-align: center;">
+                        <div style="font-size: 2.5em; margin-bottom: 8px;">🎯</div>
+                        <div style="font-size: 1.8em; font-weight: 900; color: #667eea; text-shadow: 0 2px 10px rgba(102, 126, 234, 0.3);">${formatNumber(Math.round(splitPerMember))}</div>
+                        <div style="font-size: 0.8em; color: var(--text-secondary); text-transform: uppercase; margin-top: 5px;">Per Member</div>
+                    </div>
                 </div>
-                <h4 style="margin-bottom: 10px;">💸 Payment Breakdown:</h4>
+
+                <h3 style="margin-bottom: 15px; font-size: 1.3em;">💸 Payment Breakdown</h3>
             `;
 
             members.forEach(member => {
                 const memberProfit = splitPerMember - member.supplies;
-                const profitClass = memberProfit >= 0 ? 'profit-positive' : 'profit-negative';
-                const action = memberProfit >= 0 ? 'receives' : 'pays';
+                const isPositive = memberProfit >= 0;
+                const action = isPositive ? 'Receives' : 'Pays';
+                const bgColor = isPositive ? 'rgba(40, 167, 69, 0.1)' : 'rgba(220, 53, 69, 0.1)';
+                const borderColor = isPositive ? 'rgba(40, 167, 69, 0.3)' : 'rgba(220, 53, 69, 0.3)';
+                const textColor = isPositive ? '#28a745' : '#dc3545';
+                const emoji = isPositive ? '💰' : '💸';
 
                 resultsHTML += `
-                    <div class="payment-item">
-                        <strong>${member.name}</strong>
-                        <span class="${profitClass}">${action} ${formatNumber(Math.abs(Math.round(memberProfit)))} gp</span>
+                    <div style="background: ${bgColor}; backdrop-filter: blur(10px); border: 2px solid ${borderColor}; border-radius: 12px; padding: 18px; margin-bottom: 12px; transition: all 0.3s ease;" onmouseover="this.style.transform='translateX(5px)'; this.style.boxShadow='0 4px 12px rgba(0,0,0,0.15)';" onmouseout="this.style.transform=''; this.style.boxShadow='';">
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                            <div style="display: flex; align-items: center; gap: 12px;">
+                                <div style="font-size: 1.8em;">${emoji}</div>
+                                <div>
+                                    <div style="font-size: 1.2em; font-weight: 700; color: var(--text-primary);">${member.name}</div>
+                                    <div style="font-size: 0.85em; color: var(--text-secondary);">Supplies: ${formatNumber(member.supplies)} gp</div>
+                                </div>
+                            </div>
+                            <div style="text-align: right;">
+                                <div style="font-size: 0.75em; color: var(--text-secondary); text-transform: uppercase; margin-bottom: 3px;">${action}</div>
+                                <div style="font-size: 1.5em; font-weight: 900; color: ${textColor};">${formatNumber(Math.abs(Math.round(memberProfit)))} gp</div>
+                            </div>
+                        </div>
                     </div>
                 `;
             });
@@ -2997,6 +3088,17 @@ Galll
         function updateGoalsList() {
             const goalsList = document.getElementById('goalsList');
 
+            // Update stats cards
+            const totalGoals = goals.length;
+            const completedGoals = goals.filter(g => g.status === 'completed').length;
+            const inProgressGoals = goals.filter(g => g.status === 'active').length;
+            const completionRate = totalGoals > 0 ? Math.round((completedGoals / totalGoals) * 100) : 0;
+
+            document.getElementById('goalsTotalCount').textContent = totalGoals;
+            document.getElementById('goalsCompletedCount').textContent = completedGoals;
+            document.getElementById('goalsInProgressCount').textContent = inProgressGoals;
+            document.getElementById('goalsCompletionRate').textContent = completionRate + '%';
+
             if (goals.length === 0) {
                 goalsList.innerHTML = '<div class="empty-state"><p>No goals yet. Create your first goal above!</p></div>';
                 return;
@@ -3026,32 +3128,63 @@ Galll
                     targetFormatted = formatNumber(goal.target);
                 }
 
+                // Color based on status
+                const statusColors = {
+                    'active': 'rgba(255, 193, 7, 0.1)',
+                    'completed': 'rgba(40, 167, 69, 0.1)',
+                    'failed': 'rgba(220, 53, 69, 0.1)'
+                };
+                const borderColors = {
+                    'active': 'rgba(255, 193, 7, 0.4)',
+                    'completed': 'rgba(40, 167, 69, 0.4)',
+                    'failed': 'rgba(220, 53, 69, 0.4)'
+                };
+                const progressColors = {
+                    'active': 'linear-gradient(90deg, #ffc107 0%, #ff9800 100%)',
+                    'completed': 'linear-gradient(90deg, #28a745 0%, #20c997 100%)',
+                    'failed': 'linear-gradient(90deg, #dc3545 0%, #c82333 100%)'
+                };
+                const statusEmojis = {
+                    'profit': '💰',
+                    'xp': '⭐',
+                    'hunts': '🎯',
+                    'time': '⏱️'
+                };
+
                 return `
-                    <div class="goal-item">
-                        <div class="goal-header">
-                            <div class="goal-title">${goal.name}</div>
+                    <div style="background: ${statusColors[goal.status]}; backdrop-filter: blur(10px); border: 2px solid ${borderColors[goal.status]}; border-radius: 15px; padding: 20px; margin-bottom: 15px; transition: all 0.3s ease; box-shadow: 0 4px 16px rgba(0,0,0,0.1);" onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 8px 24px rgba(0,0,0,0.2)';" onmouseout="this.style.transform=''; this.style.boxShadow='0 4px 16px rgba(0,0,0,0.1)';">
+                        <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 15px;">
+                            <div>
+                                <div style="font-size: 1.8em; margin-bottom: 5px;">${statusEmojis[goal.type]}</div>
+                                <div style="font-size: 1.3em; font-weight: 700; color: var(--text-primary); margin-bottom: 5px;">${goal.name}</div>
+                                <div style="font-size: 0.85em; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.5px;">${goal.type} Goal</div>
+                            </div>
                             <div style="display: flex; gap: 10px; align-items: center;">
-                                <div class="goal-status ${goal.status}">${goal.status.toUpperCase()}</div>
-                                <button class="delete-btn" onclick="deleteGoal(${goal.id})">✕</button>
+                                <div style="padding: 6px 14px; background: ${goal.status === 'completed' ? '#28a745' : goal.status === 'active' ? '#ffc107' : '#dc3545'}; color: white; border-radius: 20px; font-size: 0.75em; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px;">${goal.status === 'active' ? '⚡ Active' : goal.status === 'completed' ? '✅ Done' : '❌ Failed'}</div>
+                                <button onclick="deleteGoal(${goal.id})" style="background: rgba(220, 53, 69, 0.2); border: 2px solid rgba(220, 53, 69, 0.4); color: #dc3545; padding: 8px 12px; border-radius: 8px; cursor: pointer; font-weight: bold; transition: all 0.2s;" onmouseover="this.style.background='rgba(220, 53, 69, 0.3)'; this.style.transform='scale(1.1)';" onmouseout="this.style.background='rgba(220, 53, 69, 0.2)'; this.style.transform='';">✕</button>
                             </div>
                         </div>
-                        <div class="progress-bar-container">
-                            <div class="progress-bar" style="width: ${progress}%">
-                                ${progress.toFixed(0)}%
+
+                        <!-- Progress Bar -->
+                        <div style="background: rgba(0,0,0,0.2); height: 24px; border-radius: 12px; overflow: hidden; margin-bottom: 15px; position: relative;">
+                            <div style="background: ${progressColors[goal.status]}; height: 100%; width: ${progress}%; transition: width 0.5s ease; display: flex; align-items: center; justify-content: center;">
+                                <span style="color: white; font-weight: bold; font-size: 0.85em; position: absolute; left: 50%; transform: translateX(-50%);">${progress.toFixed(0)}%</span>
                             </div>
                         </div>
-                        <div class="goal-details">
-                            <div class="detail-item">
-                                <span class="detail-label">Progress</span>
-                                <span>${currentFormatted} / ${targetFormatted} ${typeLabels[goal.type]}</span>
+
+                        <!-- Details Grid -->
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px;">
+                            <div style="background: rgba(0,0,0,0.1); padding: 12px; border-radius: 10px;">
+                                <div style="font-size: 0.75em; color: var(--text-secondary); margin-bottom: 5px; text-transform: uppercase; letter-spacing: 0.5px;">Progress</div>
+                                <div style="font-size: 1.1em; font-weight: 700; color: var(--text-primary);">${currentFormatted} / ${targetFormatted} ${typeLabels[goal.type]}</div>
                             </div>
-                            <div class="detail-item">
-                                <span class="detail-label">Type</span>
-                                <span>${goal.type.charAt(0).toUpperCase() + goal.type.slice(1)}</span>
+                            <div style="background: rgba(0,0,0,0.1); padding: 12px; border-radius: 10px;">
+                                <div style="font-size: 0.75em; color: var(--text-secondary); margin-bottom: 5px; text-transform: uppercase; letter-spacing: 0.5px;">Deadline</div>
+                                <div style="font-size: 1.1em; font-weight: 700; color: ${daysLeft !== null && daysLeft < 0 ? '#dc3545' : daysLeft !== null && daysLeft < 3 ? '#ffc107' : 'var(--text-primary)'};">${daysLeft !== null ? (daysLeft > 0 ? `${daysLeft} days left` : '⚠️ Expired') : '∞ No limit'}</div>
                             </div>
-                            <div class="detail-item">
-                                <span class="detail-label">Deadline</span>
-                                <span>${daysLeft !== null ? (daysLeft > 0 ? `${daysLeft} days left` : 'Expired') : 'No deadline'}</span>
+                            <div style="background: rgba(0,0,0,0.1); padding: 12px; border-radius: 10px;">
+                                <div style="font-size: 0.75em; color: var(--text-secondary); margin-bottom: 5px; text-transform: uppercase; letter-spacing: 0.5px;">Remaining</div>
+                                <div style="font-size: 1.1em; font-weight: 700; color: var(--text-primary);">${goal.type === 'profit' || goal.type === 'xp' ? formatNumber(goal.target - goal.current) : (goal.target - goal.current)} ${typeLabels[goal.type]}</div>
                             </div>
                         </div>
                     </div>
