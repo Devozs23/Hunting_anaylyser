@@ -1480,14 +1480,47 @@
             <div class="main-tab-content" id="addHuntTab">
                 <div class="card">
                     <h2>📝 Add New Hunt</h2>
+                    <p style="color: var(--text-secondary); margin-bottom: 20px;">Track your hunting sessions with detailed analytics</p>
+                </div>
 
-                    <div class="input-group">
-                        <label for="huntName">Hunt Name / Location</label>
-                        <input type="text" id="huntName" placeholder="e.g., Roshamuul, Prison, Werehyaenas...">
+                <!-- Quick Stats Preview -->
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px; margin-bottom: 25px;">
+                    <div style="background: rgba(102, 126, 234, 0.1); backdrop-filter: blur(10px); border: 2px solid rgba(102, 126, 234, 0.3); border-radius: 15px; padding: 20px; text-align: center;">
+                        <div style="font-size: 2em; margin-bottom: 8px;">📍</div>
+                        <div style="font-size: 0.75em; color: var(--text-secondary); text-transform: uppercase;">Location</div>
+                        <div id="previewLocation" style="font-size: 1.1em; font-weight: 700; color: #667eea; margin-top: 5px;">-</div>
                     </div>
+                    <div style="background: rgba(40, 167, 69, 0.1); backdrop-filter: blur(10px); border: 2px solid rgba(40, 167, 69, 0.3); border-radius: 15px; padding: 20px; text-align: center;">
+                        <div style="font-size: 2em; margin-bottom: 8px;">💰</div>
+                        <div style="font-size: 0.75em; color: var(--text-secondary); text-transform: uppercase;">Profit</div>
+                        <div id="previewProfit" style="font-size: 1.1em; font-weight: 700; color: #28a745; margin-top: 5px;">0 gp</div>
+                    </div>
+                    <div style="background: rgba(240, 147, 251, 0.1); backdrop-filter: blur(10px); border: 2px solid rgba(240, 147, 251, 0.3); border-radius: 15px; padding: 20px; text-align: center;">
+                        <div style="font-size: 2em; margin-bottom: 8px;">⭐</div>
+                        <div style="font-size: 0.75em; color: var(--text-secondary); text-transform: uppercase;">XP</div>
+                        <div id="previewXP" style="font-size: 1.1em; font-weight: 700; color: #f5576c; margin-top: 5px;">0</div>
+                    </div>
+                    <div style="background: rgba(255, 193, 7, 0.1); backdrop-filter: blur(10px); border: 2px solid rgba(255, 193, 7, 0.3); border-radius: 15px; padding: 20px; text-align: center;">
+                        <div style="font-size: 2em; margin-bottom: 8px;">⏱️</div>
+                        <div style="font-size: 0.75em; color: var(--text-secondary); text-transform: uppercase;">Duration</div>
+                        <div id="previewDuration" style="font-size: 1.1em; font-weight: 700; color: #ffc107; margin-top: 5px;">0m</div>
+                    </div>
+                </div>
 
+                <!-- Hunt Location -->
+                <div class="card" style="background: rgba(102, 126, 234, 0.05); border-left: 4px solid #667eea;">
+                    <h3 style="color: #667eea; margin-bottom: 15px;">📍 Hunt Location</h3>
                     <div class="input-group">
-                        <label for="huntData">📋 Paste Hunt Analyzer Data (Optional)</label>
+                        <label for="huntName">Location Name</label>
+                        <input type="text" id="huntName" placeholder="e.g., Roshamuul, Prison, Werehyaenas..." oninput="updatePreview()" style="font-size: 1.1em; font-weight: 600;">
+                    </div>
+                </div>
+
+                <!-- Auto-Fill Section -->
+                <div class="card" style="background: rgba(255, 193, 7, 0.05); border-left: 4px solid #ffc107;">
+                    <h3 style="color: #ffc107; margin-bottom: 15px;">🔍 Quick Auto-Fill</h3>
+                    <div class="input-group">
+                        <label for="huntData">📋 Paste Hunt Analyzer from Tibia</label>
                         <textarea id="huntData" placeholder="Paste your Hunt Analyzer text here...
 Session data: From 2025-11-17, 03:28:28 to 2025-11-17, 03:41:36
 Session: 00:13h
@@ -1495,51 +1528,61 @@ XP Gain: 0
 Loot: 0
 Supplies: 488
 Balance: -488
-..."></textarea>
-                        <button class="btn-secondary" onclick="parseHuntData()" style="margin-top: 10px; width: 100%;">🔍 Auto-Fill from Paste</button>
+..." style="min-height: 100px; font-family: monospace; font-size: 0.9em;"></textarea>
+                        <button class="btn-warning" onclick="parseHuntData()" style="margin-top: 10px; width: 100%; font-weight: 700;">🔍 Auto-Fill from Paste</button>
                     </div>
+                </div>
 
-                    <div style="text-align: center; margin: 15px 0; color: var(--text-secondary);">
-                        <strong>OR ENTER MANUALLY</strong>
-                    </div>
+                <!-- Manual Entry Section -->
+                <div class="card" style="background: rgba(40, 167, 69, 0.05); border-left: 4px solid #28a745;">
+                    <h3 style="color: #28a745; margin-bottom: 15px;">✏️ Manual Entry</h3>
 
                     <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
                         <div class="input-group">
-                            <label for="loot">Loot (gp)</label>
-                            <input type="number" id="loot" placeholder="Total loot value">
+                            <label for="loot">💰 Total Loot (gp)</label>
+                            <input type="number" id="loot" placeholder="0" oninput="updatePreview()" style="font-size: 1.1em; font-weight: 600;">
                         </div>
 
                         <div class="input-group">
-                            <label for="supplies">Supplies Used (gp)</label>
-                            <input type="number" id="supplies" placeholder="Potions, runes, ammo...">
+                            <label for="supplies">💸 Supplies Used (gp)</label>
+                            <input type="number" id="supplies" placeholder="0" oninput="updatePreview()" style="font-size: 1.1em; font-weight: 600;">
                         </div>
 
                         <div class="input-group">
-                            <label for="experience">Experience Gained</label>
-                            <input type="number" id="experience" placeholder="Total XP">
+                            <label for="experience">⭐ Experience Gained</label>
+                            <input type="number" id="experience" placeholder="0" oninput="updatePreview()" style="font-size: 1.1em; font-weight: 600;">
                         </div>
 
                         <div class="input-group">
-                            <label for="duration">Duration (minutes)</label>
-                            <input type="number" id="duration" placeholder="Hunt duration">
+                            <label for="duration">⏱️ Duration (minutes)</label>
+                            <input type="number" id="duration" placeholder="0" oninput="updatePreview()" style="font-size: 1.1em; font-weight: 600;">
                         </div>
                     </div>
+                </div>
 
-                    <div class="input-group" style="margin-top: 15px;">
-                        <label for="huntNotes">📝 Notes (Optional)</label>
+                <!-- Notes Section -->
+                <div class="card" style="background: rgba(156, 39, 176, 0.05); border-left: 4px solid #9c27b0;">
+                    <h3 style="color: #9c27b0; margin-bottom: 15px;">📝 Notes (Optional)</h3>
+                    <div class="input-group">
+                        <label for="huntNotes">Add your notes</label>
                         <textarea id="huntNotes" placeholder="Add any notes about this hunt... (e.g., 'Rare spawn', 'Too crowded', 'Perfect loot')" style="min-height: 80px; max-height: 150px;"></textarea>
                     </div>
+                </div>
 
-                    <div class="button-group">
-                        <button class="btn-primary" onclick="addHunt()">➕ Add Hunt</button>
-                        <button class="btn-secondary" onclick="clearForm()">🗑️ Clear</button>
-                    </div>
+                <!-- Action Buttons -->
+                <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 15px; margin-top: 20px;">
+                    <button class="btn-primary" onclick="addHunt()" style="padding: 18px; font-size: 1.1em; font-weight: 700;">➕ Add Hunt</button>
+                    <button class="btn-secondary" onclick="clearForm()" style="padding: 18px; font-size: 1.1em; font-weight: 700;">🗑️ Clear</button>
+                </div>
 
-                    <div class="tip-box">
-                        <h4>💡 How to Use</h4>
-                        <p><strong>Easy Mode:</strong> Copy entire Hunt Analyzer text from Tibia → Paste in text area → Click "Auto-Fill" → Add Hunt!</p>
-                        <p><strong>Manual Mode:</strong> Just fill in the numbers directly in the fields below.</p>
-                    </div>
+                <!-- Tip Box -->
+                <div style="background: rgba(79, 172, 254, 0.1); backdrop-filter: blur(10px); border: 2px solid rgba(79, 172, 254, 0.3); border-radius: 15px; padding: 20px; margin-top: 20px;">
+                    <h4 style="color: #4facfe; margin-bottom: 10px;">💡 Pro Tips</h4>
+                    <ul style="color: var(--text-secondary); line-height: 1.8; margin: 0; padding-left: 20px;">
+                        <li><strong>Easy Mode:</strong> Copy Hunt Analyzer text from Tibia → Paste above → Click "Auto-Fill" → Add!</li>
+                        <li><strong>Manual Mode:</strong> Fill the numbers manually - watch the preview update in real-time!</li>
+                        <li><strong>Notes:</strong> Add context like "rare spawn", "too crowded", or "best profit ever"</li>
+                    </ul>
                 </div>
             </div>
 
@@ -1547,10 +1590,14 @@ Balance: -488
             <div class="main-tab-content" id="teamHuntTab">
                 <div class="card">
                     <h2>👥 Team Hunt Calculator</h2>
-                    <p style="color: var(--text-secondary); margin-bottom: 20px;">Calculate profit splits for team hunts</p>
+                    <p style="color: var(--text-secondary); margin-bottom: 20px;">Calculate profit splits for team hunts with ease</p>
+                </div>
 
+                <!-- Auto-Fill from Tibia -->
+                <div class="card" style="background: rgba(102, 126, 234, 0.05); border-left: 4px solid #667eea;">
+                    <h3 style="color: #667eea; margin-bottom: 15px;">🔍 Quick Auto-Fill</h3>
                     <div class="input-group">
-                        <label for="partyHuntData">📋 Paste Party Hunt Analyser (from Tibia)</label>
+                        <label for="partyHuntData">📋 Paste Party Hunt Analyser from Tibia</label>
                         <textarea id="partyHuntData" placeholder="Paste the Party Hunt Analyser text from Tibia here...
 
 Example:
@@ -1565,56 +1612,58 @@ Ke vinho
   Loot: 8,563,582
   Supplies: 44,421,915
   Balance: -35,858,333
-
-Galll
-  Loot: 9,236,871
-  Supplies: 64,085,582
-  Balance: -54,848,711
-..." style="min-height: 200px;"></textarea>
-                        <button class="btn-primary" onclick="parsePartyHuntData()" style="margin-top: 10px; width: 100%;">🔍 Auto-Calculate from Tibia Data</button>
+..." style="min-height: 180px; font-family: monospace; font-size: 0.9em;"></textarea>
+                        <button class="btn-primary" onclick="parsePartyHuntData()" style="margin-top: 10px; width: 100%; font-weight: 700; padding: 15px; font-size: 1.05em;">🔍 Auto-Calculate from Tibia Data</button>
                     </div>
+                </div>
 
-                    <div style="text-align: center; margin: 20px 0; color: var(--text-secondary);">
-                        <strong>OR ENTER MANUALLY</strong>
-                    </div>
+                <!-- Manual Entry -->
+                <div class="card" style="background: rgba(255, 193, 7, 0.05); border-left: 4px solid #ffc107;">
+                    <h3 style="color: #ffc107; margin-bottom: 15px;">✏️ Manual Entry</h3>
 
                     <div class="input-group">
-                        <label for="teamLoot">Total Team Loot (gp)</label>
-                        <input type="number" id="teamLoot" placeholder="Total loot from hunt">
+                        <label for="teamLoot">💰 Total Team Loot (gp)</label>
+                        <input type="number" id="teamLoot" placeholder="Total loot from hunt" style="font-size: 1.1em; font-weight: 600;">
                     </div>
 
-                    <div id="teamMembers">
-                        <div class="team-member" id="member1">
-                            <h4 style="color: var(--text-primary); margin-bottom: 10px;">Member 1</h4>
-                            <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 10px;">
-                                <div class="input-group" style="margin-bottom: 0;">
-                                    <label>Name</label>
-                                    <input type="text" class="member-name" placeholder="Player name">
-                                </div>
-                                <div class="input-group" style="margin-bottom: 0;">
-                                    <label>Supplies (gp)</label>
-                                    <input type="number" class="member-supplies" placeholder="0">
+                    <div style="background: rgba(0,0,0,0.1); padding: 15px; border-radius: 12px; margin-top: 15px;">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                            <h4 style="color: var(--text-primary); margin: 0;">👥 Team Members</h4>
+                            <button class="btn-primary" onclick="addTeamMember()" style="padding: 8px 16px; font-size: 0.9em;">➕ Add Member</button>
+                        </div>
+
+                        <div id="teamMembers">
+                            <div class="team-member" id="member1" style="background: rgba(40, 167, 69, 0.1); backdrop-filter: blur(10px); border: 2px solid rgba(40, 167, 69, 0.3); border-radius: 12px; padding: 15px; margin-bottom: 12px;">
+                                <h4 style="color: #28a745; margin-bottom: 12px; font-size: 1.1em;">👤 Member 1</h4>
+                                <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 10px;">
+                                    <div class="input-group" style="margin-bottom: 0;">
+                                        <label>Name</label>
+                                        <input type="text" class="member-name" placeholder="Player name" style="font-weight: 600;">
+                                    </div>
+                                    <div class="input-group" style="margin-bottom: 0;">
+                                        <label>Supplies (gp)</label>
+                                        <input type="number" class="member-supplies" placeholder="0" style="font-weight: 600;">
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <div class="button-group" style="margin-top: 20px;">
-                        <button class="btn-primary" onclick="addTeamMember()">➕ Add Member</button>
-                        <button class="btn-success" onclick="calculateTeamHunt()">💰 Calculate Split</button>
-                    </div>
+                    <button class="btn-success" onclick="calculateTeamHunt()" style="margin-top: 20px; width: 100%; padding: 18px; font-size: 1.1em; font-weight: 700;">💰 Calculate Split</button>
+                </div>
 
-                    <div id="teamResults" style="display: none;">
-                        <div class="team-results">
-                            <h3 style="margin-bottom: 15px;">💎 Split Results</h3>
-                            <div id="teamResultsContent"></div>
-                        </div>
+                <!-- Results Section -->
+                <div id="teamResults" style="display: none;">
+                    <div class="card" style="background: rgba(156, 39, 176, 0.05); border-left: 4px solid #9c27b0;">
+                        <h3 style="color: #9c27b0; margin-bottom: 20px; font-size: 1.4em;">💎 Split Results</h3>
+                        <div id="teamResultsContent"></div>
                     </div>
+                </div>
 
-                    <div class="tip-box">
-                        <h4>💡 Tip</h4>
-                        <p>In Tibia, after your party hunt, press Ctrl+C on the Party Hunt Analyser window, then paste it here!</p>
-                    </div>
+                <!-- Tip Box -->
+                <div style="background: rgba(79, 172, 254, 0.1); backdrop-filter: blur(10px); border: 2px solid rgba(79, 172, 254, 0.3); border-radius: 15px; padding: 20px;">
+                    <h4 style="color: #4facfe; margin-bottom: 10px;">💡 Pro Tip</h4>
+                    <p style="color: var(--text-secondary); line-height: 1.8; margin: 0;"><strong>Quick Mode:</strong> In Tibia, after your party hunt, press <strong>Ctrl+C</strong> on the Party Hunt Analyser window, then paste it in the text area above and click "Auto-Calculate"!</p>
                 </div>
             </div>
 
@@ -2539,6 +2588,24 @@ Galll
             }
         }
 
+        // Update preview cards in real-time
+        function updatePreview() {
+            const huntName = document.getElementById('huntName').value.trim();
+            const loot = parseInt(document.getElementById('loot').value) || 0;
+            const supplies = parseInt(document.getElementById('supplies').value) || 0;
+            const experience = parseInt(document.getElementById('experience').value) || 0;
+            const duration = parseInt(document.getElementById('duration').value) || 0;
+
+            const profit = loot - supplies;
+
+            // Update preview cards
+            document.getElementById('previewLocation').textContent = huntName || '-';
+            document.getElementById('previewProfit').textContent = formatProfit(profit);
+            document.getElementById('previewProfit').style.color = profit >= 0 ? '#28a745' : '#dc3545';
+            document.getElementById('previewXP').textContent = formatXP(experience);
+            document.getElementById('previewDuration').textContent = duration > 0 ? duration + 'm' : '0m';
+        }
+
         function addHunt() {
             const huntName = document.getElementById('huntName').value.trim() || 'Unknown Location';
             const loot = parseInt(document.getElementById('loot').value);
@@ -2907,17 +2974,19 @@ Galll
             memberDiv.className = 'team-member';
             memberDiv.id = `member${teamMemberCount}`;
             memberDiv.innerHTML = `
-                <h4 style="color: var(--text-primary); margin-bottom: 10px;">Member ${teamMemberCount}</h4>
-                <div style="display: grid; grid-template-columns: 2fr 1fr 50px; gap: 10px; align-items: end;">
-                    <div class="input-group" style="margin-bottom: 0;">
-                        <label>Name</label>
-                        <input type="text" class="member-name" placeholder="Player name">
+                <div style="background: rgba(40, 167, 69, 0.1); backdrop-filter: blur(10px); border: 2px solid rgba(40, 167, 69, 0.3); border-radius: 12px; padding: 15px; margin-bottom: 12px;">
+                    <h4 style="color: #28a745; margin-bottom: 12px; font-size: 1.1em;">👤 Member ${teamMemberCount}</h4>
+                    <div style="display: grid; grid-template-columns: 2fr 1fr 60px; gap: 10px; align-items: end;">
+                        <div class="input-group" style="margin-bottom: 0;">
+                            <label>Name</label>
+                            <input type="text" class="member-name" placeholder="Player name" style="font-weight: 600;">
+                        </div>
+                        <div class="input-group" style="margin-bottom: 0;">
+                            <label>Supplies (gp)</label>
+                            <input type="number" class="member-supplies" placeholder="0" style="font-weight: 600;">
+                        </div>
+                        <button onclick="removeTeamMember(${teamMemberCount})" style="background: rgba(220, 53, 69, 0.2); border: 2px solid rgba(220, 53, 69, 0.4); color: #dc3545; padding: 12px; border-radius: 8px; cursor: pointer; font-weight: bold; transition: all 0.2s;" onmouseover="this.style.background='rgba(220, 53, 69, 0.3)'; this.style.transform='scale(1.1)';" onmouseout="this.style.background='rgba(220, 53, 69, 0.2)'; this.style.transform='';">✕</button>
                     </div>
-                    <div class="input-group" style="margin-bottom: 0;">
-                        <label>Supplies (gp)</label>
-                        <input type="number" class="member-supplies" placeholder="0">
-                    </div>
-                    <button class="btn-danger" onclick="removeTeamMember(${teamMemberCount})" style="padding: 12px;">✕</button>
                 </div>
             `;
             document.getElementById('teamMembers').appendChild(memberDiv);
