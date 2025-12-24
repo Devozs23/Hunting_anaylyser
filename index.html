@@ -1290,7 +1290,7 @@
                 </div>
 
                 <!-- Daily Profit Target -->
-                <div id="dailyTargetSection" style="display: none;">
+                <div id="dailyTargetSection">
                     <div class="card" style="background: linear-gradient(135deg, rgba(255, 193, 7, 0.15) 0%, rgba(255, 152, 0, 0.15) 100%); border-left: 4px solid var(--warning-color);">
                         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
                             <h2 style="color: var(--warning-color); margin: 0;">🎯 Daily Profit Target</h2>
@@ -1336,7 +1336,7 @@
                 </div>
 
                 <!-- Session Timer -->
-                <div id="sessionTimerSection" style="display: none;">
+                <div id="sessionTimerSection">
                     <div class="card" style="background: linear-gradient(135deg, rgba(102, 126, 234, 0.15) 0%, rgba(118, 75, 162, 0.15) 100%); border-left: 4px solid var(--primary-color);">
                         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
                             <h2 style="color: var(--primary-color); margin: 0;">⏱️ Active Session</h2>
@@ -1386,7 +1386,7 @@
                 </div>
 
                 <!-- Performance Analytics -->
-                <div id="performanceSection" style="display: none;">
+                <div id="performanceSection">
                     <div class="card" style="background: linear-gradient(135deg, rgba(220, 53, 69, 0.15) 0%, rgba(255, 87, 34, 0.15) 100%); border-left: 4px solid var(--danger-color);">
                         <h2 style="color: var(--danger-color); margin-bottom: 20px;">📈 Performance Analytics</h2>
 
@@ -1430,7 +1430,7 @@
                 </div>
 
                 <!-- Smart Insights -->
-                <div id="smartInsights" style="display: none;">
+                <div id="smartInsights">
                     <div class="card" style="background: linear-gradient(135deg, rgba(40, 167, 69, 0.1) 0%, rgba(32, 201, 151, 0.1) 100%); border-left: 4px solid var(--success-color);">
                         <h2 style="color: var(--success-color); margin-bottom: 20px;">🧠 Smart Insights</h2>
                         <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px;">
@@ -1893,6 +1893,10 @@ Galll
                         <button class="btn-success" onclick="document.getElementById('importFileInput').click()">📤 Import Data</button>
                         <button class="btn-secondary" onclick="exportData()">📥 Export Data</button>
                         <button class="btn-danger" onclick="clearAllData()">🗑️ Clear All</button>
+                        <div style="border-left: 2px solid var(--border-color); margin: 0 5px;"></div>
+                        <input type="file" id="fullBackupFileInput" accept=".json" style="display: none;" onchange="handleFullBackupImport(event)">
+                        <button class="btn-warning" onclick="document.getElementById('fullBackupFileInput').click()" style="font-weight: bold;">💾 Restore Backup</button>
+                        <button class="btn-warning" onclick="exportFullBackup()" style="font-weight: bold;">💾 Full Backup</button>
                         <select id="huntSortBy" onchange="filterHunts()" style="padding: 12px; border: 2px solid var(--border-color); border-radius: 8px; background: var(--card-bg); color: var(--text-primary);" aria-label="Sort hunts by">
                             <option value="newest">Newest First</option>
                             <option value="oldest">Oldest First</option>
@@ -2654,6 +2658,114 @@ Galll
                     console.error('Import error:', error);
                     hideLoading();
                     showNotification('❌ Error importing data. Please try again.', 'error');
+                }
+            }, 500);
+        }
+
+        // Full Backup Functions (includes users and passwords)
+        function exportFullBackup() {
+            const confirmMsg = '⚠️ FULL BACKUP EXPORT\n\n' +
+                'This will export ALL your data including:\n' +
+                '✓ All user accounts\n' +
+                '✓ All passwords (encrypted)\n' +
+                '✓ All hunts, goals, and rare loot\n\n' +
+                '⚠️ Keep this file SAFE! Anyone with this file can access your accounts.\n\n' +
+                'Continue?';
+
+            if (!confirm(confirmMsg)) return;
+
+            try {
+                const fullBackup = {
+                    version: '2.0',
+                    backupDate: new Date().toISOString(),
+                    tibiaUsers: JSON.parse(localStorage.getItem('tibiaUsers') || '{}'),
+                    currentUser: localStorage.getItem('currentUser'),
+                    dailyTarget: localStorage.getItem('dailyTarget'),
+                    type: 'FULL_BACKUP'
+                };
+
+                const dataStr = JSON.stringify(fullBackup, null, 2);
+                const dataBlob = new Blob([dataStr], { type: 'application/json' });
+                const url = URL.createObjectURL(dataBlob);
+                const link = document.createElement('a');
+                link.href = url;
+                link.download = `tibia-FULL-BACKUP-${new Date().toISOString().split('T')[0]}.json`;
+                link.click();
+
+                showNotification('✅ Full backup exported! Keep this file safe!', 'success');
+            } catch (error) {
+                console.error('Export error:', error);
+                showNotification('❌ Error creating backup. Please try again.', 'error');
+            }
+        }
+
+        function handleFullBackupImport(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+
+            if (!file.name.endsWith('.json')) {
+                showNotification('❌ Please select a valid JSON file', 'error');
+                return;
+            }
+
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                try {
+                    const backupData = JSON.parse(e.target.result);
+                    importFullBackup(backupData);
+                } catch (error) {
+                    console.error('Import error:', error);
+                    showNotification('❌ Invalid backup file format.', 'error');
+                }
+            };
+            reader.readAsText(file);
+            event.target.value = '';
+        }
+
+        function importFullBackup(data) {
+            if (!data || data.type !== 'FULL_BACKUP') {
+                showNotification('❌ This is not a valid full backup file', 'error');
+                return;
+            }
+
+            const userCount = Object.keys(data.tibiaUsers || {}).length;
+            const confirmMsg = '⚠️ RESTORE FULL BACKUP?\n\n' +
+                `This backup contains ${userCount} user account(s)\n` +
+                `Created: ${new Date(data.backupDate).toLocaleString()}\n\n` +
+                '⚠️ WARNING: This will REPLACE all your current data!\n' +
+                '⚠️ All current users, hunts, and settings will be lost!\n\n' +
+                'Make sure you have a backup of your current data first!\n\n' +
+                'Continue with restore?';
+
+            if (!confirm(confirmMsg)) return;
+
+            // Double confirmation for safety
+            if (!confirm('⚠️ FINAL WARNING!\n\nThis cannot be undone. Are you absolutely sure?')) return;
+
+            showLoading('Restoring backup...');
+
+            setTimeout(() => {
+                try {
+                    // Restore everything
+                    if (data.tibiaUsers) {
+                        localStorage.setItem('tibiaUsers', JSON.stringify(data.tibiaUsers));
+                    }
+                    if (data.currentUser) {
+                        localStorage.setItem('currentUser', data.currentUser);
+                    }
+                    if (data.dailyTarget) {
+                        localStorage.setItem('dailyTarget', data.dailyTarget);
+                    }
+
+                    hideLoading();
+                    showNotification('✅ Backup restored successfully! Reloading...', 'success');
+
+                    // Reload page to apply changes
+                    setTimeout(() => location.reload(), 1500);
+                } catch (error) {
+                    console.error('Restore error:', error);
+                    hideLoading();
+                    showNotification('❌ Error restoring backup. Please try again.', 'error');
                 }
             }, 500);
         }
