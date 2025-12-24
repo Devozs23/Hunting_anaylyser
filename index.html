@@ -1289,6 +1289,146 @@
                     </div>
                 </div>
 
+                <!-- Daily Profit Target -->
+                <div id="dailyTargetSection" style="display: none;">
+                    <div class="card" style="background: linear-gradient(135deg, rgba(255, 193, 7, 0.15) 0%, rgba(255, 152, 0, 0.15) 100%); border-left: 4px solid var(--warning-color);">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                            <h2 style="color: var(--warning-color); margin: 0;">🎯 Daily Profit Target</h2>
+                            <button class="btn-secondary" onclick="setDailyTarget()" style="padding: 8px 16px;">⚙️ Set Target</button>
+                        </div>
+
+                        <div style="background: rgba(0,0,0,0.2); padding: 25px; border-radius: 15px; margin-bottom: 20px;">
+                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                                <div>
+                                    <div style="font-size: 0.9em; color: var(--text-secondary); margin-bottom: 5px;">Today's Progress</div>
+                                    <div style="font-size: 2.5em; font-weight: bold; color: var(--warning-color);" id="dailyProfitAmount">0 gp</div>
+                                    <div style="font-size: 0.85em; color: var(--text-secondary);">of <span id="dailyTargetAmount" style="color: var(--text-primary); font-weight: 600;">1,000k gp</span> target</div>
+                                </div>
+                                <div style="text-align: right;">
+                                    <div style="font-size: 3em;" id="dailyTargetEmoji">🎯</div>
+                                    <div style="font-size: 0.9em; font-weight: bold;" id="dailyTargetPercentage">0%</div>
+                                </div>
+                            </div>
+
+                            <!-- Progress Bar -->
+                            <div style="background: rgba(0,0,0,0.3); height: 30px; border-radius: 15px; overflow: hidden; position: relative;">
+                                <div id="dailyProgressBar" style="background: linear-gradient(90deg, var(--warning-color) 0%, var(--success-color) 100%); height: 100%; width: 0%; transition: width 0.5s ease; display: flex; align-items: center; justify-content: flex-end; padding-right: 10px;">
+                                    <span style="color: white; font-weight: bold; font-size: 0.85em;" id="dailyProgressText"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px;">
+                            <div style="background: rgba(255,255,255,0.05); padding: 15px; border-radius: 10px; text-align: center;">
+                                <div style="font-size: 0.85em; color: var(--text-secondary); margin-bottom: 5px;">Hunts Today</div>
+                                <div id="dailyHuntsCount" style="font-size: 2em; font-weight: bold; color: var(--text-primary);">0</div>
+                            </div>
+                            <div style="background: rgba(255,255,255,0.05); padding: 15px; border-radius: 10px; text-align: center;">
+                                <div style="font-size: 0.85em; color: var(--text-secondary); margin-bottom: 5px;">Remaining</div>
+                                <div id="dailyRemaining" style="font-size: 2em; font-weight: bold; color: var(--warning-color);">0 gp</div>
+                            </div>
+                            <div style="background: rgba(255,255,255,0.05); padding: 15px; border-radius: 10px; text-align: center;">
+                                <div style="font-size: 0.85em; color: var(--text-secondary); margin-bottom: 5px;">Needed</div>
+                                <div id="dailyNeeded" style="font-size: 1.5em; font-weight: bold; color: var(--info-color);">0 hunts</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Session Timer -->
+                <div id="sessionTimerSection" style="display: none;">
+                    <div class="card" style="background: linear-gradient(135deg, rgba(102, 126, 234, 0.15) 0%, rgba(118, 75, 162, 0.15) 100%); border-left: 4px solid var(--primary-color);">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                            <h2 style="color: var(--primary-color); margin: 0;">⏱️ Active Session</h2>
+                            <div>
+                                <button id="sessionStartBtn" class="btn-success" onclick="startSession()" style="padding: 8px 16px;">▶️ Start</button>
+                                <button id="sessionPauseBtn" class="btn-warning" onclick="pauseSession()" style="padding: 8px 16px; display: none;">⏸️ Pause</button>
+                                <button id="sessionStopBtn" class="btn-danger" onclick="stopSession()" style="padding: 8px 16px; display: none;">⏹️ Stop</button>
+                            </div>
+                        </div>
+
+                        <div id="sessionActive" style="display: none;">
+                            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin-bottom: 20px;">
+                                <div style="background: rgba(0,0,0,0.2); padding: 20px; border-radius: 12px; text-align: center;">
+                                    <div style="font-size: 0.9em; color: var(--text-secondary); margin-bottom: 8px;">⏱️ Session Time</div>
+                                    <div id="sessionTime" style="font-size: 3em; font-weight: bold; color: var(--primary-color); font-family: 'Courier New', monospace;">00:00:00</div>
+                                </div>
+                                <div style="background: rgba(0,0,0,0.2); padding: 20px; border-radius: 12px; text-align: center;">
+                                    <div style="font-size: 0.9em; color: var(--text-secondary); margin-bottom: 8px;">💰 Session Profit</div>
+                                    <div id="sessionProfit" style="font-size: 2.5em; font-weight: bold; color: var(--success-color);">0 gp</div>
+                                </div>
+                                <div style="background: rgba(0,0,0,0.2); padding: 20px; border-radius: 12px; text-align: center;">
+                                    <div style="font-size: 0.9em; color: var(--text-secondary); margin-bottom: 8px;">📊 Hunts</div>
+                                    <div id="sessionHunts" style="font-size: 2.5em; font-weight: bold; color: var(--info-color);">0</div>
+                                </div>
+                                <div style="background: rgba(0,0,0,0.2); padding: 20px; border-radius: 12px; text-align: center;">
+                                    <div style="font-size: 0.9em; color: var(--text-secondary); margin-bottom: 8px;">⚡ Avg Profit/h</div>
+                                    <div id="sessionAvgProfit" style="font-size: 2em; font-weight: bold; color: var(--warning-color);">0 gp/h</div>
+                                </div>
+                            </div>
+
+                            <div style="background: rgba(0,0,0,0.2); padding: 15px; border-radius: 10px;">
+                                <div style="display: flex; justify-content: space-between; align-items: center;">
+                                    <div>
+                                        <div style="font-size: 0.85em; color: var(--text-secondary);">⏰ Next Break Recommended</div>
+                                        <div id="nextBreak" style="font-size: 1.2em; font-weight: bold; color: var(--text-primary); margin-top: 5px;">in 45 minutes</div>
+                                    </div>
+                                    <button class="btn-secondary" onclick="takeBreak()" style="padding: 10px 20px;">☕ Take Break</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="sessionInactive" style="text-align: center; padding: 40px 20px;">
+                            <div style="font-size: 4em; margin-bottom: 15px; opacity: 0.5;">⏱️</div>
+                            <p style="color: var(--text-secondary); font-size: 1.1em;">No active session. Start farming!</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Performance Analytics -->
+                <div id="performanceSection" style="display: none;">
+                    <div class="card" style="background: linear-gradient(135deg, rgba(220, 53, 69, 0.15) 0%, rgba(255, 87, 34, 0.15) 100%); border-left: 4px solid var(--danger-color);">
+                        <h2 style="color: var(--danger-color); margin-bottom: 20px;">📈 Performance Analytics</h2>
+
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px; margin-bottom: 20px;">
+                            <div style="background: rgba(0,0,0,0.2); padding: 20px; border-radius: 12px;">
+                                <div style="font-size: 0.85em; color: var(--text-secondary); margin-bottom: 10px;">💰 Today vs Yesterday</div>
+                                <div style="display: flex; align-items: center; gap: 10px;">
+                                    <div id="todayVsYesterday" style="font-size: 2.5em; font-weight: bold; color: var(--text-primary);">-</div>
+                                    <div id="todayVsYesterdayIndicator" style="font-size: 2em;"></div>
+                                </div>
+                                <div id="todayVsYesterdayChange" style="font-size: 0.85em; margin-top: 5px;"></div>
+                            </div>
+
+                            <div style="background: rgba(0,0,0,0.2); padding: 20px; border-radius: 12px;">
+                                <div style="font-size: 0.85em; color: var(--text-secondary); margin-bottom: 10px;">📊 This Week vs Last Week</div>
+                                <div style="display: flex; align-items: center; gap: 10px;">
+                                    <div id="weekVsWeek" style="font-size: 2.5em; font-weight: bold; color: var(--text-primary);">-</div>
+                                    <div id="weekVsWeekIndicator" style="font-size: 2em;"></div>
+                                </div>
+                                <div id="weekVsWeekChange" style="font-size: 0.85em; margin-top: 5px;"></div>
+                            </div>
+
+                            <div style="background: rgba(0,0,0,0.2); padding: 20px; border-radius: 12px;">
+                                <div style="font-size: 0.85em; color: var(--text-secondary); margin-bottom: 10px;">🎯 Best Spot (7 days)</div>
+                                <div id="bestSpot7d" style="font-size: 1.5em; font-weight: bold; color: var(--text-primary); margin-bottom: 5px;">-</div>
+                                <div id="bestSpot7dProfit" style="font-size: 1.2em; color: var(--success-color);"></div>
+                            </div>
+
+                            <div style="background: rgba(0,0,0,0.2); padding: 20px; border-radius: 12px;">
+                                <div style="font-size: 0.85em; color: var(--text-secondary); margin-bottom: 10px;">⚡ Performance Trend</div>
+                                <div id="performanceTrend" style="font-size: 2.5em; font-weight: bold;">-</div>
+                                <div id="performanceTrendText" style="font-size: 0.85em; margin-top: 5px;"></div>
+                            </div>
+                        </div>
+
+                        <div style="background: rgba(0,0,0,0.2); padding: 20px; border-radius: 12px;">
+                            <div style="font-size: 0.9em; color: var(--text-secondary); margin-bottom: 15px; font-weight: 600;">📅 Last 7 Days Performance</div>
+                            <div id="last7DaysChart" style="display: flex; align-items: flex-end; gap: 8px; height: 120px; justify-content: space-around;"></div>
+                        </div>
+                    </div>
+                </div>
+
                 <!-- Smart Insights -->
                 <div id="smartInsights" style="display: none;">
                     <div class="card" style="background: linear-gradient(135deg, rgba(40, 167, 69, 0.1) 0%, rgba(32, 201, 151, 0.1) 100%); border-left: 4px solid var(--success-color);">
@@ -1934,6 +2074,14 @@ Galll
         let currentPeriod = 'daily';
         let tibiaCharName = '';
         let tcPrice = 0; // Tibia Coin price in gold
+
+        // Session and Daily Target variables
+        let dailyTarget = localStorage.getItem('dailyTarget') ? parseInt(localStorage.getItem('dailyTarget')) : 1000000;
+        let sessionStartTime = null;
+        let sessionPausedTime = 0;
+        let sessionInterval = null;
+        let sessionHuntsStart = 0;
+        let sessionProfitStart = 0;
 
         // Initialize App
         window.onload = function() {
@@ -3127,6 +3275,9 @@ Galll
             updateUserStats();
             updateGoalsProgress();
             updateSmartInsights();
+            updateDailyTarget();
+            updateSessionDisplay();
+            updatePerformanceAnalytics();
         }
 
         function updateDashboard() {
@@ -3204,6 +3355,334 @@ Galll
             const totalMinutes = hunts.reduce((sum, h) => sum + (h.duration || 0), 0);
             const avgProfitPerHour = totalMinutes > 0 ? (totalProfit / totalMinutes) * 60 : 0;
             document.getElementById('insightAvgProfitHour').textContent = formatProfit(avgProfitPerHour) + '/h';
+        }
+
+        // Daily Profit Target Functions
+        function setDailyTarget() {
+            const target = prompt('Set your daily profit target (in gold):', dailyTarget);
+            if (target && !isNaN(target) && parseInt(target) > 0) {
+                dailyTarget = parseInt(target);
+                localStorage.setItem('dailyTarget', dailyTarget);
+                updateDailyTarget();
+                showNotification('✅ Daily target updated!', 'success');
+            }
+        }
+
+        function updateDailyTarget() {
+            const section = document.getElementById('dailyTargetSection');
+            if (!hunts || hunts.length === 0) {
+                section.style.display = 'none';
+                return;
+            }
+
+            section.style.display = 'block';
+
+            // Get today's hunts
+            const today = new Date();
+            today.setHours(0, 0, 0, 0);
+            const todayHunts = hunts.filter(h => {
+                const huntDate = new Date(h.date);
+                huntDate.setHours(0, 0, 0, 0);
+                return huntDate.getTime() === today.getTime();
+            });
+
+            const todayProfit = todayHunts.reduce((sum, h) => sum + h.profit, 0);
+            const percentage = Math.min((todayProfit / dailyTarget) * 100, 100);
+            const remaining = Math.max(dailyTarget - todayProfit, 0);
+            const avgProfit = todayHunts.length > 0 ? todayProfit / todayHunts.length : 0;
+            const huntsNeeded = avgProfit > 0 ? Math.ceil(remaining / avgProfit) : 0;
+
+            // Update UI
+            document.getElementById('dailyProfitAmount').textContent = formatProfit(todayProfit);
+            document.getElementById('dailyTargetAmount').textContent = formatProfit(dailyTarget);
+            document.getElementById('dailyTargetPercentage').textContent = Math.round(percentage) + '%';
+            document.getElementById('dailyProgressBar').style.width = percentage + '%';
+            document.getElementById('dailyProgressText').textContent = Math.round(percentage) + '%';
+            document.getElementById('dailyHuntsCount').textContent = todayHunts.length;
+            document.getElementById('dailyRemaining').textContent = formatProfit(remaining);
+            document.getElementById('dailyNeeded').textContent = huntsNeeded + ' hunt' + (huntsNeeded !== 1 ? 's' : '');
+
+            // Update emoji based on progress
+            let emoji = '🎯';
+            if (percentage >= 100) emoji = '🎉';
+            else if (percentage >= 75) emoji = '🔥';
+            else if (percentage >= 50) emoji = '💪';
+            else if (percentage >= 25) emoji = '⚡';
+            document.getElementById('dailyTargetEmoji').textContent = emoji;
+        }
+
+        // Session Timer Functions
+        function startSession() {
+            sessionStartTime = Date.now() - sessionPausedTime;
+            sessionHuntsStart = hunts.length;
+            sessionProfitStart = hunts.reduce((sum, h) => sum + h.profit, 0);
+
+            document.getElementById('sessionInactive').style.display = 'none';
+            document.getElementById('sessionActive').style.display = 'block';
+            document.getElementById('sessionStartBtn').style.display = 'none';
+            document.getElementById('sessionPauseBtn').style.display = 'inline-block';
+            document.getElementById('sessionStopBtn').style.display = 'inline-block';
+
+            sessionInterval = setInterval(updateSessionTimer, 1000);
+            showNotification('⏱️ Session started! Good hunting!', 'success');
+        }
+
+        function pauseSession() {
+            if (sessionInterval) {
+                clearInterval(sessionInterval);
+                sessionInterval = null;
+                sessionPausedTime = Date.now() - sessionStartTime;
+                document.getElementById('sessionPauseBtn').textContent = '▶️ Resume';
+                document.getElementById('sessionPauseBtn').setAttribute('onclick', 'resumeSession()');
+                showNotification('⏸️ Session paused', 'info');
+            }
+        }
+
+        function resumeSession() {
+            sessionStartTime = Date.now() - sessionPausedTime;
+            sessionInterval = setInterval(updateSessionTimer, 1000);
+            document.getElementById('sessionPauseBtn').textContent = '⏸️ Pause';
+            document.getElementById('sessionPauseBtn').setAttribute('onclick', 'pauseSession()');
+            showNotification('▶️ Session resumed!', 'success');
+        }
+
+        function stopSession() {
+            if (confirm('Stop farming session?')) {
+                if (sessionInterval) clearInterval(sessionInterval);
+                sessionStartTime = null;
+                sessionPausedTime = 0;
+                sessionInterval = null;
+
+                document.getElementById('sessionInactive').style.display = 'block';
+                document.getElementById('sessionActive').style.display = 'none';
+                document.getElementById('sessionStartBtn').style.display = 'inline-block';
+                document.getElementById('sessionPauseBtn').style.display = 'none';
+                document.getElementById('sessionStopBtn').style.display = 'none';
+
+                showNotification('⏹️ Session ended!', 'info');
+            }
+        }
+
+        function takeBreak() {
+            pauseSession();
+            showNotification('☕ Taking a break. Stay hydrated!', 'info');
+        }
+
+        function updateSessionTimer() {
+            if (!sessionStartTime) return;
+
+            const elapsed = Date.now() - sessionStartTime;
+            const hours = Math.floor(elapsed / 3600000);
+            const minutes = Math.floor((elapsed % 3600000) / 60000);
+            const seconds = Math.floor((elapsed % 60000) / 1000);
+
+            document.getElementById('sessionTime').textContent =
+                String(hours).padStart(2, '0') + ':' +
+                String(minutes).padStart(2, '0') + ':' +
+                String(seconds).padStart(2, '0');
+
+            // Calculate session stats
+            const sessionHunts = hunts.length - sessionHuntsStart;
+            const totalProfit = hunts.reduce((sum, h) => sum + h.profit, 0);
+            const sessionProfit = totalProfit - sessionProfitStart;
+            const hoursElapsed = elapsed / 3600000;
+            const avgProfit = hoursElapsed > 0 ? sessionProfit / hoursElapsed : 0;
+
+            document.getElementById('sessionHunts').textContent = sessionHunts;
+            document.getElementById('sessionProfit').textContent = formatProfit(sessionProfit);
+            document.getElementById('sessionAvgProfit').textContent = formatProfit(avgProfit) + '/h';
+
+            // Next break recommendation (every 90 minutes)
+            const nextBreakMinutes = 90 - minutes - (hours * 60);
+            if (nextBreakMinutes > 0) {
+                document.getElementById('nextBreak').textContent = 'in ' + nextBreakMinutes + ' minutes';
+            } else {
+                document.getElementById('nextBreak').textContent = 'NOW! Take a break!';
+                document.getElementById('nextBreak').style.color = 'var(--danger-color)';
+            }
+        }
+
+        function updateSessionDisplay() {
+            const section = document.getElementById('sessionTimerSection');
+            if (!hunts || hunts.length === 0) {
+                section.style.display = 'none';
+                return;
+            }
+            section.style.display = 'block';
+        }
+
+        // Performance Analytics Functions
+        function updatePerformanceAnalytics() {
+            const section = document.getElementById('performanceSection');
+            if (!hunts || hunts.length === 0) {
+                section.style.display = 'none';
+                return;
+            }
+
+            section.style.display = 'block';
+
+            const now = new Date();
+            now.setHours(0, 0, 0, 0);
+
+            // Today vs Yesterday
+            const today = new Date(now);
+            const yesterday = new Date(now);
+            yesterday.setDate(yesterday.getDate() - 1);
+
+            const todayHunts = hunts.filter(h => {
+                const d = new Date(h.date);
+                d.setHours(0, 0, 0, 0);
+                return d.getTime() === today.getTime();
+            });
+
+            const yesterdayHunts = hunts.filter(h => {
+                const d = new Date(h.date);
+                d.setHours(0, 0, 0, 0);
+                return d.getTime() === yesterday.getTime();
+            });
+
+            const todayProfit = todayHunts.reduce((sum, h) => sum + h.profit, 0);
+            const yesterdayProfit = yesterdayHunts.reduce((sum, h) => sum + h.profit, 0);
+
+            document.getElementById('todayVsYesterday').textContent = formatProfit(todayProfit);
+            if (yesterdayProfit > 0) {
+                const change = ((todayProfit - yesterdayProfit) / yesterdayProfit) * 100;
+                const indicator = change >= 0 ? '📈' : '📉';
+                const color = change >= 0 ? 'var(--success-color)' : 'var(--danger-color)';
+                document.getElementById('todayVsYesterdayIndicator').textContent = indicator;
+                document.getElementById('todayVsYesterdayChange').innerHTML =
+                    `<span style="color: ${color};">${change >= 0 ? '+' : ''}${change.toFixed(1)}% vs yesterday</span>`;
+            }
+
+            // This Week vs Last Week
+            const thisWeekStart = new Date(now);
+            thisWeekStart.setDate(thisWeekStart.getDate() - thisWeekStart.getDay());
+            const lastWeekStart = new Date(thisWeekStart);
+            lastWeekStart.setDate(lastWeekStart.getDate() - 7);
+            const lastWeekEnd = new Date(thisWeekStart);
+
+            const thisWeekHunts = hunts.filter(h => {
+                const d = new Date(h.date);
+                return d >= thisWeekStart;
+            });
+
+            const lastWeekHunts = hunts.filter(h => {
+                const d = new Date(h.date);
+                return d >= lastWeekStart && d < lastWeekEnd;
+            });
+
+            const thisWeekProfit = thisWeekHunts.reduce((sum, h) => sum + h.profit, 0);
+            const lastWeekProfit = lastWeekHunts.reduce((sum, h) => sum + h.profit, 0);
+
+            document.getElementById('weekVsWeek').textContent = formatProfit(thisWeekProfit);
+            if (lastWeekProfit > 0) {
+                const change = ((thisWeekProfit - lastWeekProfit) / lastWeekProfit) * 100;
+                const indicator = change >= 0 ? '📈' : '📉';
+                const color = change >= 0 ? 'var(--success-color)' : 'var(--danger-color)';
+                document.getElementById('weekVsWeekIndicator').textContent = indicator;
+                document.getElementById('weekVsWeekChange').innerHTML =
+                    `<span style="color: ${color};">${change >= 0 ? '+' : ''}${change.toFixed(1)}% vs last week</span>`;
+            }
+
+            // Best Spot last 7 days
+            const last7Days = new Date(now);
+            last7Days.setDate(last7Days.getDate() - 7);
+            const last7DaysHunts = hunts.filter(h => new Date(h.date) >= last7Days);
+
+            const spotProfit = {};
+            last7DaysHunts.forEach(h => {
+                const spot = h.name.split('(')[0].trim();
+                spotProfit[spot] = (spotProfit[spot] || 0) + h.profit;
+            });
+
+            let bestSpot = '-';
+            let bestSpotProfit = 0;
+            Object.entries(spotProfit).forEach(([spot, profit]) => {
+                if (profit > bestSpotProfit) {
+                    bestSpot = spot;
+                    bestSpotProfit = profit;
+                }
+            });
+
+            document.getElementById('bestSpot7d').textContent = bestSpot.length > 20 ? bestSpot.substring(0, 20) + '...' : bestSpot;
+            document.getElementById('bestSpot7dProfit').textContent = formatProfit(bestSpotProfit);
+
+            // Performance Trend
+            const last3Days = hunts.filter(h => {
+                const d = new Date(h.date);
+                const threeDaysAgo = new Date(now);
+                threeDaysAgo.setDate(threeDaysAgo.getDate() - 3);
+                return d >= threeDaysAgo;
+            });
+
+            const prev3Days = hunts.filter(h => {
+                const d = new Date(h.date);
+                const sixDaysAgo = new Date(now);
+                sixDaysAgo.setDate(sixDaysAgo.getDate() - 6);
+                const threeDaysAgo = new Date(now);
+                threeDaysAgo.setDate(threeDaysAgo.getDate() - 3);
+                return d >= sixDaysAgo && d < threeDaysAgo;
+            });
+
+            const last3Profit = last3Days.reduce((sum, h) => sum + h.profit, 0);
+            const prev3Profit = prev3Days.reduce((sum, h) => sum + h.profit, 0);
+
+            let trendEmoji = '📊';
+            let trendText = 'Stable';
+            let trendColor = 'var(--info-color)';
+
+            if (prev3Profit > 0) {
+                const trendChange = ((last3Profit - prev3Profit) / prev3Profit) * 100;
+                if (trendChange > 10) {
+                    trendEmoji = '📈';
+                    trendText = 'Improving';
+                    trendColor = 'var(--success-color)';
+                } else if (trendChange < -10) {
+                    trendEmoji = '📉';
+                    trendText = 'Declining';
+                    trendColor = 'var(--danger-color)';
+                }
+            }
+
+            document.getElementById('performanceTrend').textContent = trendEmoji;
+            document.getElementById('performanceTrendText').innerHTML = `<span style="color: ${trendColor};">${trendText}</span>`;
+
+            // Last 7 Days Chart (simple bar chart)
+            const chartContainer = document.getElementById('last7DaysChart');
+            chartContainer.innerHTML = '';
+
+            for (let i = 6; i >= 0; i--) {
+                const day = new Date(now);
+                day.setDate(day.getDate() - i);
+
+                const dayHunts = hunts.filter(h => {
+                    const d = new Date(h.date);
+                    d.setHours(0, 0, 0, 0);
+                    return d.getTime() === day.getTime();
+                });
+
+                const dayProfit = dayHunts.reduce((sum, h) => sum + h.profit, 0);
+                const maxProfit = Math.max(...Array.from({length: 7}, (_, j) => {
+                    const d = new Date(now);
+                    d.setDate(d.getDate() - j);
+                    const dh = hunts.filter(h => {
+                        const hd = new Date(h.date);
+                        hd.setHours(0, 0, 0, 0);
+                        return hd.getTime() === d.getTime();
+                    });
+                    return dh.reduce((s, h) => s + h.profit, 0);
+                }), 1);
+
+                const height = (dayProfit / maxProfit) * 100;
+                const dayName = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'][day.getDay()];
+
+                chartContainer.innerHTML += `
+                    <div style="flex: 1; display: flex; flex-direction: column; align-items: center; gap: 5px;">
+                        <div style="width: 100%; background: ${height > 0 ? 'var(--primary-color)' : 'rgba(255,255,255,0.1)'}; height: ${Math.max(height, 5)}%; border-radius: 4px 4px 0 0; transition: all 0.3s;"></div>
+                        <div style="font-size: 0.75em; color: var(--text-secondary);">${dayName}</div>
+                    </div>
+                `;
+            }
         }
 
         function updateUserStats() {
