@@ -1819,26 +1819,41 @@ Galll
                     </div>
 
                     <!-- Key Stats Summary -->
-                    <div class="dashboard-grid" style="margin-bottom: 30px;">
-                        <div class="stat-card" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white;">
-                            <h3 style="color: white;">Total Profit</h3>
-                            <p id="statsTotalProfit" style="font-size: 2em; font-weight: bold; margin: 10px 0;">0 gp</p>
-                            <small id="statsAvgProfit">Avg: 0 gp per hunt</small>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; margin-bottom: 30px;">
+                        <!-- Total Profit Card -->
+                        <div style="background: rgba(102, 126, 234, 0.1); backdrop-filter: blur(10px); border: 2px solid rgba(102, 126, 234, 0.3); border-radius: 20px; padding: 30px 20px; text-align: center; position: relative; overflow: hidden; transition: all 0.3s ease; box-shadow: 0 8px 32px rgba(102, 126, 234, 0.2);" onmouseover="this.style.transform='translateY(-5px)'; this.style.borderColor='#667eea'; this.style.boxShadow='0 12px 48px rgba(102, 126, 234, 0.4)';" onmouseout="this.style.transform=''; this.style.borderColor='rgba(102, 126, 234, 0.3)'; this.style.boxShadow='0 8px 32px rgba(102, 126, 234, 0.2)';">
+                            <div style="position: absolute; top: -50px; right: -50px; width: 150px; height: 150px; background: radial-gradient(circle, rgba(102, 126, 234, 0.3) 0%, transparent 70%); border-radius: 50%;"></div>
+                            <div style="font-size: 4em; margin-bottom: 15px; filter: drop-shadow(0 4px 8px rgba(102, 126, 234, 0.5));">💰</div>
+                            <div id="statsTotalProfit" style="font-size: 2.5em; font-weight: 900; color: #667eea; margin-bottom: 8px; text-shadow: 0 2px 10px rgba(102, 126, 234, 0.3);">0 gp</div>
+                            <div style="font-size: 0.9em; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 1px; font-weight: 600; margin-bottom: 5px;">Total Profit</div>
+                            <div id="statsAvgProfit" style="font-size: 0.85em; color: #667eea; opacity: 0.8;">Avg: 0 gp per hunt</div>
                         </div>
-                        <div class="stat-card" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); color: white;">
-                            <h3 style="color: white;">Total XP</h3>
-                            <p id="statsTotalXP" style="font-size: 2em; font-weight: bold; margin: 10px 0;">0</p>
-                            <small id="statsAvgXP">Avg: 0 per hunt</small>
+
+                        <!-- Total XP Card -->
+                        <div style="background: rgba(240, 147, 251, 0.1); backdrop-filter: blur(10px); border: 2px solid rgba(240, 147, 251, 0.3); border-radius: 20px; padding: 30px 20px; text-align: center; position: relative; overflow: hidden; transition: all 0.3s ease; box-shadow: 0 8px 32px rgba(245, 87, 108, 0.2);" onmouseover="this.style.transform='translateY(-5px)'; this.style.borderColor='#f093fb'; this.style.boxShadow='0 12px 48px rgba(245, 87, 108, 0.4)';" onmouseout="this.style.transform=''; this.style.borderColor='rgba(240, 147, 251, 0.3)'; this.style.boxShadow='0 8px 32px rgba(245, 87, 108, 0.2)';">
+                            <div style="position: absolute; top: -50px; right: -50px; width: 150px; height: 150px; background: radial-gradient(circle, rgba(245, 87, 108, 0.3) 0%, transparent 70%); border-radius: 50%;"></div>
+                            <div style="font-size: 4em; margin-bottom: 15px; filter: drop-shadow(0 4px 8px rgba(245, 87, 108, 0.5));">⭐</div>
+                            <div id="statsTotalXP" style="font-size: 2.5em; font-weight: 900; color: #f5576c; margin-bottom: 8px; text-shadow: 0 2px 10px rgba(245, 87, 108, 0.3);">0</div>
+                            <div style="font-size: 0.9em; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 1px; font-weight: 600; margin-bottom: 5px;">Total XP</div>
+                            <div id="statsAvgXP" style="font-size: 0.85em; color: #f5576c; opacity: 0.8;">Avg: 0 per hunt</div>
                         </div>
-                        <div class="stat-card" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); color: white;">
-                            <h3 style="color: white;">Best Day</h3>
-                            <p id="statsBestDay" style="font-size: 1.5em; font-weight: bold; margin: 10px 0;">-</p>
-                            <small id="statsBestDayValue">No data yet</small>
+
+                        <!-- Best Day Card -->
+                        <div style="background: rgba(79, 172, 254, 0.1); backdrop-filter: blur(10px); border: 2px solid rgba(79, 172, 254, 0.3); border-radius: 20px; padding: 30px 20px; text-align: center; position: relative; overflow: hidden; transition: all 0.3s ease; box-shadow: 0 8px 32px rgba(0, 242, 254, 0.2);" onmouseover="this.style.transform='translateY(-5px)'; this.style.borderColor='#4facfe'; this.style.boxShadow='0 12px 48px rgba(0, 242, 254, 0.4)';" onmouseout="this.style.transform=''; this.style.borderColor='rgba(79, 172, 254, 0.3)'; this.style.boxShadow='0 8px 32px rgba(0, 242, 254, 0.2)';">
+                            <div style="position: absolute; top: -50px; right: -50px; width: 150px; height: 150px; background: radial-gradient(circle, rgba(0, 242, 254, 0.3) 0%, transparent 70%); border-radius: 50%;"></div>
+                            <div style="font-size: 4em; margin-bottom: 15px; filter: drop-shadow(0 4px 8px rgba(0, 242, 254, 0.5));">📅</div>
+                            <div id="statsBestDay" style="font-size: 2.2em; font-weight: 900; color: #00f2fe; margin-bottom: 8px; text-shadow: 0 2px 10px rgba(0, 242, 254, 0.3);">-</div>
+                            <div style="font-size: 0.9em; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 1px; font-weight: 600; margin-bottom: 5px;">Best Day</div>
+                            <div id="statsBestDayValue" style="font-size: 0.85em; color: #00f2fe; opacity: 0.8;">No data yet</div>
                         </div>
-                        <div class="stat-card" style="background: linear-gradient(135deg, #fa709a 0%, #fee140 100%); color: white;">
-                            <h3 style="color: white;">Total Hunts</h3>
-                            <p id="statsTotalHunts" style="font-size: 2em; font-weight: bold; margin: 10px 0;">0</p>
-                            <small id="statsAvgDuration">Avg: 0h duration</small>
+
+                        <!-- Total Hunts Card -->
+                        <div style="background: rgba(250, 112, 154, 0.1); backdrop-filter: blur(10px); border: 2px solid rgba(250, 112, 154, 0.3); border-radius: 20px; padding: 30px 20px; text-align: center; position: relative; overflow: hidden; transition: all 0.3s ease; box-shadow: 0 8px 32px rgba(254, 225, 64, 0.2);" onmouseover="this.style.transform='translateY(-5px)'; this.style.borderColor='#fee140'; this.style.boxShadow='0 12px 48px rgba(254, 225, 64, 0.4)';" onmouseout="this.style.transform=''; this.style.borderColor='rgba(250, 112, 154, 0.3)'; this.style.boxShadow='0 8px 32px rgba(254, 225, 64, 0.2)';">
+                            <div style="position: absolute; top: -50px; right: -50px; width: 150px; height: 150px; background: radial-gradient(circle, rgba(254, 225, 64, 0.3) 0%, transparent 70%); border-radius: 50%;"></div>
+                            <div style="font-size: 4em; margin-bottom: 15px; filter: drop-shadow(0 4px 8px rgba(254, 225, 64, 0.5));">🎯</div>
+                            <div id="statsTotalHunts" style="font-size: 2.5em; font-weight: 900; color: #fee140; margin-bottom: 8px; text-shadow: 0 2px 10px rgba(254, 225, 64, 0.3);">0</div>
+                            <div style="font-size: 0.9em; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 1px; font-weight: 600; margin-bottom: 5px;">Total Hunts</div>
+                            <div id="statsAvgDuration" style="font-size: 0.85em; color: #fee140; opacity: 0.8;">Avg: 0h duration</div>
                         </div>
                     </div>
                 </div>
