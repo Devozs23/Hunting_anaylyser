@@ -2231,6 +2231,7 @@ Ke vinho
                                 <label style="font-weight: 600; color: #ff9800;">🎯 Skill Type</label>
                                 <select id="calcSkillType" style="font-size: 1.05em; font-weight: 600; padding: 12px;">
                                     <option value="melee">Sword/Axe/Club Fighting</option>
+                                    <option value="fist">Fist Fighting</option>
                                     <option value="distance">Distance Fighting</option>
                                     <option value="shielding">Shielding</option>
                                     <option value="magic">Magic Level</option>
@@ -2241,6 +2242,7 @@ Ke vinho
                                 <select id="calcVocation" style="font-size: 1.05em; font-weight: 600; padding: 12px;">
                                     <option value="knight">Knight</option>
                                     <option value="paladin">Paladin</option>
+                                    <option value="monk">Monk (Fist Fighting)</option>
                                     <option value="sorcerer">Sorcerer</option>
                                     <option value="druid">Druid</option>
                                 </select>
@@ -5705,7 +5707,7 @@ Ke vinho
                     // Magic level formula: different calculation
                     return Math.pow(skill, 3) * 100 / 3;
                 } else {
-                    // Melee/Distance/Shielding formula
+                    // Melee/Fist/Distance/Shielding formula
                     return Math.pow(skill, 2) * 50;
                 }
             }
