@@ -2221,11 +2221,33 @@ Ke vinho
                             <div style="font-size: 3em; filter: drop-shadow(0 4px 8px rgba(255, 152, 0, 0.5));">⚔️</div>
                             <div>
                                 <h3 style="color: #ff9800; margin: 0; font-size: 1.5em;">Exercise Weapons Calculator</h3>
-                                <p style="color: var(--text-secondary); margin: 5px 0 0 0; font-size: 0.9em;">Calculate weapons needed for skill training</p>
+                                <p style="color: var(--text-secondary); margin: 5px 0 0 0; font-size: 0.9em;">Professional training calculator with loyalty & event bonuses</p>
                             </div>
                         </div>
 
-                        <!-- Inputs -->
+                        <!-- Skill Type & Vocation -->
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 15px;">
+                            <div class="input-group">
+                                <label style="font-weight: 600; color: #ff9800;">🎯 Skill Type</label>
+                                <select id="calcSkillType" style="font-size: 1.05em; font-weight: 600; padding: 12px;">
+                                    <option value="melee">Sword/Axe/Club Fighting</option>
+                                    <option value="distance">Distance Fighting</option>
+                                    <option value="shielding">Shielding</option>
+                                    <option value="magic">Magic Level</option>
+                                </select>
+                            </div>
+                            <div class="input-group">
+                                <label style="font-weight: 600; color: #ff9800;">🧙 Vocation</label>
+                                <select id="calcVocation" style="font-size: 1.05em; font-weight: 600; padding: 12px;">
+                                    <option value="knight">Knight</option>
+                                    <option value="paladin">Paladin</option>
+                                    <option value="sorcerer">Sorcerer</option>
+                                    <option value="druid">Druid</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Current & Target Skill -->
                         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 15px;">
                             <div class="input-group">
                                 <label style="font-weight: 600; color: #ff9800;">💪 Current Skill</label>
@@ -2237,13 +2259,46 @@ Ke vinho
                             </div>
                         </div>
 
-                        <div class="input-group" style="margin-bottom: 20px;">
-                            <label style="font-weight: 600; color: #ff9800;">🗡️ Weapon Type</label>
-                            <select id="calcWeaponType" style="font-size: 1.05em; font-weight: 600; padding: 12px;">
-                                <option value="25">Exercise Weapon (25 charges)</option>
-                                <option value="500">Lasting Exercise Weapon (500 charges)</option>
-                                <option value="14400">Durable Exercise Weapon (14400 charges)</option>
-                            </select>
+                        <!-- Loyalty Bonus & Weapon Type -->
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 15px;">
+                            <div class="input-group">
+                                <label style="font-weight: 600; color: #ff9800;">💎 Loyalty Bonus</label>
+                                <select id="calcLoyaltyBonus" style="font-size: 1.05em; font-weight: 600; padding: 12px;">
+                                    <option value="0">0% (No Premium)</option>
+                                    <option value="5">5% (360 points)</option>
+                                    <option value="10">10% (720 points)</option>
+                                    <option value="15">15% (1080 points)</option>
+                                    <option value="20">20% (1440 points)</option>
+                                    <option value="25">25% (1800 points)</option>
+                                    <option value="30">30% (2160 points)</option>
+                                    <option value="35">35% (2520 points)</option>
+                                    <option value="40">40% (2880 points)</option>
+                                    <option value="45">45% (3240 points)</option>
+                                    <option value="50">50% (3600 points)</option>
+                                </select>
+                            </div>
+                            <div class="input-group">
+                                <label style="font-weight: 600; color: #ff9800;">🗡️ Weapon Type</label>
+                                <select id="calcWeaponType" style="font-size: 1.05em; font-weight: 600; padding: 12px;">
+                                    <option value="25">Exercise Weapon (25 charges)</option>
+                                    <option value="500">Lasting Exercise Weapon (500 charges)</option>
+                                    <option value="14400">Durable Exercise Weapon (14400 charges)</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Bonuses Checkboxes -->
+                        <div style="background: rgba(0,0,0,0.2); padding: 15px; border-radius: 12px; margin-bottom: 20px;">
+                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                                <label style="display: flex; align-items: center; gap: 10px; cursor: pointer; font-weight: 600; color: var(--text-primary);">
+                                    <input type="checkbox" id="calcPrivateDummy" style="width: 20px; height: 20px; cursor: pointer;">
+                                    <span>🏠 Private Target Dummy (+10%)</span>
+                                </label>
+                                <label style="display: flex; align-items: center; gap: 10px; cursor: pointer; font-weight: 600; color: var(--text-primary);">
+                                    <input type="checkbox" id="calcDoubleEvent" style="width: 20px; height: 20px; cursor: pointer;">
+                                    <span>⚡ Double Skill Event (x2)</span>
+                                </label>
+                            </div>
                         </div>
 
                         <button class="btn-primary" onclick="calculateExercise()" style="width: 100%; padding: 15px; font-size: 1.05em; background: linear-gradient(135deg, #ff9800 0%, #ff6f00 100%); border: none;">
@@ -2252,14 +2307,24 @@ Ke vinho
 
                         <!-- Results -->
                         <div id="exerciseResult" style="margin-top: 20px; display: none;">
-                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
-                                <div style="background: rgba(0,0,0,0.3); padding: 20px; border-radius: 12px; text-align: center;">
-                                    <div style="font-size: 0.75em; color: var(--text-secondary); text-transform: uppercase; margin-bottom: 8px;">Weapons Needed</div>
-                                    <div style="font-size: 2.5em; font-weight: 900; color: #ff9800;" id="weaponsNeeded">0</div>
+                            <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; margin-bottom: 15px;">
+                                <div style="background: rgba(0,0,0,0.3); padding: 18px; border-radius: 12px; text-align: center;">
+                                    <div style="font-size: 0.7em; color: var(--text-secondary); text-transform: uppercase; margin-bottom: 6px;">Weapons</div>
+                                    <div style="font-size: 2em; font-weight: 900; color: #ff9800;" id="weaponsNeeded">0</div>
                                 </div>
-                                <div style="background: rgba(0,0,0,0.3); padding: 20px; border-radius: 12px; text-align: center;">
-                                    <div style="font-size: 0.75em; color: var(--text-secondary); text-transform: uppercase; margin-bottom: 8px;">Training Time</div>
-                                    <div style="font-size: 2.5em; font-weight: 900; color: #ff9800;" id="trainingTime">0h</div>
+                                <div style="background: rgba(0,0,0,0.3); padding: 18px; border-radius: 12px; text-align: center;">
+                                    <div style="font-size: 0.7em; color: var(--text-secondary); text-transform: uppercase; margin-bottom: 6px;">Time</div>
+                                    <div style="font-size: 2em; font-weight: 900; color: #ff9800;" id="trainingTime">0h</div>
+                                </div>
+                                <div style="background: rgba(0,0,0,0.3); padding: 18px; border-radius: 12px; text-align: center;">
+                                    <div style="font-size: 0.7em; color: var(--text-secondary); text-transform: uppercase; margin-bottom: 6px;">Total Cost</div>
+                                    <div style="font-size: 2em; font-weight: 900; color: #ff9800;" id="trainingCost">0 TC</div>
+                                </div>
+                            </div>
+                            <!-- Info Box -->
+                            <div style="background: rgba(255, 152, 0, 0.1); backdrop-filter: blur(10px); border-left: 4px solid #ff9800; padding: 12px; border-radius: 10px;">
+                                <div style="font-size: 0.85em; color: var(--text-secondary); line-height: 1.5;" id="exerciseInfoText">
+                                    ℹ️ Calculations include all bonuses selected above
                                 </div>
                             </div>
                         </div>
@@ -5619,35 +5684,94 @@ Ke vinho
             showToast('✅ Stamina recovery calculated!', 'success');
         }
 
-        // Exercise Weapons Calculator
+        // Exercise Weapons Calculator - Advanced with Bonuses
         function calculateExercise() {
             const currentSkill = parseInt(document.getElementById('calcCurrentSkill').value);
             const targetSkill = parseInt(document.getElementById('calcTargetSkill').value);
             const weaponCharges = parseInt(document.getElementById('calcWeaponType').value);
+            const loyaltyBonus = parseInt(document.getElementById('calcLoyaltyBonus').value);
+            const privateDummy = document.getElementById('calcPrivateDummy').checked;
+            const doubleEvent = document.getElementById('calcDoubleEvent').checked;
+            const skillType = document.getElementById('calcSkillType').value;
 
             if (!currentSkill || !targetSkill || targetSkill <= currentSkill) {
-                showToast('Please enter valid skill values', 'error');
+                showToast('⚠️ Please enter valid skill values (target must be higher than current)', 'error');
                 return;
             }
 
-            // Approximate formula for skill training (simplified)
-            function getChargesForSkill(from, to) {
-                let totalCharges = 0;
-                for (let skill = from; skill < to; skill++) {
-                    // Exponential growth formula (approximation)
-                    totalCharges += Math.floor(Math.pow(1.1, skill) * 10);
+            // Calculate skill points needed (Tibia formula)
+            function getSkillPoints(skill) {
+                if (skillType === 'magic') {
+                    // Magic level formula: different calculation
+                    return Math.pow(skill, 3) * 100 / 3;
+                } else {
+                    // Melee/Distance/Shielding formula
+                    return Math.pow(skill, 2) * 50;
                 }
-                return totalCharges;
             }
 
-            const chargesNeeded = getChargesForSkill(currentSkill, targetSkill);
-            const weaponsNeeded = Math.ceil(chargesNeeded / weaponCharges);
-            const trainingTime = (chargesNeeded * 2) / 3600; // 2 seconds per charge, converted to hours
+            const currentPoints = getSkillPoints(currentSkill);
+            const targetPoints = getSkillPoints(targetSkill);
+            let pointsNeeded = targetPoints - currentPoints;
 
+            // Base skill points per charge (random 4-5, average 4.5)
+            let pointsPerCharge = 4.5;
+
+            // Apply Loyalty Bonus (affects points gained)
+            if (loyaltyBonus > 0) {
+                pointsPerCharge *= (1 + loyaltyBonus / 100);
+            }
+
+            // Apply Private Dummy (+10% more skill points)
+            if (privateDummy) {
+                pointsPerCharge *= 1.1;
+            }
+
+            // Apply Double Event (x2 skill points)
+            if (doubleEvent) {
+                pointsPerCharge *= 2;
+            }
+
+            // Calculate charges and weapons needed
+            const chargesNeeded = Math.ceil(pointsNeeded / pointsPerCharge);
+            const weaponsNeeded = Math.ceil(chargesNeeded / weaponCharges);
+
+            // Training time: 2 seconds per charge
+            const trainingSeconds = chargesNeeded * 2;
+            const trainingHours = Math.floor(trainingSeconds / 3600);
+            const trainingMinutes = Math.floor((trainingSeconds % 3600) / 60);
+
+            // Estimate cost (Tibia Coins)
+            // Prices: Exercise Weapon ~20 TC, Lasting ~345 TC, Durable ~7800 TC
+            const weaponPrices = { 25: 20, 500: 345, 14400: 7800 };
+            const totalCost = weaponsNeeded * (weaponPrices[weaponCharges] || 0);
+
+            // Update UI
             document.getElementById('weaponsNeeded').textContent = formatNumber(weaponsNeeded);
-            document.getElementById('trainingTime').textContent = Math.round(trainingTime) + 'h';
+
+            let timeText = '';
+            if (trainingHours > 0) {
+                timeText = `${trainingHours}h ${trainingMinutes}m`;
+            } else {
+                timeText = `${trainingMinutes}m`;
+            }
+            document.getElementById('trainingTime').textContent = timeText;
+            document.getElementById('trainingCost').textContent = `${formatNumber(totalCost)} TC`;
+
+            // Update info text
+            let bonusesText = [];
+            if (loyaltyBonus > 0) bonusesText.push(`Loyalty ${loyaltyBonus}%`);
+            if (privateDummy) bonusesText.push('Private Dummy +10%');
+            if (doubleEvent) bonusesText.push('Double Event x2');
+
+            const bonusInfo = bonusesText.length > 0
+                ? `✅ Applied bonuses: ${bonusesText.join(', ')}`
+                : '📊 No bonuses applied - showing base training costs';
+
+            document.getElementById('exerciseInfoText').innerHTML = `${bonusInfo}<br>💡 Avg ${pointsPerCharge.toFixed(1)} skill points per charge`;
+
             document.getElementById('exerciseResult').style.display = 'block';
-            showToast('✅ Exercise calculation complete!', 'success');
+            showToast('✅ Training calculation complete!', 'success');
         }
 
         // Party Share Range Calculator
