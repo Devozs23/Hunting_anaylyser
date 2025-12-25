@@ -2110,30 +2110,88 @@ Ke vinho
 
                         <!-- Stamina Calculator -->
                         <div class="card" style="margin-bottom: 0;">
-                            <h3 style="color: var(--primary-color); margin-bottom: 15px;">⚡ Stamina Calculator</h3>
-                            <div class="input-group">
-                                <label>Hunting Time (hours)</label>
-                                <input type="number" id="calcHuntHours" placeholder="e.g., 4" min="0" step="0.5">
-                            </div>
-                            <div class="input-group">
-                                <label>Current Stamina (minutes)</label>
-                                <input type="number" id="calcCurrentStamina" placeholder="e.g., 2520 (42h)" min="0" max="2520">
-                            </div>
-                            <button class="btn-primary" onclick="calculateStamina()">Calculate Result</button>
-                            <div id="staminaResult" style="margin-top: 15px; padding: 20px; background: rgba(255, 193, 7, 0.1); backdrop-filter: blur(10px); border: 2px solid rgba(255, 193, 7, 0.3); border-radius: 15px; display: none; box-shadow: 0 4px 16px rgba(255, 193, 7, 0.15);">
-                                <div style="font-size: 2.5em; text-align: center; margin-bottom: 15px;">⚡</div>
-                                <div style="text-align: center; margin-bottom: 15px;">
-                                    <div style="font-size: 0.85em; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 5px;">Stamina After Hunt</div>
-                                    <div style="font-size: 2em; font-weight: 900; color: #ffc107; text-shadow: 0 2px 10px rgba(255, 193, 7, 0.3);"><span id="staminaAfter">0</span> min</div>
+                            <h3 style="color: var(--primary-color); margin-bottom: 15px;">⚡ Stamina Recovery Calculator</h3>
+                            <p style="color: var(--text-secondary); font-size: 0.9em; margin-bottom: 20px;">Calculate exact recovery time based on Tibia's stamina regeneration system</p>
+
+                            <!-- Input Section -->
+                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 15px;">
+                                <div class="input-group">
+                                    <label>⚡ Current Stamina</label>
+                                    <input type="text" id="calcCurrentStamina" placeholder="42:00 or 2520 min" oninput="updateStaminaPreview()">
+                                    <small style="color: var(--text-secondary); margin-top: 5px; display: block;">Format: HH:MM or minutes</small>
                                 </div>
-                                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
-                                    <div style="background: rgba(0,0,0,0.2); padding: 12px; border-radius: 10px; text-align: center;">
-                                        <div style="font-size: 0.75em; color: var(--text-secondary); margin-bottom: 5px;">🎁 BONUS</div>
-                                        <div style="font-size: 1.1em; font-weight: 700; color: var(--text-primary);" id="staminaBonus">Happy Hour</div>
+                                <div class="input-group">
+                                    <label>🎯 Target Stamina (Optional)</label>
+                                    <input type="text" id="calcTargetStamina" placeholder="42:00 (max)" value="42:00">
+                                    <small style="color: var(--text-secondary); margin-top: 5px; display: block;">Default: 42:00 hours</small>
+                                </div>
+                            </div>
+
+                            <!-- Optional Hunt Time -->
+                            <div class="input-group" style="margin-bottom: 15px;">
+                                <label>🏹 Hunt Duration (Optional)</label>
+                                <input type="number" id="calcHuntHours" placeholder="e.g., 4 hours" min="0" step="0.5">
+                                <small style="color: var(--text-secondary); margin-top: 5px; display: block;">Calculate stamina AFTER hunting for X hours</small>
+                            </div>
+
+                            <button class="btn-primary" onclick="calculateStamina()" style="width: 100%; padding: 15px; font-size: 1.05em;">
+                                🔍 Calculate Recovery Time
+                            </button>
+
+                            <!-- Results Section -->
+                            <div id="staminaResult" style="margin-top: 20px; display: none;">
+                                <!-- Stamina Bar Visualization -->
+                                <div style="background: rgba(0,0,0,0.3); padding: 20px; border-radius: 15px; margin-bottom: 20px;">
+                                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                                        <div style="font-size: 0.85em; color: var(--text-secondary); text-transform: uppercase;">Current Stamina</div>
+                                        <div style="font-size: 1.5em; font-weight: 900;" id="staminaCurrentDisplay">42:00</div>
                                     </div>
-                                    <div style="background: rgba(0,0,0,0.2); padding: 12px; border-radius: 10px; text-align: center;">
-                                        <div style="font-size: 0.75em; color: var(--text-secondary); margin-bottom: 5px;">🔄 RECOVERY</div>
-                                        <div style="font-size: 1.1em; font-weight: 700; color: var(--text-primary);" id="staminaRecovery">-</div>
+
+                                    <!-- Stamina Progress Bar -->
+                                    <div style="background: rgba(0,0,0,0.4); height: 40px; border-radius: 20px; overflow: hidden; position: relative; margin-bottom: 10px;">
+                                        <!-- Bonus Zone (40:01-42:00) -->
+                                        <div style="position: absolute; right: 0; width: 4.76%; height: 100%; background: linear-gradient(90deg, rgba(76, 175, 80, 0.3) 0%, rgba(76, 175, 80, 0.5) 100%); border-left: 2px dashed rgba(255,255,255,0.2);"></div>
+                                        <!-- Current Stamina Fill -->
+                                        <div id="staminaBarFill" style="height: 100%; width: 100%; background: linear-gradient(90deg, #4caf50 0%, #8bc34a 100%); transition: all 0.5s ease; display: flex; align-items: center; justify-content: center;">
+                                            <span id="staminaBarText" style="color: white; font-weight: 700; font-size: 0.9em; text-shadow: 0 2px 4px rgba(0,0,0,0.5);">BONUS ZONE</span>
+                                        </div>
+                                    </div>
+
+                                    <!-- Zone Labels -->
+                                    <div style="display: flex; justify-content: space-between; font-size: 0.75em; color: var(--text-secondary);">
+                                        <span>0:00</span>
+                                        <span style="color: #4caf50;">40:00 (Normal)</span>
+                                        <span style="color: #8bc34a;">42:00 (Max)</span>
+                                    </div>
+                                </div>
+
+                                <!-- Recovery Time Cards -->
+                                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 20px;">
+                                    <!-- Offline Recovery -->
+                                    <div style="background: rgba(102, 126, 234, 0.1); backdrop-filter: blur(10px); border: 2px solid rgba(102, 126, 234, 0.3); border-radius: 15px; padding: 20px; text-align: center;">
+                                        <div style="font-size: 2.5em; margin-bottom: 10px;">💤</div>
+                                        <div style="font-size: 0.75em; color: var(--text-secondary); text-transform: uppercase; margin-bottom: 8px;">Offline Recovery</div>
+                                        <div id="offlineRecoveryTime" style="font-size: 1.8em; font-weight: 900; color: #667eea; margin-bottom: 5px;">-</div>
+                                        <div id="offlineRecoveryDate" style="font-size: 0.75em; color: #667eea; opacity: 0.8;">-</div>
+                                    </div>
+
+                                    <!-- Status Zone -->
+                                    <div id="staminaZoneCard" style="background: rgba(76, 175, 80, 0.1); backdrop-filter: blur(10px); border: 2px solid rgba(76, 175, 80, 0.3); border-radius: 15px; padding: 20px; text-align: center;">
+                                        <div style="font-size: 2.5em; margin-bottom: 10px;" id="staminaZoneEmoji">✨</div>
+                                        <div style="font-size: 0.75em; color: var(--text-secondary); text-transform: uppercase; margin-bottom: 8px;">Current Zone</div>
+                                        <div id="staminaZoneName" style="font-size: 1.3em; font-weight: 900; color: #4caf50; margin-bottom: 5px;">BONUS</div>
+                                        <div id="staminaZoneBonus" style="font-size: 0.75em; color: #4caf50; opacity: 0.8;">150% XP</div>
+                                    </div>
+                                </div>
+
+                                <!-- Info Box -->
+                                <div style="background: rgba(255, 193, 7, 0.1); backdrop-filter: blur(10px); border-left: 4px solid #ffc107; padding: 15px; border-radius: 10px;">
+                                    <div style="font-size: 0.85em; color: var(--text-secondary); line-height: 1.6;" id="staminaInfoText">
+                                        <strong style="color: #ffc107;">ℹ️ How it works:</strong><br>
+                                        • Stamina starts regenerating after 10 min offline<br>
+                                        • 0:00 → 40:00: 3 min offline = 1 min stamina<br>
+                                        • 40:00 → 42:00: 6 min offline = 1 min stamina<br>
+                                        • Stamina does NOT regenerate while playing
                                     </div>
                                 </div>
                             </div>
@@ -5331,36 +5389,172 @@ Ke vinho
             showToast('XP calculation complete!', 'success');
         }
 
-        // Stamina Calculator
-        function calculateStamina() {
-            const huntHours = parseFloat(document.getElementById('calcHuntHours').value);
-            const currentStamina = parseInt(document.getElementById('calcCurrentStamina').value);
+        // Stamina Calculator - Parse stamina input (HH:MM or minutes)
+        function parseStaminaInput(input) {
+            if (!input) return 0;
+            input = String(input).trim();
 
-            if (!huntHours || !currentStamina) {
-                showToast('Please enter valid stamina values', 'error');
+            // Check if format is HH:MM
+            if (input.includes(':')) {
+                const parts = input.split(':');
+                const hours = parseInt(parts[0]) || 0;
+                const minutes = parseInt(parts[1]) || 0;
+                return hours * 60 + minutes;
+            }
+
+            // Otherwise treat as minutes
+            return parseInt(input) || 0;
+        }
+
+        // Format minutes to HH:MM
+        function formatStaminaTime(minutes) {
+            const hours = Math.floor(minutes / 60);
+            const mins = minutes % 60;
+            return `${hours}:${mins.toString().padStart(2, '0')}`;
+        }
+
+        // Update stamina preview in real-time
+        function updateStaminaPreview() {
+            const input = document.getElementById('calcCurrentStamina').value;
+            const minutes = parseStaminaInput(input);
+
+            if (minutes > 0 && minutes <= 2520) {
+                const formatted = formatStaminaTime(minutes);
+                document.getElementById('calcCurrentStamina').style.borderColor = 'var(--success-color)';
+            } else if (input) {
+                document.getElementById('calcCurrentStamina').style.borderColor = 'var(--danger-color)';
+            } else {
+                document.getElementById('calcCurrentStamina').style.borderColor = '';
+            }
+        }
+
+        // Calculate exact recovery time based on Tibia's stamina system
+        function calculateStamina() {
+            const currentStaminaInput = document.getElementById('calcCurrentStamina').value;
+            const targetStaminaInput = document.getElementById('calcTargetStamina').value;
+            const huntHours = parseFloat(document.getElementById('calcHuntHours').value) || 0;
+
+            // Parse inputs
+            let currentStamina = parseStaminaInput(currentStaminaInput);
+            const targetStamina = parseStaminaInput(targetStaminaInput) || 2520; // Default to 42:00
+
+            if (!currentStamina || currentStamina < 0 || currentStamina > 2520) {
+                showToast('⚠️ Please enter valid stamina (0 to 42:00)', 'error');
                 return;
             }
 
-            const huntMinutes = huntHours * 60;
-            const staminaAfter = Math.max(0, currentStamina - huntMinutes);
-
-            let bonus = 'None';
-            if (staminaAfter >= 2400) {
-                bonus = 'Happy Hour (50% bonus XP)';
-            } else if (staminaAfter >= 840) {
-                bonus = 'Normal (100% XP)';
-            } else {
-                bonus = 'Reduced (50% XP)';
+            if (targetStamina > 2520) {
+                showToast('⚠️ Max stamina is 42:00 (2520 minutes)', 'error');
+                return;
             }
 
-            const staminaNeeded = 2520 - staminaAfter;
-            const recoveryHours = Math.ceil(staminaNeeded / 180); // 3 minutes per minute offline
+            // Calculate stamina after hunt if specified
+            if (huntHours > 0) {
+                const huntMinutes = huntHours * 60;
+                currentStamina = Math.max(0, currentStamina - huntMinutes);
+            }
 
-            document.getElementById('staminaAfter').textContent = staminaAfter;
-            document.getElementById('staminaBonus').textContent = bonus;
-            document.getElementById('staminaRecovery').textContent = `${recoveryHours} hours offline`;
+            // Calculate recovery time
+            const staminaNeeded = targetStamina - currentStamina;
+
+            let offlineMinutes = 10; // 10 minute cooldown before regen starts
+
+            if (staminaNeeded > 0) {
+                let remaining = staminaNeeded;
+
+                // Calculate time to reach 40:00 (2400 min) if below it
+                if (currentStamina < 2400) {
+                    const toNormalZone = Math.min(remaining, 2400 - currentStamina);
+                    offlineMinutes += toNormalZone * 3; // 3 real minutes per 1 stamina minute
+                    remaining -= toNormalZone;
+                }
+
+                // Calculate time for bonus zone (40:00 to 42:00)
+                if (remaining > 0) {
+                    offlineMinutes += remaining * 6; // 6 real minutes per 1 stamina minute
+                }
+            } else {
+                offlineMinutes = 0; // Already at target
+            }
+
+            // Calculate recovery date/time
+            const now = new Date();
+            const recoveryDate = new Date(now.getTime() + offlineMinutes * 60000);
+
+            // Format recovery time
+            const hours = Math.floor(offlineMinutes / 60);
+            const mins = offlineMinutes % 60;
+            let recoveryText = '';
+            if (hours > 0) {
+                recoveryText = `${hours}h ${mins}m`;
+            } else {
+                recoveryText = `${mins}m`;
+            }
+
+            // Determine stamina zone and styling
+            let zoneName, zoneEmoji, zoneBonus, zoneColor, barWidth, barText, barColor;
+
+            if (currentStamina >= 2401) { // 40:01 to 42:00
+                zoneName = 'BONUS ZONE';
+                zoneEmoji = '✨';
+                zoneBonus = '150% XP';
+                zoneColor = 'rgba(76, 175, 80, 0.3)';
+                barColor = 'linear-gradient(90deg, #4caf50 0%, #8bc34a 100%)';
+                barText = 'BONUS';
+            } else if (currentStamina >= 1) { // 0:01 to 40:00
+                zoneName = 'NORMAL ZONE';
+                zoneEmoji = '✅';
+                zoneBonus = '100% XP';
+                zoneColor = 'rgba(33, 150, 243, 0.3)';
+                barColor = 'linear-gradient(90deg, #2196f3 0%, #4caf50 100%)';
+                barText = 'NORMAL';
+            } else { // 0:00
+                zoneName = 'NO STAMINA';
+                zoneEmoji = '❌';
+                zoneBonus = 'Cannot Hunt';
+                zoneColor = 'rgba(220, 53, 69, 0.3)';
+                barColor = 'linear-gradient(90deg, #dc3545 0%, #c82333 100%)';
+                barText = 'EMPTY';
+            }
+
+            barWidth = (currentStamina / 2520) * 100;
+
+            // Update UI
+            document.getElementById('staminaCurrentDisplay').textContent = formatStaminaTime(currentStamina);
+            document.getElementById('staminaBarFill').style.width = barWidth + '%';
+            document.getElementById('staminaBarFill').style.background = barColor;
+            document.getElementById('staminaBarText').textContent = barText;
+
+            // Update recovery time
+            if (staminaNeeded > 0) {
+                document.getElementById('offlineRecoveryTime').textContent = recoveryText;
+                document.getElementById('offlineRecoveryDate').textContent = recoveryDate.toLocaleString('en-US', {
+                    month: 'short',
+                    day: 'numeric',
+                    hour: '2-digit',
+                    minute: '2-digit'
+                });
+            } else {
+                document.getElementById('offlineRecoveryTime').textContent = 'Full!';
+                document.getElementById('offlineRecoveryDate').textContent = 'Already at target';
+            }
+
+            // Update zone card
+            document.getElementById('staminaZoneCard').style.background = zoneColor;
+            document.getElementById('staminaZoneCard').style.borderColor = zoneColor.replace('0.3', '0.5');
+            document.getElementById('staminaZoneEmoji').textContent = zoneEmoji;
+            document.getElementById('staminaZoneName').textContent = zoneName;
+            document.getElementById('staminaZoneBonus').textContent = zoneBonus;
+
+            // Update colors for zone name and bonus
+            const zoneTextColor = currentStamina >= 2401 ? '#4caf50' : currentStamina >= 1 ? '#2196f3' : '#dc3545';
+            document.getElementById('staminaZoneName').style.color = zoneTextColor;
+            document.getElementById('staminaZoneBonus').style.color = zoneTextColor;
+
+            // Show results
             document.getElementById('staminaResult').style.display = 'block';
-            showToast('Stamina calculation complete!', 'success');
+
+            showToast('✅ Stamina recovery calculated!', 'success');
         }
 
         // Exercise Weapons Calculator
