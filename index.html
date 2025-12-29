@@ -2682,37 +2682,53 @@ Member Name
 
             <!-- TC Config Tab -->
             <div class="main-tab-content" id="tcConfigTab">
-                <!-- TC Configuration - ULTRA COMPACT -->
-                <div class="card" style="padding: 10px;">
-                    <h3 style="color: var(--warning-color); margin-bottom: 8px; font-size: 0.95em;">💰 TC Configuration</h3>
+                <!-- TC Configuration - PROFESSIONAL -->
+                <div class="card" style="padding: 12px;">
+                    <h3 style="color: #22d3ee; margin-bottom: 10px; font-size: 1em;">💰 TC Configuration</h3>
 
-                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 8px;">
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 10px;">
                         <div class="input-group" style="margin: 0;">
-                            <label for="tcPriceInput" style="font-size: 0.75em; margin-bottom: 3px;">TC Price (gp)</label>
-                            <input type="number" id="tcPriceInput" placeholder="41000" min="0" style="padding: 6px 10px; font-size: 0.85em;">
+                            <label for="tcPriceInput" style="font-size: 0.75em; margin-bottom: 4px;">TC Price (gp)</label>
+                            <input type="number" id="tcPriceInput" placeholder="41000" min="0" style="padding: 8px 12px; font-size: 0.85em;">
                         </div>
                         <div class="input-group" style="margin: 0;">
-                            <label for="tibiaCharInput" style="font-size: 0.75em; margin-bottom: 3px;">Character (optional)</label>
-                            <input type="text" id="tibiaCharInput" placeholder="Your Character" style="padding: 6px 10px; font-size: 0.85em;">
+                            <label for="tibiaCharInput" style="font-size: 0.75em; margin-bottom: 4px;">Character (optional)</label>
+                            <input type="text" id="tibiaCharInput" placeholder="Your Character" style="padding: 8px 12px; font-size: 0.85em;">
                         </div>
                     </div>
 
-                    <button class="btn-primary" onclick="saveTCSettings()" style="width: 100%; padding: 6px 12px; font-size: 0.85em;">💾 Save</button>
+                    <button class="btn-primary" onclick="saveTCSettings()" style="width: 100%; padding: 8px 12px; font-size: 0.85em;">💾 Save</button>
 
-                    <!-- TC Summary - COMPACT -->
-                    <div id="tcConversionDisplay" style="margin-top: 10px; padding: 12px; background: linear-gradient(135deg, #1e3a5f 0%, #2c5f7f 100%); border-radius: 10px; color: white; display: none;">
+                    <!-- TODAY'S PROGRESS - LIVE UPDATE -->
+                    <div id="todayTCProgress" style="margin-top: 12px; padding: 14px; background: linear-gradient(135deg, rgba(34, 211, 238, 0.15) 0%, rgba(34, 211, 238, 0.25) 100%); border: 2px solid rgba(34, 211, 238, 0.4); border-radius: 12px; display: none;">
+                        <div style="text-align: center; margin-bottom: 8px;">
+                            <div style="font-size: 0.75em; color: rgba(34, 211, 238, 0.9); text-transform: uppercase; letter-spacing: 1px; font-weight: 700; margin-bottom: 4px;">📅 Today's Progress</div>
+                            <div style="font-size: 2.2em; font-weight: 900; color: #22d3ee; text-shadow: 0 2px 8px rgba(34, 211, 238, 0.5);" id="todayTCAmount">0 TC</div>
+                            <div style="font-size: 0.7em; color: rgba(255, 255, 255, 0.7); margin-top: 2px;" id="todayTCProfit">0 gp</div>
+                        </div>
+                        <div style="background: rgba(0,0,0,0.2); height: 6px; border-radius: 3px; overflow: hidden;">
+                            <div id="todayTCBar" style="background: linear-gradient(90deg, #22d3ee 0%, #06b6d4 100%); height: 100%; width: 0%; transition: width 0.5s ease;"></div>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; margin-top: 6px; font-size: 0.65em; color: rgba(255, 255, 255, 0.6);">
+                            <span>0 TC</span>
+                            <span id="todayTCTarget">Target: 100 TC</span>
+                        </div>
+                    </div>
+
+                    <!-- TC Summary - PROFESSIONAL -->
+                    <div id="tcConversionDisplay" style="margin-top: 12px; padding: 12px; background: linear-gradient(135deg, rgba(102, 126, 234, 0.12) 0%, rgba(126, 179, 214, 0.12) 100%); border: 1.5px solid rgba(102, 126, 234, 0.3); border-radius: 10px; display: none;">
                         <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px;">
                             <div style="text-align: center;">
-                                <p style="font-size: 0.7em; opacity: 0.9; margin-bottom: 3px;">Total</p>
-                                <p style="font-size: 1.5em; font-weight: bold; margin: 0;" id="tcTotalProfit">0 TC</p>
+                                <p style="font-size: 0.7em; color: var(--text-secondary); margin-bottom: 4px; text-transform: uppercase;">Total</p>
+                                <p style="font-size: 1.5em; font-weight: 900; margin: 0; color: #667eea;" id="tcTotalProfit">0 TC</p>
                             </div>
                             <div style="text-align: center;">
-                                <p style="font-size: 0.7em; opacity: 0.9; margin-bottom: 3px;">Monthly</p>
-                                <p style="font-size: 1.5em; font-weight: bold; margin: 0;" id="tcMonthlyProfit">0 TC</p>
+                                <p style="font-size: 0.7em; color: var(--text-secondary); margin-bottom: 4px; text-transform: uppercase;">Monthly</p>
+                                <p style="font-size: 1.5em; font-weight: 900; margin: 0; color: #7eb3d6;" id="tcMonthlyProfit">0 TC</p>
                             </div>
                             <div style="text-align: center;">
-                                <p style="font-size: 0.7em; opacity: 0.9; margin-bottom: 3px;">Per Hunt</p>
-                                <p style="font-size: 1.5em; font-weight: bold; margin: 0;" id="tcAvgProfit">0 TC</p>
+                                <p style="font-size: 0.7em; color: var(--text-secondary); margin-bottom: 4px; text-transform: uppercase;">Per Hunt</p>
+                                <p style="font-size: 1.5em; font-weight: 900; margin: 0; color: #22d3ee;" id="tcAvgProfit">0 TC</p>
                             </div>
                         </div>
                     </div>
@@ -2729,17 +2745,17 @@ Member Name
                         </div>
                     </div>
 
-                    <!-- Best/Worst Days - ULTRA COMPACT -->
-                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 8px;">
-                        <div style="background: rgba(40, 167, 69, 0.1); padding: 8px; border-radius: 6px; border-left: 3px solid var(--success-color);">
-                            <div style="font-size: 0.65em; color: var(--text-secondary); margin-bottom: 2px;">🏆 Best Day</div>
-                            <div id="bestTCDay" style="font-size: 1.1em; font-weight: bold; color: var(--success-color);">-</div>
-                            <div id="bestTCDayDate" style="font-size: 0.65em; color: var(--text-secondary); margin-top: 2px;">-</div>
+                    <!-- Best/Worst Days - PROFESSIONAL -->
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 10px;">
+                        <div style="background: linear-gradient(135deg, rgba(34, 211, 238, 0.1) 0%, rgba(34, 211, 238, 0.15) 100%); padding: 10px; border-radius: 8px; border: 1.5px solid rgba(34, 211, 238, 0.3);">
+                            <div style="font-size: 0.7em; color: rgba(34, 211, 238, 0.9); margin-bottom: 3px; text-transform: uppercase; letter-spacing: 0.5px;">🏆 Best Day</div>
+                            <div id="bestTCDay" style="font-size: 1.3em; font-weight: 900; color: #22d3ee;">-</div>
+                            <div id="bestTCDayDate" style="font-size: 0.7em; color: var(--text-secondary); margin-top: 3px;">-</div>
                         </div>
-                        <div style="background: rgba(220, 53, 69, 0.1); padding: 8px; border-radius: 6px; border-left: 3px solid var(--danger-color);">
-                            <div style="font-size: 0.65em; color: var(--text-secondary); margin-bottom: 2px;">📉 Worst Day</div>
-                            <div id="worstTCDay" style="font-size: 1.1em; font-weight: bold; color: var(--danger-color);">-</div>
-                            <div id="worstTCDayDate" style="font-size: 0.65em; color: var(--text-secondary); margin-top: 2px;">-</div>
+                        <div style="background: linear-gradient(135deg, rgba(126, 179, 214, 0.08) 0%, rgba(126, 179, 214, 0.12) 100%); padding: 10px; border-radius: 8px; border: 1.5px solid rgba(126, 179, 214, 0.3);">
+                            <div style="font-size: 0.7em; color: rgba(126, 179, 214, 0.9); margin-bottom: 3px; text-transform: uppercase; letter-spacing: 0.5px;">📉 Worst Day</div>
+                            <div id="worstTCDay" style="font-size: 1.3em; font-weight: 900; color: #7eb3d6;">-</div>
+                            <div id="worstTCDayDate" style="font-size: 0.7em; color: var(--text-secondary); margin-top: 3px;">-</div>
                         </div>
                     </div>
 
@@ -2824,7 +2840,34 @@ Member Name
             document.getElementById('registerPasswordConfirm').addEventListener('keypress', function(e) {
                 if (e.key === 'Enter') handleRegister();
             });
+
+            // Start midnight detection system
+            startMidnightDetection();
         };
+
+        // ==================== MIDNIGHT DETECTION SYSTEM ====================
+        let lastKnownDate = new Date().toISOString().split('T')[0];
+
+        function startMidnightDetection() {
+            // Check every minute for day change
+            setInterval(() => {
+                const currentDate = new Date().toISOString().split('T')[0];
+
+                if (currentDate !== lastKnownDate) {
+                    console.log('🌙 Midnight detected! Updating calendars and resetting day...');
+                    lastKnownDate = currentDate;
+
+                    // Update TC calendar if user is logged in and has TC price set
+                    if (currentUser && tcPrice > 0) {
+                        updateTCDisplay();
+                        updateTCDailyTracking();
+                    }
+
+                    // Show notification
+                    showToast('New day started! Calendar updated 🌅', 'info');
+                }
+            }, 60000); // Check every minute
+        }
 
         // Theme Management - MEJORADO
         function toggleTheme() {
@@ -6482,6 +6525,7 @@ Member Name
 
         function updateTCDisplay() {
             const display = document.getElementById('tcConversionDisplay');
+            const todayProgress = document.getElementById('todayTCProgress');
 
             if (tcPrice > 0 && hunts.length > 0) {
                 const totalProfit = hunts.reduce((sum, h) => sum + h.profit, 0);
@@ -6503,8 +6547,30 @@ Member Name
                 document.getElementById('tcAvgProfit').textContent = avgTCPerHunt + ' TC';
 
                 display.style.display = 'block';
+
+                // Calculate TODAY'S TCs - REAL TIME UPDATE
+                const today = new Date();
+                const todayStr = today.toISOString().split('T')[0];
+                const todayHunts = hunts.filter(h => h.date.split('T')[0] === todayStr);
+
+                if (todayHunts.length > 0) {
+                    const todayProfit = todayHunts.reduce((sum, h) => sum + h.profit, 0);
+                    const todayTC = Math.floor(todayProfit / tcPrice);
+                    const targetTC = 100; // Default target, can be customized
+                    const progressPercent = Math.min((todayTC / targetTC) * 100, 100);
+
+                    document.getElementById('todayTCAmount').textContent = todayTC + ' TC';
+                    document.getElementById('todayTCProfit').textContent = formatProfit(todayProfit);
+                    document.getElementById('todayTCBar').style.width = progressPercent + '%';
+                    document.getElementById('todayTCTarget').textContent = `Target: ${targetTC} TC`;
+
+                    todayProgress.style.display = 'block';
+                } else {
+                    todayProgress.style.display = 'none';
+                }
             } else {
                 display.style.display = 'none';
+                todayProgress.style.display = 'none';
             }
 
             // Update daily TC tracking
