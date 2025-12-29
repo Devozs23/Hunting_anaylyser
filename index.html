@@ -1145,6 +1145,21 @@
                 <button class="btn-primary" onclick="handleLogin()" style="width: 100%; margin-top: 20px;">
                     Login
                 </button>
+
+                <!-- Password Recovery -->
+                <div style="text-align: center; margin-top: 15px;">
+                    <button onclick="showPasswordRecovery()" style="background: none; border: none; color: var(--primary-color); cursor: pointer; text-decoration: underline; font-size: 0.9em;">
+                        🔑 Forgot Password / Can't Login?
+                    </button>
+                </div>
+
+                <!-- Emergency Access Instructions -->
+                <div style="background: rgba(255, 193, 7, 0.1); border: 1px solid rgba(255, 193, 7, 0.3); border-radius: 8px; padding: 15px; margin-top: 15px; font-size: 0.85em; color: var(--text-secondary);">
+                    <strong style="color: #ffc107;">🆘 Can't login?</strong><br>
+                    1. Press <strong>F12</strong> to open console<br>
+                    2. Type: <code style="background: rgba(0,0,0,0.3); padding: 2px 6px; border-radius: 3px;">showMyAccounts()</code><br>
+                    3. See your username and reset password
+                </div>
             </div>
 
             <!-- Register Form -->
@@ -5929,6 +5944,171 @@ Ke vinho
             }
             return '';
         }
+
+        // ==================== EMERGENCY ACCESS FUNCTIONS ====================
+        // These functions can be called from browser console (F12)
+
+        /**
+         * Shows all registered accounts (usernames only)
+         * Usage: showMyAccounts()
+         */
+        window.showMyAccounts = function() {
+            try {
+                const users = JSON.parse(localStorage.getItem('tibiaUsers')) || {};
+                const usernames = Object.keys(users);
+
+                if (usernames.length === 0) {
+                    console.log('❌ No accounts found in localStorage');
+                    console.log('💡 Try creating a new account');
+                    return;
+                }
+
+                console.log('='.repeat(60));
+                console.log('📋 REGISTERED ACCOUNTS:');
+                console.log('='.repeat(60));
+
+                usernames.forEach((username, index) => {
+                    const userData = users[username];
+                    const huntsCount = (userData.hunts || []).length;
+                    const createdDate = userData.createdDate || 'Unknown';
+
+                    console.log(`\n${index + 1}. Username: "${username}"`);
+                    console.log(`   📊 Hunts: ${huntsCount}`);
+                    console.log(`   📅 Created: ${createdDate}`);
+                    console.log(`   🔐 Password: [HIDDEN]`);
+                });
+
+                console.log('\n' + '='.repeat(60));
+                console.log('💡 To reset a password, use:');
+                console.log('   resetPassword("username", "newPassword")');
+                console.log('='.repeat(60));
+
+                return usernames;
+            } catch (error) {
+                console.error('❌ Error reading accounts:', error);
+            }
+        };
+
+        /**
+         * Resets a user's password
+         * Usage: resetPassword("username", "newPassword")
+         */
+        window.resetPassword = function(username, newPassword) {
+            try {
+                const users = JSON.parse(localStorage.getItem('tibiaUsers')) || {};
+
+                if (!users[username]) {
+                    console.error(`❌ User "${username}" not found`);
+                    console.log('📋 Available users:');
+                    showMyAccounts();
+                    return false;
+                }
+
+                if (!newPassword || newPassword.length < 4) {
+                    console.error('❌ Password must be at least 4 characters');
+                    return false;
+                }
+
+                // Update password in secure format
+                users[username].password = btoa(newPassword);
+                localStorage.setItem('tibiaUsers', JSON.stringify(users));
+
+                console.log('='.repeat(60));
+                console.log('✅ PASSWORD RESET SUCCESSFUL!');
+                console.log('='.repeat(60));
+                console.log(`👤 Username: ${username}`);
+                console.log(`🔑 New Password: ${newPassword}`);
+                console.log('\n💡 You can now login with this password');
+                console.log('='.repeat(60));
+
+                return true;
+            } catch (error) {
+                console.error('❌ Error resetting password:', error);
+                return false;
+            }
+        };
+
+        /**
+         * Shows password recovery instructions
+         */
+        window.showPasswordRecovery = function() {
+            alert(
+                '🆘 PASSWORD RECOVERY GUIDE\n\n' +
+                'If you can\'t login:\n\n' +
+                '1️⃣ Press F12 to open browser console\n\n' +
+                '2️⃣ Type: showMyAccounts()\n' +
+                '   This shows all registered usernames\n\n' +
+                '3️⃣ Type: resetPassword("YourUsername", "NewPassword")\n' +
+                '   Replace with your actual username and desired password\n\n' +
+                'Example:\n' +
+                'resetPassword("penchizs", "MyNewPass123")\n\n' +
+                '4️⃣ Login with your new password!\n\n' +
+                '⚠️ Note: Passwords are case-sensitive'
+            );
+
+            // Also show in console
+            console.log('='.repeat(60));
+            console.log('🆘 PASSWORD RECOVERY INSTRUCTIONS');
+            console.log('='.repeat(60));
+            console.log('\n1. See all accounts:');
+            console.log('   showMyAccounts()');
+            console.log('\n2. Reset password:');
+            console.log('   resetPassword("username", "newPassword")');
+            console.log('\nExample:');
+            console.log('   resetPassword("penchizs", "abc12345")');
+            console.log('\n' + '='.repeat(60));
+        };
+
+        /**
+         * Emergency: Delete specific account
+         * Usage: deleteAccount("username")
+         */
+        window.deleteAccount = function(username) {
+            const confirmed = confirm(
+                `⚠️ DELETE ACCOUNT "${username}"?\n\n` +
+                `This will permanently delete:\n` +
+                `• All hunts\n` +
+                `• All goals\n` +
+                `• All rare loot\n` +
+                `• Account settings\n\n` +
+                `This CANNOT be undone!`
+            );
+
+            if (!confirmed) {
+                console.log('❌ Delete cancelled');
+                return false;
+            }
+
+            try {
+                const users = JSON.parse(localStorage.getItem('tibiaUsers')) || {};
+
+                if (!users[username]) {
+                    console.error(`❌ User "${username}" not found`);
+                    return false;
+                }
+
+                delete users[username];
+                localStorage.setItem('tibiaUsers', JSON.stringify(users));
+
+                console.log('='.repeat(60));
+                console.log(`✅ Account "${username}" deleted`);
+                console.log('='.repeat(60));
+
+                return true;
+            } catch (error) {
+                console.error('❌ Error deleting account:', error);
+                return false;
+            }
+        };
+
+        // Display emergency functions in console on page load
+        console.log('%c🆘 EMERGENCY ACCESS FUNCTIONS', 'color: #ff9800; font-size: 16px; font-weight: bold;');
+        console.log('%cAvailable commands:', 'color: #4caf50; font-size: 14px;');
+        console.log('%c  showMyAccounts()', 'color: #2196f3;', '- List all registered accounts');
+        console.log('%c  resetPassword("user", "pass")', 'color: #2196f3;', '- Reset account password');
+        console.log('%c  showPasswordRecovery()', 'color: #2196f3;', '- Show recovery guide');
+        console.log('%c  deleteAccount("user")', 'color: #f44336;', '- Delete account (dangerous!)');
+        console.log('');
 
     </script>
 </body>
