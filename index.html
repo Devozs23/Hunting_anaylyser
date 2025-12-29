@@ -8,15 +8,16 @@
     <meta name="last-update" content="2024-12-29">
     <style>
         :root {
-            --bg-gradient-start: #1a1a2e;
-            --bg-gradient-end: #16213e;
+            --bg-gradient-start: #0a0a0f;
+            --bg-gradient-end: #1a1a2e;
             --primary-color: #667eea;
             --secondary-color: #764ba2;
             --success-color: #28a745;
             --danger-color: #dc3545;
             --warning-color: #ffc107;
             --info-color: #17a2b8;
-            --card-bg: #0f3460;
+            --card-bg: rgba(30, 30, 45, 0.6);
+            --card-bg-solid: #1e1e2d;
             --text-primary: #e9e9e9;
             --text-secondary: #b3b3b3;
             --border-color: #2d4059;
@@ -1959,44 +1960,44 @@
 
             <!-- Dashboard Tab -->
             <div class="main-tab-content active" id="dashboardTab">
-                <!-- Quick Stats Overview - COMPACT -->
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; margin-bottom: 15px;">
+                <!-- Main Stats Cards - LARGE STYLE (como screenshot 2) -->
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 15px; margin-bottom: 20px;">
                     <!-- Total Profit Card -->
-                    <div style="background: rgba(102, 126, 234, 0.1); backdrop-filter: blur(10px); border: 2px solid rgba(102, 126, 234, 0.3); border-radius: 15px; padding: 15px 12px; text-align: center; position: relative; overflow: hidden; transition: all 0.3s ease; box-shadow: 0 8px 32px rgba(102, 126, 234, 0.2);" onmouseover="this.style.transform='translateY(-3px)'; this.style.borderColor='#667eea';" onmouseout="this.style.transform=''; this.style.borderColor='rgba(102, 126, 234, 0.3)';">
-                        <div style="font-size: 2.5em; margin-bottom: 8px;">💰</div>
-                        <div id="dashTotalProfit" style="font-size: 1.8em; font-weight: 900; color: #667eea; margin-bottom: 5px;">0 gp</div>
-                        <div style="font-size: 0.75em; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 1px; font-weight: 600; margin-bottom: 3px;">Total Profit</div>
-                        <div id="dashTotalHunts" style="font-size: 0.7em; color: #667eea; opacity: 0.8;">0 hunts</div>
+                    <div style="background: linear-gradient(135deg, rgba(30, 30, 60, 0.9) 0%, rgba(40, 40, 70, 0.9) 100%); backdrop-filter: blur(15px); border: 2px solid rgba(102, 126, 234, 0.4); border-radius: 20px; padding: 30px 25px; text-align: center; position: relative; overflow: hidden; transition: all 0.3s ease; box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);">
+                        <div style="font-size: 4.5em; margin-bottom: 12px; filter: drop-shadow(0 0 20px rgba(255, 165, 0, 0.5));">💰</div>
+                        <div id="dashTotalProfit" style="font-size: 2.8em; font-weight: 900; color: #667eea; margin-bottom: 8px; text-shadow: 0 0 20px rgba(102, 126, 234, 0.6);">0 gp</div>
+                        <div style="font-size: 0.85em; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 2px; font-weight: 700; margin-bottom: 5px;">TOTAL PROFIT</div>
+                        <div id="dashTotalHunts" style="font-size: 0.8em; color: #667eea; opacity: 0.9;">0 hunt</div>
                     </div>
 
                     <!-- Avg Profit/h Card -->
-                    <div style="background: rgba(240, 147, 251, 0.1); backdrop-filter: blur(10px); border: 2px solid rgba(240, 147, 251, 0.3); border-radius: 15px; padding: 15px 12px; text-align: center; position: relative; overflow: hidden; transition: all 0.3s ease; box-shadow: 0 8px 32px rgba(245, 87, 108, 0.2);" onmouseover="this.style.transform='translateY(-3px)'; this.style.borderColor='#f093fb';" onmouseout="this.style.transform=''; this.style.borderColor='rgba(240, 147, 251, 0.3)';">
-                        <div style="font-size: 2.5em; margin-bottom: 8px;">⚡</div>
-                        <div id="dashAvgProfitHour" style="font-size: 1.8em; font-weight: 900; color: #f5576c; margin-bottom: 5px;">0 gp/h</div>
-                        <div style="font-size: 0.75em; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 1px; font-weight: 600; margin-bottom: 3px;">Avg Profit/Hour</div>
-                        <div id="dashAvgProfit" style="font-size: 0.7em; color: #f5576c; opacity: 0.8;">per hunt</div>
+                    <div style="background: linear-gradient(135deg, rgba(60, 30, 50, 0.9) 0%, rgba(70, 40, 60, 0.9) 100%); backdrop-filter: blur(15px); border: 2px solid rgba(240, 147, 251, 0.4); border-radius: 20px; padding: 30px 25px; text-align: center; position: relative; overflow: hidden; transition: all 0.3s ease; box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);">
+                        <div style="font-size: 4.5em; margin-bottom: 12px; filter: drop-shadow(0 0 20px rgba(255, 100, 100, 0.5));">⚡</div>
+                        <div id="dashAvgProfitHour" style="font-size: 2.8em; font-weight: 900; color: #f5576c; margin-bottom: 8px; text-shadow: 0 0 20px rgba(245, 87, 108, 0.6);">0 gp/h</div>
+                        <div style="font-size: 0.85em; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 2px; font-weight: 700; margin-bottom: 5px;">AVG PROFIT/HOUR</div>
+                        <div id="dashAvgProfit" style="font-size: 0.8em; color: #f5576c; opacity: 0.9;">4.2kk gp avg</div>
                     </div>
 
                     <!-- Today's Profit Card -->
-                    <div style="background: rgba(79, 172, 254, 0.1); backdrop-filter: blur(10px); border: 2px solid rgba(79, 172, 254, 0.3); border-radius: 15px; padding: 15px 12px; text-align: center; position: relative; overflow: hidden; transition: all 0.3s ease; box-shadow: 0 8px 32px rgba(0, 242, 254, 0.2);" onmouseover="this.style.transform='translateY(-3px)'; this.style.borderColor='#4facfe';" onmouseout="this.style.transform=''; this.style.borderColor='rgba(79, 172, 254, 0.3)';">
-                        <div style="font-size: 2.5em; margin-bottom: 8px;">📈</div>
-                        <div id="dashTodayProfit" style="font-size: 1.8em; font-weight: 900; color: #00f2fe; margin-bottom: 5px;">0 gp</div>
-                        <div style="font-size: 0.75em; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 1px; font-weight: 600; margin-bottom: 3px;">Today's Profit</div>
-                        <div id="dashTodayHunts" style="font-size: 0.7em; color: #00f2fe; opacity: 0.8;">0 hunts today</div>
+                    <div style="background: linear-gradient(135deg, rgba(30, 50, 60, 0.9) 0%, rgba(40, 60, 70, 0.9) 100%); backdrop-filter: blur(15px); border: 2px solid rgba(79, 172, 254, 0.4); border-radius: 20px; padding: 30px 25px; text-align: center; position: relative; overflow: hidden; transition: all 0.3s ease; box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);">
+                        <div style="font-size: 4.5em; margin-bottom: 12px; filter: drop-shadow(0 0 20px rgba(100, 200, 255, 0.5));">📈</div>
+                        <div id="dashTodayProfit" style="font-size: 2.8em; font-weight: 900; color: #00f2fe; margin-bottom: 8px; text-shadow: 0 0 20px rgba(0, 242, 254, 0.6);">0 gp</div>
+                        <div style="font-size: 0.85em; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 2px; font-weight: 700; margin-bottom: 5px;">TODAY'S PROFIT</div>
+                        <div id="dashTodayHunts" style="font-size: 0.8em; color: #00f2fe; opacity: 0.9;">1 hunt today</div>
                     </div>
 
                     <!-- Current Streak Card -->
-                    <div style="background: rgba(250, 112, 154, 0.1); backdrop-filter: blur(10px); border: 2px solid rgba(250, 112, 154, 0.3); border-radius: 15px; padding: 15px 12px; text-align: center; position: relative; overflow: hidden; transition: all 0.3s ease; box-shadow: 0 8px 32px rgba(254, 225, 64, 0.2);" onmouseover="this.style.transform='translateY(-3px)'; this.style.borderColor='#fee140';" onmouseout="this.style.transform=''; this.style.borderColor='rgba(250, 112, 154, 0.3)';">
-                        <div style="font-size: 2.5em; margin-bottom: 8px;">🔥</div>
-                        <div id="dashStreak" style="font-size: 1.8em; font-weight: 900; color: #fee140; margin-bottom: 5px;">0 days</div>
-                        <div style="font-size: 0.75em; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 1px; font-weight: 600; margin-bottom: 3px;">Current Streak</div>
-                        <div id="dashBestSpot" style="font-size: 0.7em; color: #fee140; opacity: 0.8;">No data yet</div>
+                    <div style="background: linear-gradient(135deg, rgba(60, 40, 30, 0.9) 0%, rgba(70, 50, 40, 0.9) 100%); backdrop-filter: blur(15px); border: 2px solid rgba(255, 165, 0, 0.4); border-radius: 20px; padding: 30px 25px; text-align: center; position: relative; overflow: hidden; transition: all 0.3s ease; box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);">
+                        <div style="font-size: 4.5em; margin-bottom: 12px; filter: drop-shadow(0 0 20px rgba(255, 165, 0, 0.7));">🔥</div>
+                        <div id="dashStreak" style="font-size: 2.8em; font-weight: 900; color: #fee140; margin-bottom: 8px; text-shadow: 0 0 20px rgba(254, 225, 64, 0.6);">1 day</div>
+                        <div style="font-size: 0.85em; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 2px; font-weight: 700; margin-bottom: 5px;">CURRENT STREAK</div>
+                        <div id="dashBestSpot" style="font-size: 0.8em; color: #fee140; opacity: 0.9;">Best: warzone7</div>
                     </div>
                 </div>
 
-                <!-- Daily Profit Target - ULTRA COMPACT -->
+                <!-- Daily Profit Target - ESTILO SCREENSHOT 2 -->
                 <div id="dailyTargetSection">
-                    <div class="card" style="background: linear-gradient(135deg, rgba(255, 193, 7, 0.15) 0%, rgba(255, 152, 0, 0.15) 100%); border-left: 4px solid var(--warning-color); padding: 10px;">
+                    <div class="card" style="background: linear-gradient(135deg, rgba(60, 50, 30, 0.8) 0%, rgba(50, 40, 20, 0.8) 100%); border: 3px solid #ffc107; border-radius: 15px; padding: 15px; box-shadow: 0 10px 40px rgba(255, 193, 7, 0.3);">
                         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
                             <h3 style="color: var(--warning-color); margin: 0; font-size: 0.95em;">🎯 Daily Target</h3>
                             <button class="btn-secondary" onclick="setDailyTarget()" style="padding: 3px 8px; font-size: 0.75em;">⚙️</button>
@@ -2036,11 +2037,11 @@
                     </div>
                 </div>
 
-                <!-- Session Timer - ULTRA COMPACT -->
+                <!-- Session Timer - ESTILO SCREENSHOT 2 -->
                 <div id="sessionTimerSection">
-                    <div class="card" style="background: linear-gradient(135deg, rgba(102, 126, 234, 0.15) 0%, rgba(118, 75, 162, 0.15) 100%); border-left: 4px solid var(--primary-color); padding: 10px;">
+                    <div class="card" style="background: linear-gradient(135deg, rgba(30, 50, 40, 0.8) 0%, rgba(20, 40, 30, 0.8) 100%); border: 3px solid #28a745; border-radius: 15px; padding: 15px; box-shadow: 0 10px 40px rgba(40, 167, 69, 0.3);">
                         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
-                            <h3 style="color: var(--primary-color); margin: 0; font-size: 0.95em;">⏱️ Session</h3>
+                            <h3 style="color: #28a745; margin: 0; font-size: 0.95em;">⏱️ Session</h3>
                             <div>
                                 <button id="sessionStartBtn" class="btn-success" onclick="startSession()" style="padding: 3px 8px; font-size: 0.75em;">▶️</button>
                                 <button id="sessionPauseBtn" class="btn-warning" onclick="pauseSession()" style="padding: 3px 8px; font-size: 0.75em; display: none;">⏸️</button>
@@ -2075,9 +2076,9 @@
                     </div>
                 </div>
 
-                <!-- Performance Analytics - ULTRA COMPACT -->
+                <!-- Performance Analytics - ESTILO SCREENSHOT 2 -->
                 <div id="performanceSection">
-                    <div class="card" style="background: linear-gradient(135deg, rgba(220, 53, 69, 0.15) 0%, rgba(255, 87, 34, 0.15) 100%); border-left: 4px solid var(--danger-color); padding: 10px;">
+                    <div class="card" style="background: linear-gradient(135deg, rgba(50, 30, 40, 0.8) 0%, rgba(40, 20, 30, 0.8) 100%); border: 3px solid #dc3545; border-radius: 15px; padding: 15px; box-shadow: 0 10px 40px rgba(220, 53, 69, 0.3);">
                         <h3 style="color: var(--danger-color); margin-bottom: 6px; font-size: 0.95em;">📈 Performance</h3>
 
                         <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 5px;">
@@ -2110,10 +2111,10 @@
                     </div>
                 </div>
 
-                <!-- Smart Insights - ULTRA COMPACT -->
+                <!-- Smart Insights - ESTILO SCREENSHOT 2 -->
                 <div id="smartInsights">
-                    <div class="card" style="background: linear-gradient(135deg, rgba(40, 167, 69, 0.1) 0%, rgba(32, 201, 151, 0.1) 100%); border-left: 4px solid var(--success-color); padding: 10px;">
-                        <h3 style="color: var(--success-color); margin-bottom: 6px; font-size: 0.95em;">🧠 Insights</h3>
+                    <div class="card" style="background: linear-gradient(135deg, rgba(30, 50, 50, 0.8) 0%, rgba(20, 40, 40, 0.8) 100%); border: 3px solid #20c997; border-radius: 15px; padding: 15px; box-shadow: 0 10px 40px rgba(32, 201, 151, 0.3);">
+                        <h3 style="color: #20c997; margin-bottom: 6px; font-size: 0.95em;">🧠 Insights</h3>
                         <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 5px;">
                             <div style="background: rgba(255,255,255,0.05); padding: 5px; border-radius: 6px; text-align: center;">
                                 <div style="font-size: 1.2em; margin-bottom: 2px;">📅</div>
