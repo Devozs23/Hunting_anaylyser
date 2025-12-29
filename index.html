@@ -2600,8 +2600,33 @@ Ke vinho
                 return;
             }
 
-            if (users[username].password !== btoa(password)) {
-                showError('loginError', 'Incorrect password');
+            console.log('🔐 Login Debug:');
+            console.log('Username:', username);
+            console.log('Stored password:', users[username].password);
+            console.log('Input password (encoded):', btoa(password));
+
+            // Try multiple password formats for backward compatibility
+            const storedPassword = users[username].password;
+            const encodedPassword = btoa(password);
+            const plainPassword = password;
+
+            let passwordMatches = false;
+
+            if (storedPassword === encodedPassword) {
+                // Normal case: password is stored as base64
+                passwordMatches = true;
+                console.log('✅ Password matched: base64 format');
+            } else if (storedPassword === plainPassword) {
+                // Legacy case: password stored as plain text
+                passwordMatches = true;
+                console.log('⚠️ Password matched: plain text (legacy)');
+                // Auto-upgrade to secure format
+                users[username].password = encodedPassword;
+                localStorage.setItem('tibiaUsers', JSON.stringify(users));
+                console.log('✅ Password upgraded to secure format');
+            } else {
+                console.log('❌ Password mismatch');
+                showError('loginError', 'Incorrect password. Check browser console (F12) for details.');
                 return;
             }
 
