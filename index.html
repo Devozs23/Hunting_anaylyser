@@ -1391,9 +1391,417 @@
         /* ========================================
            FIN DE MEJORAS VISUALES
            ======================================== */
+
+        /* ========================================
+           🎨 PARTE 2 - MÁS MEJORAS IMPACTANTES
+           ======================================== */
+
+        /* 5. TEMA CLARO/OSCURO - Variables adicionales para tema claro */
+        body {
+            transition: background 0.5s ease, color 0.5s ease;
+        }
+
+        body.light-theme {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        body.light-theme .card {
+            background: rgba(255, 255, 255, 0.95);
+            color: #333;
+        }
+
+        body.light-theme .top-nav {
+            background: rgba(255, 255, 255, 0.25);
+        }
+
+        body.light-theme .main-tabs {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        /* 6. BADGES Y ETIQUETAS */
+        .badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.75em;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            animation: bounceIn 0.5s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .badge::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.5s;
+        }
+
+        .badge:hover::before {
+            left: 100%;
+        }
+
+        .badge-success {
+            background: linear-gradient(135deg, #28a745, #20c997);
+            color: white;
+        }
+
+        .badge-danger {
+            background: linear-gradient(135deg, #dc3545, #c82333);
+            color: white;
+        }
+
+        .badge-warning {
+            background: linear-gradient(135deg, #ffc107, #ff9800);
+            color: white;
+        }
+
+        .badge-info {
+            background: linear-gradient(135deg, #17a2b8, #00bcd4);
+            color: white;
+        }
+
+        .badge-primary {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+        }
+
+        .badge-new {
+            background: linear-gradient(135deg, #f093fb, #f5576c);
+            color: white;
+            animation: pulseGlow 2s infinite;
+        }
+
+        /* Etiquetas flotantes */
+        .floating-label {
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            z-index: 100;
+            animation: bounceIn 0.5s ease, pulse 2s infinite;
+        }
+
+        /* 7. PROGRESS BARS MEJORADAS */
+        .progress-container {
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 20px;
+            height: 30px;
+            overflow: hidden;
+            position: relative;
+            box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .progress-bar-enhanced {
+            height: 100%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #667eea 100%);
+            background-size: 200% 100%;
+            animation: gradientShift 3s ease infinite;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            font-size: 0.85em;
+            transition: width 1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 0 20px rgba(102, 126, 234, 0.5);
+        }
+
+        .progress-bar-enhanced::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            animation: shimmer 2s infinite;
+        }
+
+        .progress-bar-enhanced::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 50%;
+            background: linear-gradient(180deg, rgba(255,255,255,0.3), transparent);
+            border-radius: 20px 20px 0 0;
+        }
+
+        /* Progress bar con diferentes colores según % */
+        .progress-bar-low {
+            background: linear-gradient(135deg, #dc3545 0%, #c82333 50%, #dc3545 100%);
+            background-size: 200% 100%;
+            box-shadow: 0 0 20px rgba(220, 53, 69, 0.5);
+        }
+
+        .progress-bar-medium {
+            background: linear-gradient(135deg, #ffc107 0%, #ff9800 50%, #ffc107 100%);
+            background-size: 200% 100%;
+            box-shadow: 0 0 20px rgba(255, 193, 7, 0.5);
+        }
+
+        .progress-bar-high {
+            background: linear-gradient(135deg, #28a745 0%, #20c997 50%, #28a745 100%);
+            background-size: 200% 100%;
+            box-shadow: 0 0 20px rgba(40, 167, 69, 0.5);
+        }
+
+        /* 8. PARTÍCULAS DE FONDO */
+        .particles-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 50%;
+            animation: float-particle linear infinite;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+        }
+
+        @keyframes float-particle {
+            0% {
+                transform: translateY(100vh) translateX(0) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100px) translateX(100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* 9. LOADING STATES */
+        .skeleton {
+            background: linear-gradient(90deg,
+                rgba(255,255,255,0.1) 25%,
+                rgba(255,255,255,0.2) 50%,
+                rgba(255,255,255,0.1) 75%
+            );
+            background-size: 200% 100%;
+            animation: skeleton-loading 1.5s infinite;
+            border-radius: 8px;
+        }
+
+        @keyframes skeleton-loading {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 4px solid rgba(255, 255, 255, 0.2);
+            border-top: 4px solid #667eea;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 20px auto;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Spinner con glow */
+        .spinner-glow {
+            width: 60px;
+            height: 60px;
+            border: 5px solid rgba(102, 126, 234, 0.2);
+            border-top: 5px solid #667eea;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite, glowPulse 2s ease-in-out infinite;
+            margin: 30px auto;
+            box-shadow: 0 0 30px rgba(102, 126, 234, 0.5);
+        }
+
+        /* Loading overlay */
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(10px);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .loading-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .loading-text {
+            color: white;
+            font-size: 1.3em;
+            font-weight: 700;
+            margin-top: 20px;
+            animation: pulse 2s infinite;
+        }
+
+        /* 10. MEJORAS PARA GRÁFICAS */
+        .chart-wrapper {
+            position: relative;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .chart-title {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid rgba(102, 126, 234, 0.3);
+        }
+
+        .chart-legend {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-top: 10px;
+        }
+
+        .chart-legend-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 5px 12px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            font-size: 0.8em;
+            transition: all 0.3s ease;
+        }
+
+        .chart-legend-item:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: scale(1.05);
+        }
+
+        .chart-legend-color {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            box-shadow: 0 0 10px currentColor;
+        }
+
+        /* BOTÓN TEMA MEJORADO */
+        .theme-toggle {
+            position: relative;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border: none;
+            width: 60px;
+            height: 30px;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .theme-toggle::before {
+            content: '🌙';
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            width: 26px;
+            height: 26px;
+            background: white;
+            border-radius: 50%;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8em;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        body.light-theme .theme-toggle::before {
+            content: '☀️';
+            transform: translateX(30px);
+        }
+
+        .theme-toggle:hover {
+            box-shadow:
+                inset 0 2px 8px rgba(0, 0, 0, 0.2),
+                0 0 20px rgba(102, 126, 234, 0.5);
+        }
+
+        /* EFECTOS ESPECIALES */
+        .sparkle {
+            animation: sparkle 1.5s infinite;
+        }
+
+        @keyframes sparkle {
+            0%, 100% { opacity: 1; transform: scale(1) rotate(0deg); }
+            50% { opacity: 0.5; transform: scale(1.2) rotate(180deg); }
+        }
+
+        /* Ripple effect en clicks */
+        .ripple {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.6);
+            transform: scale(0);
+            animation: ripple-animation 0.6s ease-out;
+            pointer-events: none;
+        }
+
+        @keyframes ripple-animation {
+            to {
+                transform: scale(4);
+                opacity: 0;
+            }
+        }
+
+        /* ========================================
+           FIN PARTE 2
+           ======================================== */
     </style>
 </head>
 <body>
+    <!-- Partículas de fondo -->
+    <div class="particles-container" id="particlesContainer"></div>
+
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="spinner-glow"></div>
+        <div class="loading-text">Cargando...</div>
+    </div>
+
     <!-- Login Screen -->
     <div class="login-container" id="loginScreen">
         <div class="login-card">
@@ -2715,6 +3123,7 @@ Member Name
         window.onload = function() {
             checkAuth();
             applyTheme();
+            initVisualEffects(); // ✨ Inicializar efectos visuales
 
             // Enter key listeners
             document.getElementById('loginPassword').addEventListener('keypress', function(e) {
@@ -2725,22 +3134,154 @@ Member Name
             });
         };
 
-        // Theme Management
+        // Theme Management - MEJORADO
         function toggleTheme() {
             isDarkMode = !isDarkMode;
             localStorage.setItem('darkMode', isDarkMode);
             applyTheme();
+
+            // Efecto ripple en el botón
+            const toggle = document.getElementById('themeToggle');
+            if (toggle) {
+                createRipple(toggle);
+            }
         }
 
         function applyTheme() {
             const toggle = document.getElementById('themeToggle');
             if (isDarkMode) {
-                document.documentElement.removeAttribute('data-theme'); // Dark es el default
-                if (toggle) toggle.textContent = '☀️';
+                document.body.classList.remove('light-theme');
+                if (toggle) toggle.textContent = '';
             } else {
-                document.documentElement.setAttribute('data-theme', 'light');
-                if (toggle) toggle.textContent = '🌙';
+                document.body.classList.add('light-theme');
+                if (toggle) toggle.textContent = '';
             }
+        }
+
+        // ========================================
+        // 🎨 FUNCIONES NUEVAS - EFECTOS VISUALES
+        // ========================================
+
+        // Crear efecto ripple en clicks
+        function createRipple(element) {
+            const ripple = document.createElement('span');
+            ripple.classList.add('ripple');
+
+            const rect = element.getBoundingClientRect();
+            const size = Math.max(rect.width, rect.height);
+
+            ripple.style.width = ripple.style.height = size + 'px';
+            ripple.style.left = '50%';
+            ripple.style.top = '50%';
+            ripple.style.transform = 'translate(-50%, -50%)';
+
+            element.style.position = 'relative';
+            element.style.overflow = 'hidden';
+            element.appendChild(ripple);
+
+            setTimeout(() => ripple.remove(), 600);
+        }
+
+        // Crear partículas de fondo
+        function createParticles() {
+            const container = document.getElementById('particlesContainer');
+            if (!container) return;
+
+            const particleCount = 30;
+
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+
+                // Posición aleatoria
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.bottom = '-10px';
+
+                // Tamaño aleatorio
+                const size = Math.random() * 4 + 2;
+                particle.style.width = size + 'px';
+                particle.style.height = size + 'px';
+
+                // Duración aleatoria
+                const duration = Math.random() * 10 + 15;
+                particle.style.animationDuration = duration + 's';
+
+                // Retraso aleatorio
+                const delay = Math.random() * 5;
+                particle.style.animationDelay = delay + 's';
+
+                container.appendChild(particle);
+            }
+        }
+
+        // Mostrar loading overlay
+        function showLoading(text = 'Cargando...') {
+            const overlay = document.getElementById('loadingOverlay');
+            const loadingText = overlay.querySelector('.loading-text');
+            if (loadingText) loadingText.textContent = text;
+            overlay.classList.add('active');
+        }
+
+        // Ocultar loading overlay
+        function hideLoading() {
+            const overlay = document.getElementById('loadingOverlay');
+            overlay.classList.remove('active');
+        }
+
+        // Añadir badges dinámicamente
+        function addBadge(element, text, type = 'primary') {
+            const badge = document.createElement('span');
+            badge.classList.add('badge', `badge-${type}`);
+            badge.textContent = text;
+            element.appendChild(badge);
+            return badge;
+        }
+
+        // Crear progress bar mejorada
+        function createEnhancedProgressBar(container, percentage, options = {}) {
+            const {
+                showPercentage = true,
+                color = 'auto' // auto, low, medium, high
+            } = options;
+
+            container.innerHTML = '';
+            container.classList.add('progress-container');
+
+            const bar = document.createElement('div');
+            bar.classList.add('progress-bar-enhanced');
+
+            // Color automático según porcentaje
+            if (color === 'auto') {
+                if (percentage < 33) bar.classList.add('progress-bar-low');
+                else if (percentage < 66) bar.classList.add('progress-bar-medium');
+                else bar.classList.add('progress-bar-high');
+            } else {
+                bar.classList.add(`progress-bar-${color}`);
+            }
+
+            bar.style.width = percentage + '%';
+            if (showPercentage) {
+                bar.textContent = percentage + '%';
+            }
+
+            container.appendChild(bar);
+            return bar;
+        }
+
+        // Inicializar efectos visuales
+        function initVisualEffects() {
+            // Crear partículas
+            createParticles();
+
+            // Añadir ripple effect a todos los botones
+            document.addEventListener('click', function(e) {
+                if (e.target.tagName === 'BUTTON' || e.target.classList.contains('btn-primary') ||
+                    e.target.classList.contains('btn-success') || e.target.classList.contains('btn-danger')) {
+                    createRipple(e.target);
+                }
+            });
+
+            console.log('✨ Efectos visuales mejorados activados');
         }
 
         // Tab Management
