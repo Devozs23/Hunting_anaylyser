@@ -2794,54 +2794,78 @@ Ke vinho
         }
 
         function addHunt() {
-            const huntName = document.getElementById('huntName').value.trim() || 'Unknown Location';
-            const loot = parseInt(document.getElementById('loot').value);
-            const supplies = parseInt(document.getElementById('supplies').value);
-            const experience = parseInt(document.getElementById('experience').value);
-            const duration = parseInt(document.getElementById('duration').value);
-            const notes = document.getElementById('huntNotes').value.trim();
+            try {
+                console.log('🎯 addHunt() called');
 
-            // Validation
-            if (isNaN(loot) || loot < 0) {
-                showNotification('⚠️ Please enter a valid loot amount (cannot be negative)', 'error');
-                return;
+                const huntName = document.getElementById('huntName').value.trim() || 'Unknown Location';
+                const lootInput = document.getElementById('loot').value;
+                const suppliesInput = document.getElementById('supplies').value;
+                const experienceInput = document.getElementById('experience').value;
+                const durationInput = document.getElementById('duration').value;
+                const notes = document.getElementById('huntNotes').value.trim();
+
+                console.log('📝 Form values:', { huntName, lootInput, suppliesInput, experienceInput, durationInput });
+
+                // Parse numbers
+                const loot = parseInt(lootInput) || 0;
+                const supplies = parseInt(suppliesInput) || 0;
+                const experience = parseInt(experienceInput) || 0;
+                const duration = parseInt(durationInput) || 0;
+
+                // Validation
+                if (loot < 0) {
+                    showNotification('⚠️ Loot amount cannot be negative', 'error');
+                    return;
+                }
+                if (supplies < 0) {
+                    showNotification('⚠️ Supplies amount cannot be negative', 'error');
+                    return;
+                }
+                if (experience < 0) {
+                    showNotification('⚠️ Experience amount cannot be negative', 'error');
+                    return;
+                }
+                if (duration < 0) {
+                    showNotification('⚠️ Duration cannot be negative', 'error');
+                    return;
+                }
+
+                // At least one field should have data
+                if (loot === 0 && supplies === 0 && experience === 0 && duration === 0) {
+                    showNotification('⚠️ Please fill in at least one field', 'warning');
+                    return;
+                }
+
+                const profit = loot - supplies;
+
+                const hunt = {
+                    id: Date.now(),
+                    name: huntName,
+                    location: huntName, // Compatibility
+                    loot: loot,
+                    supplies: supplies,
+                    profit: profit,
+                    experience: experience,
+                    duration: duration,
+                    notes: notes,
+                    date: new Date().toLocaleString(),
+                    timestamp: Date.now()
+                };
+
+                console.log('✅ Adding hunt:', hunt);
+
+                hunts.unshift(hunt);
+                saveUserData();
+                updateDisplay();
+                updateGoalsProgress();
+                clearForm();
+
+                showNotification(`✅ Hunt added! Profit: ${formatProfit(profit)}`, 'success');
+                switchMainTab('dashboard');
+            } catch (error) {
+                console.error('❌ Error in addHunt():', error);
+                showNotification('❌ Error adding hunt: ' + error.message, 'error');
             }
-            if (isNaN(supplies) || supplies < 0) {
-                showNotification('⚠️ Please enter a valid supplies amount (cannot be negative)', 'error');
-                return;
-            }
-            if (isNaN(experience) || experience < 0) {
-                showNotification('⚠️ Please enter a valid experience amount (cannot be negative)', 'error');
-                return;
-            }
-            if (isNaN(duration) || duration < 0) {
-                showNotification('⚠️ Please enter a valid duration (cannot be negative)', 'error');
-                return;
-            }
-
-            const profit = loot - supplies;
-
-            const hunt = {
-                id: Date.now(),
-                name: huntName,
-                loot: loot,
-                supplies: supplies,
-                profit: profit,
-                experience: experience,
-                duration: duration,
-                notes: notes,
-                date: new Date().toLocaleString(),
-                timestamp: Date.now()
-            };
-
-            hunts.unshift(hunt);
-            saveUserData();
-            updateDisplay();
-            updateGoalsProgress();
-            clearForm();
-
-            showNotification(`✅ Hunt added! Profit: ${formatNumber(profit)} gp`, 'success');
-            switchMainTab('dashboard');
         }
 
         function deleteHunt(id) {
@@ -2861,6 +2885,9 @@ Ke vinho
             document.getElementById('experience').value = '';
             document.getElementById('duration').value = '';
             document.getElementById('huntNotes').value = '';
+
+            // Update preview to show empty state
+            updatePreview();
         }
 
         function clearAllData() {
