@@ -1239,6 +1239,38 @@
             <!-- Toast Container -->
             <div class="toast-container" id="toastContainer"></div>
 
+            <!-- Target Modal -->
+            <div id="targetModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); z-index: 10000; align-items: center; justify-content: center;">
+                <div style="background: var(--card-bg); border-radius: 20px; padding: 30px; max-width: 500px; width: 90%; box-shadow: 0 20px 60px rgba(0,0,0,0.5); animation: slideUp 0.3s ease-out;">
+                    <h2 style="color: var(--warning-color); margin-bottom: 20px; text-align: center;">🎯 Set Daily Profit Target</h2>
+                    <p style="color: var(--text-secondary); text-align: center; margin-bottom: 25px;">Enter your daily profit goal (you can use k for thousands, kk for millions)</p>
+
+                    <div class="input-group" style="margin-bottom: 25px;">
+                        <label style="font-weight: 600; color: var(--text-primary); font-size: 1.1em;">💰 Target Amount</label>
+                        <input type="text" id="modalTargetInput" placeholder="e.g., 200kk, 50kk, 5000000" style="font-size: 1.2em; font-weight: 700; padding: 15px; text-align: center; border: 2px solid var(--warning-color);">
+                        <div id="targetPreview" style="margin-top: 10px; font-size: 0.9em; color: var(--text-secondary); text-align: center;"></div>
+                    </div>
+
+                    <div style="background: rgba(255, 193, 7, 0.1); padding: 15px; border-radius: 10px; margin-bottom: 25px; border-left: 4px solid var(--warning-color);">
+                        <p style="margin: 0; font-size: 0.9em; color: var(--text-primary); line-height: 1.5;">
+                            <strong>💡 Examples:</strong><br>
+                            • 200kk = 200,000,000 gp<br>
+                            • 50kk = 50,000,000 gp<br>
+                            • 10kk = 10,000,000 gp
+                        </p>
+                    </div>
+
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                        <button onclick="closeTargetModal()" style="background: rgba(0,0,0,0.2); color: var(--text-primary); padding: 15px; border-radius: 10px; font-weight: 700; border: none; cursor: pointer; transition: all 0.3s;" onmouseover="this.style.background='rgba(0,0,0,0.3)'" onmouseout="this.style.background='rgba(0,0,0,0.2)'">
+                            ❌ Cancel
+                        </button>
+                        <button onclick="saveTargetFromModal()" style="background: linear-gradient(135deg, var(--warning-color), var(--success-color)); color: white; padding: 15px; border-radius: 10px; font-weight: 700; border: none; cursor: pointer; transition: all 0.3s; box-shadow: 0 4px 15px rgba(255, 193, 7, 0.3);" onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 20px rgba(255, 193, 7, 0.4)'" onmouseout="this.style.transform=''; this.style.boxShadow='0 4px 15px rgba(255, 193, 7, 0.3)'">
+                            ✅ Save Target
+                        </button>
+                    </div>
+                </div>
+            </div>
+
             <!-- Dashboard Tab -->
             <div class="main-tab-content active" id="dashboardTab">
                 <!-- Hero Section -->
@@ -1288,47 +1320,46 @@
                     </div>
                 </div>
 
-                <!-- Daily Profit Target -->
+                <!-- Daily Profit Target - COMPACT -->
                 <div id="dailyTargetSection">
-                    <div class="card" style="background: linear-gradient(135deg, rgba(255, 193, 7, 0.15) 0%, rgba(255, 152, 0, 0.15) 100%); border-left: 4px solid var(--warning-color);">
-                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
-                            <h2 style="color: var(--warning-color); margin: 0;">🎯 Daily Profit Target</h2>
-                            <button class="btn-secondary" onclick="setDailyTarget()" style="padding: 8px 16px;">⚙️ Set Target</button>
+                    <div class="card" style="background: linear-gradient(135deg, rgba(255, 193, 7, 0.15) 0%, rgba(255, 152, 0, 0.15) 100%); border-left: 4px solid var(--warning-color); padding: 15px;">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                            <h3 style="color: var(--warning-color); margin: 0; font-size: 1.1em;">🎯 Daily Target</h3>
+                            <button class="btn-secondary" onclick="setDailyTarget()" style="padding: 5px 12px; font-size: 0.85em;">⚙️ Set</button>
                         </div>
 
-                        <div style="background: rgba(0,0,0,0.2); padding: 25px; border-radius: 15px; margin-bottom: 20px;">
-                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
-                                <div>
-                                    <div style="font-size: 0.9em; color: var(--text-secondary); margin-bottom: 5px;">Today's Progress</div>
-                                    <div style="font-size: 2.5em; font-weight: bold; color: var(--warning-color);" id="dailyProfitAmount">0 gp</div>
-                                    <div style="font-size: 0.85em; color: var(--text-secondary);">of <span id="dailyTargetAmount" style="color: var(--text-primary); font-weight: 600;">1,000k gp</span> target</div>
-                                </div>
-                                <div style="text-align: right;">
-                                    <div style="font-size: 3em;" id="dailyTargetEmoji">🎯</div>
-                                    <div style="font-size: 0.9em; font-weight: bold;" id="dailyTargetPercentage">0%</div>
-                                </div>
+                        <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 12px; margin-bottom: 10px;">
+                            <div>
+                                <div style="font-size: 0.75em; color: var(--text-secondary); margin-bottom: 3px;">Progress</div>
+                                <div style="font-size: 1.6em; font-weight: 900; color: var(--warning-color);" id="dailyProfitAmount">0 gp</div>
+                                <div style="font-size: 0.75em; color: var(--text-secondary);">of <span id="dailyTargetAmount" style="color: var(--text-primary); font-weight: 600;">1kk gp</span></div>
                             </div>
-
-                            <!-- Progress Bar -->
-                            <div style="background: rgba(0,0,0,0.3); height: 30px; border-radius: 15px; overflow: hidden; position: relative;">
-                                <div id="dailyProgressBar" style="background: linear-gradient(90deg, var(--warning-color) 0%, var(--success-color) 100%); height: 100%; width: 0%; transition: width 0.5s ease; display: flex; align-items: center; justify-content: flex-end; padding-right: 10px;">
-                                    <span style="color: white; font-weight: bold; font-size: 0.85em;" id="dailyProgressText"></span>
-                                </div>
+                            <div style="text-align: center; align-self: center;">
+                                <div style="font-size: 2.5em;" id="dailyTargetEmoji">🎯</div>
+                                <div style="font-size: 0.8em; font-weight: bold;" id="dailyTargetPercentage">0%</div>
                             </div>
                         </div>
 
-                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px;">
-                            <div style="background: rgba(255,255,255,0.05); padding: 15px; border-radius: 10px; text-align: center;">
-                                <div style="font-size: 0.85em; color: var(--text-secondary); margin-bottom: 5px;">Hunts Today</div>
-                                <div id="dailyHuntsCount" style="font-size: 2em; font-weight: bold; color: var(--text-primary);">0</div>
+                        <!-- Compact Progress Bar -->
+                        <div style="background: rgba(0,0,0,0.3); height: 20px; border-radius: 10px; overflow: hidden; margin-bottom: 10px;">
+                            <div id="dailyProgressBar" style="background: linear-gradient(90deg, var(--warning-color) 0%, var(--success-color) 100%); height: 100%; width: 0%; transition: width 0.5s ease; display: flex; align-items: center; justify-content: flex-end; padding-right: 8px;">
+                                <span style="color: white; font-weight: bold; font-size: 0.7em;" id="dailyProgressText"></span>
                             </div>
-                            <div style="background: rgba(255,255,255,0.05); padding: 15px; border-radius: 10px; text-align: center;">
-                                <div style="font-size: 0.85em; color: var(--text-secondary); margin-bottom: 5px;">Remaining</div>
-                                <div id="dailyRemaining" style="font-size: 2em; font-weight: bold; color: var(--warning-color);">0 gp</div>
+                        </div>
+
+                        <!-- Compact Stats -->
+                        <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px;">
+                            <div style="background: rgba(255,255,255,0.05); padding: 8px; border-radius: 8px; text-align: center;">
+                                <div style="font-size: 0.7em; color: var(--text-secondary);">Hunts</div>
+                                <div id="dailyHuntsCount" style="font-size: 1.3em; font-weight: bold; color: var(--text-primary);">0</div>
                             </div>
-                            <div style="background: rgba(255,255,255,0.05); padding: 15px; border-radius: 10px; text-align: center;">
-                                <div style="font-size: 0.85em; color: var(--text-secondary); margin-bottom: 5px;">Needed</div>
-                                <div id="dailyNeeded" style="font-size: 1.5em; font-weight: bold; color: var(--info-color);">0 hunts</div>
+                            <div style="background: rgba(255,255,255,0.05); padding: 8px; border-radius: 8px; text-align: center;">
+                                <div style="font-size: 0.7em; color: var(--text-secondary);">Left</div>
+                                <div id="dailyRemaining" style="font-size: 1.1em; font-weight: bold; color: var(--warning-color);">0</div>
+                            </div>
+                            <div style="background: rgba(255,255,255,0.05); padding: 8px; border-radius: 8px; text-align: center;">
+                                <div style="font-size: 0.7em; color: var(--text-secondary);">Need</div>
+                                <div id="dailyNeeded" style="font-size: 1.1em; font-weight: bold; color: var(--info-color);">0</div>
                             </div>
                         </div>
                     </div>
@@ -4019,18 +4050,45 @@ Ke vinho
         // Daily Profit Target Functions
         function setDailyTarget() {
             const currentFormatted = dailyTarget >= 1000000 ? (dailyTarget / 1000000) + 'kk' : dailyTarget >= 1000 ? (dailyTarget / 1000) + 'k' : dailyTarget;
-            const target = prompt('Set your daily profit target:\n\nExamples: 200kk, 50kk, 5000000\n(You can use "k" for thousands, "kk" for millions)', currentFormatted);
+            document.getElementById('modalTargetInput').value = currentFormatted;
+            document.getElementById('targetModal').style.display = 'flex';
+            document.getElementById('modalTargetInput').focus();
 
-            if (target && target.trim() !== '') {
+            // Preview on input
+            document.getElementById('modalTargetInput').oninput = function() {
+                const val = this.value.trim();
+                const parsed = parsePrice(val);
+                const preview = document.getElementById('targetPreview');
+                if (parsed > 0) {
+                    preview.textContent = `= ${formatProfit(parsed)}`;
+                    preview.style.color = 'var(--success-color)';
+                    preview.style.fontWeight = 'bold';
+                } else {
+                    preview.textContent = '';
+                }
+            };
+        }
+
+        function closeTargetModal() {
+            document.getElementById('targetModal').style.display = 'none';
+        }
+
+        function saveTargetFromModal() {
+            const target = document.getElementById('modalTargetInput').value.trim();
+
+            if (target !== '') {
                 const parsed = parsePrice(target);
                 if (parsed > 0) {
                     dailyTarget = parsed;
                     localStorage.setItem('dailyTarget', dailyTarget);
                     updateDailyTarget();
+                    closeTargetModal();
                     showNotification(`✅ Daily target updated to ${formatProfit(parsed)}!`, 'success');
                 } else {
                     showNotification('⚠️ Please enter a valid target (e.g., 200kk, 50kk)', 'warning');
                 }
+            } else {
+                closeTargetModal();
             }
         }
 
