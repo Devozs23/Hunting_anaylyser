@@ -1960,38 +1960,38 @@
 
             <!-- Dashboard Tab -->
             <div class="main-tab-content active" id="dashboardTab">
-                <!-- Main Stats Cards - LARGE STYLE (como screenshot 2) -->
+                <!-- Main Stats Cards - COLORES BRILLANTES VIVOS -->
                 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 15px; margin-bottom: 20px;">
-                    <!-- Total Profit Card -->
-                    <div style="background: linear-gradient(135deg, rgba(30, 30, 60, 0.9) 0%, rgba(40, 40, 70, 0.9) 100%); backdrop-filter: blur(15px); border: 2px solid rgba(102, 126, 234, 0.4); border-radius: 20px; padding: 30px 25px; text-align: center; position: relative; overflow: hidden; transition: all 0.3s ease; box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);">
-                        <div style="font-size: 4.5em; margin-bottom: 12px; filter: drop-shadow(0 0 20px rgba(255, 165, 0, 0.5));">💰</div>
-                        <div id="dashTotalProfit" style="font-size: 2.8em; font-weight: 900; color: #667eea; margin-bottom: 8px; text-shadow: 0 0 20px rgba(102, 126, 234, 0.6);">0 gp</div>
-                        <div style="font-size: 0.85em; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 2px; font-weight: 700; margin-bottom: 5px;">TOTAL PROFIT</div>
-                        <div id="dashTotalHunts" style="font-size: 0.8em; color: #667eea; opacity: 0.9;">0 hunt</div>
+                    <!-- Total Profit Card - AZUL BRILLANTE -->
+                    <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 20px; padding: 30px 25px; text-align: center; transition: all 0.3s ease; box-shadow: 0 10px 40px rgba(102, 126, 234, 0.6);">
+                        <div style="font-size: 4.5em; margin-bottom: 12px;">💰</div>
+                        <div id="dashTotalProfit" style="font-size: 2.8em; font-weight: 900; color: #ffffff; margin-bottom: 8px;">4.2kk gp</div>
+                        <div style="font-size: 0.85em; color: rgba(255,255,255,0.85); text-transform: uppercase; letter-spacing: 2px; font-weight: 700; margin-bottom: 5px;">TOTAL PROFIT</div>
+                        <div id="dashTotalHunts" style="font-size: 0.8em; color: rgba(255,255,255,0.75);">1 hunt</div>
                     </div>
 
-                    <!-- Avg Profit/h Card -->
-                    <div style="background: linear-gradient(135deg, rgba(60, 30, 50, 0.9) 0%, rgba(70, 40, 60, 0.9) 100%); backdrop-filter: blur(15px); border: 2px solid rgba(240, 147, 251, 0.4); border-radius: 20px; padding: 30px 25px; text-align: center; position: relative; overflow: hidden; transition: all 0.3s ease; box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);">
-                        <div style="font-size: 4.5em; margin-bottom: 12px; filter: drop-shadow(0 0 20px rgba(255, 100, 100, 0.5));">⚡</div>
-                        <div id="dashAvgProfitHour" style="font-size: 2.8em; font-weight: 900; color: #f5576c; margin-bottom: 8px; text-shadow: 0 0 20px rgba(245, 87, 108, 0.6);">0 gp/h</div>
-                        <div style="font-size: 0.85em; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 2px; font-weight: 700; margin-bottom: 5px;">AVG PROFIT/HOUR</div>
-                        <div id="dashAvgProfit" style="font-size: 0.8em; color: #f5576c; opacity: 0.9;">4.2kk gp avg</div>
+                    <!-- Avg Profit/h Card - ROSA/MAGENTA BRILLANTE -->
+                    <div style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); border-radius: 20px; padding: 30px 25px; text-align: center; transition: all 0.3s ease; box-shadow: 0 10px 40px rgba(245, 87, 108, 0.6);">
+                        <div style="font-size: 4.5em; margin-bottom: 12px;">⚡</div>
+                        <div id="dashAvgProfitHour" style="font-size: 2.8em; font-weight: 900; color: #ffffff; margin-bottom: 8px;">1.7kk gp/h</div>
+                        <div style="font-size: 0.85em; color: rgba(255,255,255,0.85); text-transform: uppercase; letter-spacing: 2px; font-weight: 700; margin-bottom: 5px;">AVG PROFIT/HOUR</div>
+                        <div id="dashAvgProfit" style="font-size: 0.8em; color: rgba(255,255,255,0.75);">4.2kk gp avg</div>
                     </div>
 
-                    <!-- Today's Profit Card -->
-                    <div style="background: linear-gradient(135deg, rgba(30, 50, 60, 0.9) 0%, rgba(40, 60, 70, 0.9) 100%); backdrop-filter: blur(15px); border: 2px solid rgba(79, 172, 254, 0.4); border-radius: 20px; padding: 30px 25px; text-align: center; position: relative; overflow: hidden; transition: all 0.3s ease; box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);">
-                        <div style="font-size: 4.5em; margin-bottom: 12px; filter: drop-shadow(0 0 20px rgba(100, 200, 255, 0.5));">📈</div>
-                        <div id="dashTodayProfit" style="font-size: 2.8em; font-weight: 900; color: #00f2fe; margin-bottom: 8px; text-shadow: 0 0 20px rgba(0, 242, 254, 0.6);">0 gp</div>
-                        <div style="font-size: 0.85em; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 2px; font-weight: 700; margin-bottom: 5px;">TODAY'S PROFIT</div>
-                        <div id="dashTodayHunts" style="font-size: 0.8em; color: #00f2fe; opacity: 0.9;">1 hunt today</div>
+                    <!-- Today's Profit Card - CYAN BRILLANTE -->
+                    <div style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); border-radius: 20px; padding: 30px 25px; text-align: center; transition: all 0.3s ease; box-shadow: 0 10px 40px rgba(0, 242, 254, 0.6);">
+                        <div style="font-size: 4.5em; margin-bottom: 12px;">📈</div>
+                        <div id="dashTodayProfit" style="font-size: 2.8em; font-weight: 900; color: #ffffff; margin-bottom: 8px;">4.2kk gp</div>
+                        <div style="font-size: 0.85em; color: rgba(255,255,255,0.85); text-transform: uppercase; letter-spacing: 2px; font-weight: 700; margin-bottom: 5px;">TODAY'S PROFIT</div>
+                        <div id="dashTodayHunts" style="font-size: 0.8em; color: rgba(255,255,255,0.75);">1 hunt today</div>
                     </div>
 
-                    <!-- Current Streak Card -->
-                    <div style="background: linear-gradient(135deg, rgba(60, 40, 30, 0.9) 0%, rgba(70, 50, 40, 0.9) 100%); backdrop-filter: blur(15px); border: 2px solid rgba(255, 165, 0, 0.4); border-radius: 20px; padding: 30px 25px; text-align: center; position: relative; overflow: hidden; transition: all 0.3s ease; box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);">
-                        <div style="font-size: 4.5em; margin-bottom: 12px; filter: drop-shadow(0 0 20px rgba(255, 165, 0, 0.7));">🔥</div>
-                        <div id="dashStreak" style="font-size: 2.8em; font-weight: 900; color: #fee140; margin-bottom: 8px; text-shadow: 0 0 20px rgba(254, 225, 64, 0.6);">1 day</div>
-                        <div style="font-size: 0.85em; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 2px; font-weight: 700; margin-bottom: 5px;">CURRENT STREAK</div>
-                        <div id="dashBestSpot" style="font-size: 0.8em; color: #fee140; opacity: 0.9;">Best: warzone7</div>
+                    <!-- Current Streak Card - MARRÓN/NARANJA -->
+                    <div style="background: linear-gradient(135deg, #8B4513 0%, #D2691E 100%); border-radius: 20px; padding: 30px 25px; text-align: center; transition: all 0.3s ease; box-shadow: 0 10px 40px rgba(139, 69, 19, 0.6);">
+                        <div style="font-size: 4.5em; margin-bottom: 12px;">🔥</div>
+                        <div id="dashStreak" style="font-size: 2.8em; font-weight: 900; color: #fee140; margin-bottom: 8px;">1 day</div>
+                        <div style="font-size: 0.85em; color: rgba(255,255,255,0.85); text-transform: uppercase; letter-spacing: 2px; font-weight: 700; margin-bottom: 5px;">CURRENT STREAK</div>
+                        <div id="dashBestSpot" style="font-size: 0.8em; color: #fee140;">Best: warzone7</div>
                     </div>
                 </div>
 
