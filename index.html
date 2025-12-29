@@ -2149,26 +2149,26 @@
                 </div>
 
                 <!-- Quick Stats Preview - COMPACT -->
-                <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-bottom: 10px;">
-                    <div style="background: rgba(102, 126, 234, 0.1); border: 1px solid rgba(102, 126, 234, 0.3); border-radius: 8px; padding: 8px; text-align: center;">
-                        <div style="font-size: 1.2em; margin-bottom: 3px;">📍</div>
-                        <div style="font-size: 0.65em; color: var(--text-secondary);">Location</div>
-                        <div id="previewLocation" style="font-size: 0.85em; font-weight: 700; color: #667eea; margin-top: 2px;">-</div>
+                <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; margin-bottom: 8px;">
+                    <div style="background: rgba(70, 90, 110, 0.15); border: 1px solid rgba(100, 150, 200, 0.3); border-radius: 6px; padding: 6px; text-align: center;">
+                        <div style="font-size: 1em; margin-bottom: 2px;">📍</div>
+                        <div style="font-size: 0.6em; color: var(--text-secondary);">Location</div>
+                        <div id="previewLocation" style="font-size: 0.75em; font-weight: 700; color: #7eb3d6; margin-top: 2px;">-</div>
                     </div>
-                    <div style="background: rgba(40, 167, 69, 0.1); border: 1px solid rgba(40, 167, 69, 0.3); border-radius: 8px; padding: 8px; text-align: center;">
-                        <div style="font-size: 1.2em; margin-bottom: 3px;">💰</div>
-                        <div style="font-size: 0.65em; color: var(--text-secondary);">Profit</div>
-                        <div id="previewProfit" style="font-size: 0.85em; font-weight: 700; color: #28a745; margin-top: 2px;">0 gp</div>
+                    <div style="background: rgba(60, 90, 70, 0.15); border: 1px solid rgba(80, 150, 100, 0.3); border-radius: 6px; padding: 6px; text-align: center;">
+                        <div style="font-size: 1em; margin-bottom: 2px;">💰</div>
+                        <div style="font-size: 0.6em; color: var(--text-secondary);">Profit</div>
+                        <div id="previewProfit" style="font-size: 0.75em; font-weight: 700; color: #7db89d; margin-top: 2px;">0 gp</div>
                     </div>
-                    <div style="background: rgba(240, 147, 251, 0.1); border: 1px solid rgba(240, 147, 251, 0.3); border-radius: 8px; padding: 8px; text-align: center;">
-                        <div style="font-size: 1.2em; margin-bottom: 3px;">⭐</div>
-                        <div style="font-size: 0.65em; color: var(--text-secondary);">XP</div>
-                        <div id="previewXP" style="font-size: 0.85em; font-weight: 700; color: #f5576c; margin-top: 2px;">0</div>
+                    <div style="background: rgba(90, 70, 80, 0.15); border: 1px solid rgba(180, 130, 150, 0.3); border-radius: 6px; padding: 6px; text-align: center;">
+                        <div style="font-size: 1em; margin-bottom: 2px;">⭐</div>
+                        <div style="font-size: 0.6em; color: var(--text-secondary);">XP</div>
+                        <div id="previewXP" style="font-size: 0.75em; font-weight: 700; color: #d89fbf; margin-top: 2px;">0</div>
                     </div>
-                    <div style="background: rgba(168, 85, 247, 0.1); border: 1px solid rgba(168, 85, 247, 0.3); border-radius: 8px; padding: 8px; text-align: center;">
-                        <div style="font-size: 1.2em; margin-bottom: 3px;">⏱️</div>
-                        <div style="font-size: 0.65em; color: var(--text-secondary);">Duration</div>
-                        <div id="previewDuration" style="font-size: 0.85em; font-weight: 700; color: #a855f7; margin-top: 2px;">0m</div>
+                    <div style="background: rgba(80, 75, 70, 0.15); border: 1px solid rgba(160, 140, 120, 0.3); border-radius: 6px; padding: 6px; text-align: center;">
+                        <div style="font-size: 1em; margin-bottom: 2px;">⏱️</div>
+                        <div style="font-size: 0.6em; color: var(--text-secondary);">Duration</div>
+                        <div id="previewDuration" style="font-size: 0.75em; font-weight: 700; color: #d9a87a; margin-top: 2px;">0m</div>
                     </div>
                 </div>
 
@@ -2176,16 +2176,16 @@
                     <!-- Left Column -->
                     <div>
                         <!-- Location - COMPACT -->
-                        <div class="card" style="padding: 10px; background: rgba(102, 126, 234, 0.05); border-left: 3px solid #667eea; margin-bottom: 8px;">
-                            <h4 style="color: #667eea; margin: 0 0 6px 0; font-size: 0.85em;">📍 Location</h4>
+                        <div class="card" style="padding: 10px; background: rgba(70, 90, 110, 0.08); border-left: 2px solid rgba(100, 150, 200, 0.5); margin-bottom: 8px;">
+                            <h4 style="color: #7eb3d6; margin: 0 0 6px 0; font-size: 0.85em;">📍 Location</h4>
                             <div class="input-group" style="margin: 0;">
                                 <input type="text" id="huntName" placeholder="e.g., Roshamuul, Prison..." oninput="updatePreview()" style="padding: 6px 10px; font-size: 0.85em;">
                             </div>
                         </div>
 
                         <!-- Manual Entry - COMPACT -->
-                        <div class="card" style="padding: 10px; background: rgba(40, 167, 69, 0.05); border-left: 3px solid #28a745;">
-                            <h4 style="color: #28a745; margin: 0 0 6px 0; font-size: 0.85em;">✏️ Manual Entry</h4>
+                        <div class="card" style="padding: 10px; background: rgba(60, 90, 70, 0.08); border-left: 2px solid rgba(80, 150, 100, 0.5);">
+                            <h4 style="color: #7db89d; margin: 0 0 6px 0; font-size: 0.85em;">✏️ Manual Entry</h4>
                             <div style="display: grid; gap: 6px;">
                                 <div class="input-group" style="margin: 0;">
                                     <label style="font-size: 0.7em; margin-bottom: 2px;">💰 Loot (gp)</label>
@@ -2210,8 +2210,8 @@
                     <!-- Right Column -->
                     <div>
                         <!-- Auto-Fill - COMPACT -->
-                        <div class="card" style="padding: 10px; background: rgba(34, 211, 238, 0.05); border-left: 3px solid #22d3ee; margin-bottom: 8px;">
-                            <h4 style="color: #22d3ee; margin: 0 0 6px 0; font-size: 0.85em;">🔍 Auto-Fill</h4>
+                        <div class="card" style="padding: 10px; background: rgba(70, 90, 100, 0.08); border-left: 2px solid rgba(100, 150, 180, 0.5); margin-bottom: 8px;">
+                            <h4 style="color: #7ec8d6; margin: 0 0 6px 0; font-size: 0.85em;">🔍 Auto-Fill</h4>
                             <div class="input-group" style="margin: 0;">
                                 <label style="font-size: 0.7em; margin-bottom: 2px;">📋 Paste Tibia Analyzer</label>
                                 <textarea id="huntData" placeholder="Session data: From...
@@ -2223,8 +2223,8 @@ Supplies: 488..." style="min-height: 100px; font-family: monospace; font-size: 0
                         </div>
 
                         <!-- Notes - COMPACT -->
-                        <div class="card" style="padding: 10px; background: rgba(156, 39, 176, 0.05); border-left: 3px solid #9c27b0;">
-                            <h4 style="color: #9c27b0; margin: 0 0 6px 0; font-size: 0.85em;">📝 Notes</h4>
+                        <div class="card" style="padding: 10px; background: rgba(80, 70, 90, 0.08); border-left: 2px solid rgba(150, 120, 160, 0.5);">
+                            <h4 style="color: #b89dc8; margin: 0 0 6px 0; font-size: 0.85em;">📝 Notes</h4>
                             <div class="input-group" style="margin: 0;">
                                 <textarea id="huntNotes" placeholder="Optional notes..." style="min-height: 60px; font-size: 0.75em; padding: 6px;"></textarea>
                             </div>
@@ -2239,9 +2239,9 @@ Supplies: 488..." style="min-height: 100px; font-family: monospace; font-size: 0
                 </div>
 
                 <!-- Tip Box -->
-                <div style="background: rgba(79, 172, 254, 0.1); backdrop-filter: blur(10px); border: 2px solid rgba(79, 172, 254, 0.3); border-radius: 15px; padding: 20px; margin-top: 20px;">
-                    <h4 style="color: #4facfe; margin-bottom: 10px;">💡 Pro Tips</h4>
-                    <ul style="color: var(--text-secondary); line-height: 1.8; margin: 0; padding-left: 20px;">
+                <div style="background: rgba(70, 90, 100, 0.12); backdrop-filter: blur(10px); border: 1.5px solid rgba(100, 150, 180, 0.3); border-radius: 12px; padding: 15px; margin-top: 15px;">
+                    <h4 style="color: #7ec8d6; margin-bottom: 8px; font-size: 0.9em;">💡 Pro Tips</h4>
+                    <ul style="color: var(--text-secondary); line-height: 1.6; margin: 0; padding-left: 20px; font-size: 0.85em;">
                         <li><strong>Easy Mode:</strong> Copy Hunt Analyzer text from Tibia → Paste above → Click "Auto-Fill" → Add!</li>
                         <li><strong>Manual Mode:</strong> Fill the numbers manually - watch the preview update in real-time!</li>
                         <li><strong>Notes:</strong> Add context like "rare spawn", "too crowded", or "best profit ever"</li>
