@@ -4018,12 +4018,19 @@ Ke vinho
 
         // Daily Profit Target Functions
         function setDailyTarget() {
-            const target = prompt('Set your daily profit target (in gold):', dailyTarget);
-            if (target && !isNaN(target) && parseInt(target) > 0) {
-                dailyTarget = parseInt(target);
-                localStorage.setItem('dailyTarget', dailyTarget);
-                updateDailyTarget();
-                showNotification('✅ Daily target updated!', 'success');
+            const currentFormatted = dailyTarget >= 1000000 ? (dailyTarget / 1000000) + 'kk' : dailyTarget >= 1000 ? (dailyTarget / 1000) + 'k' : dailyTarget;
+            const target = prompt('Set your daily profit target:\n\nExamples: 200kk, 50kk, 5000000\n(You can use "k" for thousands, "kk" for millions)', currentFormatted);
+
+            if (target && target.trim() !== '') {
+                const parsed = parsePrice(target);
+                if (parsed > 0) {
+                    dailyTarget = parsed;
+                    localStorage.setItem('dailyTarget', dailyTarget);
+                    updateDailyTarget();
+                    showNotification(`✅ Daily target updated to ${formatProfit(parsed)}!`, 'success');
+                } else {
+                    showNotification('⚠️ Please enter a valid target (e.g., 200kk, 50kk)', 'warning');
+                }
             }
         }
 
