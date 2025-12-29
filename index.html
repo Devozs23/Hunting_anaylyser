@@ -3888,8 +3888,9 @@ Ke vinho
             let totalHours = 0;
             hunts.forEach(h => {
                 if (h.duration) {
-                    const parts = h.duration.split(':');
-                    totalHours += parseInt(parts[0]) + parseInt(parts[1]) / 60;
+                    // Duration is stored as minutes (number)
+                    const minutes = typeof h.duration === 'string' ? parseInt(h.duration) : h.duration;
+                    totalHours += minutes / 60;
                 }
             });
             const avgProfitHour = totalHours > 0 ? Math.round(totalProfit / totalHours) : 0;
