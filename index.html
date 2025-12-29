@@ -2715,19 +2715,19 @@ Member Name
                     <button class="btn-primary" onclick="saveTCSettings()" style="width: 100%; padding: 6px 12px; font-size: 0.85em;">💾 Save</button>
 
                     <!-- TC Summary - COMPACT -->
-                    <div id="tcConversionDisplay" style="margin-top: 10px; padding: 10px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 10px; color: white; display: none;">
-                        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px;">
+                    <div id="tcConversionDisplay" style="margin-top: 10px; padding: 12px; background: linear-gradient(135deg, #1e3a5f 0%, #2c5f7f 100%); border-radius: 10px; color: white; display: none;">
+                        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px;">
                             <div style="text-align: center;">
-                                <p style="font-size: 0.65em; opacity: 0.9; margin-bottom: 3px;">Total</p>
-                                <p style="font-size: 1.3em; font-weight: bold; margin: 0;" id="tcTotalProfit">0 TC</p>
+                                <p style="font-size: 0.7em; opacity: 0.9; margin-bottom: 3px;">Total</p>
+                                <p style="font-size: 1.5em; font-weight: bold; margin: 0;" id="tcTotalProfit">0 TC</p>
                             </div>
                             <div style="text-align: center;">
-                                <p style="font-size: 0.65em; opacity: 0.9; margin-bottom: 3px;">Monthly</p>
-                                <p style="font-size: 1.3em; font-weight: bold; margin: 0;" id="tcMonthlyProfit">0 TC</p>
+                                <p style="font-size: 0.7em; opacity: 0.9; margin-bottom: 3px;">Monthly</p>
+                                <p style="font-size: 1.5em; font-weight: bold; margin: 0;" id="tcMonthlyProfit">0 TC</p>
                             </div>
                             <div style="text-align: center;">
-                                <p style="font-size: 0.65em; opacity: 0.9; margin-bottom: 3px;">Per Hunt</p>
-                                <p style="font-size: 1.3em; font-weight: bold; margin: 0;" id="tcAvgProfit">0 TC</p>
+                                <p style="font-size: 0.7em; opacity: 0.9; margin-bottom: 3px;">Per Hunt</p>
+                                <p style="font-size: 1.5em; font-weight: bold; margin: 0;" id="tcAvgProfit">0 TC</p>
                             </div>
                         </div>
                     </div>
@@ -2736,11 +2736,11 @@ Member Name
                 <!-- TC Calendar - COMPACT -->
                 <div class="card" style="margin-top: 10px; padding: 10px;">
                     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
-                        <h3 style="color: var(--success-color); margin: 0; font-size: 0.95em;">📅 TC Calendar</h3>
+                        <h3 style="color: var(--success-color); margin: 0; font-size: 1em;">📅 TC Calendar</h3>
                         <div style="display: flex; gap: 5px; align-items: center;">
-                            <button onclick="previousMonth()" style="padding: 3px 8px; font-size: 0.75em; background: rgba(102, 126, 234, 0.2); border: 1px solid rgba(102, 126, 234, 0.4); border-radius: 5px; color: var(--text-primary); cursor: pointer;">◀</button>
-                            <span id="calendarMonthYear" style="font-size: 0.85em; font-weight: 600; min-width: 100px; text-align: center;">Dec 2024</span>
-                            <button onclick="nextMonth()" style="padding: 3px 8px; font-size: 0.75em; background: rgba(102, 126, 234, 0.2); border: 1px solid rgba(102, 126, 234, 0.4); border-radius: 5px; color: var(--text-primary); cursor: pointer;">▶</button>
+                            <button onclick="previousMonth()" style="padding: 4px 10px; font-size: 0.8em; background: rgba(34, 211, 238, 0.2); border: 1px solid rgba(34, 211, 238, 0.4); border-radius: 5px; color: var(--text-primary); cursor: pointer;">◀</button>
+                            <span id="calendarMonthYear" style="font-size: 0.9em; font-weight: 600; min-width: 100px; text-align: center;">Dec 2024</span>
+                            <button onclick="nextMonth()" style="padding: 4px 10px; font-size: 0.8em; background: rgba(34, 211, 238, 0.2); border: 1px solid rgba(34, 211, 238, 0.4); border-radius: 5px; color: var(--text-primary); cursor: pointer;">▶</button>
                         </div>
                     </div>
 
@@ -2777,14 +2777,14 @@ Member Name
                     </div>
 
                     <!-- Legend -->
-                    <div style="margin-top: 8px; display: flex; gap: 8px; align-items: center; justify-content: center; font-size: 0.65em; color: var(--text-secondary);">
+                    <div style="margin-top: 8px; display: flex; gap: 8px; align-items: center; justify-content: center; font-size: 0.7em; color: var(--text-secondary);">
                         <span>Less</span>
-                        <div style="display: flex; gap: 2px;">
-                            <div style="width: 12px; height: 12px; background: rgba(102, 126, 234, 0.1); border: 1px solid rgba(102, 126, 234, 0.3); border-radius: 2px;"></div>
-                            <div style="width: 12px; height: 12px; background: rgba(102, 126, 234, 0.3); border: 1px solid rgba(102, 126, 234, 0.4); border-radius: 2px;"></div>
-                            <div style="width: 12px; height: 12px; background: rgba(102, 126, 234, 0.5); border: 1px solid rgba(102, 126, 234, 0.6); border-radius: 2px;"></div>
-                            <div style="width: 12px; height: 12px; background: rgba(102, 126, 234, 0.7); border: 1px solid rgba(102, 126, 234, 0.8); border-radius: 2px;"></div>
-                            <div style="width: 12px; height: 12px; background: rgba(102, 126, 234, 0.9); border: 1px solid rgba(102, 126, 234, 1); border-radius: 2px;"></div>
+                        <div style="display: flex; gap: 3px;">
+                            <div style="width: 14px; height: 14px; background: rgba(34, 211, 238, 0.1); border: 1px solid rgba(34, 211, 238, 0.3); border-radius: 2px;"></div>
+                            <div style="width: 14px; height: 14px; background: rgba(34, 211, 238, 0.3); border: 1px solid rgba(34, 211, 238, 0.4); border-radius: 2px;"></div>
+                            <div style="width: 14px; height: 14px; background: rgba(34, 211, 238, 0.5); border: 1px solid rgba(34, 211, 238, 0.6); border-radius: 2px;"></div>
+                            <div style="width: 14px; height: 14px; background: rgba(34, 211, 238, 0.7); border: 1px solid rgba(34, 211, 238, 0.8); border-radius: 2px;"></div>
+                            <div style="width: 14px; height: 14px; background: rgba(34, 211, 238, 0.9); border: 1px solid rgba(34, 211, 238, 1); border-radius: 2px;"></div>
                         </div>
                         <span>More</span>
                     </div>
@@ -4120,29 +4120,29 @@ Member Name
             let resultsHTML = `
                 <!-- Summary Cards -->
                 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 15px; margin-bottom: 25px;">
-                    <div style="background: rgba(255, 193, 7, 0.1); backdrop-filter: blur(10px); border: 2px solid rgba(255, 193, 7, 0.3); border-radius: 15px; padding: 20px; text-align: center;">
-                        <div style="font-size: 2.5em; margin-bottom: 8px;">💰</div>
-                        <div style="font-size: 1.8em; font-weight: 900; color: #ffc107; text-shadow: 0 2px 10px rgba(255, 193, 7, 0.3);">${formatNumber(totalLoot)}</div>
-                        <div style="font-size: 0.8em; color: var(--text-secondary); text-transform: uppercase; margin-top: 5px;">Total Loot</div>
+                    <div style="background: rgba(168, 85, 247, 0.1); backdrop-filter: blur(10px); border: 2px solid rgba(168, 85, 247, 0.3); border-radius: 15px; padding: 22px; text-align: center;">
+                        <div style="font-size: 2.8em; margin-bottom: 8px;">💰</div>
+                        <div style="font-size: 2em; font-weight: 900; color: #a855f7; text-shadow: 0 2px 10px rgba(168, 85, 247, 0.4);">${formatNumber(totalLoot)}</div>
+                        <div style="font-size: 0.85em; color: var(--text-secondary); text-transform: uppercase; margin-top: 5px;">Total Loot</div>
                     </div>
-                    <div style="background: rgba(220, 53, 69, 0.1); backdrop-filter: blur(10px); border: 2px solid rgba(220, 53, 69, 0.3); border-radius: 15px; padding: 20px; text-align: center;">
-                        <div style="font-size: 2.5em; margin-bottom: 8px;">💸</div>
-                        <div style="font-size: 1.8em; font-weight: 900; color: #dc3545; text-shadow: 0 2px 10px rgba(220, 53, 69, 0.3);">${formatNumber(totalSupplies)}</div>
-                        <div style="font-size: 0.8em; color: var(--text-secondary); text-transform: uppercase; margin-top: 5px;">Total Supplies</div>
+                    <div style="background: rgba(220, 53, 69, 0.1); backdrop-filter: blur(10px); border: 2px solid rgba(220, 53, 69, 0.3); border-radius: 15px; padding: 22px; text-align: center;">
+                        <div style="font-size: 2.8em; margin-bottom: 8px;">💸</div>
+                        <div style="font-size: 2em; font-weight: 900; color: #dc3545; text-shadow: 0 2px 10px rgba(220, 53, 69, 0.4);">${formatNumber(totalSupplies)}</div>
+                        <div style="font-size: 0.85em; color: var(--text-secondary); text-transform: uppercase; margin-top: 5px;">Total Supplies</div>
                     </div>
-                    <div style="background: rgba(40, 167, 69, 0.1); backdrop-filter: blur(10px); border: 2px solid rgba(40, 167, 69, 0.3); border-radius: 15px; padding: 20px; text-align: center;">
-                        <div style="font-size: 2.5em; margin-bottom: 8px;">✨</div>
-                        <div style="font-size: 1.8em; font-weight: 900; color: #28a745; text-shadow: 0 2px 10px rgba(40, 167, 69, 0.3);">${formatNumber(netProfit)}</div>
-                        <div style="font-size: 0.8em; color: var(--text-secondary); text-transform: uppercase; margin-top: 5px;">Net Profit</div>
+                    <div style="background: rgba(40, 167, 69, 0.1); backdrop-filter: blur(10px); border: 2px solid rgba(40, 167, 69, 0.3); border-radius: 15px; padding: 22px; text-align: center;">
+                        <div style="font-size: 2.8em; margin-bottom: 8px;">✨</div>
+                        <div style="font-size: 2em; font-weight: 900; color: #28a745; text-shadow: 0 2px 10px rgba(40, 167, 69, 0.4);">${formatNumber(netProfit)}</div>
+                        <div style="font-size: 0.85em; color: var(--text-secondary); text-transform: uppercase; margin-top: 5px;">Net Profit</div>
                     </div>
-                    <div style="background: rgba(102, 126, 234, 0.1); backdrop-filter: blur(10px); border: 2px solid rgba(102, 126, 234, 0.3); border-radius: 15px; padding: 20px; text-align: center;">
-                        <div style="font-size: 2.5em; margin-bottom: 8px;">🎯</div>
-                        <div style="font-size: 1.8em; font-weight: 900; color: #667eea; text-shadow: 0 2px 10px rgba(102, 126, 234, 0.3);">${formatNumber(Math.round(splitPerMember))}</div>
-                        <div style="font-size: 0.8em; color: var(--text-secondary); text-transform: uppercase; margin-top: 5px;">Per Member</div>
+                    <div style="background: rgba(34, 211, 238, 0.1); backdrop-filter: blur(10px); border: 2px solid rgba(34, 211, 238, 0.3); border-radius: 15px; padding: 22px; text-align: center;">
+                        <div style="font-size: 2.8em; margin-bottom: 8px;">🎯</div>
+                        <div style="font-size: 2em; font-weight: 900; color: #22d3ee; text-shadow: 0 2px 10px rgba(34, 211, 238, 0.4);">${formatNumber(Math.round(splitPerMember))}</div>
+                        <div style="font-size: 0.85em; color: var(--text-secondary); text-transform: uppercase; margin-top: 5px;">Per Member</div>
                     </div>
                 </div>
 
-                <h3 style="margin-bottom: 15px; font-size: 1.3em;">💸 Payment Breakdown</h3>
+                <h3 style="margin-bottom: 15px; font-size: 1.4em;">💸 Payment Breakdown</h3>
             `;
 
             members.forEach(member => {
@@ -6932,8 +6932,8 @@ Member Name
                 const dateStr = `${currentCalendarYear}-${String(currentCalendarMonth + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
                 const dayData = tcMap[dateStr];
 
-                let bgColor = 'rgba(102, 126, 234, 0.1)';
-                let borderColor = 'rgba(102, 126, 234, 0.3)';
+                let bgColor = 'rgba(34, 211, 238, 0.1)';
+                let borderColor = 'rgba(34, 211, 238, 0.3)';
                 let textColor = 'var(--text-secondary)';
                 let tcText = '';
                 let hoverInfo = '';
@@ -6941,10 +6941,10 @@ Member Name
                 if (dayData && dayData.tcs > 0) {
                     const intensity = Math.min(dayData.tcs / maxTCs, 1);
                     const alpha = 0.2 + (intensity * 0.7); // Range from 0.2 to 0.9
-                    bgColor = `rgba(102, 126, 234, ${alpha})`;
-                    borderColor = `rgba(102, 126, 234, ${Math.min(alpha + 0.1, 1)})`;
+                    bgColor = `rgba(34, 211, 238, ${alpha})`;
+                    borderColor = `rgba(34, 211, 238, ${Math.min(alpha + 0.1, 1)})`;
                     textColor = intensity > 0.5 ? 'white' : 'var(--text-primary)';
-                    tcText = `<div style="font-size: 0.7em; font-weight: bold; color: ${intensity > 0.5 ? 'white' : 'var(--warning-color)'};">${dayData.tcs}</div>`;
+                    tcText = `<div style="font-size: 0.75em; font-weight: bold; color: ${intensity > 0.5 ? 'white' : '#22d3ee'};">${dayData.tcs}</div>`;
                     hoverInfo = `title="${formatProfit(dayData.profit)} = ${dayData.tcs} TC"`;
                 }
 
