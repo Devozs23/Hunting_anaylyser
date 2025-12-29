@@ -1113,6 +1113,284 @@
             font-size: 0.9em;
             line-height: 1.5;
         }
+
+        /* ========================================
+           🎨 MEJORAS VISUALES ULTRA IMPACTANTES
+           ======================================== */
+
+        /* 1. GRADIENTES ANIMADOS */
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        @keyframes gradientRotate {
+            0% { filter: hue-rotate(0deg); }
+            100% { filter: hue-rotate(360deg); }
+        }
+
+        /* 2. ANIMACION PULSE PARA ICONOS */
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        @keyframes pulseGlow {
+            0%, 100% {
+                filter: drop-shadow(0 0 5px currentColor);
+                transform: scale(1);
+            }
+            50% {
+                filter: drop-shadow(0 0 20px currentColor);
+                transform: scale(1.15);
+            }
+        }
+
+        /* 3. ANIMACION BOUNCE SUAVE */
+        @keyframes bounceIn {
+            0% { transform: scale(0.8); opacity: 0; }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        /* 4. SHIMMER EFFECT */
+        @keyframes shimmer {
+            0% { background-position: -1000px 0; }
+            100% { background-position: 1000px 0; }
+        }
+
+        /* 5. GLOW PULSE */
+        @keyframes glowPulse {
+            0%, 100% { box-shadow: 0 0 20px rgba(102, 126, 234, 0.4); }
+            50% { box-shadow: 0 0 40px rgba(102, 126, 234, 0.8), 0 0 60px rgba(118, 75, 162, 0.6); }
+        }
+
+        /* APLICAR GRADIENTES ANIMADOS A LAS CARDS */
+        .stat-card {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 50%, var(--primary-color) 100%);
+            background-size: 200% 200%;
+            animation: gradientShift 8s ease infinite;
+        }
+
+        .stat-card:hover {
+            animation: gradientShift 3s ease infinite, glowPulse 2s ease-in-out infinite;
+        }
+
+        /* ICONOS CON ANIMACION PULSE */
+        .stat-card h3::before,
+        .app-logo-icon {
+            animation: pulse 3s ease-in-out infinite;
+        }
+
+        /* Aplicar a todos los emojis/iconos en las cards */
+        [style*="font-size: 1.5em"],
+        [style*="font-size: 1.2em"] {
+            display: inline-block;
+            transition: all 0.3s ease;
+        }
+
+        [style*="font-size: 1.5em"]:hover,
+        [style*="font-size: 1.2em"]:hover {
+            animation: pulseGlow 0.6s ease-in-out;
+        }
+
+        /* HOVER EFFECTS MODERNOS CON ELEVATION Y GLOW */
+        .card {
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow:
+                0 20px 60px rgba(102, 126, 234, 0.3),
+                0 0 40px rgba(118, 75, 162, 0.2),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+        }
+
+        /* BOTONES CON EFECTO SHIMMER */
+        .btn-primary,
+        .btn-success,
+        .btn-danger,
+        .btn-secondary,
+        .btn-warning {
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary::before,
+        .btn-success::before,
+        .btn-danger::before,
+        .btn-secondary::before,
+        .btn-warning::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                90deg,
+                transparent,
+                rgba(255, 255, 255, 0.3),
+                transparent
+            );
+            transition: left 0.5s ease;
+        }
+
+        .btn-primary:hover::before,
+        .btn-success:hover::before,
+        .btn-danger:hover::before,
+        .btn-secondary:hover::before,
+        .btn-warning:hover::before {
+            left: 100%;
+        }
+
+        .btn-primary:hover,
+        .btn-success:hover,
+        .btn-danger:hover,
+        .btn-warning:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        /* TRANSICIONES SUAVES EN INPUTS */
+        input:focus,
+        select:focus,
+        textarea:focus {
+            transform: scale(1.02);
+            box-shadow:
+                0 0 0 3px rgba(102, 126, 234, 0.2),
+                0 5px 20px rgba(102, 126, 234, 0.1);
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        /* TABS CON ANIMACION */
+        .main-tab {
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .main-tab:hover {
+            transform: translateY(-2px);
+        }
+
+        .main-tab.active {
+            animation: bounceIn 0.5s ease;
+        }
+
+        /* PROGRESS BAR ANIMADA */
+        .progress-bar {
+            background: linear-gradient(90deg, var(--success-color) 0%, #20c997 50%, var(--success-color) 100%);
+            background-size: 200% 100%;
+            animation: gradientShift 3s ease infinite;
+        }
+
+        /* TOP NAV CON GLOW */
+        .top-nav {
+            background: rgba(255,255,255,0.15);
+            backdrop-filter: blur(20px);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .top-nav::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(102, 126, 234, 0.1) 0%, transparent 70%);
+            animation: gradientRotate 20s linear infinite;
+        }
+
+        /* STAT CARDS EN DASHBOARD/GOALS/RARE LOOT/CHARTS - GRADIENTES UNICOS */
+        [style*="rgba(102, 126, 234"] {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #667eea 100%) !important;
+            background-size: 200% 200% !important;
+            animation: gradientShift 8s ease infinite;
+            transition: all 0.4s ease;
+        }
+
+        [style*="rgba(40, 167, 69"] {
+            background: linear-gradient(135deg, #28a745 0%, #20c997 50%, #28a745 100%) !important;
+            background-size: 200% 200% !important;
+            animation: gradientShift 8s ease infinite;
+            transition: all 0.4s ease;
+        }
+
+        [style*="rgba(240, 147, 251"] {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 50%, #f093fb 100%) !important;
+            background-size: 200% 200% !important;
+            animation: gradientShift 8s ease infinite;
+            transition: all 0.4s ease;
+        }
+
+        [style*="rgba(79, 172, 254"] {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 50%, #4facfe 100%) !important;
+            background-size: 200% 200% !important;
+            animation: gradientShift 8s ease infinite;
+            transition: all 0.4s ease;
+        }
+
+        [style*="rgba(250, 112, 154"] {
+            background: linear-gradient(135deg, #fa709a 0%, #fee140 50%, #fa709a 100%) !important;
+            background-size: 200% 200% !important;
+            animation: gradientShift 8s ease infinite;
+            transition: all 0.4s ease;
+        }
+
+        [style*="rgba(33, 150, 243"] {
+            background: linear-gradient(135deg, #2196f3 0%, #00bcd4 50%, #2196f3 100%) !important;
+            background-size: 200% 200% !important;
+            animation: gradientShift 8s ease infinite;
+            transition: all 0.4s ease;
+        }
+
+        [style*="rgba(255, 193, 7"] {
+            background: linear-gradient(135deg, #ffc107 0%, #ff9800 50%, #ffc107 100%) !important;
+            background-size: 200% 200% !important;
+            animation: gradientShift 8s ease infinite;
+            transition: all 0.4s ease;
+        }
+
+        /* HOVER EFFECT PARA STAT CARDS COMPACTAS */
+        [style*="display: grid"][style*="grid-template-columns: repeat(4, 1fr)"] > div:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow:
+                0 15px 40px rgba(0, 0, 0, 0.4),
+                0 0 30px currentColor;
+            animation: glowPulse 1.5s ease-in-out infinite;
+            z-index: 10;
+            position: relative;
+        }
+
+        /* ANIMACION ENTRADA PARA NUEVOS ELEMENTOS */
+        .hunt-item,
+        .goal-item,
+        .rare-item {
+            animation: bounceIn 0.5s ease;
+        }
+
+        /* PERIODO SELECTOR CON GLOW */
+        .period-btn.active {
+            animation: glowPulse 2s ease-in-out infinite;
+        }
+
+        /* CHART CONTAINER CON ELEVATION */
+        .chart-container {
+            transition: all 0.3s ease;
+        }
+
+        .chart-container:hover {
+            transform: scale(1.01);
+            box-shadow: 0 10px 40px rgba(102, 126, 234, 0.2);
+        }
+
+        /* ========================================
+           FIN DE MEJORAS VISUALES
+           ======================================== */
     </style>
 </head>
 <body>
