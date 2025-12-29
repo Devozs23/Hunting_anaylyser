@@ -1916,10 +1916,8 @@
                 <button class="main-tab" onclick="switchMainTab('teamHunt')" role="tab" aria-selected="false" aria-controls="teamHuntTab">👥 Team Hunt</button>
                 <button class="main-tab" onclick="switchMainTab('goals')" role="tab" aria-selected="false" aria-controls="goalsTab">🎯 Goals</button>
                 <button class="main-tab" onclick="switchMainTab('rareLoot')" role="tab" aria-selected="false" aria-controls="rareLootTab">💎 Rare Loot</button>
-                <button class="main-tab" onclick="switchMainTab('comparator')" role="tab" aria-selected="false" aria-controls="comparatorTab">🔍 Hunt Spots</button>
                 <button class="main-tab" onclick="switchMainTab('charts')" role="tab" aria-selected="false" aria-controls="chartsTab">📈 Charts</button>
                 <button class="main-tab" onclick="switchMainTab('tcConfig')" role="tab" aria-selected="false" aria-controls="tcConfigTab">💰 TC Config</button>
-                <button class="main-tab" onclick="switchMainTab('calculators')" role="tab" aria-selected="false" aria-controls="calculatorsTab">🧮 Calculators</button>
                 <button class="main-tab" onclick="switchMainTab('history')" role="tab" aria-selected="false" aria-controls="historyTab">📜 History</button>
             </div>
 
@@ -2383,44 +2381,44 @@ Member Name
                 </div>
 
                 <!-- Goals Stats - COMPACT -->
-                <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-bottom: 10px;">
-                    <div style="background: rgba(102, 126, 234, 0.1); border: 1px solid rgba(102, 126, 234, 0.3); border-radius: 8px; padding: 8px; text-align: center;">
-                        <div style="font-size: 1.5em; margin-bottom: 3px;">🎯</div>
-                        <div id="goalsTotalCount" style="font-size: 1.5em; font-weight: 900; color: #667eea; margin-bottom: 2px;">0</div>
-                        <div style="font-size: 0.65em; color: var(--text-secondary); text-transform: uppercase;">Total</div>
+                <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 12px;">
+                    <div style="background: rgba(70, 90, 110, 0.12); border: 1px solid rgba(100, 150, 200, 0.3); border-radius: 8px; padding: 10px; text-align: center;">
+                        <div style="font-size: 1.6em; margin-bottom: 4px;">🎯</div>
+                        <div id="goalsTotalCount" style="font-size: 1.6em; font-weight: 900; color: #7eb3d6; margin-bottom: 3px;">0</div>
+                        <div style="font-size: 0.7em; color: var(--text-secondary); text-transform: uppercase;">Total</div>
                     </div>
 
-                    <div style="background: rgba(40, 167, 69, 0.1); border: 1px solid rgba(40, 167, 69, 0.3); border-radius: 8px; padding: 8px; text-align: center;">
-                        <div style="font-size: 1.5em; margin-bottom: 3px;">✅</div>
-                        <div id="goalsCompletedCount" style="font-size: 1.5em; font-weight: 900; color: #28a745; margin-bottom: 2px;">0</div>
-                        <div style="font-size: 0.65em; color: var(--text-secondary); text-transform: uppercase;">Done</div>
+                    <div style="background: rgba(80, 110, 90, 0.12); border: 1px solid rgba(100, 150, 120, 0.3); border-radius: 8px; padding: 10px; text-align: center;">
+                        <div style="font-size: 1.6em; margin-bottom: 4px;">✅</div>
+                        <div id="goalsCompletedCount" style="font-size: 1.6em; font-weight: 900; color: #7db89d; margin-bottom: 3px;">0</div>
+                        <div style="font-size: 0.7em; color: var(--text-secondary); text-transform: uppercase;">Done</div>
                     </div>
 
-                    <div style="background: rgba(249, 115, 22, 0.1); border: 1px solid rgba(249, 115, 22, 0.3); border-radius: 8px; padding: 8px; text-align: center;">
-                        <div style="font-size: 1.5em; margin-bottom: 3px;">⚡</div>
-                        <div id="goalsInProgressCount" style="font-size: 1.5em; font-weight: 900; color: #f97316; margin-bottom: 2px;">0</div>
-                        <div style="font-size: 0.65em; color: var(--text-secondary); text-transform: uppercase;">Active</div>
+                    <div style="background: rgba(110, 90, 70, 0.12); border: 1px solid rgba(180, 140, 100, 0.3); border-radius: 8px; padding: 10px; text-align: center;">
+                        <div style="font-size: 1.6em; margin-bottom: 4px;">⚡</div>
+                        <div id="goalsInProgressCount" style="font-size: 1.6em; font-weight: 900; color: #d9a87a; margin-bottom: 3px;">0</div>
+                        <div style="font-size: 0.7em; color: var(--text-secondary); text-transform: uppercase;">Active</div>
                     </div>
 
-                    <div style="background: rgba(156, 39, 176, 0.1); border: 1px solid rgba(156, 39, 176, 0.3); border-radius: 8px; padding: 8px; text-align: center;">
-                        <div style="font-size: 1.5em; margin-bottom: 3px;">📊</div>
-                        <div id="goalsCompletionRate" style="font-size: 1.5em; font-weight: 900; color: #9c27b0; margin-bottom: 2px;">0%</div>
-                        <div style="font-size: 0.65em; color: var(--text-secondary); text-transform: uppercase;">Rate</div>
+                    <div style="background: rgba(90, 70, 90, 0.12); border: 1px solid rgba(160, 120, 160, 0.3); border-radius: 8px; padding: 10px; text-align: center;">
+                        <div style="font-size: 1.6em; margin-bottom: 4px;">📊</div>
+                        <div id="goalsCompletionRate" style="font-size: 1.6em; font-weight: 900; color: #b89dc8; margin-bottom: 3px;">0%</div>
+                        <div style="font-size: 0.7em; color: var(--text-secondary); text-transform: uppercase;">Rate</div>
                     </div>
                 </div>
 
                 <!-- Add Goal Form - COMPACT -->
-                <div class="card" style="padding: 10px; margin-bottom: 10px;">
-                    <h4 style="margin: 0 0 8px 0; font-size: 0.85em;">➕ New Goal</h4>
-                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 6px;">
+                <div class="card" style="padding: 12px; margin-bottom: 12px;">
+                    <h4 style="margin: 0 0 10px 0; font-size: 0.95em;">➕ New Goal</h4>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
                         <div class="input-group" style="margin: 0;">
-                            <label style="font-size: 0.7em; margin-bottom: 2px;">Goal Name</label>
-                            <input type="text" id="goalName" placeholder="e.g., Make 10kk" style="padding: 5px 8px; font-size: 0.8em;">
+                            <label style="font-size: 0.75em; margin-bottom: 3px;">Goal Name</label>
+                            <input type="text" id="goalName" placeholder="e.g., Make 10kk" style="padding: 6px 10px; font-size: 0.85em;">
                         </div>
 
                         <div class="input-group" style="margin: 0;">
-                            <label style="font-size: 0.7em; margin-bottom: 2px;">Type</label>
-                            <select id="goalType" style="padding: 5px 8px; font-size: 0.8em;">
+                            <label style="font-size: 0.75em; margin-bottom: 3px;">Type</label>
+                            <select id="goalType" style="padding: 6px 10px; font-size: 0.85em;">
                                 <option value="profit">Profit</option>
                                 <option value="xp">XP</option>
                                 <option value="hunts">Hunts</option>
@@ -2429,22 +2427,22 @@ Member Name
                         </div>
 
                         <div class="input-group" style="margin: 0;">
-                            <label style="font-size: 0.7em; margin-bottom: 2px;">Target</label>
-                            <input type="number" id="goalTarget" placeholder="Target" style="padding: 5px 8px; font-size: 0.8em;">
+                            <label style="font-size: 0.75em; margin-bottom: 3px;">Target</label>
+                            <input type="number" id="goalTarget" placeholder="Target" style="padding: 6px 10px; font-size: 0.85em;">
                         </div>
 
                         <div class="input-group" style="margin: 0;">
-                            <label style="font-size: 0.7em; margin-bottom: 2px;">Deadline</label>
-                            <input type="date" id="goalDeadline" style="padding: 5px 8px; font-size: 0.8em;">
+                            <label style="font-size: 0.75em; margin-bottom: 3px;">Deadline</label>
+                            <input type="date" id="goalDeadline" style="padding: 6px 10px; font-size: 0.85em;">
                         </div>
                     </div>
 
-                    <button class="btn-primary" onclick="addGoal()" style="width: 100%; margin-top: 6px; padding: 6px; font-size: 0.8em;">➕ Create</button>
+                    <button class="btn-primary" onclick="addGoal()" style="width: 100%; margin-top: 8px; padding: 7px; font-size: 0.85em;">➕ Create</button>
                 </div>
 
                 <!-- Goals List - COMPACT -->
-                <div class="card" style="padding: 10px;">
-                    <h4 style="margin: 0 0 8px 0; font-size: 0.85em;">Your Goals</h4>
+                <div class="card" style="padding: 12px;">
+                    <h4 style="margin: 0 0 10px 0; font-size: 0.95em;">Your Goals</h4>
                     <div id="goalsList">
                         <div class="empty-state" style="padding: 15px; text-align: center; color: var(--text-secondary); font-size: 0.75em;">
                             <p style="margin: 0;">No goals yet. Create one above!</p>
@@ -2556,19 +2554,6 @@ Member Name
                     <div id="rareItemsList">
                         <div class="empty-state" style="padding: 10px; text-align: center; color: var(--text-secondary); font-size: 0.75em;">
                             <p style="margin: 0;">No rare items yet. Add your first drop above!</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Hunt Spot Comparator Tab -->
-            <div class="main-tab-content" id="comparatorTab">
-                <div class="card" style="padding: 10px;">
-                    <h3 style="color: var(--primary-color); margin: 0 0 8px 0; font-size: 0.95em;">🏆 Hunt Spot Rankings</h3>
-
-                    <div id="spotComparison">
-                        <div class="empty-state" style="padding: 15px; text-align: center; color: var(--text-secondary); font-size: 0.75em;">
-                            <p style="margin: 0;">Add hunts to different locations to see rankings!</p>
                         </div>
                     </div>
                 </div>
@@ -2799,300 +2784,6 @@ Member Name
                             <li>Calendar shows TCs farmed per day (darker = more TCs)</li>
                             <li>Click day for details (profit, TC price, TCs earned)</li>
                         </ul>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Calculators Tab -->
-            <div class="main-tab-content" id="calculatorsTab">
-                <!-- Hero Section -->
-                <div style="text-align: center; padding: 40px 20px; background: linear-gradient(135deg, rgba(102, 126, 234, 0.15) 0%, rgba(118, 75, 162, 0.15) 100%); border-radius: 20px; margin-bottom: 30px;">
-                    <div style="font-size: 4em; margin-bottom: 15px;">🧮</div>
-                    <h1 style="font-size: 2.2em; color: white; margin-bottom: 10px; text-shadow: 0 4px 8px rgba(0,0,0,0.3);">Tibia Calculators</h1>
-                    <p style="font-size: 1.1em; color: rgba(255,255,255,0.9);">Professional tools to plan your character progression</p>
-                </div>
-
-                <!-- Calculators Grid -->
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(480px, 1fr)); gap: 25px;">
-                    <!-- XP to Level Calculator -->
-                    <div style="background: rgba(240, 147, 251, 0.05); backdrop-filter: blur(10px); border: 2px solid rgba(240, 147, 251, 0.2); border-radius: 20px; padding: 30px; transition: all 0.3s ease;" onmouseover="this.style.borderColor='rgba(240, 147, 251, 0.5)'; this.style.boxShadow='0 8px 32px rgba(240, 147, 251, 0.3)';" onmouseout="this.style.borderColor='rgba(240, 147, 251, 0.2)'; this.style.boxShadow='';">
-                        <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 20px;">
-                            <div style="font-size: 3em; filter: drop-shadow(0 4px 8px rgba(240, 147, 251, 0.5));">📊</div>
-                            <div>
-                                <h3 style="color: #f093fb; margin: 0; font-size: 1.5em;">XP to Level Calculator</h3>
-                                <p style="color: var(--text-secondary); margin: 5px 0 0 0; font-size: 0.9em;">Calculate experience needed for your next level</p>
-                            </div>
-                        </div>
-
-                        <!-- Inputs -->
-                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 20px;">
-                            <div class="input-group">
-                                <label style="font-weight: 600; color: #f093fb;">📈 Current Level</label>
-                                <input type="number" id="calcCurrentLevel" placeholder="e.g., 350" min="1" max="9999" style="font-size: 1.1em; font-weight: 600;">
-                            </div>
-                            <div class="input-group">
-                                <label style="font-weight: 600; color: #f093fb;">🎯 Target Level</label>
-                                <input type="number" id="calcTargetLevel" placeholder="e.g., 400" min="1" max="9999" style="font-size: 1.1em; font-weight: 600;">
-                            </div>
-                        </div>
-
-                        <button class="btn-primary" onclick="calculateXP()" style="width: 100%; padding: 15px; font-size: 1.05em; background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); border: none;">
-                            ✨ Calculate XP Needed
-                        </button>
-
-                        <!-- Results -->
-                        <div id="xpResult" style="margin-top: 20px; display: none;">
-                            <div style="background: rgba(0,0,0,0.3); padding: 25px; border-radius: 15px; text-align: center; margin-bottom: 15px;">
-                                <div style="font-size: 0.85em; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px;">Experience Needed</div>
-                                <div style="font-size: 3em; font-weight: 900; color: #f5576c; text-shadow: 0 2px 10px rgba(245, 87, 108, 0.5);" id="xpNeeded">0</div>
-                            </div>
-                            <div style="background: rgba(240, 147, 251, 0.1); backdrop-filter: blur(10px); border: 2px solid rgba(240, 147, 251, 0.3); border-radius: 12px; padding: 15px; text-align: center;">
-                                <div style="font-size: 0.75em; color: var(--text-secondary); margin-bottom: 5px;">⏱️ TIME ESTIMATE</div>
-                                <div style="font-size: 1.3em; font-weight: 700; color: #f093fb;" id="xpTimeEstimate">-</div>
-                            </div>
-                        </div>
-                    </div>
-
-                        <!-- Stamina Calculator -->
-                        <div class="card" style="margin-bottom: 0;">
-                            <h3 style="color: var(--primary-color); margin-bottom: 15px;">⚡ Stamina Recovery Calculator</h3>
-                            <p style="color: var(--text-secondary); font-size: 0.9em; margin-bottom: 20px;">Calculate exact recovery time based on Tibia's stamina regeneration system</p>
-
-                            <!-- Input Section -->
-                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 15px;">
-                                <div class="input-group">
-                                    <label>⚡ Current Stamina</label>
-                                    <input type="text" id="calcCurrentStamina" placeholder="42:00 or 2520 min" oninput="updateStaminaPreview()">
-                                    <small style="color: var(--text-secondary); margin-top: 5px; display: block;">Format: HH:MM or minutes</small>
-                                </div>
-                                <div class="input-group">
-                                    <label>🎯 Target Stamina (Optional)</label>
-                                    <input type="text" id="calcTargetStamina" placeholder="42:00 (max)" value="42:00">
-                                    <small style="color: var(--text-secondary); margin-top: 5px; display: block;">Default: 42:00 hours</small>
-                                </div>
-                            </div>
-
-                            <!-- Optional Hunt Time -->
-                            <div class="input-group" style="margin-bottom: 15px;">
-                                <label>🏹 Hunt Duration (Optional)</label>
-                                <input type="number" id="calcHuntHours" placeholder="e.g., 4 hours" min="0" step="0.5">
-                                <small style="color: var(--text-secondary); margin-top: 5px; display: block;">Calculate stamina AFTER hunting for X hours</small>
-                            </div>
-
-                            <button class="btn-primary" onclick="calculateStamina()" style="width: 100%; padding: 15px; font-size: 1.05em;">
-                                🔍 Calculate Recovery Time
-                            </button>
-
-                            <!-- Results Section -->
-                            <div id="staminaResult" style="margin-top: 20px; display: none;">
-                                <!-- Stamina Bar Visualization -->
-                                <div style="background: rgba(0,0,0,0.3); padding: 20px; border-radius: 15px; margin-bottom: 20px;">
-                                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
-                                        <div style="font-size: 0.85em; color: var(--text-secondary); text-transform: uppercase;">Current Stamina</div>
-                                        <div style="font-size: 1.5em; font-weight: 900;" id="staminaCurrentDisplay">42:00</div>
-                                    </div>
-
-                                    <!-- Stamina Progress Bar -->
-                                    <div style="background: rgba(0,0,0,0.4); height: 40px; border-radius: 20px; overflow: hidden; position: relative; margin-bottom: 10px;">
-                                        <!-- Bonus Zone (40:01-42:00) -->
-                                        <div style="position: absolute; right: 0; width: 4.76%; height: 100%; background: linear-gradient(90deg, rgba(76, 175, 80, 0.3) 0%, rgba(76, 175, 80, 0.5) 100%); border-left: 2px dashed rgba(255,255,255,0.2);"></div>
-                                        <!-- Current Stamina Fill -->
-                                        <div id="staminaBarFill" style="height: 100%; width: 100%; background: linear-gradient(90deg, #4caf50 0%, #8bc34a 100%); transition: all 0.5s ease; display: flex; align-items: center; justify-content: center;">
-                                            <span id="staminaBarText" style="color: white; font-weight: 700; font-size: 0.9em; text-shadow: 0 2px 4px rgba(0,0,0,0.5);">BONUS ZONE</span>
-                                        </div>
-                                    </div>
-
-                                    <!-- Zone Labels -->
-                                    <div style="display: flex; justify-content: space-between; font-size: 0.75em; color: var(--text-secondary);">
-                                        <span>0:00</span>
-                                        <span style="color: #4caf50;">40:00 (Normal)</span>
-                                        <span style="color: #8bc34a;">42:00 (Max)</span>
-                                    </div>
-                                </div>
-
-                                <!-- Recovery Time Cards -->
-                                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 20px;">
-                                    <!-- Offline Recovery -->
-                                    <div style="background: rgba(102, 126, 234, 0.1); backdrop-filter: blur(10px); border: 2px solid rgba(102, 126, 234, 0.3); border-radius: 15px; padding: 20px; text-align: center;">
-                                        <div style="font-size: 2.5em; margin-bottom: 10px;">💤</div>
-                                        <div style="font-size: 0.75em; color: var(--text-secondary); text-transform: uppercase; margin-bottom: 8px;">Offline Recovery</div>
-                                        <div id="offlineRecoveryTime" style="font-size: 1.8em; font-weight: 900; color: #667eea; margin-bottom: 5px;">-</div>
-                                        <div id="offlineRecoveryDate" style="font-size: 0.75em; color: #667eea; opacity: 0.8;">-</div>
-                                    </div>
-
-                                    <!-- Status Zone -->
-                                    <div id="staminaZoneCard" style="background: rgba(76, 175, 80, 0.1); backdrop-filter: blur(10px); border: 2px solid rgba(76, 175, 80, 0.3); border-radius: 15px; padding: 20px; text-align: center;">
-                                        <div style="font-size: 2.5em; margin-bottom: 10px;" id="staminaZoneEmoji">✨</div>
-                                        <div style="font-size: 0.75em; color: var(--text-secondary); text-transform: uppercase; margin-bottom: 8px;">Current Zone</div>
-                                        <div id="staminaZoneName" style="font-size: 1.3em; font-weight: 900; color: #4caf50; margin-bottom: 5px;">BONUS</div>
-                                        <div id="staminaZoneBonus" style="font-size: 0.75em; color: #4caf50; opacity: 0.8;">150% XP</div>
-                                    </div>
-                                </div>
-
-                                <!-- Info Box -->
-                                <div style="background: rgba(255, 193, 7, 0.1); backdrop-filter: blur(10px); border-left: 4px solid #ffc107; padding: 15px; border-radius: 10px;">
-                                    <div style="font-size: 0.85em; color: var(--text-secondary); line-height: 1.6;" id="staminaInfoText">
-                                        <strong style="color: #ffc107;">ℹ️ How it works:</strong><br>
-                                        • Stamina starts regenerating after 10 min offline<br>
-                                        • 0:00 → 40:00: 3 min offline = 1 min stamina<br>
-                                        • 40:00 → 42:00: 6 min offline = 1 min stamina<br>
-                                        • Stamina does NOT regenerate while playing
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                    <!-- Exercise Weapons Calculator -->
-                    <div style="background: rgba(255, 152, 0, 0.05); backdrop-filter: blur(10px); border: 2px solid rgba(255, 152, 0, 0.2); border-radius: 20px; padding: 30px; transition: all 0.3s ease;" onmouseover="this.style.borderColor='rgba(255, 152, 0, 0.5)'; this.style.boxShadow='0 8px 32px rgba(255, 152, 0, 0.3)';" onmouseout="this.style.borderColor='rgba(255, 152, 0, 0.2)'; this.style.boxShadow='';">
-                        <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 20px;">
-                            <div style="font-size: 3em; filter: drop-shadow(0 4px 8px rgba(255, 152, 0, 0.5));">⚔️</div>
-                            <div>
-                                <h3 style="color: #ff9800; margin: 0; font-size: 1.5em;">Exercise Weapons Calculator</h3>
-                                <p style="color: var(--text-secondary); margin: 5px 0 0 0; font-size: 0.9em;">Professional training calculator with loyalty & event bonuses</p>
-                            </div>
-                        </div>
-
-                        <!-- Skill Type & Vocation -->
-                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 15px;">
-                            <div class="input-group">
-                                <label style="font-weight: 600; color: #ff9800;">🎯 Skill Type</label>
-                                <select id="calcSkillType" style="font-size: 1.05em; font-weight: 600; padding: 12px;">
-                                    <option value="melee">Sword/Axe/Club Fighting</option>
-                                    <option value="fist">Fist Fighting</option>
-                                    <option value="distance">Distance Fighting</option>
-                                    <option value="shielding">Shielding</option>
-                                    <option value="magic">Magic Level</option>
-                                </select>
-                            </div>
-                            <div class="input-group">
-                                <label style="font-weight: 600; color: #ff9800;">🧙 Vocation</label>
-                                <select id="calcVocation" style="font-size: 1.05em; font-weight: 600; padding: 12px;">
-                                    <option value="knight">Knight</option>
-                                    <option value="paladin">Paladin</option>
-                                    <option value="monk">Monk (Fist Fighting)</option>
-                                    <option value="sorcerer">Sorcerer</option>
-                                    <option value="druid">Druid</option>
-                                </select>
-                            </div>
-                        </div>
-
-                        <!-- Current & Target Skill -->
-                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 15px;">
-                            <div class="input-group">
-                                <label style="font-weight: 600; color: #ff9800;">💪 Current Skill</label>
-                                <input type="number" id="calcCurrentSkill" placeholder="e.g., 110" min="10" max="150" style="font-size: 1.1em; font-weight: 600;">
-                            </div>
-                            <div class="input-group">
-                                <label style="font-weight: 600; color: #ff9800;">🎯 Target Skill</label>
-                                <input type="number" id="calcTargetSkill" placeholder="e.g., 120" min="10" max="150" style="font-size: 1.1em; font-weight: 600;">
-                            </div>
-                        </div>
-
-                        <!-- Loyalty Bonus & Weapon Type -->
-                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 15px;">
-                            <div class="input-group">
-                                <label style="font-weight: 600; color: #ff9800;">💎 Loyalty Bonus</label>
-                                <select id="calcLoyaltyBonus" style="font-size: 1.05em; font-weight: 600; padding: 12px;">
-                                    <option value="0">0% (No Premium)</option>
-                                    <option value="5">5% (360 points)</option>
-                                    <option value="10">10% (720 points)</option>
-                                    <option value="15">15% (1080 points)</option>
-                                    <option value="20">20% (1440 points)</option>
-                                    <option value="25">25% (1800 points)</option>
-                                    <option value="30">30% (2160 points)</option>
-                                    <option value="35">35% (2520 points)</option>
-                                    <option value="40">40% (2880 points)</option>
-                                    <option value="45">45% (3240 points)</option>
-                                    <option value="50">50% (3600 points)</option>
-                                </select>
-                            </div>
-                            <div class="input-group">
-                                <label style="font-weight: 600; color: #ff9800;">🗡️ Weapon Type</label>
-                                <select id="calcWeaponType" style="font-size: 1.05em; font-weight: 600; padding: 12px;">
-                                    <option value="25">Exercise Weapon (25 charges)</option>
-                                    <option value="500">Lasting Exercise Weapon (500 charges)</option>
-                                    <option value="14400">Durable Exercise Weapon (14400 charges)</option>
-                                </select>
-                            </div>
-                        </div>
-
-                        <!-- Bonuses Checkboxes -->
-                        <div style="background: rgba(0,0,0,0.2); padding: 15px; border-radius: 12px; margin-bottom: 20px;">
-                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
-                                <label style="display: flex; align-items: center; gap: 10px; cursor: pointer; font-weight: 600; color: var(--text-primary);">
-                                    <input type="checkbox" id="calcPrivateDummy" style="width: 20px; height: 20px; cursor: pointer;">
-                                    <span>🏠 Private Target Dummy (+10%)</span>
-                                </label>
-                                <label style="display: flex; align-items: center; gap: 10px; cursor: pointer; font-weight: 600; color: var(--text-primary);">
-                                    <input type="checkbox" id="calcDoubleEvent" style="width: 20px; height: 20px; cursor: pointer;">
-                                    <span>⚡ Double Skill Event (x2)</span>
-                                </label>
-                            </div>
-                        </div>
-
-                        <button class="btn-primary" onclick="calculateExercise()" style="width: 100%; padding: 15px; font-size: 1.05em; background: linear-gradient(135deg, #ff9800 0%, #ff6f00 100%); border: none;">
-                            ⚔️ Calculate Training Cost
-                        </button>
-
-                        <!-- Results -->
-                        <div id="exerciseResult" style="margin-top: 20px; display: none;">
-                            <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; margin-bottom: 15px;">
-                                <div style="background: rgba(0,0,0,0.3); padding: 18px; border-radius: 12px; text-align: center;">
-                                    <div style="font-size: 0.7em; color: var(--text-secondary); text-transform: uppercase; margin-bottom: 6px;">Weapons</div>
-                                    <div style="font-size: 2em; font-weight: 900; color: #ff9800;" id="weaponsNeeded">0</div>
-                                </div>
-                                <div style="background: rgba(0,0,0,0.3); padding: 18px; border-radius: 12px; text-align: center;">
-                                    <div style="font-size: 0.7em; color: var(--text-secondary); text-transform: uppercase; margin-bottom: 6px;">Time</div>
-                                    <div style="font-size: 2em; font-weight: 900; color: #ff9800;" id="trainingTime">0h</div>
-                                </div>
-                                <div style="background: rgba(0,0,0,0.3); padding: 18px; border-radius: 12px; text-align: center;">
-                                    <div style="font-size: 0.7em; color: var(--text-secondary); text-transform: uppercase; margin-bottom: 6px;">Total Cost</div>
-                                    <div style="font-size: 2em; font-weight: 900; color: #ff9800;" id="trainingCost">0 TC</div>
-                                </div>
-                            </div>
-                            <!-- Info Box -->
-                            <div style="background: rgba(255, 152, 0, 0.1); backdrop-filter: blur(10px); border-left: 4px solid #ff9800; padding: 12px; border-radius: 10px;">
-                                <div style="font-size: 0.85em; color: var(--text-secondary); line-height: 1.5;" id="exerciseInfoText">
-                                    ℹ️ Calculations include all bonuses selected above
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Party Share Range Calculator -->
-                    <div style="background: rgba(76, 175, 80, 0.05); backdrop-filter: blur(10px); border: 2px solid rgba(76, 175, 80, 0.2); border-radius: 20px; padding: 30px; transition: all 0.3s ease;" onmouseover="this.style.borderColor='rgba(76, 175, 80, 0.5)'; this.style.boxShadow='0 8px 32px rgba(76, 175, 80, 0.3)';" onmouseout="this.style.borderColor='rgba(76, 175, 80, 0.2)'; this.style.boxShadow='';">
-                        <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 20px;">
-                            <div style="font-size: 3em; filter: drop-shadow(0 4px 8px rgba(76, 175, 80, 0.5));">👥</div>
-                            <div>
-                                <h3 style="color: #4caf50; margin: 0; font-size: 1.5em;">Party Share Range Calculator</h3>
-                                <p style="color: var(--text-secondary); margin: 5px 0 0 0; font-size: 0.9em;">Find valid level range for party hunting</p>
-                            </div>
-                        </div>
-
-                        <!-- Input -->
-                        <div class="input-group" style="margin-bottom: 20px;">
-                            <label style="font-weight: 600; color: #4caf50;">🎯 Your Level</label>
-                            <input type="number" id="calcYourLevel" placeholder="e.g., 400" min="1" max="9999" style="font-size: 1.1em; font-weight: 600;">
-                        </div>
-
-                        <button class="btn-primary" onclick="calculateShareRange()" style="width: 100%; padding: 15px; font-size: 1.05em; background: linear-gradient(135deg, #4caf50 0%, #2e7d32 100%); border: none;">
-                            👥 Calculate Valid Range
-                        </button>
-
-                        <!-- Results -->
-                        <div id="shareResult" style="margin-top: 20px; display: none;">
-                            <div style="background: rgba(0,0,0,0.3); padding: 25px; border-radius: 15px; text-align: center; margin-bottom: 15px;">
-                                <div style="font-size: 0.85em; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 12px;">Valid Level Range</div>
-                                <div style="font-size: 2.8em; font-weight: 900; color: #4caf50; text-shadow: 0 2px 10px rgba(76, 175, 80, 0.5);">
-                                    <span id="shareMin">0</span> - <span id="shareMax">0</span>
-                                </div>
-                            </div>
-                            <div style="background: rgba(76, 175, 80, 0.1); backdrop-filter: blur(10px); border: 2px solid rgba(76, 175, 80, 0.3); border-radius: 12px; padding: 15px; text-align: center;">
-                                <div style="font-size: 0.9em; color: var(--text-secondary); line-height: 1.6;">
-                                    ✅ Players within this range can share XP with you in party hunts
-                                </div>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
