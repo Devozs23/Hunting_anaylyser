@@ -7109,6 +7109,9 @@ Member Name
         }
 
         function updateTCDailyTracking() {
+            // Check if TC Calendar elements exist (TC Config tab may not be loaded)
+            if (!document.getElementById('tcCalendarGrid')) return;
+
             console.log(`🔍 TC Calendar Debug: hunts=${hunts?.length || 0}, tcPrice=${tcPrice}, month=${currentCalendarMonth + 1}/${currentCalendarYear}`);
 
             if (!hunts || hunts.length === 0 || tcPrice === 0) {
@@ -7164,19 +7167,24 @@ Member Name
 
             // Find best and worst days FOR THE DISPLAYED MONTH
             const validDays = monthDailyTC.filter(d => d.tcs > 0);
+            const bestTCDayEl = document.getElementById('bestTCDay');
+            const bestTCDayDateEl = document.getElementById('bestTCDayDate');
+            const worstTCDayEl = document.getElementById('worstTCDay');
+            const worstTCDayDateEl = document.getElementById('worstTCDayDate');
+
             if (validDays.length > 0) {
                 const bestDay = validDays.reduce((max, day) => day.tcs > max.tcs ? day : max);
                 const worstDay = validDays.reduce((min, day) => day.tcs < min.tcs ? day : min);
 
-                document.getElementById('bestTCDay').textContent = bestDay.tcs + ' TC';
-                document.getElementById('bestTCDayDate').textContent = formatDate(new Date(bestDay.date));
-                document.getElementById('worstTCDay').textContent = worstDay.tcs + ' TC';
-                document.getElementById('worstTCDayDate').textContent = formatDate(new Date(worstDay.date));
+                if (bestTCDayEl) bestTCDayEl.textContent = bestDay.tcs + ' TC';
+                if (bestTCDayDateEl) bestTCDayDateEl.textContent = formatDate(new Date(bestDay.date));
+                if (worstTCDayEl) worstTCDayEl.textContent = worstDay.tcs + ' TC';
+                if (worstTCDayDateEl) worstTCDayDateEl.textContent = formatDate(new Date(worstDay.date));
             } else {
-                document.getElementById('bestTCDay').textContent = '-';
-                document.getElementById('bestTCDayDate').textContent = '-';
-                document.getElementById('worstTCDay').textContent = '-';
-                document.getElementById('worstTCDayDate').textContent = '-';
+                if (bestTCDayEl) bestTCDayEl.textContent = '-';
+                if (bestTCDayDateEl) bestTCDayDateEl.textContent = '-';
+                if (worstTCDayEl) worstTCDayEl.textContent = '-';
+                if (worstTCDayDateEl) worstTCDayDateEl.textContent = '-';
             }
 
             // Build calendar with filtered data
