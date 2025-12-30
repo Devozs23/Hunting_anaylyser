@@ -1948,6 +1948,42 @@
                 </div>
             </div>
 
+            <!-- Clear All Data Modal - PROFESSIONAL -->
+            <div id="clearDataModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); z-index: 10000; align-items: center; justify-content: center;">
+                <div style="background: linear-gradient(135deg, rgba(40, 20, 30, 0.98) 0%, rgba(30, 15, 25, 0.98) 100%); border: 2px solid rgba(220, 53, 69, 0.5); border-radius: 16px; padding: 24px; max-width: 420px; width: 90%; box-shadow: 0 20px 60px rgba(220, 53, 69, 0.4); animation: slideUp 0.3s ease-out;">
+                    <div style="text-align: center; margin-bottom: 20px;">
+                        <div style="font-size: 4em; margin-bottom: 10px;">⚠️</div>
+                        <h2 style="color: #dc3545; margin: 0 0 10px 0; font-size: 1.5em; font-weight: 900;">DANGER ZONE</h2>
+                        <p style="color: rgba(220, 53, 69, 0.9); font-size: 0.95em; font-weight: 700;">Delete ALL Hunt Data</p>
+                    </div>
+
+                    <div style="background: rgba(220, 53, 69, 0.1); border-left: 4px solid #dc3545; padding: 15px; border-radius: 8px; margin-bottom: 20px;">
+                        <p style="margin: 0 0 12px 0; color: #dc3545; font-weight: 700; font-size: 0.9em;">⚠️ WARNING:</p>
+                        <ul style="margin: 0; padding-left: 20px; color: var(--text-primary); font-size: 0.85em; line-height: 1.6;">
+                            <li>All your hunt records will be <strong style="color: #dc3545;">permanently deleted</strong></li>
+                            <li>All goals and progress will be <strong style="color: #dc3545;">lost forever</strong></li>
+                            <li>All rare loot entries will be <strong style="color: #dc3545;">erased</strong></li>
+                            <li><strong style="color: #dc3545;">This action CANNOT be undone!</strong></li>
+                        </ul>
+                    </div>
+
+                    <div style="background: rgba(0,0,0,0.3); padding: 12px; border-radius: 8px; margin-bottom: 20px; text-align: center;">
+                        <p style="margin: 0; font-size: 0.8em; color: var(--text-secondary);">
+                            💡 <strong style="color: #fbbf24;">Tip:</strong> Consider exporting your data first from the History tab
+                        </p>
+                    </div>
+
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+                        <button onclick="closeClearDataModal()" style="background: rgba(148, 163, 184, 0.15); color: #94a3b8; padding: 12px; border-radius: 10px; font-weight: 700; border: 2px solid rgba(148, 163, 184, 0.3); cursor: pointer; transition: all 0.3s; font-size: 0.9em;" onmouseover="this.style.background='rgba(148, 163, 184, 0.25)'; this.style.borderColor='rgba(148, 163, 184, 0.5)'; this.style.transform='translateY(-2px)'" onmouseout="this.style.background='rgba(148, 163, 184, 0.15)'; this.style.borderColor='rgba(148, 163, 184, 0.3)'; this.style.transform=''">
+                            ❌ Cancel
+                        </button>
+                        <button onclick="confirmClearAllData()" style="background: linear-gradient(135deg, rgba(220, 53, 69, 0.25) 0%, rgba(220, 53, 69, 0.35) 100%); color: #dc3545; padding: 12px; border-radius: 10px; font-weight: 900; border: 2px solid rgba(220, 53, 69, 0.5); cursor: pointer; transition: all 0.3s; font-size: 0.9em; box-shadow: 0 4px 12px rgba(220, 53, 69, 0.3);" onmouseover="this.style.background='linear-gradient(135deg, rgba(220, 53, 69, 0.35) 0%, rgba(220, 53, 69, 0.45) 100%)'; this.style.borderColor='rgba(220, 53, 69, 0.7)'; this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 20px rgba(220, 53, 69, 0.4)'" onmouseout="this.style.background='linear-gradient(135deg, rgba(220, 53, 69, 0.25) 0%, rgba(220, 53, 69, 0.35) 100%)'; this.style.borderColor='rgba(220, 53, 69, 0.5)'; this.style.transform=''; this.style.boxShadow='0 4px 12px rgba(220, 53, 69, 0.3)'">
+                            🗑️ Delete All
+                        </button>
+                    </div>
+                </div>
+            </div>
+
             <!-- Dashboard Tab -->
             <div class="main-tab-content active" id="dashboardTab">
                 <!-- Main Stats Cards -->
@@ -3680,16 +3716,24 @@ Member Name
         }
 
         function clearAllData() {
-            const confirmed = confirm('⚠️ WARNING: This will delete ALL your hunt data!\n\nThis action CANNOT be undone!\n\nClick OK to permanently delete all your hunts.');
-            if (confirmed) {
-                const doubleConfirm = confirm('Are you ABSOLUTELY sure? This is your last chance!\n\nAll hunt data will be lost forever!');
-                if (doubleConfirm) {
-                    hunts = [];
-                    saveUserData();
-                    updateDisplay();
-                    showNotification('🗑️ All hunt data has been deleted', 'info');
-                }
-            }
+            // Open professional modal instead of ugly browser confirm
+            document.getElementById('clearDataModal').style.display = 'flex';
+        }
+
+        function closeClearDataModal() {
+            document.getElementById('clearDataModal').style.display = 'none';
+        }
+
+        function confirmClearAllData() {
+            // Delete all data
+            hunts = [];
+            goals = [];
+            rareLoot = [];
+            dailyTarget = 0;
+            saveUserData();
+            updateDisplay();
+            closeClearDataModal();
+            showNotification('🗑️ All hunt data has been permanently deleted', 'success');
         }
 
         function exportData() {
@@ -5006,8 +5050,7 @@ Member Name
                     localStorage.setItem('dailyTarget', dailyTarget);
                     updateDailyTarget();
                     showNotification(`✅ Daily target updated to ${formatProfit(parsed)}!`, 'success');
-                    // Ensure modal closes after save
-                    setTimeout(() => closeTargetModal(), 100);
+                    closeTargetModal(); // Close modal immediately
                 } else {
                     showNotification('⚠️ Please enter a valid target (e.g., 200kk, 50kk)', 'warning');
                 }
