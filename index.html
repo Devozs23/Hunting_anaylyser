@@ -2735,19 +2735,19 @@ Member Name
                 </div>
 
                 <!-- TC Summary - PROFESSIONAL REDESIGN -->
-                <div id="tcConversionDisplay" class="card" style="margin-top: 12px; padding: 16px; background: linear-gradient(135deg, rgba(102, 126, 234, 0.08) 0%, rgba(126, 179, 214, 0.08) 100%); border: 2px solid rgba(102, 126, 234, 0.3); display: none;">
+                <div id="tcConversionDisplay" class="card" style="margin-top: 12px; padding: 16px; background: linear-gradient(135deg, rgba(30, 41, 59, 0.4) 0%, rgba(51, 65, 85, 0.4) 100%); border: 2px solid rgba(100, 116, 139, 0.3); display: none;">
                     <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px;">
-                        <div style="text-align: center; padding: 12px; background: rgba(102, 126, 234, 0.1); border-radius: 10px; border: 1px solid rgba(102, 126, 234, 0.3);">
-                            <p style="font-size: 0.7em; color: rgba(102, 126, 234, 0.9); margin-bottom: 6px; text-transform: uppercase; letter-spacing: 1px; font-weight: 700;">💎 Total</p>
-                            <p style="font-size: 1.8em; font-weight: 900; margin: 0; color: #667eea; text-shadow: 0 2px 4px rgba(102, 126, 234, 0.3);" id="tcTotalProfit">0 TC</p>
-                        </div>
-                        <div style="text-align: center; padding: 12px; background: rgba(126, 179, 214, 0.1); border-radius: 10px; border: 1px solid rgba(126, 179, 214, 0.3);">
-                            <p style="font-size: 0.7em; color: rgba(126, 179, 214, 0.9); margin-bottom: 6px; text-transform: uppercase; letter-spacing: 1px; font-weight: 700;">📅 Monthly</p>
-                            <p style="font-size: 1.8em; font-weight: 900; margin: 0; color: #7eb3d6; text-shadow: 0 2px 4px rgba(126, 179, 214, 0.3);" id="tcMonthlyProfit">0 TC</p>
+                        <div style="text-align: center; padding: 12px; background: rgba(51, 65, 85, 0.3); border-radius: 10px; border: 1px solid rgba(100, 116, 139, 0.4);">
+                            <p style="font-size: 0.7em; color: rgba(148, 163, 184, 0.9); margin-bottom: 6px; text-transform: uppercase; letter-spacing: 1px; font-weight: 700;">💎 Total</p>
+                            <p style="font-size: 1.8em; font-weight: 900; margin: 0; color: #94a3b8; text-shadow: 0 2px 4px rgba(148, 163, 184, 0.3);" id="tcTotalProfit">0 TC</p>
                         </div>
                         <div style="text-align: center; padding: 12px; background: rgba(34, 211, 238, 0.1); border-radius: 10px; border: 1px solid rgba(34, 211, 238, 0.3);">
-                            <p style="font-size: 0.7em; color: rgba(34, 211, 238, 0.9); margin-bottom: 6px; text-transform: uppercase; letter-spacing: 1px; font-weight: 700;">⚡ Per Hunt</p>
-                            <p style="font-size: 1.8em; font-weight: 900; margin: 0; color: #22d3ee; text-shadow: 0 2px 4px rgba(34, 211, 238, 0.3);" id="tcAvgProfit">0 TC</p>
+                            <p style="font-size: 0.7em; color: rgba(34, 211, 238, 0.9); margin-bottom: 6px; text-transform: uppercase; letter-spacing: 1px; font-weight: 700;">📅 Monthly</p>
+                            <p style="font-size: 1.8em; font-weight: 900; margin: 0; color: #22d3ee; text-shadow: 0 2px 4px rgba(34, 211, 238, 0.3);" id="tcMonthlyProfit">0 TC</p>
+                        </div>
+                        <div style="text-align: center; padding: 12px; background: rgba(6, 182, 212, 0.15); border-radius: 10px; border: 1px solid rgba(6, 182, 212, 0.3);">
+                            <p style="font-size: 0.7em; color: rgba(6, 182, 212, 0.9); margin-bottom: 6px; text-transform: uppercase; letter-spacing: 1px; font-weight: 700;">⚡ Per Hunt</p>
+                            <p style="font-size: 1.8em; font-weight: 900; margin: 0; color: #06b6d4; text-shadow: 0 2px 4px rgba(6, 182, 212, 0.3);" id="tcAvgProfit">0 TC</p>
                         </div>
                     </div>
                 </div>
@@ -2875,10 +2875,20 @@ Member Name
 
                 if (currentDate !== lastKnownDate) {
                     console.log('🌙 Midnight detected! Updating calendars and resetting day...');
+                    console.log(`📅 Day changed from ${lastKnownDate} to ${currentDate}`);
                     lastKnownDate = currentDate;
 
+                    // Update calendar month/year if needed
+                    const today = new Date();
+                    if (currentCalendarMonth !== today.getMonth() || currentCalendarYear !== today.getFullYear()) {
+                        currentCalendarMonth = today.getMonth();
+                        currentCalendarYear = today.getFullYear();
+                        console.log(`📆 Calendar moved to ${currentCalendarMonth + 1}/${currentCalendarYear}`);
+                    }
+
                     // Update TC calendar if user is logged in and has TC price set
-                    if (currentUser && tcPrice > 0) {
+                    if (currentUser && tcPrice > 0 && hunts.length > 0) {
+                        console.log('🔄 Refreshing TC displays...');
                         updateTCDisplay();
                         updateTCDailyTracking();
                     }
@@ -6687,6 +6697,7 @@ Member Name
             const tcMap = {};
             dailyTC.forEach(day => {
                 tcMap[day.date] = day;
+                console.log(`📅 TC Data: ${day.date} = ${day.tcs} TC (${formatProfit(day.profit)})`);
             });
 
             // Find max TCs for color scaling
@@ -6697,6 +6708,11 @@ Member Name
             const lastDay = new Date(currentCalendarYear, currentCalendarMonth + 1, 0);
             const daysInMonth = lastDay.getDate();
             const startingDayOfWeek = firstDay.getDay();
+
+            // Get today's date for comparison
+            const today = new Date();
+            const todayDateStr = `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, '0')}-${String(today.getDate()).padStart(2, '0')}`;
+            console.log(`🗓️ Today is: ${todayDateStr}`);
 
             let calendarHTML = '';
 
