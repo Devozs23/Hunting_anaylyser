@@ -4119,14 +4119,21 @@ Member Name
 
                 const data = await response.json();
 
+                // Debug: Log full API response
+                console.log('🔍 TibiaData API Response:', data);
+
                 // Check if character exists
                 if (!data.character || !data.character.character) {
                     throw new Error('Character not found');
                 }
 
                 const char = data.character.character;
+                const charInfo = data.character;
                 const guild = data.character.guild || null;
                 const deaths = data.character.deaths || [];
+
+                console.log('📊 Character data:', char);
+                console.log('📊 Character info:', charInfo);
 
                 // Update character display
                 document.getElementById('charDisplayName').textContent = char.name;
@@ -4136,9 +4143,16 @@ Member Name
                 document.getElementById('charAchievements').textContent = char.achievement_points || '0';
                 document.getElementById('charDeaths').textContent = deaths.length || '0';
 
-                // Online status
+                // Online status - Check multiple possible fields
                 const onlineStatus = document.getElementById('charOnlineStatus');
-                if (char.status && char.status.toLowerCase() === 'online') {
+                const isOnline = charInfo.status === 'online' ||
+                                 char.status === 'online' ||
+                                 (typeof charInfo.status === 'string' && charInfo.status.toLowerCase() === 'online') ||
+                                 (typeof char.status === 'string' && char.status.toLowerCase() === 'online');
+
+                console.log('🔍 Online check - charInfo.status:', charInfo.status, 'char.status:', char.status, 'isOnline:', isOnline);
+
+                if (isOnline) {
                     onlineStatus.innerHTML = '🟢 Online';
                     onlineStatus.style.background = 'rgba(40, 167, 69, 0.2)';
                     onlineStatus.style.borderColor = 'rgba(40, 167, 69, 0.5)';
