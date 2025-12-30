@@ -3234,6 +3234,7 @@ Member Name
                 updateRareLootStats();
                 displayRareItems();
                 displayMonthlyBreakdown();
+                renderRareLootCalendar(); // Render calendar when tab is opened
             } else if (tab === 'dashboard') {
                 updateDashboardGoals();
             }
@@ -4811,6 +4812,7 @@ Member Name
             updateSessionDisplay();
             updatePerformanceAnalytics();
             updateExpDailyTracking();
+            updateTCDailyTracking(); // Auto-update TC Calendar when hunts are added
             drawAdvancedCharts(); // Auto-update Charts when hunts are added
         }
 
@@ -6311,6 +6313,7 @@ Member Name
             updateRareLootStats();
             displayRareItems();
             displayMonthlyBreakdown();
+            renderRareLootCalendar(); // Update calendar to show new items
 
             showNotification(`💎 ${itemName} added! Value: ${formatNumber(totalValue)} gp`);
         }
@@ -6578,6 +6581,7 @@ Member Name
                 updateRareLootStats();
                 displayRareItems();
                 displayMonthlyBreakdown();
+                renderRareLootCalendar(); // Update calendar after deletion
                 showNotification('Rare item deleted');
             }
         }
