@@ -10,8 +10,8 @@
         :root {
             --bg-gradient-start: #0a0a0f;
             --bg-gradient-end: #1a1a2e;
-            --primary-color: #667eea;
-            --secondary-color: #764ba2;
+            --primary-color: #22d3ee;
+            --secondary-color: #06b6d4;
             --success-color: #28a745;
             --danger-color: #dc3545;
             --warning-color: #ffc107;
@@ -24,8 +24,8 @@
         }
 
         [data-theme="light"] {
-            --bg-gradient-start: #667eea;
-            --bg-gradient-end: #764ba2;
+            --bg-gradient-start: #22d3ee;
+            --bg-gradient-end: #06b6d4;
             --card-bg: #ffffff;
             --text-primary: #333;
             --text-secondary: #666;
@@ -471,7 +471,7 @@
 
         .btn-primary:hover {
             transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+            box-shadow: 0 5px 15px rgba(34, 211, 238, 0.5);
         }
 
         .btn-secondary {
@@ -4060,19 +4060,19 @@ Member Name
                     targetFormatted = formatNumber(goal.target);
                 }
 
-                // Color based on status - PROFESSIONAL PALETTE
+                // Color based on status - CYAN PROFESSIONAL PALETTE
                 const statusColors = {
-                    'active': 'rgba(102, 126, 234, 0.08)',
+                    'active': 'rgba(34, 211, 238, 0.08)',
                     'completed': 'rgba(40, 167, 69, 0.08)',
                     'failed': 'rgba(220, 53, 69, 0.08)'
                 };
                 const borderColors = {
-                    'active': 'rgba(102, 126, 234, 0.3)',
+                    'active': 'rgba(34, 211, 238, 0.3)',
                     'completed': 'rgba(40, 167, 69, 0.3)',
                     'failed': 'rgba(220, 53, 69, 0.3)'
                 };
                 const progressColors = {
-                    'active': 'linear-gradient(90deg, #667eea 0%, #7eb3d6 100%)',
+                    'active': 'linear-gradient(90deg, #22d3ee 0%, #06b6d4 100%)',
                     'completed': 'linear-gradient(90deg, #28a745 0%, #20c997 100%)',
                     'failed': 'linear-gradient(90deg, #dc3545 0%, #c82333 100%)'
                 };
@@ -4092,7 +4092,7 @@ Member Name
                                 <div style="font-size: 0.75em; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.5px;">${goal.type} Goal</div>
                             </div>
                             <div style="display: flex; gap: 8px; align-items: center;">
-                                <div style="padding: 5px 12px; background: ${goal.status === 'completed' ? '#28a745' : goal.status === 'active' ? '#667eea' : '#dc3545'}; color: white; border-radius: 16px; font-size: 0.7em; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px;">${goal.status === 'active' ? '⚡ Active' : goal.status === 'completed' ? '✅ Done' : '❌ Failed'}</div>
+                                <div style="padding: 5px 12px; background: ${goal.status === 'completed' ? '#28a745' : goal.status === 'active' ? '#22d3ee' : '#dc3545'}; color: white; border-radius: 16px; font-size: 0.7em; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px;">${goal.status === 'active' ? '⚡ Active' : goal.status === 'completed' ? '✅ Done' : '❌ Failed'}</div>
                                 <button onclick="deleteGoal(${goal.id})" style="background: rgba(220, 53, 69, 0.15); border: 1.5px solid rgba(220, 53, 69, 0.3); color: #dc3545; padding: 6px 10px; border-radius: 6px; cursor: pointer; font-weight: bold; font-size: 0.85em; transition: all 0.2s;" onmouseover="this.style.background='rgba(220, 53, 69, 0.25)'; this.style.transform='scale(1.05)';" onmouseout="this.style.background='rgba(220, 53, 69, 0.15)'; this.style.transform='';">✕</button>
                             </div>
                         </div>
