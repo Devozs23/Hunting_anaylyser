@@ -2399,6 +2399,63 @@ Member Name
                     </div>
                 </div>
 
+                <!-- Gold Goal Calculator - NEW FEATURE -->
+                <div class="card" style="padding: 14px; margin-bottom: 12px; background: linear-gradient(135deg, rgba(251, 191, 36, 0.08) 0%, rgba(251, 191, 36, 0.12) 100%); border: 2px solid rgba(251, 191, 36, 0.4);">
+                    <h4 style="margin: 0 0 12px 0; font-size: 1em; color: #fbbf24; display: flex; align-items: center; gap: 6px;">
+                        💰 Profit Goal Calculator
+                    </h4>
+
+                    <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 10px; margin-bottom: 10px;">
+                        <div class="input-group" style="margin: 0;">
+                            <label style="font-size: 0.75em; margin-bottom: 4px; color: #fbbf24; font-weight: 600;">🎯 Item / Goal Name</label>
+                            <input type="text" id="goldGoalName" placeholder="e.g., Soulcutter, EK Set" style="padding: 8px 12px; font-size: 0.85em; background: rgba(0,0,0,0.3); border: 2px solid rgba(251, 191, 36, 0.4); color: white;">
+                        </div>
+                        <div class="input-group" style="margin: 0;">
+                            <label style="font-size: 0.75em; margin-bottom: 4px; color: #fbbf24; font-weight: 600;">💎 Target Gold</label>
+                            <input type="text" id="goldGoalTarget" placeholder="500kk" style="padding: 8px 12px; font-size: 0.85em; background: rgba(0,0,0,0.3); border: 2px solid rgba(251, 191, 36, 0.4); color: white;">
+                        </div>
+                    </div>
+
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 10px;">
+                        <div class="input-group" style="margin: 0;">
+                            <label style="font-size: 0.75em; margin-bottom: 4px; color: #fbbf24; font-weight: 600;">💰 Current Gold</label>
+                            <input type="text" id="goldGoalCurrent" placeholder="50kk" value="0" style="padding: 8px 12px; font-size: 0.85em; background: rgba(0,0,0,0.3); border: 2px solid rgba(251, 191, 36, 0.4); color: white;">
+                        </div>
+                        <button onclick="calculateGoldGoal()" style="background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%); color: white; border: none; border-radius: 8px; padding: 8px; font-weight: 700; cursor: pointer; font-size: 0.85em; margin-top: auto; box-shadow: 0 4px 12px rgba(251, 191, 36, 0.3);">
+                            📊 Calculate
+                        </button>
+                    </div>
+
+                    <!-- Results -->
+                    <div id="goldGoalResults" style="display: none; margin-top: 12px; padding: 12px; background: rgba(0,0,0,0.3); border-radius: 8px; border-left: 3px solid #fbbf24;">
+                        <div style="margin-bottom: 10px;">
+                            <div style="font-size: 0.7em; color: rgba(251, 191, 36, 0.8); text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 4px; font-weight: 700;">🎯 Goal Progress</div>
+                            <div style="background: rgba(0,0,0,0.3); height: 20px; border-radius: 10px; overflow: hidden; position: relative; border: 1px solid rgba(251, 191, 36, 0.3);">
+                                <div id="goldGoalProgressBar" style="background: linear-gradient(90deg, #fbbf24 0%, #f59e0b 100%); height: 100%; width: 0%; transition: width 0.8s ease; box-shadow: 0 0 10px rgba(251, 191, 36, 0.6);"></div>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; margin-top: 4px; font-size: 0.7em;">
+                                <span style="color: rgba(251, 191, 36, 0.8);" id="goldGoalProgressText">0%</span>
+                                <span style="color: rgba(251, 191, 36, 0.8);" id="goldGoalRemaining">0 gp remaining</span>
+                            </div>
+                        </div>
+
+                        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px;">
+                            <div style="text-align: center; padding: 8px; background: rgba(251, 191, 36, 0.1); border-radius: 6px;">
+                                <div style="font-size: 0.65em; color: rgba(251, 191, 36, 0.8); margin-bottom: 2px; text-transform: uppercase; letter-spacing: 0.5px;">📅 Days Left</div>
+                                <div id="goldGoalDaysLeft" style="font-size: 1.4em; font-weight: 900; color: #fbbf24;">-</div>
+                            </div>
+                            <div style="text-align: center; padding: 8px; background: rgba(251, 191, 36, 0.1); border-radius: 6px;">
+                                <div style="font-size: 0.65em; color: rgba(251, 191, 36, 0.8); margin-bottom: 2px; text-transform: uppercase; letter-spacing: 0.5px;">📆 ETA</div>
+                                <div id="goldGoalETA" style="font-size: 0.85em; font-weight: 700; color: #fbbf24;">-</div>
+                            </div>
+                            <div style="text-align: center; padding: 8px; background: rgba(251, 191, 36, 0.1); border-radius: 6px;">
+                                <div style="font-size: 0.65em; color: rgba(251, 191, 36, 0.8); margin-bottom: 2px; text-transform: uppercase; letter-spacing: 0.5px;">⚡ Daily Avg</div>
+                                <div id="goldGoalDailyAvg" style="font-size: 0.85em; font-weight: 700; color: #fbbf24;">-</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 <!-- Add Goal Form - COMPACT -->
                 <div class="card" style="padding: 12px; margin-bottom: 12px;">
                     <h4 style="margin: 0 0 10px 0; font-size: 0.95em;">➕ New Goal</h4>
@@ -4004,6 +4061,91 @@ Member Name
             document.getElementById('goalDeadline').value = '';
 
             showNotification('Goal created successfully!', 'success');
+        }
+
+        // Gold Goal Calculator Function
+        function calculateGoldGoal() {
+            const goalName = document.getElementById('goldGoalName').value.trim();
+            const targetStr = document.getElementById('goldGoalTarget').value.trim();
+            const currentStr = document.getElementById('goldGoalCurrent').value.trim();
+
+            if (!targetStr) {
+                showNotification('⚠️ Please enter target gold amount!', 'warning');
+                return;
+            }
+
+            // Parse using existing parsePrice function
+            const targetGold = parsePrice(targetStr);
+            const currentGold = parsePrice(currentStr) || 0;
+
+            if (targetGold <= 0) {
+                showNotification('⚠️ Invalid target amount!', 'warning');
+                return;
+            }
+
+            if (currentGold >= targetGold) {
+                showNotification('🎉 You already have enough gold!', 'success');
+                document.getElementById('goldGoalResults').style.display = 'block';
+                document.getElementById('goldGoalProgressBar').style.width = '100%';
+                document.getElementById('goldGoalProgressText').textContent = '100%';
+                document.getElementById('goldGoalRemaining').textContent = '0 gp remaining';
+                document.getElementById('goldGoalDaysLeft').textContent = '0';
+                document.getElementById('goldGoalETA').textContent = 'Today!';
+                document.getElementById('goldGoalDailyAvg').textContent = '-';
+                return;
+            }
+
+            // Calculate remaining
+            const remaining = targetGold - currentGold;
+            const progress = (currentGold / targetGold) * 100;
+
+            // Calculate daily average profit
+            if (hunts.length === 0) {
+                showNotification('⚠️ Add some hunts first to calculate daily average!', 'warning');
+                return;
+            }
+
+            // Group hunts by date to get daily profits
+            const huntsByDate = {};
+            hunts.forEach(hunt => {
+                const date = hunt.date.split('T')[0];
+                if (!huntsByDate[date]) {
+                    huntsByDate[date] = [];
+                }
+                huntsByDate[date].push(hunt);
+            });
+
+            // Calculate average daily profit
+            const dailyProfits = Object.values(huntsByDate).map(dayHunts =>
+                dayHunts.reduce((sum, h) => sum + h.profit, 0)
+            );
+            const dailyAvg = dailyProfits.reduce((sum, p) => sum + p, 0) / dailyProfits.length;
+
+            if (dailyAvg <= 0) {
+                showNotification('⚠️ Your daily profit average is 0 or negative!', 'warning');
+                return;
+            }
+
+            // Calculate days needed
+            const daysNeeded = Math.ceil(remaining / dailyAvg);
+
+            // Calculate ETA
+            const eta = new Date();
+            eta.setDate(eta.getDate() + daysNeeded);
+            const etaStr = eta.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+
+            // Update UI
+            document.getElementById('goldGoalResults').style.display = 'block';
+            document.getElementById('goldGoalProgressBar').style.width = progress.toFixed(1) + '%';
+            document.getElementById('goldGoalProgressText').textContent = progress.toFixed(1) + '%';
+            document.getElementById('goldGoalRemaining').textContent = formatShort(remaining) + ' gp remaining';
+            document.getElementById('goldGoalDaysLeft').textContent = daysNeeded;
+            document.getElementById('goldGoalETA').textContent = etaStr;
+            document.getElementById('goldGoalDailyAvg').textContent = formatShort(dailyAvg) + '/day';
+
+            // Show notification with summary
+            const goalText = goalName ? ` for ${goalName}` : '';
+            showNotification(`📊 ${daysNeeded} days needed${goalText} at ${formatShort(dailyAvg)}/day average!`, 'success');
         }
 
         function deleteGoal(id) {
@@ -6777,14 +6919,19 @@ Member Name
         }
 
         function updateTCDailyTracking() {
+            console.log(`🔍 TC Calendar Debug: hunts=${hunts?.length || 0}, tcPrice=${tcPrice}, month=${currentCalendarMonth + 1}/${currentCalendarYear}`);
+
             if (!hunts || hunts.length === 0 || tcPrice === 0) {
+                const reason = !hunts || hunts.length === 0 ? 'No hunts added yet' : 'TC price not set';
+                console.log(`⚠️ TC Calendar: ${reason}`);
+
                 document.getElementById('bestTCDay').textContent = '-';
                 document.getElementById('bestTCDayDate').textContent = '-';
                 document.getElementById('worstTCDay').textContent = '-';
                 document.getElementById('worstTCDayDate').textContent = '-';
                 document.getElementById('tcCalendarGrid').innerHTML = `
                     <div style="grid-column: 1 / -1; padding: 20px; text-align: center; color: var(--text-secondary); font-size: 0.75em;">
-                        No data. Set TC price and add hunts.
+                        ${reason}. ${tcPrice === 0 ? 'Set TC price above.' : 'Add your first hunt.'}
                     </div>
                 `;
                 return;
