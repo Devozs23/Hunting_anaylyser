@@ -5473,6 +5473,9 @@ Member Name
 
         // Update stats summary cards
         function updateStatsSummary() {
+            // Check if elements exist (Charts tab may not be loaded yet)
+            if (!document.getElementById('statsTotalProfit')) return;
+
             const grouped = groupHuntsByPeriod();
             const values = Object.values(grouped);
 
@@ -5494,12 +5497,22 @@ Member Name
                 }
             });
 
-            document.getElementById('statsTotalProfit').textContent = formatProfit(totalProfit);
-            document.getElementById('statsAvgProfit').textContent = `Avg: ${formatProfit(avgProfit)} per hunt`;
-            document.getElementById('statsTotalXP').textContent = formatXP(totalXP);
-            document.getElementById('statsAvgXP').textContent = `Avg: ${formatXP(avgXP)} per hunt`;
-            document.getElementById('statsTotalHunts').textContent = totalHunts;
-            document.getElementById('statsAvgDuration').textContent = `Avg: ${formatTime(avgDuration)} duration`;
+            const elem1 = document.getElementById('statsTotalProfit');
+            const elem2 = document.getElementById('statsAvgProfit');
+            const elem3 = document.getElementById('statsTotalXP');
+            const elem4 = document.getElementById('statsAvgXP');
+            const elem5 = document.getElementById('statsTotalHunts');
+            const elem6 = document.getElementById('statsAvgDuration');
+            const elem7 = document.getElementById('statsBestDay');
+            const elem8 = document.getElementById('statsBestDayValue');
+            const elem9 = document.getElementById('totalHuntTime');
+
+            if (elem1) elem1.textContent = formatProfit(totalProfit);
+            if (elem2) elem2.textContent = `Avg: ${formatProfit(avgProfit)} per hunt`;
+            if (elem3) elem3.textContent = formatXP(totalXP);
+            if (elem4) elem4.textContent = `Avg: ${formatXP(avgXP)} per hunt`;
+            if (elem5) elem5.textContent = totalHunts;
+            if (elem6) elem6.textContent = `Avg: ${formatTime(avgDuration)} duration`;
 
             if (bestPeriod) {
                 const periodLabel = currentPeriod === 'daily' ? 'Day' : currentPeriod === 'weekly' ? 'Week' : 'Month';
@@ -5508,14 +5521,14 @@ Member Name
                     day: currentPeriod !== 'monthly' ? 'numeric' : undefined,
                     year: 'numeric'
                 });
-                document.getElementById('statsBestDay').textContent = formattedDate;
-                document.getElementById('statsBestDayValue').textContent = `${formatProfit(bestValue)} profit`;
+                if (elem7) elem7.textContent = formattedDate;
+                if (elem8) elem8.textContent = `${formatProfit(bestValue)} profit`;
             } else {
-                document.getElementById('statsBestDay').textContent = '-';
-                document.getElementById('statsBestDayValue').textContent = 'No data yet';
+                if (elem7) elem7.textContent = '-';
+                if (elem8) elem8.textContent = 'No data yet';
             }
 
-            document.getElementById('totalHuntTime').textContent = formatTime(totalDuration);
+            if (elem9) elem9.textContent = formatTime(totalDuration);
         }
 
         // Draw Profit Chart
