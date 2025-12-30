@@ -1838,16 +1838,8 @@
                 <!-- Password Recovery -->
                 <div style="text-align: center; margin-top: 15px;">
                     <button onclick="showPasswordRecovery()" style="background: none; border: none; color: var(--primary-color); cursor: pointer; text-decoration: underline; font-size: 0.9em;">
-                        🔑 Forgot Password / Can't Login?
+                        🔑 Forgot Password?
                     </button>
-                </div>
-
-                <!-- Emergency Access Instructions -->
-                <div style="background: rgba(255, 193, 7, 0.1); border: 1px solid rgba(255, 193, 7, 0.3); border-radius: 8px; padding: 15px; margin-top: 15px; font-size: 0.85em; color: var(--text-secondary);">
-                    <strong style="color: #ffc107;">🆘 Can't login?</strong><br>
-                    1. Press <strong>F12</strong> to open console<br>
-                    2. Type: <code style="background: rgba(0,0,0,0.3); padding: 2px 6px; border-radius: 3px;">showMyAccounts()</code><br>
-                    3. See your username and reset password
                 </div>
             </div>
 
@@ -3311,6 +3303,7 @@ Member Name
 
         function handleLogout() {
             if (confirm('Are you sure you want to logout?')) {
+                // Clear all user data
                 currentUser = null;
                 localStorage.removeItem('currentUser');
                 hunts = [];
@@ -3319,11 +3312,20 @@ Member Name
                 serverType = 'green';
                 tibiaCharName = '';
                 tcPrice = 0;
+                dailyTarget = 50000000;
 
+                // Clear login form
                 document.getElementById('loginUsername').value = '';
                 document.getElementById('loginPassword').value = '';
 
+                // Reset app state
+                document.getElementById('appContainer').classList.remove('active');
+
+                // Show login screen
                 showLogin();
+
+                // Show notification
+                showNotification('✅ Logged out successfully', 'success');
             }
         }
 
@@ -7169,31 +7171,44 @@ Member Name
          * Shows password recovery instructions
          */
         window.showPasswordRecovery = function() {
-            alert(
-                '🆘 PASSWORD RECOVERY GUIDE\n\n' +
-                'If you can\'t login:\n\n' +
-                '1️⃣ Press F12 to open browser console\n\n' +
-                '2️⃣ Type: showMyAccounts()\n' +
-                '   This shows all registered usernames\n\n' +
-                '3️⃣ Type: resetPassword("YourUsername", "NewPassword")\n' +
-                '   Replace with your actual username and desired password\n\n' +
-                'Example:\n' +
-                'resetPassword("penchizs", "MyNewPass123")\n\n' +
-                '4️⃣ Login with your new password!\n\n' +
-                '⚠️ Note: Passwords are case-sensitive'
-            );
+            const recoveryModal = `
+                <div id="passwordRecoveryModal" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 10001; display: flex; align-items: center; justify-content: center;">
+                    <div style="background: var(--card-bg); border: 2px solid #22d3ee; border-radius: 12px; padding: 25px; max-width: 450px; width: 90%; box-shadow: 0 20px 60px rgba(0,0,0,0.5);">
+                        <h2 style="color: #22d3ee; margin-bottom: 15px; text-align: center; font-size: 1.4em;">🔑 Password Recovery</h2>
 
-            // Also show in console
-            console.log('='.repeat(60));
-            console.log('🆘 PASSWORD RECOVERY INSTRUCTIONS');
-            console.log('='.repeat(60));
-            console.log('\n1. See all accounts:');
-            console.log('   showMyAccounts()');
-            console.log('\n2. Reset password:');
-            console.log('   resetPassword("username", "newPassword")');
-            console.log('\nExample:');
-            console.log('   resetPassword("penchizs", "abc12345")');
-            console.log('\n' + '='.repeat(60));
+                        <div style="background: rgba(34, 211, 238, 0.08); padding: 15px; border-radius: 8px; margin-bottom: 15px; border-left: 3px solid #22d3ee;">
+                            <p style="margin: 0 0 10px 0; font-size: 0.9em; color: var(--text-primary); line-height: 1.5;">
+                                <strong style="color: #22d3ee;">📋 Recovery Steps:</strong>
+                            </p>
+                            <ol style="margin: 0; padding-left: 20px; color: var(--text-secondary); font-size: 0.85em; line-height: 1.6;">
+                                <li>Press <strong style="color: var(--text-primary);">F12</strong> to open browser console</li>
+                                <li>Type: <code style="background: rgba(34, 211, 238, 0.15); padding: 2px 6px; border-radius: 3px; color: #22d3ee;">showMyAccounts()</code></li>
+                                <li>View all your registered usernames</li>
+                                <li>Type: <code style="background: rgba(34, 211, 238, 0.15); padding: 2px 6px; border-radius: 3px; color: #22d3ee;">resetPassword("username", "newpass")</code></li>
+                                <li>Login with your new password!</li>
+                            </ol>
+                        </div>
+
+                        <div style="background: rgba(251, 191, 36, 0.08); padding: 12px; border-radius: 8px; margin-bottom: 15px; border-left: 3px solid #fbbf24;">
+                            <p style="margin: 0; font-size: 0.8em; color: var(--text-secondary); line-height: 1.4;">
+                                <strong style="color: #fbbf24;">💡 Example:</strong><br>
+                                <code style="background: rgba(0,0,0,0.3); padding: 2px 6px; border-radius: 3px; color: #fbbf24;">resetPassword("myuser", "newpass123")</code>
+                            </p>
+                        </div>
+
+                        <button onclick="document.getElementById('passwordRecoveryModal').remove()" style="width: 100%; background: linear-gradient(135deg, #22d3ee 0%, #06b6d4 100%); color: white; padding: 12px; border-radius: 8px; font-weight: 700; border: none; cursor: pointer; transition: all 0.3s; box-shadow: 0 4px 15px rgba(34, 211, 238, 0.3);">
+                            ✅ Got it!
+                        </button>
+                    </div>
+                </div>
+            `;
+
+            document.body.insertAdjacentHTML('beforeend', recoveryModal);
+
+            // Also log to console for easy reference
+            console.log('%c🔑 PASSWORD RECOVERY', 'font-size: 16px; font-weight: bold; color: #22d3ee;');
+            console.log('%c1. View accounts: showMyAccounts()', 'color: #22d3ee;');
+            console.log('%c2. Reset password: resetPassword("username", "newPassword")', 'color: #22d3ee;');
         };
 
         /**
