@@ -1167,6 +1167,57 @@
             50% { box-shadow: 0 0 40px rgba(102, 126, 234, 0.8), 0 0 60px rgba(118, 75, 162, 0.6); }
         }
 
+        /* Floating Icons Animations */
+        @keyframes float1 {
+            0%, 100% { transform: translate(10%, 10%) rotate(0deg); }
+            25% { transform: translate(80%, 30%) rotate(90deg); }
+            50% { transform: translate(85%, 70%) rotate(180deg); }
+            75% { transform: translate(15%, 60%) rotate(270deg); }
+        }
+
+        @keyframes float2 {
+            0%, 100% { transform: translate(90%, 20%) rotate(0deg); }
+            25% { transform: translate(20%, 40%) rotate(-90deg); }
+            50% { transform: translate(10%, 80%) rotate(-180deg); }
+            75% { transform: translate(70%, 50%) rotate(-270deg); }
+        }
+
+        @keyframes float3 {
+            0%, 100% { transform: translate(50%, 5%) rotate(0deg); }
+            33% { transform: translate(70%, 60%) rotate(120deg); }
+            66% { transform: translate(5%, 75%) rotate(240deg); }
+        }
+
+        @keyframes float4 {
+            0%, 100% { transform: translate(25%, 80%) rotate(0deg); }
+            50% { transform: translate(75%, 15%) rotate(180deg); }
+        }
+
+        @keyframes float5 {
+            0%, 100% { transform: translate(85%, 85%) rotate(0deg); }
+            25% { transform: translate(10%, 70%) rotate(-90deg); }
+            50% { transform: translate(5%, 20%) rotate(-180deg); }
+            75% { transform: translate(60%, 40%) rotate(-270deg); }
+        }
+
+        @keyframes float6 {
+            0%, 100% { transform: translate(40%, 90%) rotate(0deg); }
+            33% { transform: translate(80%, 50%) rotate(120deg); }
+            66% { transform: translate(30%, 10%) rotate(240deg); }
+        }
+
+        @keyframes float7 {
+            0%, 100% { transform: translate(70%, 40%) rotate(0deg); }
+            50% { transform: translate(15%, 75%) rotate(180deg); }
+        }
+
+        @keyframes float8 {
+            0%, 100% { transform: translate(60%, 60%) rotate(0deg); }
+            25% { transform: translate(90%, 80%) rotate(90deg); }
+            50% { transform: translate(50%, 10%) rotate(180deg); }
+            75% { transform: translate(20%, 55%) rotate(270deg); }
+        }
+
         /* APLICAR GRADIENTES ANIMADOS A LAS CARDS */
         .stat-card {
             background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 50%, var(--primary-color) 100%);
@@ -2051,11 +2102,23 @@
             </div>
 
             <!-- Dashboard Tab -->
-            <div class="main-tab-content active" id="dashboardTab">
+            <div class="main-tab-content active" id="dashboardTab" style="position: relative; overflow: hidden;">
+                <!-- Floating Animated Icons -->
+                <div class="floating-icons" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; pointer-events: none; z-index: 0; overflow: hidden;">
+                    <div style="position: absolute; font-size: 2.5em; animation: float1 15s infinite ease-in-out; opacity: 0.15;">💰</div>
+                    <div style="position: absolute; font-size: 2em; animation: float2 18s infinite ease-in-out; opacity: 0.12;">⭐</div>
+                    <div style="position: absolute; font-size: 1.8em; animation: float3 20s infinite ease-in-out; opacity: 0.1;">🎯</div>
+                    <div style="position: absolute; font-size: 2.2em; animation: float4 16s infinite ease-in-out; opacity: 0.13;">📈</div>
+                    <div style="position: absolute; font-size: 1.9em; animation: float5 22s infinite ease-in-out; opacity: 0.11;">🔥</div>
+                    <div style="position: absolute; font-size: 2.3em; animation: float6 19s infinite ease-in-out; opacity: 0.14;">💎</div>
+                    <div style="position: absolute; font-size: 2.1em; animation: float7 17s infinite ease-in-out; opacity: 0.12;">⚡</div>
+                    <div style="position: absolute; font-size: 1.7em; animation: float8 21s infinite ease-in-out; opacity: 0.09;">🏆</div>
+                </div>
+
                 <!-- Main Stats Cards -->
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px; margin-bottom: 12px;">
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px; margin-bottom: 12px; position: relative; z-index: 1;">
                     <!-- Total Profit Card -->
-                    <div style="background: linear-gradient(135deg, rgba(30, 40, 50, 0.9) 0%, rgba(35, 45, 55, 0.9) 100%); border: 1.5px solid rgba(100, 150, 200, 0.4); backdrop-filter: blur(15px); border-radius: 12px; padding: 10px 8px; text-align: center; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);">
+                    <div style="background: linear-gradient(135deg, rgba(30, 40, 50, 0.9) 0%, rgba(35, 45, 55, 0.9) 100%); border: 1.5px solid rgba(100, 150, 200, 0.4); backdrop-filter: blur(15px); border-radius: 12px; padding: 10px 8px; text-align: center; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); position: relative; z-index: 1;">
                         <div style="font-size: 1.8em; margin-bottom: 5px;">💰</div>
                         <div id="dashTotalProfit" style="font-size: 1.3em; font-weight: 900; color: #7eb3d6; margin-bottom: 3px;">4.2kk gp</div>
                         <div style="font-size: 0.6em; color: rgba(126, 179, 214, 0.7); text-transform: uppercase; letter-spacing: 1px; font-weight: 700; margin-bottom: 2px;">TOTAL PROFIT</div>
@@ -2200,65 +2263,65 @@
                     </div>
                 </div>
 
-                <!-- Performance Analytics -->
-                <div id="performanceSection" style="margin-top: 8px;">
-                    <div class="card" style="background: linear-gradient(135deg, rgba(50, 30, 40, 0.8) 0%, rgba(40, 20, 30, 0.8) 100%); border: 2px solid #dc3545; border-radius: 12px; padding: 8px; box-shadow: 0 8px 25px rgba(220, 53, 69, 0.2);">
-                        <h3 style="color: var(--danger-color); margin-bottom: 5px; font-size: 0.85em;">📈 Performance</h3>
+                <!-- Performance Analytics - LARGER -->
+                <div id="performanceSection" style="margin-top: 12px;">
+                    <div class="card" style="background: linear-gradient(135deg, rgba(50, 30, 40, 0.8) 0%, rgba(40, 20, 30, 0.8) 100%); border: 2px solid #dc3545; border-radius: 14px; padding: 14px; box-shadow: 0 8px 25px rgba(220, 53, 69, 0.3);">
+                        <h3 style="color: var(--danger-color); margin-bottom: 10px; font-size: 1.1em; font-weight: 700;">📈 Performance</h3>
 
-                        <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 5px;">
-                            <div style="background: rgba(0,0,0,0.2); padding: 5px; border-radius: 6px; text-align: center;">
-                                <div style="font-size: 0.65em; color: var(--text-secondary); margin-bottom: 2px;">Today</div>
-                                <div style="display: flex; align-items: center; justify-content: center; gap: 3px;">
-                                    <div id="todayVsYesterday" style="font-size: 0.9em; font-weight: bold; color: var(--text-primary);">-</div>
-                                    <div id="todayVsYesterdayIndicator" style="font-size: 0.8em;"></div>
+                        <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px;">
+                            <div style="background: rgba(0,0,0,0.3); padding: 12px; border-radius: 8px; text-align: center; border: 1px solid rgba(220, 53, 69, 0.2);">
+                                <div style="font-size: 0.85em; color: var(--text-secondary); margin-bottom: 6px; font-weight: 600;">Today</div>
+                                <div style="display: flex; align-items: center; justify-content: center; gap: 6px;">
+                                    <div id="todayVsYesterday" style="font-size: 1.15em; font-weight: 900; color: var(--text-primary);">-</div>
+                                    <div id="todayVsYesterdayIndicator" style="font-size: 1.05em;"></div>
                                 </div>
                             </div>
 
-                            <div style="background: rgba(0,0,0,0.2); padding: 5px; border-radius: 6px; text-align: center;">
-                                <div style="font-size: 0.65em; color: var(--text-secondary); margin-bottom: 2px;">Week</div>
-                                <div style="display: flex; align-items: center; justify-content: center; gap: 3px;">
-                                    <div id="weekVsWeek" style="font-size: 0.9em; font-weight: bold; color: var(--text-primary);">-</div>
-                                    <div id="weekVsWeekIndicator" style="font-size: 0.8em;"></div>
+                            <div style="background: rgba(0,0,0,0.3); padding: 12px; border-radius: 8px; text-align: center; border: 1px solid rgba(220, 53, 69, 0.2);">
+                                <div style="font-size: 0.85em; color: var(--text-secondary); margin-bottom: 6px; font-weight: 600;">Week</div>
+                                <div style="display: flex; align-items: center; justify-content: center; gap: 6px;">
+                                    <div id="weekVsWeek" style="font-size: 1.15em; font-weight: 900; color: var(--text-primary);">-</div>
+                                    <div id="weekVsWeekIndicator" style="font-size: 1.05em;"></div>
                                 </div>
                             </div>
 
-                            <div style="background: rgba(0,0,0,0.2); padding: 5px; border-radius: 6px; text-align: center;">
-                                <div style="font-size: 0.65em; color: var(--text-secondary); margin-bottom: 2px;">Best</div>
-                                <div id="bestSpot7d" style="font-size: 0.8em; font-weight: bold; color: var(--text-primary);">-</div>
+                            <div style="background: rgba(0,0,0,0.3); padding: 12px; border-radius: 8px; text-align: center; border: 1px solid rgba(220, 53, 69, 0.2);">
+                                <div style="font-size: 0.85em; color: var(--text-secondary); margin-bottom: 6px; font-weight: 600;">Best</div>
+                                <div id="bestSpot7d" style="font-size: 1em; font-weight: 900; color: var(--text-primary);">-</div>
                             </div>
 
-                            <div style="background: rgba(0,0,0,0.2); padding: 5px; border-radius: 6px; text-align: center;">
-                                <div style="font-size: 0.65em; color: var(--text-secondary); margin-bottom: 2px;">Trend</div>
-                                <div id="performanceTrend" style="font-size: 0.9em; font-weight: bold;">-</div>
+                            <div style="background: rgba(0,0,0,0.3); padding: 12px; border-radius: 8px; text-align: center; border: 1px solid rgba(220, 53, 69, 0.2);">
+                                <div style="font-size: 0.85em; color: var(--text-secondary); margin-bottom: 6px; font-weight: 600;">Trend</div>
+                                <div id="performanceTrend" style="font-size: 1.15em; font-weight: 900;">-</div>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Smart Insights -->
-                <div id="smartInsights" style="margin-top: 8px;">
-                    <div class="card" style="background: linear-gradient(135deg, rgba(30, 50, 50, 0.8) 0%, rgba(20, 40, 40, 0.8) 100%); border: 2px solid #20c997; border-radius: 12px; padding: 8px; box-shadow: 0 8px 25px rgba(32, 201, 151, 0.2);">
-                        <h3 style="color: #20c997; margin-bottom: 5px; font-size: 0.85em;">🧠 Insights</h3>
-                        <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 5px;">
-                            <div style="background: rgba(255,255,255,0.05); padding: 5px; border-radius: 6px; text-align: center;">
-                                <div style="font-size: 1.2em; margin-bottom: 2px;">📅</div>
-                                <div style="font-size: 0.65em; color: var(--text-secondary); margin-bottom: 2px;">Best Day</div>
-                                <div id="insightBestDay" style="font-size: 0.75em; font-weight: bold; color: var(--text-primary);">-</div>
+                <!-- Smart Insights - LARGER -->
+                <div id="smartInsights" style="margin-top: 12px;">
+                    <div class="card" style="background: linear-gradient(135deg, rgba(30, 50, 50, 0.8) 0%, rgba(20, 40, 40, 0.8) 100%); border: 2px solid #20c997; border-radius: 14px; padding: 14px; box-shadow: 0 8px 25px rgba(32, 201, 151, 0.3);">
+                        <h3 style="color: #20c997; margin-bottom: 10px; font-size: 1.1em; font-weight: 700;">🧠 Insights</h3>
+                        <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px;">
+                            <div style="background: rgba(255,255,255,0.08); padding: 12px; border-radius: 8px; text-align: center; border: 1px solid rgba(32, 201, 151, 0.2);">
+                                <div style="font-size: 1.6em; margin-bottom: 6px;">📅</div>
+                                <div style="font-size: 0.8em; color: var(--text-secondary); margin-bottom: 6px; font-weight: 600;">Best Day</div>
+                                <div id="insightBestDay" style="font-size: 0.95em; font-weight: 900; color: var(--text-primary);">-</div>
                             </div>
-                            <div style="background: rgba(255,255,255,0.05); padding: 5px; border-radius: 6px; text-align: center;">
-                                <div style="font-size: 1.2em; margin-bottom: 2px;">🏆</div>
-                                <div style="font-size: 0.65em; color: var(--text-secondary); margin-bottom: 2px;">Best Hunt</div>
-                                <div id="insightBestHunt" style="font-size: 0.75em; font-weight: bold; color: var(--text-primary);">-</div>
+                            <div style="background: rgba(255,255,255,0.08); padding: 12px; border-radius: 8px; text-align: center; border: 1px solid rgba(32, 201, 151, 0.2);">
+                                <div style="font-size: 1.6em; margin-bottom: 6px;">🏆</div>
+                                <div style="font-size: 0.8em; color: var(--text-secondary); margin-bottom: 6px; font-weight: 600;">Best Hunt</div>
+                                <div id="insightBestHunt" style="font-size: 0.95em; font-weight: 900; color: var(--text-primary);">-</div>
                             </div>
-                            <div style="background: rgba(255,255,255,0.05); padding: 5px; border-radius: 6px; text-align: center;">
-                                <div style="font-size: 1.2em; margin-bottom: 2px;">🔥</div>
-                                <div style="font-size: 0.65em; color: var(--text-secondary); margin-bottom: 2px;">Streak</div>
-                                <div id="insightStreak" style="font-size: 0.75em; font-weight: bold; color: var(--text-primary);">-</div>
+                            <div style="background: rgba(255,255,255,0.08); padding: 12px; border-radius: 8px; text-align: center; border: 1px solid rgba(32, 201, 151, 0.2);">
+                                <div style="font-size: 1.6em; margin-bottom: 6px;">🔥</div>
+                                <div style="font-size: 0.8em; color: var(--text-secondary); margin-bottom: 6px; font-weight: 600;">Streak</div>
+                                <div id="insightStreak" style="font-size: 0.95em; font-weight: 900; color: var(--text-primary);">-</div>
                             </div>
-                            <div style="background: rgba(255,255,255,0.05); padding: 5px; border-radius: 6px; text-align: center;">
-                                <div style="font-size: 1.2em; margin-bottom: 2px;">⚡</div>
-                                <div style="font-size: 0.65em; color: var(--text-secondary); margin-bottom: 2px;">Avg/Hour</div>
-                                <div id="insightAvgProfitHour" style="font-size: 0.75em; font-weight: bold; color: var(--text-primary);">-</div>
+                            <div style="background: rgba(255,255,255,0.08); padding: 12px; border-radius: 8px; text-align: center; border: 1px solid rgba(32, 201, 151, 0.2);">
+                                <div style="font-size: 1.6em; margin-bottom: 6px;">⚡</div>
+                                <div style="font-size: 0.8em; color: var(--text-secondary); margin-bottom: 6px; font-weight: 600;">Avg/Hour</div>
+                                <div id="insightAvgProfitHour" style="font-size: 0.95em; font-weight: 900; color: var(--text-primary);">-</div>
                             </div>
                         </div>
                     </div>
@@ -2879,54 +2942,51 @@ Member Name
 
             <!-- TC Config Tab -->
             <div class="main-tab-content" id="tcConfigTab">
-                <!-- TC Configuration - ULTRA PROFESSIONAL -->
-                <div class="card" style="padding: 16px; background: linear-gradient(135deg, rgba(20, 30, 48, 0.6) 0%, rgba(36, 59, 85, 0.6) 100%); border: 2px solid rgba(34, 211, 238, 0.3);">
-                    <h3 style="color: #22d3ee; margin-bottom: 14px; font-size: 1.1em; display: flex; align-items: center; gap: 8px;">
-                        <span style="font-size: 1.3em;">💰</span> TC Configuration
+                <!-- TC Configuration - COMPACT -->
+                <div class="card" style="padding: 10px; background: linear-gradient(135deg, rgba(20, 30, 48, 0.6) 0%, rgba(36, 59, 85, 0.6) 100%); border: 2px solid rgba(34, 211, 238, 0.3);">
+                    <h3 style="color: #22d3ee; margin-bottom: 8px; font-size: 0.95em; display: flex; align-items: center; gap: 6px;">
+                        <span style="font-size: 1.1em;">💰</span> TC Configuration
                     </h3>
 
-                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 12px;">
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 8px;">
                         <div class="input-group" style="margin: 0;">
-                            <label for="tcPriceInput" style="font-size: 0.8em; margin-bottom: 5px; color: #22d3ee; font-weight: 600;">TC Price (gp)</label>
-                            <input type="number" id="tcPriceInput" placeholder="39341" min="0" style="padding: 10px 14px; font-size: 0.9em; background: rgba(0, 0, 0, 0.3); border: 2px solid rgba(34, 211, 238, 0.4); color: white; font-weight: 600;">
+                            <label for="tcPriceInput" style="font-size: 0.75em; margin-bottom: 3px; color: #22d3ee; font-weight: 600;">TC Price (gp)</label>
+                            <input type="number" id="tcPriceInput" placeholder="39341" min="0" style="padding: 7px 10px; font-size: 0.85em; background: rgba(0, 0, 0, 0.3); border: 2px solid rgba(34, 211, 238, 0.4); color: white; font-weight: 600;">
                         </div>
                         <div class="input-group" style="margin: 0;">
-                            <label for="tibiaCharInput" style="font-size: 0.8em; margin-bottom: 5px; color: #22d3ee; font-weight: 600;">Character (optional)</label>
-                            <input type="text" id="tibiaCharInput" placeholder="Your Character" style="padding: 10px 14px; font-size: 0.9em; background: rgba(0, 0, 0, 0.3); border: 2px solid rgba(34, 211, 238, 0.4); color: white; font-weight: 600;">
+                            <label for="tibiaCharInput" style="font-size: 0.75em; margin-bottom: 3px; color: #22d3ee; font-weight: 600;">Character (optional)</label>
+                            <input type="text" id="tibiaCharInput" placeholder="Your Character" style="padding: 7px 10px; font-size: 0.85em; background: rgba(0, 0, 0, 0.3); border: 2px solid rgba(34, 211, 238, 0.4); color: white; font-weight: 600;">
                         </div>
                     </div>
 
-                    <button class="btn-primary" onclick="saveTCSettings()" style="width: 100%; padding: 10px 16px; font-size: 0.9em; background: linear-gradient(135deg, #22d3ee 0%, #06b6d4 100%); border: none; box-shadow: 0 4px 12px rgba(34, 211, 238, 0.3);">
+                    <button class="btn-primary" onclick="saveTCSettings()" style="width: 100%; padding: 7px 12px; font-size: 0.85em; background: linear-gradient(135deg, #22d3ee 0%, #06b6d4 100%); border: none; box-shadow: 0 4px 12px rgba(34, 211, 238, 0.3);">
                         💾 Save Configuration
                     </button>
                 </div>
 
-                <!-- SHARE CODE - MULTI-DEVICE SYNC -->
-                <div class="card" style="margin-top: 10px; padding: 16px; background: linear-gradient(135deg, rgba(168, 85, 247, 0.08) 0%, rgba(139, 92, 246, 0.12) 100%); border: 2px solid rgba(168, 85, 247, 0.4);">
-                    <h3 style="color: #a855f7; margin-bottom: 14px; font-size: 1.1em; display: flex; align-items: center; gap: 8px;">
-                        <span style="font-size: 1.3em;">📱</span> Multi-Device Sync
+                <!-- SHARE CODE - COMPACT -->
+                <div class="card" style="margin-top: 8px; padding: 10px; background: linear-gradient(135deg, rgba(168, 85, 247, 0.08) 0%, rgba(139, 92, 246, 0.12) 100%); border: 2px solid rgba(168, 85, 247, 0.4);">
+                    <h3 style="color: #a855f7; margin-bottom: 8px; font-size: 0.95em; display: flex; align-items: center; gap: 6px;">
+                        <span style="font-size: 1.1em;">📱</span> Multi-Device Sync
                     </h3>
 
-                    <div style="background: rgba(0,0,0,0.3); padding: 12px; border-radius: 8px; margin-bottom: 12px; border: 1px solid rgba(168, 85, 247, 0.2);">
-                        <p style="font-size: 0.85em; color: rgba(168, 85, 247, 0.9); margin: 0 0 8px 0; font-weight: 600;">✨ Your User ID:</p>
-                        <div style="font-family: 'Courier New', monospace; font-size: 0.9em; color: #a855f7; background: rgba(168, 85, 247, 0.1); padding: 8px 12px; border-radius: 6px; word-break: break-all; font-weight: 700;" id="displayUserId">Loading...</div>
+                    <div style="background: rgba(0,0,0,0.3); padding: 8px; border-radius: 6px; margin-bottom: 8px; border: 1px solid rgba(168, 85, 247, 0.2);">
+                        <p style="font-size: 0.75em; color: rgba(168, 85, 247, 0.9); margin: 0 0 5px 0; font-weight: 600;">✨ Your User ID:</p>
+                        <div style="font-family: 'Courier New', monospace; font-size: 0.8em; color: #a855f7; background: rgba(168, 85, 247, 0.1); padding: 6px 8px; border-radius: 4px; word-break: break-all; font-weight: 700;" id="displayUserId">Loading...</div>
                     </div>
 
-                    <div style="margin-bottom: 12px;">
-                        <button class="btn-primary" onclick="showShareCodeModal()" style="width: 100%; padding: 10px 16px; font-size: 0.9em; background: linear-gradient(135deg, #a855f7 0%, #8b5cf6 100%); border: none; box-shadow: 0 4px 12px rgba(168, 85, 247, 0.3);">
-                            📤 Generate Share Code
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-bottom: 6px;">
+                        <button class="btn-primary" onclick="showShareCodeModal()" style="padding: 7px 12px; font-size: 0.8em; background: linear-gradient(135deg, #a855f7 0%, #8b5cf6 100%); border: none; box-shadow: 0 4px 12px rgba(168, 85, 247, 0.3);">
+                            📤 Generate
+                        </button>
+                        <button class="btn-secondary" onclick="showRestoreCodeModal()" style="padding: 7px 12px; font-size: 0.8em; background: rgba(168, 85, 247, 0.2); border: 2px solid rgba(168, 85, 247, 0.4); color: #a855f7; font-weight: 700;">
+                            📥 Restore
                         </button>
                     </div>
 
-                    <div>
-                        <button class="btn-secondary" onclick="showRestoreCodeModal()" style="width: 100%; padding: 10px 16px; font-size: 0.9em; background: rgba(168, 85, 247, 0.2); border: 2px solid rgba(168, 85, 247, 0.4); color: #a855f7; font-weight: 700;">
-                            📥 Restore from Share Code
-                        </button>
-                    </div>
-
-                    <div style="margin-top: 12px; padding: 10px; background: rgba(168, 85, 247, 0.05); border-radius: 6px; border-left: 3px solid rgba(168, 85, 247, 0.5);">
-                        <p style="font-size: 0.75em; color: rgba(168, 85, 247, 0.8); margin: 0; line-height: 1.4;">
-                            <strong>💡 How it works:</strong> Generate a Share Code to sync your data across multiple devices. Save the code and restore it on any device!
+                    <div style="padding: 6px; background: rgba(168, 85, 247, 0.05); border-radius: 4px; border-left: 2px solid rgba(168, 85, 247, 0.5);">
+                        <p style="font-size: 0.7em; color: rgba(168, 85, 247, 0.8); margin: 0; line-height: 1.3;">
+                            <strong>💡 Tip:</strong> Sync data across devices with Share Code!
                         </p>
                     </div>
                 </div>
