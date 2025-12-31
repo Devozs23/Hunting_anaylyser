@@ -2375,64 +2375,64 @@ Supplies: 488..." style="min-height: 140px; font-family: monospace; font-size: 0
 
             <!-- Team Hunt Tab -->
             <div class="main-tab-content" id="teamHuntTab">
-                <div class="card" style="padding: 10px;">
-                    <h3 style="color: var(--primary-color); margin: 0 0 6px 0; font-size: 0.95em;">👥 Team Hunt</h3>
+                <div class="card" style="padding: 18px;">
+                    <h3 style="color: var(--primary-color); margin: 0 0 10px 0; font-size: 1.35em;">👥 Team Hunt</h3>
                 </div>
 
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
                     <!-- Left: Calculator -->
                     <div>
-                        <!-- Auto-Fill - COMPACT -->
-                        <div class="card" style="padding: 12px; background: rgba(70, 90, 110, 0.08); border-left: 2px solid rgba(100, 150, 200, 0.5); margin-bottom: 10px;">
-                            <h4 style="color: #7eb3d6; margin: 0 0 8px 0; font-size: 0.95em;">🔍 Auto-Fill</h4>
+                        <!-- Auto-Fill - EXTRA LARGE -->
+                        <div class="card" style="padding: 18px; background: rgba(70, 90, 110, 0.08); border-left: 3px solid rgba(100, 150, 200, 0.5); margin-bottom: 16px;">
+                            <h4 style="color: #7eb3d6; margin: 0 0 10px 0; font-size: 1.15em;">🔍 Auto-Fill</h4>
                             <div class="input-group" style="margin: 0;">
-                                <label style="font-size: 0.75em; margin-bottom: 3px;">📋 Paste Party Analyser</label>
+                                <label style="font-size: 0.95em; margin-bottom: 5px; font-weight: 600;">📋 Paste Party Analyser</label>
                                 <textarea id="partyHuntData" placeholder="Session data: From...
 Loot: 51,190,619
 Supplies: 21,395,364
 Member Name
-  Loot: 8,563,582..." style="min-height: 130px; font-family: monospace; font-size: 0.75em; padding: 8px;"></textarea>
-                                <button class="btn-primary" onclick="parsePartyHuntData()" style="margin-top: 8px; width: 100%; padding: 6px; font-size: 0.8em;">🔍 Auto-Calculate</button>
+  Loot: 8,563,582..." style="min-height: 160px; font-family: monospace; font-size: 0.9em; padding: 12px;"></textarea>
+                                <button class="btn-primary" onclick="parsePartyHuntData()" style="margin-top: 10px; width: 100%; padding: 11px; font-size: 1em; font-weight: 600;">🔍 Auto-Calculate</button>
                             </div>
                         </div>
 
-                        <!-- Manual Entry - COMPACT -->
-                        <div class="card" style="padding: 12px; background: rgba(90, 70, 80, 0.08); border-left: 2px solid rgba(180, 130, 150, 0.5);">
-                            <h4 style="color: #d89fbf; margin: 0 0 8px 0; font-size: 0.95em;">✏️ Manual Entry</h4>
-                            <div class="input-group" style="margin: 0 0 8px 0;">
-                                <label style="font-size: 0.75em; margin-bottom: 3px;">💰 Total Team Loot (gp)</label>
-                                <input type="number" id="teamLoot" placeholder="Total loot" style="padding: 6px 10px; font-size: 0.85em;">
+                        <!-- Manual Entry - EXTRA LARGE -->
+                        <div class="card" style="padding: 18px; background: rgba(90, 70, 80, 0.08); border-left: 3px solid rgba(180, 130, 150, 0.5);">
+                            <h4 style="color: #d89fbf; margin: 0 0 10px 0; font-size: 1.15em;">✏️ Manual Entry</h4>
+                            <div class="input-group" style="margin: 0 0 12px 0;">
+                                <label style="font-size: 0.95em; margin-bottom: 5px; font-weight: 600;">💰 Total Team Loot (gp)</label>
+                                <input type="number" id="teamLoot" placeholder="Total loot" style="padding: 11px 12px; font-size: 1em;">
                             </div>
 
-                            <div style="background: rgba(0,0,0,0.15); padding: 10px; border-radius: 8px;">
-                                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
-                                    <h5 style="color: var(--text-primary); margin: 0; font-size: 0.8em;">👥 Members</h5>
-                                    <button class="btn-primary" onclick="addTeamMember()" style="padding: 4px 10px; font-size: 0.75em;">➕</button>
+                            <div style="background: rgba(0,0,0,0.15); padding: 14px; border-radius: 10px;">
+                                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+                                    <h5 style="color: var(--text-primary); margin: 0; font-size: 1em; font-weight: 600;">👥 Members</h5>
+                                    <button class="btn-primary" onclick="addTeamMember()" style="padding: 6px 12px; font-size: 0.9em;">➕</button>
                                 </div>
 
                                 <div id="teamMembers">
-                                    <div class="team-member" id="member1" style="background: rgba(80, 110, 90, 0.15); border: 1px solid rgba(100, 150, 120, 0.3); border-radius: 6px; padding: 8px; margin-bottom: 8px;">
-                                        <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 6px;">
+                                    <div class="team-member" id="member1" style="background: rgba(80, 110, 90, 0.15); border: 1px solid rgba(100, 150, 120, 0.3); border-radius: 8px; padding: 12px; margin-bottom: 10px;">
+                                        <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 10px;">
                                             <div class="input-group" style="margin: 0;">
-                                                <label style="font-size: 0.7em; margin-bottom: 2px;">Name</label>
-                                                <input type="text" class="member-name" placeholder="Player" style="padding: 5px 8px; font-size: 0.8em;">
+                                                <label style="font-size: 0.85em; margin-bottom: 4px; font-weight: 600;">Name</label>
+                                                <input type="text" class="member-name" placeholder="Player" style="padding: 9px 10px; font-size: 0.95em;">
                                             </div>
                                             <div class="input-group" style="margin: 0;">
-                                                <label style="font-size: 0.7em; margin-bottom: 2px;">Supplies</label>
-                                                <input type="number" class="member-supplies" placeholder="0" style="padding: 5px 8px; font-size: 0.8em;">
+                                                <label style="font-size: 0.85em; margin-bottom: 4px; font-weight: 600;">Supplies</label>
+                                                <input type="number" class="member-supplies" placeholder="0" style="padding: 9px 10px; font-size: 0.95em;">
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
 
-                            <button class="btn-success" onclick="calculateTeamHunt()" style="margin-top: 8px; width: 100%; padding: 7px; font-size: 0.85em;">💰 Calculate</button>
+                            <button class="btn-success" onclick="calculateTeamHunt()" style="margin-top: 12px; width: 100%; padding: 12px; font-size: 1.05em; font-weight: 600;">💰 Calculate</button>
                         </div>
 
-                        <!-- Results - COMPACT -->
+                        <!-- Results - EXTRA LARGE -->
                         <div id="teamResults" style="display: none;">
-                            <div class="card" style="padding: 12px; background: rgba(90, 70, 80, 0.08); border-left: 2px solid rgba(180, 130, 150, 0.5); margin-top: 10px;">
-                                <h4 style="color: #d89fbf; margin: 0 0 10px 0; font-size: 0.95em;">💎 Results</h4>
+                            <div class="card" style="padding: 18px; background: rgba(90, 70, 80, 0.08); border-left: 3px solid rgba(180, 130, 150, 0.5); margin-top: 16px;">
+                                <h4 style="color: #d89fbf; margin: 0 0 12px 0; font-size: 1.15em;">💎 Results</h4>
                                 <div id="teamResultsContent"></div>
                             </div>
                         </div>
@@ -2440,58 +2440,58 @@ Member Name
 
                     <!-- Right: EXP Calendar -->
                     <div>
-                        <!-- EXP Calendar - COMPACT -->
-                        <div class="card" style="padding: 12px;">
-                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
-                                <h4 style="color: #7db89d; margin: 0; font-size: 0.95em;">📅 EXP Calendar</h4>
-                                <div style="display: flex; gap: 6px; align-items: center;">
-                                    <button onclick="previousExpMonth()" style="padding: 4px 10px; font-size: 0.8em; background: rgba(100, 150, 120, 0.2); border: 1px solid rgba(100, 150, 120, 0.4); border-radius: 5px; color: var(--text-primary); cursor: pointer;">◀</button>
-                                    <span id="expCalendarMonthYear" style="font-size: 0.85em; font-weight: 600; min-width: 95px; text-align: center;">Dec 2024</span>
-                                    <button onclick="nextExpMonth()" style="padding: 4px 10px; font-size: 0.8em; background: rgba(100, 150, 120, 0.2); border: 1px solid rgba(100, 150, 120, 0.4); border-radius: 5px; color: var(--text-primary); cursor: pointer;">▶</button>
+                        <!-- EXP Calendar - EXTRA LARGE -->
+                        <div class="card" style="padding: 18px;">
+                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px;">
+                                <h4 style="color: #7db89d; margin: 0; font-size: 1.15em;">📅 EXP Calendar</h4>
+                                <div style="display: flex; gap: 8px; align-items: center;">
+                                    <button onclick="previousExpMonth()" style="padding: 6px 12px; font-size: 0.95em; background: rgba(100, 150, 120, 0.2); border: 1px solid rgba(100, 150, 120, 0.4); border-radius: 6px; color: var(--text-primary); cursor: pointer;">◀</button>
+                                    <span id="expCalendarMonthYear" style="font-size: 1em; font-weight: 600; min-width: 110px; text-align: center;">Dec 2024</span>
+                                    <button onclick="nextExpMonth()" style="padding: 6px 12px; font-size: 0.95em; background: rgba(100, 150, 120, 0.2); border: 1px solid rgba(100, 150, 120, 0.4); border-radius: 6px; color: var(--text-primary); cursor: pointer;">▶</button>
                                 </div>
                             </div>
 
-                            <!-- Best/Worst Days - COMPACT -->
-                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 10px;">
-                                <div style="background: rgba(80, 110, 90, 0.12); padding: 8px; border-radius: 6px; border-left: 2px solid rgba(100, 150, 120, 0.5);">
-                                    <div style="font-size: 0.65em; color: var(--text-secondary); margin-bottom: 3px;">🏆 Best Day</div>
-                                    <div id="bestExpDay" style="font-size: 1em; font-weight: bold; color: #7db89d;">-</div>
-                                    <div id="bestExpDayDate" style="font-size: 0.65em; color: var(--text-secondary); margin-top: 2px;">-</div>
+                            <!-- Best/Worst Days - EXTRA LARGE -->
+                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 14px;">
+                                <div style="background: rgba(80, 110, 90, 0.12); padding: 12px; border-radius: 8px; border-left: 3px solid rgba(100, 150, 120, 0.5);">
+                                    <div style="font-size: 0.8em; color: var(--text-secondary); margin-bottom: 5px;">🏆 Best Day</div>
+                                    <div id="bestExpDay" style="font-size: 1.15em; font-weight: bold; color: #7db89d;">-</div>
+                                    <div id="bestExpDayDate" style="font-size: 0.8em; color: var(--text-secondary); margin-top: 4px;">-</div>
                                 </div>
-                                <div style="background: rgba(110, 80, 80, 0.12); padding: 8px; border-radius: 6px; border-left: 2px solid rgba(180, 100, 100, 0.5);">
-                                    <div style="font-size: 0.65em; color: var(--text-secondary); margin-bottom: 3px;">📉 Worst Day</div>
-                                    <div id="worstExpDay" style="font-size: 1em; font-weight: bold; color: #d89090;">-</div>
-                                    <div id="worstExpDayDate" style="font-size: 0.65em; color: var(--text-secondary); margin-top: 2px;">-</div>
+                                <div style="background: rgba(110, 80, 80, 0.12); padding: 12px; border-radius: 8px; border-left: 3px solid rgba(180, 100, 100, 0.5);">
+                                    <div style="font-size: 0.8em; color: var(--text-secondary); margin-bottom: 5px;">📉 Worst Day</div>
+                                    <div id="worstExpDay" style="font-size: 1.15em; font-weight: bold; color: #d89090;">-</div>
+                                    <div id="worstExpDayDate" style="font-size: 0.8em; color: var(--text-secondary); margin-top: 4px;">-</div>
                                 </div>
                             </div>
 
                             <!-- Calendar Grid -->
-                            <div style="background: rgba(0,0,0,0.2); padding: 8px; border-radius: 8px;">
+                            <div style="background: rgba(0,0,0,0.2); padding: 12px; border-radius: 10px;">
                                 <!-- Weekday Headers -->
-                                <div style="display: grid; grid-template-columns: repeat(7, 1fr); gap: 3px; margin-bottom: 5px;">
-                                    <div style="text-align: center; font-size: 0.65em; color: var(--text-secondary); font-weight: 600;">Su</div>
-                                    <div style="text-align: center; font-size: 0.65em; color: var(--text-secondary); font-weight: 600;">Mo</div>
-                                    <div style="text-align: center; font-size: 0.65em; color: var(--text-secondary); font-weight: 600;">Tu</div>
-                                    <div style="text-align: center; font-size: 0.65em; color: var(--text-secondary); font-weight: 600;">We</div>
-                                    <div style="text-align: center; font-size: 0.65em; color: var(--text-secondary); font-weight: 600;">Th</div>
-                                    <div style="text-align: center; font-size: 0.65em; color: var(--text-secondary); font-weight: 600;">Fr</div>
-                                    <div style="text-align: center; font-size: 0.65em; color: var(--text-secondary); font-weight: 600;">Sa</div>
+                                <div style="display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; margin-bottom: 8px;">
+                                    <div style="text-align: center; font-size: 0.8em; color: var(--text-secondary); font-weight: 600;">Su</div>
+                                    <div style="text-align: center; font-size: 0.8em; color: var(--text-secondary); font-weight: 600;">Mo</div>
+                                    <div style="text-align: center; font-size: 0.8em; color: var(--text-secondary); font-weight: 600;">Tu</div>
+                                    <div style="text-align: center; font-size: 0.8em; color: var(--text-secondary); font-weight: 600;">We</div>
+                                    <div style="text-align: center; font-size: 0.8em; color: var(--text-secondary); font-weight: 600;">Th</div>
+                                    <div style="text-align: center; font-size: 0.8em; color: var(--text-secondary); font-weight: 600;">Fr</div>
+                                    <div style="text-align: center; font-size: 0.8em; color: var(--text-secondary); font-weight: 600;">Sa</div>
                                 </div>
                                 <!-- Calendar Days -->
-                                <div id="expCalendarGrid" style="display: grid; grid-template-columns: repeat(7, 1fr); gap: 3px;">
+                                <div id="expCalendarGrid" style="display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px;">
                                     <!-- Days generated by JS -->
                                 </div>
                             </div>
 
                             <!-- Legend -->
-                            <div style="margin-top: 8px; display: flex; gap: 8px; align-items: center; justify-content: center; font-size: 0.65em; color: var(--text-secondary);">
+                            <div style="margin-top: 12px; display: flex; gap: 10px; align-items: center; justify-content: center; font-size: 0.8em; color: var(--text-secondary);">
                                 <span>Less</span>
-                                <div style="display: flex; gap: 3px;">
-                                    <div style="width: 12px; height: 12px; background: rgba(80, 110, 90, 0.1); border: 1px solid rgba(100, 150, 120, 0.3); border-radius: 2px;"></div>
-                                    <div style="width: 12px; height: 12px; background: rgba(80, 110, 90, 0.3); border: 1px solid rgba(100, 150, 120, 0.4); border-radius: 2px;"></div>
-                                    <div style="width: 12px; height: 12px; background: rgba(80, 110, 90, 0.5); border: 1px solid rgba(100, 150, 120, 0.6); border-radius: 2px;"></div>
-                                    <div style="width: 12px; height: 12px; background: rgba(80, 110, 90, 0.7); border: 1px solid rgba(100, 150, 120, 0.8); border-radius: 2px;"></div>
-                                    <div style="width: 12px; height: 12px; background: rgba(80, 110, 90, 0.9); border: 1px solid rgba(100, 150, 120, 1); border-radius: 2px;"></div>
+                                <div style="display: flex; gap: 4px;">
+                                    <div style="width: 14px; height: 14px; background: rgba(80, 110, 90, 0.1); border: 1px solid rgba(100, 150, 120, 0.3); border-radius: 3px;"></div>
+                                    <div style="width: 14px; height: 14px; background: rgba(80, 110, 90, 0.3); border: 1px solid rgba(100, 150, 120, 0.4); border-radius: 3px;"></div>
+                                    <div style="width: 14px; height: 14px; background: rgba(80, 110, 90, 0.5); border: 1px solid rgba(100, 150, 120, 0.6); border-radius: 3px;"></div>
+                                    <div style="width: 14px; height: 14px; background: rgba(80, 110, 90, 0.7); border: 1px solid rgba(100, 150, 120, 0.8); border-radius: 3px;"></div>
+                                    <div style="width: 14px; height: 14px; background: rgba(80, 110, 90, 0.9); border: 1px solid rgba(100, 150, 120, 1); border-radius: 3px;"></div>
                                 </div>
                                 <span>More</span>
                             </div>
@@ -4077,18 +4077,16 @@ Member Name
             memberDiv.className = 'team-member';
             memberDiv.id = `member${teamMemberCount}`;
             memberDiv.innerHTML = `
-                <div style="background: rgba(40, 167, 69, 0.1); backdrop-filter: blur(10px); border: 2px solid rgba(40, 167, 69, 0.3); border-radius: 12px; padding: 15px; margin-bottom: 12px;">
-                    <h4 style="color: #28a745; margin-bottom: 12px; font-size: 1.1em;">👤 Member ${teamMemberCount}</h4>
-                    <div style="display: grid; grid-template-columns: 2fr 1fr 60px; gap: 10px; align-items: end;">
-                        <div class="input-group" style="margin-bottom: 0;">
-                            <label>Name</label>
-                            <input type="text" class="member-name" placeholder="Player name" style="font-weight: 600;">
+                <div style="background: rgba(80, 110, 90, 0.15); border: 1px solid rgba(100, 150, 120, 0.3); border-radius: 8px; padding: 12px; margin-bottom: 10px;">
+                    <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 10px;">
+                        <div class="input-group" style="margin: 0;">
+                            <label style="font-size: 0.85em; margin-bottom: 4px; font-weight: 600;">Name</label>
+                            <input type="text" class="member-name" placeholder="Player" style="padding: 9px 10px; font-size: 0.95em;">
                         </div>
-                        <div class="input-group" style="margin-bottom: 0;">
-                            <label>Supplies (gp)</label>
-                            <input type="number" class="member-supplies" placeholder="0" style="font-weight: 600;">
+                        <div class="input-group" style="margin: 0;">
+                            <label style="font-size: 0.85em; margin-bottom: 4px; font-weight: 600;">Supplies</label>
+                            <input type="number" class="member-supplies" placeholder="0" style="padding: 9px 10px; font-size: 0.95em;">
                         </div>
-                        <button onclick="removeTeamMember(${teamMemberCount})" style="background: rgba(220, 53, 69, 0.2); border: 2px solid rgba(220, 53, 69, 0.4); color: #dc3545; padding: 12px; border-radius: 8px; cursor: pointer; font-weight: bold; transition: all 0.2s;" onmouseover="this.style.background='rgba(220, 53, 69, 0.3)'; this.style.transform='scale(1.1)';" onmouseout="this.style.background='rgba(220, 53, 69, 0.2)'; this.style.transform='';">✕</button>
                     </div>
                 </div>
             `;
