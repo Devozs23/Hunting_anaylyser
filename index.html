@@ -1235,6 +1235,16 @@
             66% { transform: translateX(-50%) translateY(-10px) rotate(-3deg); }
         }
 
+        /* CORNER PAGE CHARACTERS - INTERACTIVE */
+        #cornerVampire:hover, #cornerPikachu:hover {
+            transform: scale(1.15) !important;
+            filter: drop-shadow(0 0 30px rgba(255, 255, 255, 0.8)) !important;
+        }
+
+        #cornerVampire:active, #cornerPikachu:active {
+            transform: scale(0.95) !important;
+        }
+
         /* APLICAR GRADIENTES ANIMADOS A LAS CARDS */
         .stat-card {
             background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 50%, var(--primary-color) 100%);
@@ -1864,6 +1874,10 @@
 <body>
     <!-- Partículas de fondo -->
     <div class="particles-container" id="particlesContainer"></div>
+
+    <!-- INTERACTIVE PAGE CORNER CHARACTERS -->
+    <div id="cornerVampire" onclick="spinCharacter('cornerVampire')" style="position: fixed; bottom: 30px; left: 30px; font-size: 6em; z-index: 9999; cursor: pointer; transition: transform 0.6s ease; filter: drop-shadow(0 0 20px rgba(220, 20, 60, 0.8)); user-select: none;">🧛‍♂️</div>
+    <div id="cornerPikachu" onclick="spinCharacter('cornerPikachu')" style="position: fixed; bottom: 30px; right: 30px; font-size: 6em; z-index: 9999; cursor: pointer; transition: transform 0.6s ease; filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.8)); user-select: none;">🐭⚡</div>
 
     <!-- Loading Overlay -->
     <div class="loading-overlay" id="loadingOverlay">
@@ -5429,6 +5443,43 @@ Member Name
 
         function closeTargetModal() {
             document.getElementById('targetModal').style.display = 'none';
+        }
+
+        // Interactive Corner Characters - Spin on Click
+        let spinningChars = {};
+        function spinCharacter(charId) {
+            const char = document.getElementById(charId);
+            if (!char) return;
+
+            // Prevent multiple spins at once
+            if (spinningChars[charId]) return;
+            spinningChars[charId] = true;
+
+            // Random rotation direction
+            const direction = Math.random() > 0.5 ? 1 : -1;
+            const rotations = 2 + Math.floor(Math.random() * 2); // 2-3 full rotations
+            const degrees = direction * rotations * 360;
+
+            // Apply spin animation
+            char.style.transform = `rotate(${degrees}deg) scale(1.3)`;
+
+            // Add bounce effect
+            setTimeout(() => {
+                char.style.transform = `rotate(${degrees}deg) scale(1)`;
+            }, 300);
+
+            // Reset after animation
+            setTimeout(() => {
+                char.style.transform = 'rotate(0deg) scale(1)';
+                spinningChars[charId] = false;
+            }, 600);
+
+            // Play sound effect (optional - silent if no sound)
+            try {
+                const audio = new Audio('data:audio/wav;base64,UklGRnoGAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQoGAACBhYqFbF1fdJivrJBhNjVgodDbq2EcBj+a2/LDciUFLIHO8tiJNwgZaLvt559NEAxQp+PwtmMcBjiR1/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+DyvmwhBSuBzvLZiTYIG2m98OScTgwOUKjo8LllHAU2kdXzzncsB');
+                audio.volume = 0.3;
+                audio.play().catch(() => {}); // Ignore if audio fails
+            } catch(e) {}
         }
 
         function saveTargetFromModal() {
