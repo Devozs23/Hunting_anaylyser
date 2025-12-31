@@ -1218,6 +1218,11 @@
             75% { transform: translate(20%, 55%) rotate(270deg); }
         }
 
+        @keyframes characterBounce {
+            0%, 100% { transform: translateY(0px) scale(1); }
+            50% { transform: translateY(-15px) scale(1.05); }
+        }
+
         /* APLICAR GRADIENTES ANIMADOS A LAS CARDS */
         .stat-card {
             background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 50%, var(--primary-color) 100%);
@@ -2114,6 +2119,10 @@
                     <div style="position: absolute; font-size: 2.1em; animation: float7 17s infinite ease-in-out; opacity: 0.12;">⚡</div>
                     <div style="position: absolute; font-size: 1.7em; animation: float8 21s infinite ease-in-out; opacity: 0.09;">🏆</div>
                 </div>
+
+                <!-- Corner Characters -->
+                <div style="position: absolute; bottom: 20px; left: 20px; font-size: 4em; z-index: 1; pointer-events: none; animation: characterBounce 3s infinite ease-in-out; filter: drop-shadow(0 0 8px rgba(255,215,0,0.3));">🧙‍♂️</div>
+                <div style="position: absolute; bottom: 20px; right: 20px; font-size: 4em; z-index: 1; pointer-events: none; animation: characterBounce 3s infinite ease-in-out 1.5s; filter: drop-shadow(0 0 8px rgba(255,100,100,0.3));">🏹</div>
 
                 <!-- Main Stats Cards -->
                 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px; margin-bottom: 12px; position: relative; z-index: 1;">
@@ -5394,6 +5403,7 @@ Member Name
                 if (parsed > 0) {
                     dailyTarget = parsed;
                     localStorage.setItem('dailyTarget', dailyTarget);
+                    saveUserData(); // Save to main data object so it persists on refresh
                     updateDailyTarget();
                     showNotification(`✅ Daily target updated to ${formatProfit(parsed)}!`, 'success');
                     closeTargetModal(); // Close modal immediately
