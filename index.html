@@ -2756,82 +2756,82 @@ Member Name
 
             <!-- Charts Tab -->
             <div class="main-tab-content" id="chartsTab">
-                <div class="card" style="padding: 14px;">
-                    <h3 style="color: var(--primary-color); margin: 0 0 12px 0; font-size: 1.05em; display: flex; align-items: center; gap: 8px;">
-                        <span style="font-size: 1.2em;">📊</span> Advanced Statistics
+                <div class="card" style="padding: 20px; background: linear-gradient(135deg, rgba(15, 23, 42, 0.6) 0%, rgba(30, 41, 59, 0.6) 100%); border: 2px solid rgba(34, 211, 238, 0.3);">
+                    <h3 style="color: #22d3ee; margin: 0 0 16px 0; font-size: 1.4em; display: flex; align-items: center; gap: 10px; text-shadow: 0 2px 10px rgba(34, 211, 238, 0.4);">
+                        <span style="font-size: 1.3em;">📊</span> Advanced Statistics & Analytics
                     </h3>
 
-                    <!-- Period Selector - PROFESSIONAL -->
-                    <div style="display: flex; gap: 8px; margin-bottom: 14px; justify-content: center; flex-wrap: wrap;">
-                        <button class="period-btn active" onclick="switchPeriod('daily')" data-period="daily" style="padding: 8px 20px; border: 2px solid var(--primary-color); background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%); color: white; border-radius: 8px; cursor: pointer; font-size: 0.8em; font-weight: 700; transition: all 0.3s; box-shadow: 0 2px 8px rgba(34, 211, 238, 0.3);">
+                    <!-- Period Selector - ULTRA PROFESSIONAL -->
+                    <div style="display: flex; gap: 10px; margin-bottom: 18px; justify-content: center; flex-wrap: wrap;">
+                        <button class="period-btn active" onclick="switchPeriod('daily')" data-period="daily" style="padding: 12px 28px; border: 2px solid #22d3ee; background: linear-gradient(135deg, #22d3ee 0%, #06b6d4 100%); color: white; border-radius: 10px; cursor: pointer; font-size: 0.95em; font-weight: 700; transition: all 0.3s; box-shadow: 0 4px 15px rgba(34, 211, 238, 0.4);">
                             📅 Daily
                         </button>
-                        <button class="period-btn" onclick="switchPeriod('weekly')" data-period="weekly" style="padding: 8px 20px; border: 2px solid var(--primary-color); background: rgba(34, 211, 238, 0.1); color: var(--primary-color); border-radius: 8px; cursor: pointer; font-size: 0.8em; font-weight: 700; transition: all 0.3s;">
+                        <button class="period-btn" onclick="switchPeriod('weekly')" data-period="weekly" style="padding: 12px 28px; border: 2px solid #22d3ee; background: rgba(34, 211, 238, 0.15); color: #22d3ee; border-radius: 10px; cursor: pointer; font-size: 0.95em; font-weight: 700; transition: all 0.3s;">
                             📆 Weekly
                         </button>
-                        <button class="period-btn" onclick="switchPeriod('monthly')" data-period="monthly" style="padding: 8px 20px; border: 2px solid var(--primary-color); background: rgba(34, 211, 238, 0.1); color: var(--primary-color); border-radius: 8px; cursor: pointer; font-size: 0.8em; font-weight: 700; transition: all 0.3s;">
+                        <button class="period-btn" onclick="switchPeriod('monthly')" data-period="monthly" style="padding: 12px 28px; border: 2px solid #22d3ee; background: rgba(34, 211, 238, 0.15); color: #22d3ee; border-radius: 10px; cursor: pointer; font-size: 0.95em; font-weight: 700; transition: all 0.3s;">
                             📈 Monthly
                         </button>
                     </div>
 
-                    <!-- Key Stats Summary - PROFESSIONAL REDESIGN -->
-                    <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 14px;">
+                    <!-- Key Stats Summary - EXTRA LARGE & PROFESSIONAL -->
+                    <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 18px;">
                         <!-- Total Profit Card -->
-                        <div style="background: linear-gradient(135deg, rgba(148, 163, 184, 0.12) 0%, rgba(148, 163, 184, 0.18) 100%); border: 2px solid rgba(148, 163, 184, 0.4); border-radius: 12px; padding: 14px; text-align: center; transition: all 0.3s; cursor: pointer;" onmouseover="this.style.transform='translateY(-4px)'; this.style.boxShadow='0 8px 20px rgba(148, 163, 184, 0.3)'" onmouseout="this.style.transform=''; this.style.boxShadow=''">
-                            <div style="font-size: 2em; margin-bottom: 6px;">💰</div>
-                            <div id="statsTotalProfit" style="font-size: 1.8em; font-weight: 900; color: #94a3b8; margin-bottom: 4px; text-shadow: 0 2px 4px rgba(148, 163, 184, 0.3);">0 gp</div>
-                            <div style="font-size: 0.7em; color: rgba(148, 163, 184, 0.9); text-transform: uppercase; letter-spacing: 0.8px; font-weight: 700;">PROFIT</div>
+                        <div style="background: linear-gradient(135deg, rgba(148, 163, 184, 0.15) 0%, rgba(148, 163, 184, 0.25) 100%); border: 2px solid rgba(148, 163, 184, 0.5); border-radius: 14px; padding: 20px; text-align: center; transition: all 0.3s; cursor: pointer; box-shadow: 0 4px 12px rgba(148, 163, 184, 0.2);" onmouseover="this.style.transform='translateY(-6px)'; this.style.boxShadow='0 12px 24px rgba(148, 163, 184, 0.4)'" onmouseout="this.style.transform=''; this.style.boxShadow='0 4px 12px rgba(148, 163, 184, 0.2)'">
+                            <div style="font-size: 2.5em; margin-bottom: 8px; filter: drop-shadow(0 2px 8px rgba(148, 163, 184, 0.5));">💰</div>
+                            <div id="statsTotalProfit" style="font-size: 2.2em; font-weight: 900; color: #94a3b8; margin-bottom: 6px; text-shadow: 0 2px 8px rgba(148, 163, 184, 0.4);">0 gp</div>
+                            <div style="font-size: 0.8em; color: rgba(148, 163, 184, 0.9); text-transform: uppercase; letter-spacing: 1px; font-weight: 700;">TOTAL PROFIT</div>
                         </div>
 
                         <!-- Total XP Card -->
-                        <div style="background: linear-gradient(135deg, rgba(34, 211, 238, 0.12) 0%, rgba(34, 211, 238, 0.18) 100%); border: 2px solid rgba(34, 211, 238, 0.4); border-radius: 12px; padding: 14px; text-align: center; transition: all 0.3s; cursor: pointer;" onmouseover="this.style.transform='translateY(-4px)'; this.style.boxShadow='0 8px 20px rgba(34, 211, 238, 0.4)'" onmouseout="this.style.transform=''; this.style.boxShadow=''">
-                            <div style="font-size: 2em; margin-bottom: 6px;">⭐</div>
-                            <div id="statsTotalXP" style="font-size: 1.8em; font-weight: 900; color: #22d3ee; margin-bottom: 4px; text-shadow: 0 2px 4px rgba(34, 211, 238, 0.3);">0</div>
-                            <div style="font-size: 0.7em; color: rgba(34, 211, 238, 0.9); text-transform: uppercase; letter-spacing: 0.8px; font-weight: 700;">TOTAL XP</div>
+                        <div style="background: linear-gradient(135deg, rgba(34, 211, 238, 0.15) 0%, rgba(34, 211, 238, 0.25) 100%); border: 2px solid rgba(34, 211, 238, 0.5); border-radius: 14px; padding: 20px; text-align: center; transition: all 0.3s; cursor: pointer; box-shadow: 0 4px 12px rgba(34, 211, 238, 0.2);" onmouseover="this.style.transform='translateY(-6px)'; this.style.boxShadow='0 12px 24px rgba(34, 211, 238, 0.5)'" onmouseout="this.style.transform=''; this.style.boxShadow='0 4px 12px rgba(34, 211, 238, 0.2)'">
+                            <div style="font-size: 2.5em; margin-bottom: 8px; filter: drop-shadow(0 2px 8px rgba(34, 211, 238, 0.5));">⭐</div>
+                            <div id="statsTotalXP" style="font-size: 2.2em; font-weight: 900; color: #22d3ee; margin-bottom: 6px; text-shadow: 0 2px 8px rgba(34, 211, 238, 0.5);">0</div>
+                            <div style="font-size: 0.8em; color: rgba(34, 211, 238, 0.9); text-transform: uppercase; letter-spacing: 1px; font-weight: 700;">TOTAL XP</div>
                         </div>
 
                         <!-- Best Day Card -->
-                        <div style="background: linear-gradient(135deg, rgba(6, 182, 212, 0.12) 0%, rgba(6, 182, 212, 0.18) 100%); border: 2px solid rgba(6, 182, 212, 0.4); border-radius: 12px; padding: 14px; text-align: center; transition: all 0.3s; cursor: pointer;" onmouseover="this.style.transform='translateY(-4px)'; this.style.boxShadow='0 8px 20px rgba(6, 182, 212, 0.4)'" onmouseout="this.style.transform=''; this.style.boxShadow=''">
-                            <div style="font-size: 2em; margin-bottom: 6px;">📅</div>
-                            <div id="statsBestDay" style="font-size: 1.5em; font-weight: 900; color: #06b6d4; margin-bottom: 4px; text-shadow: 0 2px 4px rgba(6, 182, 212, 0.3);">-</div>
-                            <div style="font-size: 0.7em; color: rgba(6, 182, 212, 0.9); text-transform: uppercase; letter-spacing: 0.8px; font-weight: 700;">BEST DAY</div>
+                        <div style="background: linear-gradient(135deg, rgba(6, 182, 212, 0.15) 0%, rgba(6, 182, 212, 0.25) 100%); border: 2px solid rgba(6, 182, 212, 0.5); border-radius: 14px; padding: 20px; text-align: center; transition: all 0.3s; cursor: pointer; box-shadow: 0 4px 12px rgba(6, 182, 212, 0.2);" onmouseover="this.style.transform='translateY(-6px)'; this.style.boxShadow='0 12px 24px rgba(6, 182, 212, 0.5)'" onmouseout="this.style.transform=''; this.style.boxShadow='0 4px 12px rgba(6, 182, 212, 0.2)'">
+                            <div style="font-size: 2.5em; margin-bottom: 8px; filter: drop-shadow(0 2px 8px rgba(6, 182, 212, 0.5));">📅</div>
+                            <div id="statsBestDay" style="font-size: 1.8em; font-weight: 900; color: #06b6d4; margin-bottom: 6px; text-shadow: 0 2px 8px rgba(6, 182, 212, 0.5);">-</div>
+                            <div style="font-size: 0.8em; color: rgba(6, 182, 212, 0.9); text-transform: uppercase; letter-spacing: 1px; font-weight: 700;">BEST DAY</div>
                         </div>
 
                         <!-- Total Hunts Card -->
-                        <div style="background: linear-gradient(135deg, rgba(251, 191, 36, 0.12) 0%, rgba(251, 191, 36, 0.18) 100%); border: 2px solid rgba(251, 191, 36, 0.4); border-radius: 12px; padding: 14px; text-align: center; transition: all 0.3s; cursor: pointer;" onmouseover="this.style.transform='translateY(-4px)'; this.style.boxShadow='0 8px 20px rgba(251, 191, 36, 0.4)'" onmouseout="this.style.transform=''; this.style.boxShadow=''">
-                            <div style="font-size: 2em; margin-bottom: 6px;">🎯</div>
-                            <div id="statsTotalHunts" style="font-size: 1.8em; font-weight: 900; color: #fbbf24; margin-bottom: 4px; text-shadow: 0 2px 4px rgba(251, 191, 36, 0.3);">0</div>
-                            <div style="font-size: 0.7em; color: rgba(251, 191, 36, 0.9); text-transform: uppercase; letter-spacing: 0.8px; font-weight: 700;">HUNTS</div>
+                        <div style="background: linear-gradient(135deg, rgba(251, 191, 36, 0.15) 0%, rgba(251, 191, 36, 0.25) 100%); border: 2px solid rgba(251, 191, 36, 0.5); border-radius: 14px; padding: 20px; text-align: center; transition: all 0.3s; cursor: pointer; box-shadow: 0 4px 12px rgba(251, 191, 36, 0.2);" onmouseover="this.style.transform='translateY(-6px)'; this.style.boxShadow='0 12px 24px rgba(251, 191, 36, 0.5)'" onmouseout="this.style.transform=''; this.style.boxShadow='0 4px 12px rgba(251, 191, 36, 0.2)'">
+                            <div style="font-size: 2.5em; margin-bottom: 8px; filter: drop-shadow(0 2px 8px rgba(251, 191, 36, 0.5));">🎯</div>
+                            <div id="statsTotalHunts" style="font-size: 2.2em; font-weight: 900; color: #fbbf24; margin-bottom: 6px; text-shadow: 0 2px 8px rgba(251, 191, 36, 0.5);">0</div>
+                            <div style="font-size: 0.8em; color: rgba(251, 191, 36, 0.9); text-transform: uppercase; letter-spacing: 1px; font-weight: 700;">HUNTS</div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Profit Chart - PROFESSIONAL -->
-                <div class="card" style="margin-top: 12px; padding: 14px; background: linear-gradient(135deg, rgba(20, 30, 48, 0.4) 0%, rgba(36, 59, 85, 0.4) 100%); border: 2px solid rgba(100, 116, 139, 0.3);">
-                    <h4 style="display: flex; align-items: center; justify-content: space-between; margin: 0 0 10px 0; font-size: 0.95em;">
-                        <span style="color: #22d3ee; font-weight: 700;">💰 Profit Analysis</span>
-                        <span id="profitPeriodLabel" style="font-size: 0.75em; color: var(--text-secondary); font-weight: 600;">Last 7 Days</span>
+                <!-- Profit Chart - ULTRA PROFESSIONAL & LARGER -->
+                <div class="card" style="margin-top: 16px; padding: 20px; background: linear-gradient(135deg, rgba(20, 30, 48, 0.6) 0%, rgba(36, 59, 85, 0.6) 100%); border: 2px solid rgba(34, 211, 238, 0.4); box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);">
+                    <h4 style="display: flex; align-items: center; justify-content: space-between; margin: 0 0 14px 0; font-size: 1.15em;">
+                        <span style="color: #22d3ee; font-weight: 700; text-shadow: 0 2px 8px rgba(34, 211, 238, 0.4);">💰 Profit Analysis</span>
+                        <span id="profitPeriodLabel" style="font-size: 0.85em; color: var(--text-secondary); font-weight: 600;">Last 7 Days</span>
                     </h4>
-                    <div class="chart-container" style="position: relative; height: 240px; margin-top: 10px; background: rgba(0, 0, 0, 0.2); padding: 10px; border-radius: 8px;">
+                    <div class="chart-container" style="position: relative; height: 280px; margin-top: 12px; background: rgba(0, 0, 0, 0.3); padding: 14px; border-radius: 10px; border: 1px solid rgba(34, 211, 238, 0.2);">
                         <canvas id="profitChart"></canvas>
                     </div>
-                    <!-- Profit Stats Below Chart - PROFESSIONAL -->
-                    <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-top: 14px; padding-top: 14px; border-top: 2px solid rgba(34, 211, 238, 0.2);">
-                        <div style="text-align: center; padding: 8px; background: rgba(40, 167, 69, 0.1); border-radius: 8px; border: 1px solid rgba(40, 167, 69, 0.3);">
-                            <p style="color: rgba(40, 167, 69, 0.8); font-size: 0.7em; margin: 0 0 4px 0; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 700;">Highest</p>
-                            <p id="profitHighest" style="color: #28a745; font-weight: 900; font-size: 1em; margin: 0; text-shadow: 0 2px 4px rgba(40, 167, 69, 0.3);">0 gp</p>
+                    <!-- Profit Stats Below Chart - LARGER & PROFESSIONAL -->
+                    <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-top: 18px; padding-top: 18px; border-top: 2px solid rgba(34, 211, 238, 0.3);">
+                        <div style="text-align: center; padding: 14px; background: rgba(40, 167, 69, 0.15); border-radius: 10px; border: 2px solid rgba(40, 167, 69, 0.4); box-shadow: 0 2px 8px rgba(40, 167, 69, 0.2);">
+                            <p style="color: rgba(40, 167, 69, 0.9); font-size: 0.8em; margin: 0 0 6px 0; text-transform: uppercase; letter-spacing: 0.8px; font-weight: 700;">Highest</p>
+                            <p id="profitHighest" style="color: #28a745; font-weight: 900; font-size: 1.2em; margin: 0; text-shadow: 0 2px 6px rgba(40, 167, 69, 0.4);">0 gp</p>
                         </div>
-                        <div style="text-align: center; padding: 8px; background: rgba(220, 53, 69, 0.1); border-radius: 8px; border: 1px solid rgba(220, 53, 69, 0.3);">
-                            <p style="color: rgba(220, 53, 69, 0.8); font-size: 0.7em; margin: 0 0 4px 0; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 700;">Lowest</p>
-                            <p id="profitLowest" style="color: #dc3545; font-weight: 900; font-size: 1em; margin: 0; text-shadow: 0 2px 4px rgba(220, 53, 69, 0.3);">0 gp</p>
+                        <div style="text-align: center; padding: 14px; background: rgba(220, 53, 69, 0.15); border-radius: 10px; border: 2px solid rgba(220, 53, 69, 0.4); box-shadow: 0 2px 8px rgba(220, 53, 69, 0.2);">
+                            <p style="color: rgba(220, 53, 69, 0.9); font-size: 0.8em; margin: 0 0 6px 0; text-transform: uppercase; letter-spacing: 0.8px; font-weight: 700;">Lowest</p>
+                            <p id="profitLowest" style="color: #dc3545; font-weight: 900; font-size: 1.2em; margin: 0; text-shadow: 0 2px 6px rgba(220, 53, 69, 0.4);">0 gp</p>
                         </div>
-                        <div style="text-align: center; padding: 8px; background: rgba(34, 211, 238, 0.1); border-radius: 8px; border: 1px solid rgba(34, 211, 238, 0.3);">
-                            <p style="color: rgba(34, 211, 238, 0.8); font-size: 0.7em; margin: 0 0 4px 0; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 700;">Average</p>
-                            <p id="profitAverage" style="color: #22d3ee; font-weight: 900; font-size: 1em; margin: 0; text-shadow: 0 2px 4px rgba(34, 211, 238, 0.3);">0 gp</p>
+                        <div style="text-align: center; padding: 14px; background: rgba(34, 211, 238, 0.15); border-radius: 10px; border: 2px solid rgba(34, 211, 238, 0.4); box-shadow: 0 2px 8px rgba(34, 211, 238, 0.2);">
+                            <p style="color: rgba(34, 211, 238, 0.9); font-size: 0.8em; margin: 0 0 6px 0; text-transform: uppercase; letter-spacing: 0.8px; font-weight: 700;">Average</p>
+                            <p id="profitAverage" style="color: #22d3ee; font-weight: 900; font-size: 1.2em; margin: 0; text-shadow: 0 2px 6px rgba(34, 211, 238, 0.4);">0 gp</p>
                         </div>
-                        <div style="text-align: center; padding: 8px; background: rgba(148, 163, 184, 0.1); border-radius: 8px; border: 1px solid rgba(148, 163, 184, 0.3);">
-                            <p style="color: rgba(148, 163, 184, 0.8); font-size: 0.7em; margin: 0 0 4px 0; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 700;">Trend</p>
-                            <p id="profitTrend" style="font-weight: 900; font-size: 1em; margin: 0;">-</p>
+                        <div style="text-align: center; padding: 14px; background: rgba(148, 163, 184, 0.15); border-radius: 10px; border: 2px solid rgba(148, 163, 184, 0.4); box-shadow: 0 2px 8px rgba(148, 163, 184, 0.2);">
+                            <p style="color: rgba(148, 163, 184, 0.9); font-size: 0.8em; margin: 0 0 6px 0; text-transform: uppercase; letter-spacing: 0.8px; font-weight: 700;">Trend</p>
+                            <p id="profitTrend" style="font-weight: 900; font-size: 1.2em; margin: 0; text-shadow: 0 2px 6px rgba(148, 163, 184, 0.3);">-</p>
                         </div>
                     </div>
                 </div>
@@ -5122,22 +5122,33 @@ Member Name
 
         function updateDashboardStats() {
             if (!hunts || hunts.length === 0) {
-                document.getElementById('dashTotalProfit').textContent = '0 gp';
-                document.getElementById('dashTotalHunts').textContent = '0 hunts';
-                document.getElementById('dashAvgProfitHour').textContent = '0 gp/h';
-                document.getElementById('dashAvgProfit').textContent = 'per hunt';
-                document.getElementById('dashTodayProfit').textContent = '0 gp';
-                document.getElementById('dashTodayHunts').textContent = '0 hunts today';
-                document.getElementById('dashStreak').textContent = '0 days';
-                document.getElementById('dashBestSpot').textContent = 'No data yet';
+                const dashElements = {
+                    'dashTotalProfit': '0 gp',
+                    'dashTotalHunts': '0 hunts',
+                    'dashAvgProfitHour': '0 gp/h',
+                    'dashAvgProfit': 'per hunt',
+                    'dashTodayProfit': '0 gp',
+                    'dashTodayHunts': '0 hunts today',
+                    'dashStreak': '0 days',
+                    'dashBestSpot': 'No data yet'
+                };
+
+                Object.entries(dashElements).forEach(([id, value]) => {
+                    const el = document.getElementById(id);
+                    if (el) el.textContent = value;
+                });
                 return;
             }
 
             // Total Profit & Hunts
             const totalProfit = hunts.reduce((sum, h) => sum + h.profit, 0);
             const totalHunts = hunts.length;
-            document.getElementById('dashTotalProfit').textContent = formatProfit(totalProfit);
-            document.getElementById('dashTotalHunts').textContent = `${totalHunts} hunt${totalHunts !== 1 ? 's' : ''}`;
+
+            const elem1 = document.getElementById('dashTotalProfit');
+            if (elem1) elem1.textContent = formatProfit(totalProfit);
+
+            const elem2 = document.getElementById('dashTotalHunts');
+            if (elem2) elem2.textContent = `${totalHunts} hunt${totalHunts !== 1 ? 's' : ''}`;
 
             // Average Profit/Hour
             let totalHours = 0;
@@ -5150,8 +5161,12 @@ Member Name
             });
             const avgProfitHour = totalHours > 0 ? Math.round(totalProfit / totalHours) : 0;
             const avgProfit = Math.round(totalProfit / totalHunts);
-            document.getElementById('dashAvgProfitHour').textContent = formatProfit(avgProfitHour) + '/h';
-            document.getElementById('dashAvgProfit').textContent = formatProfit(avgProfit) + ' avg';
+
+            const elem3 = document.getElementById('dashAvgProfitHour');
+            if (elem3) elem3.textContent = formatProfit(avgProfitHour) + '/h';
+
+            const elem4 = document.getElementById('dashAvgProfit');
+            if (elem4) elem4.textContent = formatProfit(avgProfit) + ' avg';
 
             // Today's Profit
             const today = new Date();
@@ -5162,8 +5177,12 @@ Member Name
                 return huntDate.getTime() === today.getTime();
             });
             const todayProfit = todayHunts.reduce((sum, h) => sum + h.profit, 0);
-            document.getElementById('dashTodayProfit').textContent = formatProfit(todayProfit);
-            document.getElementById('dashTodayHunts').textContent = `${todayHunts.length} hunt${todayHunts.length !== 1 ? 's' : ''} today`;
+
+            const elem5 = document.getElementById('dashTodayProfit');
+            if (elem5) elem5.textContent = formatProfit(todayProfit);
+
+            const elem6 = document.getElementById('dashTodayHunts');
+            if (elem6) elem6.textContent = `${todayHunts.length} hunt${todayHunts.length !== 1 ? 's' : ''} today`;
 
             // Current Streak
             const sortedDates = [...new Set(hunts.map(h => new Date(h.date).toDateString()))].sort((a, b) => new Date(b) - new Date(a));
@@ -5182,7 +5201,8 @@ Member Name
                     break;
                 }
             }
-            document.getElementById('dashStreak').textContent = `${streak} day${streak !== 1 ? 's' : ''}`;
+            const elem7 = document.getElementById('dashStreak');
+            if (elem7) elem7.textContent = `${streak} day${streak !== 1 ? 's' : ''}`;
 
             // Best Spot (last 7 days)
             const sevenDaysAgo = new Date();
@@ -5195,7 +5215,8 @@ Member Name
             const bestSpot = Object.keys(spotProfit).length > 0
                 ? Object.entries(spotProfit).sort((a, b) => b[1] - a[1])[0][0]
                 : 'No data';
-            document.getElementById('dashBestSpot').textContent = `Best: ${bestSpot}`;
+            const elem8 = document.getElementById('dashBestSpot');
+            if (elem8) elem8.textContent = `Best: ${bestSpot}`;
         }
 
         function updateSmartInsights() {
@@ -5227,13 +5248,20 @@ Member Name
                 }
             });
 
-            document.getElementById('insightBestDay').textContent = bestDay;
-            document.getElementById('insightBestDayValue').textContent = bestDayProfit > 0 ? formatProfit(bestDayProfit) : 'No data';
+            const bestDayEl = document.getElementById('insightBestDay');
+            if (bestDayEl) bestDayEl.textContent = bestDay;
+
+            const bestDayValueEl = document.getElementById('insightBestDayValue');
+            if (bestDayValueEl) bestDayValueEl.textContent = bestDayProfit > 0 ? formatProfit(bestDayProfit) : 'No data';
 
             // Best Hunt Ever
             let bestHunt = hunts.reduce((best, hunt) => hunt.profit > best.profit ? hunt : best, hunts[0]);
-            document.getElementById('insightBestHunt').textContent = bestHunt.name.length > 20 ? bestHunt.name.substring(0, 20) + '...' : bestHunt.name;
-            document.getElementById('insightBestHuntProfit').textContent = formatProfit(bestHunt.profit);
+
+            const bestHuntEl = document.getElementById('insightBestHunt');
+            if (bestHuntEl) bestHuntEl.textContent = bestHunt.name.length > 20 ? bestHunt.name.substring(0, 20) + '...' : bestHunt.name;
+
+            const bestHuntProfitEl = document.getElementById('insightBestHuntProfit');
+            if (bestHuntProfitEl) bestHuntProfitEl.textContent = formatProfit(bestHunt.profit);
 
             // Current Streak
             const sortedHunts = [...hunts].sort((a, b) => new Date(b.date) - new Date(a.date));
@@ -5260,13 +5288,16 @@ Member Name
                 }
             }
 
-            document.getElementById('insightStreak').textContent = streak + ' day' + (streak !== 1 ? 's' : '');
+            const streakEl = document.getElementById('insightStreak');
+            if (streakEl) streakEl.textContent = streak + ' day' + (streak !== 1 ? 's' : '');
 
             // Average Profit per Hour
             const totalProfit = hunts.reduce((sum, h) => sum + h.profit, 0);
             const totalMinutes = hunts.reduce((sum, h) => sum + (h.duration || 0), 0);
             const avgProfitPerHour = totalMinutes > 0 ? (totalProfit / totalMinutes) * 60 : 0;
-            document.getElementById('insightAvgProfitHour').textContent = formatProfit(avgProfitPerHour) + '/h';
+
+            const avgProfitEl = document.getElementById('insightAvgProfitHour');
+            if (avgProfitEl) avgProfitEl.textContent = formatProfit(avgProfitPerHour) + '/h';
         }
 
         // Daily Profit Target Functions
