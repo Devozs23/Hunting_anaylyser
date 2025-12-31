@@ -1803,70 +1803,82 @@
         <div class="loading-text">Cargando...</div>
     </div>
 
-    <!-- Login Screen -->
-    <div class="login-container" id="loginScreen">
-        <div class="login-card">
-            <div class="login-header">
-                <h1>⚔️ Tibia Hunt Analyzer PRO</h1>
-                <p>Complete Hunt Tracking System</p>
+    <!-- Welcome Screen - First Time Users Only -->
+    <div class="login-container" id="welcomeScreen" style="display: none;">
+        <div class="login-card" style="max-width: 600px;">
+            <!-- Header -->
+            <div style="text-align: center; margin-bottom: 30px;">
+                <div style="font-size: 4em; margin-bottom: 10px;">🎮</div>
+                <h1 style="color: #22d3ee; margin: 0 0 10px 0; font-size: 2em; font-weight: 900;">Welcome to Tibia Hunt Analyzer!</h1>
+                <p style="color: var(--text-secondary); font-size: 1.1em;">Professional Hunt Tracking - 100% Free, No Login Required</p>
             </div>
 
-            <div class="login-tabs">
-                <button class="login-tab active" onclick="switchAuthTab('login')">Login</button>
-                <button class="login-tab" onclick="switchAuthTab('register')">Register</button>
-            </div>
-
-            <!-- Login Form -->
-            <div class="tab-content active" id="loginTab">
-                <div class="error-message" id="loginError"></div>
-                <div class="success-message" id="loginSuccess"></div>
-
-                <div class="input-group">
-                    <label for="loginUsername">Username</label>
-                    <input type="text" id="loginUsername" placeholder="Enter your username" autocomplete="username">
+            <!-- Your ID Card -->
+            <div style="background: linear-gradient(135deg, rgba(34, 211, 238, 0.1) 0%, rgba(168, 85, 247, 0.1) 100%); border: 2px solid rgba(34, 211, 238, 0.4); border-radius: 12px; padding: 20px; margin-bottom: 25px;">
+                <div style="text-align: center; margin-bottom: 15px;">
+                    <div style="font-size: 0.85em; color: rgba(34, 211, 238, 0.9); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 5px; font-weight: 700;">Your Unique ID</div>
+                    <div id="welcomeUserId" style="font-size: 1.3em; font-weight: 900; color: #22d3ee; font-family: 'Courier New', monospace; background: rgba(0,0,0,0.3); padding: 10px; border-radius: 8px;"></div>
                 </div>
-
-                <div class="input-group">
-                    <label for="loginPassword">Password</label>
-                    <input type="password" id="loginPassword" placeholder="Enter your password" autocomplete="current-password">
-                </div>
-
-                <button class="btn-primary" onclick="handleLogin()" style="width: 100%; margin-top: 20px;">
-                    Login
-                </button>
-
-                <!-- Password Recovery -->
-                <div style="text-align: center; margin-top: 15px;">
-                    <button onclick="showPasswordRecovery()" style="background: none; border: none; color: var(--primary-color); cursor: pointer; text-decoration: underline; font-size: 0.9em;">
-                        🔑 Forgot Password?
-                    </button>
+                <div style="font-size: 0.85em; color: var(--text-secondary); text-align: center; line-height: 1.6;">
+                    💾 Saved automatically in your browser<br>
+                    🔒 Your data stays private on your device
                 </div>
             </div>
 
-            <!-- Register Form -->
-            <div class="tab-content" id="registerTab">
-                <div class="error-message" id="registerError"></div>
-                <div class="success-message" id="registerSuccess"></div>
-
-                <div class="input-group">
-                    <label for="registerUsername">Username</label>
-                    <input type="text" id="registerUsername" placeholder="Choose a username" autocomplete="username">
+            <!-- Features List -->
+            <div style="background: rgba(0,0,0,0.2); border-radius: 12px; padding: 20px; margin-bottom: 25px;">
+                <h3 style="color: #a855f7; margin: 0 0 15px 0; font-size: 1.1em;">✨ What You Get:</h3>
+                <div style="display: grid; gap: 12px;">
+                    <div style="display: flex; align-items: start; gap: 10px;">
+                        <div style="font-size: 1.3em;">📊</div>
+                        <div>
+                            <div style="font-weight: 700; color: var(--text-primary); margin-bottom: 3px;">Track Every Hunt</div>
+                            <div style="font-size: 0.85em; color: var(--text-secondary);">Profit, XP, duration, location - everything</div>
+                        </div>
+                    </div>
+                    <div style="display: flex; align-items: start; gap: 10px;">
+                        <div style="font-size: 1.3em;">💎</div>
+                        <div>
+                            <div style="font-weight: 700; color: var(--text-primary); margin-bottom: 3px;">TC Calculator & Rare Loot</div>
+                            <div style="font-size: 0.85em; color: var(--text-secondary);">Visual calendars showing TCs farmed & rare items</div>
+                        </div>
+                    </div>
+                    <div style="display: flex; align-items: start; gap: 10px;">
+                        <div style="font-size: 1.3em;">📈</div>
+                        <div>
+                            <div style="font-weight: 700; color: var(--text-primary); margin-bottom: 3px;">Advanced Charts & Analytics</div>
+                            <div style="font-size: 0.85em; color: var(--text-secondary);">Beautiful visualizations of your progress</div>
+                        </div>
+                    </div>
+                    <div style="display: flex; align-items: start; gap: 10px;">
+                        <div style="font-size: 1.3em;">📱</div>
+                        <div>
+                            <div style="font-weight: 700; color: var(--text-primary); margin-bottom: 3px;">Multi-Device Access</div>
+                            <div style="font-size: 0.85em; color: var(--text-secondary);">Use Share Code to sync across devices</div>
+                        </div>
+                    </div>
                 </div>
+            </div>
 
-                <div class="input-group">
-                    <label for="registerPassword">Password</label>
-                    <input type="password" id="registerPassword" placeholder="Choose a password" autocomplete="new-password" oninput="checkPasswordStrength()">
-                    <div class="password-strength" id="passwordStrength"></div>
-                </div>
+            <!-- How It Works -->
+            <div style="background: rgba(168, 85, 247, 0.1); border-left: 4px solid #a855f7; border-radius: 8px; padding: 15px; margin-bottom: 25px;">
+                <div style="font-weight: 700; color: #a855f7; margin-bottom: 8px; font-size: 0.95em;">💡 How It Works:</div>
+                <ol style="margin: 0; padding-left: 20px; color: var(--text-secondary); font-size: 0.9em; line-height: 1.8;">
+                    <li>Your unique ID is saved in your browser</li>
+                    <li>Add hunts, goals, and rare items - all saved automatically</li>
+                    <li>Return anytime - your data will be here</li>
+                    <li>Want multi-device? Use the Share Code feature!</li>
+                </ol>
+            </div>
 
-                <div class="input-group">
-                    <label for="registerPasswordConfirm">Confirm Password</label>
-                    <input type="password" id="registerPasswordConfirm" placeholder="Confirm your password" autocomplete="new-password">
-                </div>
+            <!-- Start Button -->
+            <button onclick="startUsingApp()" style="width: 100%; padding: 15px; font-size: 1.1em; font-weight: 900; background: linear-gradient(135deg, #22d3ee 0%, #a855f7 100%); color: white; border: none; border-radius: 12px; cursor: pointer; box-shadow: 0 6px 20px rgba(34, 211, 238, 0.4); transition: all 0.3s;" onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 8px 30px rgba(34, 211, 238, 0.5)'" onmouseout="this.style.transform=''; this.style.boxShadow='0 6px 20px rgba(34, 211, 238, 0.4)'">
+                🚀 Start Tracking My Hunts!
+            </button>
 
-                <button class="btn-primary" onclick="handleRegister()" style="width: 100%; margin-top: 20px;">
-                    Create Account
-                </button>
+            <!-- Footer Note -->
+            <div style="text-align: center; margin-top: 20px; font-size: 0.8em; color: var(--text-secondary);">
+                100% Free • No Ads • No Data Collection • Open Source
             </div>
         </div>
     </div>
@@ -1979,6 +1991,60 @@
                         </button>
                         <button onclick="confirmClearAllData()" style="background: linear-gradient(135deg, rgba(220, 53, 69, 0.25) 0%, rgba(220, 53, 69, 0.35) 100%); color: #dc3545; padding: 12px; border-radius: 10px; font-weight: 900; border: 2px solid rgba(220, 53, 69, 0.5); cursor: pointer; transition: all 0.3s; font-size: 0.9em; box-shadow: 0 4px 12px rgba(220, 53, 69, 0.3);" onmouseover="this.style.background='linear-gradient(135deg, rgba(220, 53, 69, 0.35) 0%, rgba(220, 53, 69, 0.45) 100%)'; this.style.borderColor='rgba(220, 53, 69, 0.7)'; this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 20px rgba(220, 53, 69, 0.4)'" onmouseout="this.style.background='linear-gradient(135deg, rgba(220, 53, 69, 0.25) 0%, rgba(220, 53, 69, 0.35) 100%)'; this.style.borderColor='rgba(220, 53, 69, 0.5)'; this.style.transform=''; this.style.boxShadow='0 4px 12px rgba(220, 53, 69, 0.3)'">
                             🗑️ Delete All
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Share Code Modal - Generate/Display -->
+            <div id="shareCodeModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); z-index: 10000; align-items: center; justify-content: center;">
+                <div style="background: linear-gradient(135deg, rgba(30, 20, 40, 0.98) 0%, rgba(40, 25, 50, 0.98) 100%); border: 2px solid rgba(168, 85, 247, 0.5); border-radius: 16px; padding: 24px; max-width: 500px; width: 90%; box-shadow: 0 20px 60px rgba(168, 85, 247, 0.4); animation: slideUp 0.3s ease-out;">
+                    <div style="text-align: center; margin-bottom: 20px;">
+                        <div style="font-size: 3.5em; margin-bottom: 10px;">📱</div>
+                        <h2 style="color: #a855f7; margin: 0 0 8px 0; font-size: 1.5em; font-weight: 900;">Your Share Code</h2>
+                        <p style="color: rgba(168, 85, 247, 0.8); font-size: 0.9em; margin: 0;">Save this code to sync your data across devices!</p>
+                    </div>
+
+                    <div style="background: rgba(168, 85, 247, 0.1); border: 2px solid rgba(168, 85, 247, 0.3); border-radius: 12px; padding: 16px; margin-bottom: 20px;">
+                        <div style="font-family: 'Courier New', monospace; font-size: 0.85em; color: #a855f7; word-break: break-all; line-height: 1.6; text-align: center;" id="shareCodeDisplay">Generating...</div>
+                    </div>
+
+                    <div style="display: flex; gap: 10px;">
+                        <button onclick="copyShareCode()" style="flex: 1; background: linear-gradient(135deg, #a855f7 0%, #8b5cf6 100%); color: white; padding: 12px; border-radius: 10px; font-weight: 900; border: none; cursor: pointer; transition: all 0.3s; font-size: 0.9em; box-shadow: 0 4px 12px rgba(168, 85, 247, 0.3);">
+                            📋 Copy Code
+                        </button>
+                        <button onclick="closeShareCodeModal()" style="flex: 1; background: rgba(168, 85, 247, 0.2); color: #a855f7; padding: 12px; border-radius: 10px; font-weight: 900; border: 2px solid rgba(168, 85, 247, 0.4); cursor: pointer; transition: all 0.3s; font-size: 0.9em;">
+                            ✕ Close
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Restore Code Modal - Import -->
+            <div id="restoreCodeModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); z-index: 10000; align-items: center; justify-content: center;">
+                <div style="background: linear-gradient(135deg, rgba(30, 20, 40, 0.98) 0%, rgba(40, 25, 50, 0.98) 100%); border: 2px solid rgba(168, 85, 247, 0.5); border-radius: 16px; padding: 24px; max-width: 500px; width: 90%; box-shadow: 0 20px 60px rgba(168, 85, 247, 0.4); animation: slideUp 0.3s ease-out;">
+                    <div style="text-align: center; margin-bottom: 20px;">
+                        <div style="font-size: 3.5em; margin-bottom: 10px;">📥</div>
+                        <h2 style="color: #a855f7; margin: 0 0 8px 0; font-size: 1.5em; font-weight: 900;">Restore from Share Code</h2>
+                        <p style="color: rgba(168, 85, 247, 0.8); font-size: 0.9em; margin: 0;">Paste your Share Code to sync your data</p>
+                    </div>
+
+                    <div style="margin-bottom: 20px;">
+                        <textarea id="restoreCodeInput" placeholder="Paste your Share Code here..." style="width: 100%; min-height: 120px; padding: 12px; background: rgba(168, 85, 247, 0.05); border: 2px solid rgba(168, 85, 247, 0.3); border-radius: 8px; color: #a855f7; font-family: 'Courier New', monospace; font-size: 0.85em; resize: vertical;"></textarea>
+                    </div>
+
+                    <div style="background: rgba(220, 53, 69, 0.1); border-left: 3px solid rgba(220, 53, 69, 0.5); padding: 12px; margin-bottom: 20px; border-radius: 4px;">
+                        <p style="color: rgba(220, 53, 69, 0.9); font-size: 0.8em; margin: 0; line-height: 1.4;">
+                            <strong>⚠️ Warning:</strong> This will replace all your current data with the data from the Share Code!
+                        </p>
+                    </div>
+
+                    <div style="display: flex; gap: 10px;">
+                        <button onclick="restoreFromShareCodeUI()" style="flex: 1; background: linear-gradient(135deg, #a855f7 0%, #8b5cf6 100%); color: white; padding: 12px; border-radius: 10px; font-weight: 900; border: none; cursor: pointer; transition: all 0.3s; font-size: 0.9em; box-shadow: 0 4px 12px rgba(168, 85, 247, 0.3);">
+                            ✅ Restore Data
+                        </button>
+                        <button onclick="closeRestoreCodeModal()" style="flex: 1; background: rgba(168, 85, 247, 0.2); color: #a855f7; padding: 12px; border-radius: 10px; font-weight: 900; border: 2px solid rgba(168, 85, 247, 0.4); cursor: pointer; transition: all 0.3s; font-size: 0.9em;">
+                            ✕ Cancel
                         </button>
                     </div>
                 </div>
@@ -2861,6 +2927,36 @@ Member Name
                     </button>
                 </div>
 
+                <!-- SHARE CODE - MULTI-DEVICE SYNC -->
+                <div class="card" style="margin-top: 10px; padding: 16px; background: linear-gradient(135deg, rgba(168, 85, 247, 0.08) 0%, rgba(139, 92, 246, 0.12) 100%); border: 2px solid rgba(168, 85, 247, 0.4);">
+                    <h3 style="color: #a855f7; margin-bottom: 14px; font-size: 1.1em; display: flex; align-items: center; gap: 8px;">
+                        <span style="font-size: 1.3em;">📱</span> Multi-Device Sync
+                    </h3>
+
+                    <div style="background: rgba(0,0,0,0.3); padding: 12px; border-radius: 8px; margin-bottom: 12px; border: 1px solid rgba(168, 85, 247, 0.2);">
+                        <p style="font-size: 0.85em; color: rgba(168, 85, 247, 0.9); margin: 0 0 8px 0; font-weight: 600;">✨ Your User ID:</p>
+                        <div style="font-family: 'Courier New', monospace; font-size: 0.9em; color: #a855f7; background: rgba(168, 85, 247, 0.1); padding: 8px 12px; border-radius: 6px; word-break: break-all; font-weight: 700;" id="displayUserId">Loading...</div>
+                    </div>
+
+                    <div style="margin-bottom: 12px;">
+                        <button class="btn-primary" onclick="showShareCodeModal()" style="width: 100%; padding: 10px 16px; font-size: 0.9em; background: linear-gradient(135deg, #a855f7 0%, #8b5cf6 100%); border: none; box-shadow: 0 4px 12px rgba(168, 85, 247, 0.3);">
+                            📤 Generate Share Code
+                        </button>
+                    </div>
+
+                    <div>
+                        <button class="btn-secondary" onclick="showRestoreCodeModal()" style="width: 100%; padding: 10px 16px; font-size: 0.9em; background: rgba(168, 85, 247, 0.2); border: 2px solid rgba(168, 85, 247, 0.4); color: #a855f7; font-weight: 700;">
+                            📥 Restore from Share Code
+                        </button>
+                    </div>
+
+                    <div style="margin-top: 12px; padding: 10px; background: rgba(168, 85, 247, 0.05); border-radius: 6px; border-left: 3px solid rgba(168, 85, 247, 0.5);">
+                        <p style="font-size: 0.75em; color: rgba(168, 85, 247, 0.8); margin: 0; line-height: 1.4;">
+                            <strong>💡 How it works:</strong> Generate a Share Code to sync your data across multiple devices. Save the code and restore it on any device!
+                        </p>
+                    </div>
+                </div>
+
                 <!-- TODAY'S FARMING - COMPACT -->
                 <div id="todayTCProgress" class="card" style="margin-top: 10px; padding: 12px; background: linear-gradient(135deg, rgba(34, 211, 238, 0.08) 0%, rgba(6, 182, 212, 0.12) 100%); border: 2px solid rgba(34, 211, 238, 0.5); display: none; position: relative; overflow: hidden;">
                     <div style="position: relative; z-index: 1;">
@@ -2972,17 +3068,100 @@ Member Name
     </div>
 
     <script>
+        // ==================== AUTO-ID SYSTEM - NO LOGIN REQUIRED ====================
+
+        // Generate unique user ID
+        function generateUserId() {
+            const timestamp = Date.now().toString(36);
+            const randomStr = Math.random().toString(36).substring(2, 9);
+            return `USER-${timestamp}-${randomStr}`.toUpperCase();
+        }
+
+        // Get or create user ID
+        function initializeUser() {
+            let userId = localStorage.getItem('tibiaUserId');
+
+            if (!userId) {
+                // First time visitor - generate new ID
+                userId = generateUserId();
+                localStorage.setItem('tibiaUserId', userId);
+                localStorage.setItem('firstVisit', 'true');
+                console.log('🆕 New user created:', userId);
+                return { userId, isFirstVisit: true };
+            }
+
+            console.log('👋 Welcome back:', userId);
+            return { userId, isFirstVisit: false };
+        }
+
+        // Show welcome screen for first-time users
+        function showWelcomeScreen() {
+            document.getElementById('welcomeUserId').textContent = userId;
+            document.getElementById('welcomeScreen').style.display = 'flex';
+            document.getElementById('appContainer').classList.remove('active');
+        }
+
+        // Start using app (called from welcome screen button)
+        function startUsingApp() {
+            localStorage.removeItem('firstVisit'); // Clear first visit flag
+            loadUserDataAndStart();
+        }
+
+        // Share Code System - For multi-device access
+        function generateShareCode() {
+            const data = {
+                userId: userId,
+                hunts: hunts,
+                goals: goals,
+                rareLoot: rareLoot,
+                tcPrice: tcPrice,
+                dailyTarget: dailyTarget,
+                serverType: serverType
+            };
+
+            const encoded = btoa(JSON.stringify(data));
+            const shareCode = encoded.match(/.{1,4}/g).join('-'); // Format: XXXX-XXXX-XXXX
+
+            return shareCode;
+        }
+
+        function restoreFromShareCode(shareCode) {
+            try {
+                const encoded = shareCode.replace(/-/g, '');
+                const decoded = atob(encoded);
+                const data = JSON.parse(decoded);
+
+                // Restore all data
+                userId = data.userId;
+                hunts = data.hunts || [];
+                goals = data.goals || [];
+                rareLoot = data.rareLoot || [];
+                tcPrice = data.tcPrice || 0;
+                dailyTarget = data.dailyTarget || 1000000;
+                serverType = data.serverType || 'green';
+
+                // Save to localStorage
+                localStorage.setItem('tibiaUserId', userId);
+                saveUserData();
+
+                return true;
+            } catch (error) {
+                console.error('Error restoring from share code:', error);
+                return false;
+            }
+        }
+
         // Global State
-        let currentUser = null;
+        let userId = null;
         let hunts = [];
         let goals = [];
         let rareLoot = [];
         let serverType = 'green';
-        let isDarkMode = localStorage.getItem('darkMode') !== 'false'; // Dark mode por defecto
+        let isDarkMode = localStorage.getItem('darkMode') !== 'false';
         let teamMemberCount = 1;
         let currentPeriod = 'daily';
         let tibiaCharName = '';
-        let tcPrice = 0; // Tibia Coin price in gold
+        let tcPrice = 0;
 
         // Session and Daily Target variables
         let dailyTarget = localStorage.getItem('dailyTarget') ? parseInt(localStorage.getItem('dailyTarget')) : 1000000;
@@ -2994,17 +3173,19 @@ Member Name
 
         // Initialize App
         window.onload = function() {
-            checkAuth();
-            applyTheme();
-            initVisualEffects(); // ✨ Inicializar efectos visuales
+            // Initialize user (auto-create if new)
+            const { userId: uid, isFirstVisit } = initializeUser();
+            userId = uid;
 
-            // Enter key listeners
-            document.getElementById('loginPassword').addEventListener('keypress', function(e) {
-                if (e.key === 'Enter') handleLogin();
-            });
-            document.getElementById('registerPasswordConfirm').addEventListener('keypress', function(e) {
-                if (e.key === 'Enter') handleRegister();
-            });
+            // Show welcome screen for first-time users
+            if (isFirstVisit) {
+                showWelcomeScreen();
+            } else {
+                loadUserDataAndStart();
+            }
+
+            applyTheme();
+            initVisualEffects();
 
             // Start midnight detection system
             startMidnightDetection();
@@ -3030,6 +3211,58 @@ Member Name
             }
         };
 
+        // Load user data from localStorage
+        function loadUserDataAndStart() {
+            const savedData = localStorage.getItem('huntData_' + userId);
+
+            if (savedData) {
+                try {
+                    const data = JSON.parse(savedData);
+                    hunts = data.hunts || [];
+                    goals = data.goals || [];
+                    rareLoot = data.rareLoot || [];
+                    serverType = data.serverType || 'green';
+                    tibiaCharName = data.tibiaCharName || '';
+                    tcPrice = data.tcPrice || 0;
+                    dailyTarget = data.dailyTarget || 1000000;
+
+                    console.log('✅ Data loaded:', hunts.length, 'hunts');
+                } catch (error) {
+                    console.error('Error loading data:', error);
+                }
+            }
+
+            showApp();
+        }
+
+        // Save user data to localStorage
+        function saveUserData() {
+            const data = {
+                hunts: hunts,
+                goals: goals,
+                rareLoot: rareLoot,
+                serverType: serverType,
+                tibiaCharName: tibiaCharName,
+                tcPrice: tcPrice,
+                dailyTarget: dailyTarget,
+                lastSaved: new Date().toISOString()
+            };
+
+            localStorage.setItem('huntData_' + userId, JSON.stringify(data));
+            console.log('💾 Data saved');
+        }
+
+        // Show main app
+        function showApp() {
+            document.getElementById('welcomeScreen').style.display = 'none';
+            document.getElementById('appContainer').classList.add('active');
+
+            document.getElementById('userIdDisplay').textContent = userId;
+
+            updateDisplay();
+            updateTCDisplay();
+        }
+
         // ==================== MIDNIGHT DETECTION SYSTEM ====================
         let lastKnownDate = new Date().toISOString().split('T')[0];
 
@@ -3051,8 +3284,8 @@ Member Name
                         console.log(`📆 Calendar moved to ${currentCalendarMonth + 1}/${currentCalendarYear}`);
                     }
 
-                    // Update TC calendar if user is logged in and has TC price set
-                    if (currentUser && tcPrice > 0 && hunts.length > 0) {
+                    // Update TC calendar if user has TC price set
+                    if (userId && tcPrice > 0 && hunts.length > 0) {
                         console.log('🔄 Refreshing TC displays...');
                         updateTCDisplay();
                         updateTCDailyTracking();
@@ -3215,24 +3448,6 @@ Member Name
         }
 
         // Tab Management
-        function switchAuthTab(tab) {
-            const loginTab = document.getElementById('loginTab');
-            const registerTab = document.getElementById('registerTab');
-            const tabs = document.querySelectorAll('.login-tab');
-
-            tabs.forEach(t => t.classList.remove('active'));
-
-            if (tab === 'login') {
-                loginTab.classList.add('active');
-                registerTab.classList.remove('active');
-                tabs[0].classList.add('active');
-            } else {
-                registerTab.classList.add('active');
-                loginTab.classList.remove('active');
-                tabs[1].classList.add('active');
-            }
-        }
-
         function switchMainTab(tab) {
             document.querySelectorAll('.main-tab-content').forEach(content => {
                 content.classList.remove('active');
@@ -3276,235 +3491,14 @@ Member Name
             }
         }
 
-        // Authentication Functions
-        function checkPasswordStrength() {
-            const password = document.getElementById('registerPassword').value;
-            const strengthBar = document.getElementById('passwordStrength');
-
-            if (password.length === 0) {
-                strengthBar.className = 'password-strength';
-                return;
-            }
-
-            let strength = 0;
-            if (password.length >= 6) strength++;
-            if (password.length >= 10) strength++;
-            if (/[A-Z]/.test(password)) strength++;
-            if (/[0-9]/.test(password)) strength++;
-            if (/[^A-Za-z0-9]/.test(password)) strength++;
-
-            if (strength <= 2) {
-                strengthBar.className = 'password-strength weak';
-            } else if (strength <= 3) {
-                strengthBar.className = 'password-strength medium';
-            } else {
-                strengthBar.className = 'password-strength strong';
-            }
-        }
-
-        function handleRegister() {
-            const username = document.getElementById('registerUsername').value.trim();
-            const password = document.getElementById('registerPassword').value;
-            const passwordConfirm = document.getElementById('registerPasswordConfirm').value;
-
-            if (!username || !password) {
-                showError('registerError', 'Please fill in all fields');
-                return;
-            }
-
-            if (username.length < 3) {
-                showError('registerError', 'Username must be at least 3 characters');
-                return;
-            }
-
-            if (password.length < 6) {
-                showError('registerError', 'Password must be at least 6 characters');
-                return;
-            }
-
-            if (password !== passwordConfirm) {
-                showError('registerError', 'Passwords do not match');
-                return;
-            }
-
-            let users = {};
-            try {
-                users = JSON.parse(localStorage.getItem('tibiaUsers')) || {};
-            } catch (error) {
-                console.error('Error loading users:', error);
-                showError('registerError', 'Error loading user data. Please try again.');
-                return;
-            }
-
-            if (users[username]) {
-                showError('registerError', 'Username already exists');
-                return;
-            }
-
-            users[username] = {
-                password: btoa(password),
-                createdAt: new Date().toISOString(),
-                hunts: [],
-                goals: []
-            };
-
-            try {
-                localStorage.setItem('tibiaUsers', JSON.stringify(users));
-                showSuccess('registerSuccess', 'Account created successfully! You can now login.');
-
-                document.getElementById('registerUsername').value = '';
-                document.getElementById('registerPassword').value = '';
-                document.getElementById('registerPasswordConfirm').value = '';
-                document.getElementById('passwordStrength').className = 'password-strength';
-
-                setTimeout(() => {
-                    switchAuthTab('login');
-                    document.getElementById('loginUsername').value = username;
-                }, 1500);
-            } catch (error) {
-                console.error('Error saving user:', error);
-                showError('registerError', 'Error creating account. Please try again.');
-            }
-        }
-
-        function handleLogin() {
-            const username = document.getElementById('loginUsername').value.trim();
-            const password = document.getElementById('loginPassword').value;
-
-            if (!username || !password) {
-                showError('loginError', 'Please fill in all fields');
-                return;
-            }
-
-            let users = {};
-            try {
-                users = JSON.parse(localStorage.getItem('tibiaUsers')) || {};
-            } catch (error) {
-                console.error('Error loading users:', error);
-                showError('loginError', 'Error loading user data. Please clear your browser cache and try again.');
-                return;
-            }
-
-            if (!users[username]) {
-                showError('loginError', 'Username not found');
-                return;
-            }
-
-            console.log('🔐 Login Debug:');
-            console.log('Username:', username);
-            console.log('Stored password:', users[username].password);
-            console.log('Input password (encoded):', btoa(password));
-
-            // Try multiple password formats for backward compatibility
-            const storedPassword = users[username].password;
-            const encodedPassword = btoa(password);
-            const plainPassword = password;
-
-            let passwordMatches = false;
-
-            if (storedPassword === encodedPassword) {
-                // Normal case: password is stored as base64
-                passwordMatches = true;
-                console.log('✅ Password matched: base64 format');
-            } else if (storedPassword === plainPassword) {
-                // Legacy case: password stored as plain text
-                passwordMatches = true;
-                console.log('⚠️ Password matched: plain text (legacy)');
-                // Auto-upgrade to secure format
-                users[username].password = encodedPassword;
-                localStorage.setItem('tibiaUsers', JSON.stringify(users));
-                console.log('✅ Password upgraded to secure format');
-            } else {
-                console.log('❌ Password mismatch');
-                showError('loginError', 'Incorrect password. Check browser console (F12) for details.');
-                return;
-            }
-
-            currentUser = username;
-            localStorage.setItem('currentUser', username);
-            hunts = users[username].hunts || [];
-            goals = users[username].goals || [];
-            rareLoot = users[username].rareLoot || [];
-            serverType = users[username].serverType || 'green';
-            tibiaCharName = users[username].tibiaCharName || '';
-            tcPrice = users[username].tcPrice || 0;
-
-            // Update server type selector
-            document.getElementById('serverType').value = serverType;
-
-            showApp();
-        }
-
-        function handleLogout() {
-            if (confirm('Are you sure you want to logout?')) {
-                // Clear all user data
-                currentUser = null;
-                localStorage.removeItem('currentUser');
-                hunts = [];
-                goals = [];
-                rareLoot = [];
-                serverType = 'green';
-                tibiaCharName = '';
-                tcPrice = 0;
-                dailyTarget = 50000000;
-
-                // Clear login form
-                document.getElementById('loginUsername').value = '';
-                document.getElementById('loginPassword').value = '';
-
-                // Reset app state
-                document.getElementById('appContainer').classList.remove('active');
-
-                // Show login screen
-                showLogin();
-
-                // Show notification
-                showNotification('✅ Logged out successfully', 'success');
-            }
-        }
-
-        function checkAuth() {
-            const savedUser = localStorage.getItem('currentUser');
-
-            if (savedUser) {
-                try {
-                    const users = JSON.parse(localStorage.getItem('tibiaUsers')) || {};
-
-                    if (users[savedUser]) {
-                        currentUser = savedUser;
-                        hunts = users[savedUser].hunts || [];
-                        goals = users[savedUser].goals || [];
-                        rareLoot = users[savedUser].rareLoot || [];
-                        serverType = users[savedUser].serverType || 'green';
-                        tibiaCharName = users[savedUser].tibiaCharName || '';
-                        tcPrice = users[savedUser].tcPrice || 0;
-
-                        // Update server type selector
-                        document.getElementById('serverType').value = serverType;
-
-                        showApp();
-                        return;
-                    }
-                } catch (error) {
-                    console.error('Error loading user data:', error);
-                    localStorage.removeItem('currentUser');
-                }
-            }
-
-            showLogin();
-        }
-
-        function showLogin() {
-            document.getElementById('loginScreen').style.display = 'flex';
-            document.getElementById('appContainer').classList.remove('active');
-        }
-
+        // App Display Functions
         function showApp() {
-            document.getElementById('loginScreen').style.display = 'none';
+            document.getElementById('welcomeScreen').style.display = 'none';
             document.getElementById('appContainer').classList.add('active');
 
-            document.getElementById('userName').textContent = currentUser;
-            document.getElementById('userAvatar').textContent = currentUser[0].toUpperCase();
+            // Display user ID in header
+            document.getElementById('userName').textContent = userId;
+            document.getElementById('userAvatar').textContent = '🎮';
 
             // Load TC settings into inputs
             document.getElementById('tcPriceInput').value = tcPrice || '';
@@ -3512,43 +3506,10 @@ Member Name
 
             updateDisplay();
             updateTCDisplay();
-        }
-
-        function showError(elementId, message) {
-            const el = document.getElementById(elementId);
-            el.textContent = message;
-            el.classList.add('show');
-            setTimeout(() => el.classList.remove('show'), 5000);
-        }
-
-        function showSuccess(elementId, message) {
-            const el = document.getElementById(elementId);
-            el.textContent = message;
-            el.classList.add('show');
-            setTimeout(() => el.classList.remove('show'), 5000);
+            updateDisplayUserId(); // Update userId in Share Code UI
         }
 
         // Hunt Management
-        function saveUserData() {
-            if (!currentUser) return;
-
-            try {
-                const users = JSON.parse(localStorage.getItem('tibiaUsers')) || {};
-                if (users[currentUser]) {
-                    users[currentUser].hunts = hunts;
-                    users[currentUser].goals = goals;
-                    users[currentUser].rareLoot = rareLoot;
-                    users[currentUser].serverType = serverType;
-                    users[currentUser].tibiaCharName = tibiaCharName;
-                    users[currentUser].tcPrice = tcPrice;
-                    localStorage.setItem('tibiaUsers', JSON.stringify(users));
-                }
-            } catch (error) {
-                console.error('Error saving user data:', error);
-                showNotification('⚠️ Error saving data. Please try again.', 'error');
-            }
-        }
-
         function parseHuntData() {
             const huntData = document.getElementById('huntData').value;
 
@@ -3736,13 +3697,74 @@ Member Name
             showNotification('🗑️ All hunt data has been permanently deleted', 'success');
         }
 
+        // Share Code Functions
+        function showShareCodeModal() {
+            const shareCode = generateShareCode();
+            document.getElementById('shareCodeDisplay').textContent = shareCode;
+            document.getElementById('shareCodeModal').style.display = 'flex';
+        }
+
+        function closeShareCodeModal() {
+            document.getElementById('shareCodeModal').style.display = 'none';
+        }
+
+        function copyShareCode() {
+            const shareCode = document.getElementById('shareCodeDisplay').textContent;
+            navigator.clipboard.writeText(shareCode).then(() => {
+                showNotification('📋 Share Code copied to clipboard!', 'success');
+            }).catch(err => {
+                console.error('Failed to copy:', err);
+                showNotification('❌ Failed to copy. Please select and copy manually.', 'error');
+            });
+        }
+
+        function showRestoreCodeModal() {
+            document.getElementById('restoreCodeInput').value = '';
+            document.getElementById('restoreCodeModal').style.display = 'flex';
+        }
+
+        function closeRestoreCodeModal() {
+            document.getElementById('restoreCodeModal').style.display = 'none';
+        }
+
+        function restoreFromShareCodeUI() {
+            const shareCode = document.getElementById('restoreCodeInput').value.trim();
+
+            if (!shareCode) {
+                showNotification('⚠️ Please paste a Share Code first!', 'warning');
+                return;
+            }
+
+            // Final confirmation
+            if (!confirm('⚠️ This will replace all your current data with the data from the Share Code. Continue?')) {
+                return;
+            }
+
+            const success = restoreFromShareCode(shareCode);
+
+            if (success) {
+                closeRestoreCodeModal();
+                showNotification('✅ Data restored successfully! Reloading...', 'success');
+                setTimeout(() => location.reload(), 1500);
+            } else {
+                showNotification('❌ Invalid Share Code! Please check and try again.', 'error');
+            }
+        }
+
+        function updateDisplayUserId() {
+            const displayEl = document.getElementById('displayUserId');
+            if (displayEl && userId) {
+                displayEl.textContent = userId;
+            }
+        }
+
         function exportData() {
             const exportObj = {
                 hunts: hunts,
                 goals: goals,
                 rareLoot: rareLoot,
                 exportDate: new Date().toISOString(),
-                user: currentUser,
+                user: userId,
                 version: '2.0'
             };
             const dataStr = JSON.stringify(exportObj, null, 2);
@@ -3750,7 +3772,7 @@ Member Name
             const url = URL.createObjectURL(dataBlob);
             const link = document.createElement('a');
             link.href = url;
-            link.download = `tibia-data-${currentUser}-${new Date().toISOString().split('T')[0]}.json`;
+            link.download = `tibia-data-${userId}-${new Date().toISOString().split('T')[0]}.json`;
             link.click();
             showNotification('✅ Data exported successfully!', 'success');
         }
@@ -3860,11 +3882,16 @@ Member Name
 
             try {
                 const fullBackup = {
-                    version: '2.0',
+                    version: '3.0',
                     backupDate: new Date().toISOString(),
-                    tibiaUsers: JSON.parse(localStorage.getItem('tibiaUsers') || '{}'),
-                    currentUser: localStorage.getItem('currentUser'),
-                    dailyTarget: localStorage.getItem('dailyTarget'),
+                    userId: userId,
+                    hunts: hunts,
+                    goals: goals,
+                    rareLoot: rareLoot,
+                    serverType: serverType,
+                    tibiaCharName: tibiaCharName,
+                    tcPrice: tcPrice,
+                    dailyTarget: dailyTarget,
                     type: 'FULL_BACKUP'
                 };
 
@@ -3912,12 +3939,11 @@ Member Name
                 return;
             }
 
-            const userCount = Object.keys(data.tibiaUsers || {}).length;
             const confirmMsg = '⚠️ RESTORE FULL BACKUP?\n\n' +
-                `This backup contains ${userCount} user account(s)\n` +
-                `Created: ${new Date(data.backupDate).toLocaleString()}\n\n` +
+                `Created: ${new Date(data.backupDate).toLocaleString()}\n` +
+                `Version: ${data.version || '2.0'}\n\n` +
                 '⚠️ WARNING: This will REPLACE all your current data!\n' +
-                '⚠️ All current users, hunts, and settings will be lost!\n\n' +
+                '⚠️ All current hunts, goals, and settings will be lost!\n\n' +
                 'Make sure you have a backup of your current data first!\n\n' +
                 'Continue with restore?';
 
@@ -3930,15 +3956,37 @@ Member Name
 
             setTimeout(() => {
                 try {
-                    // Restore everything
-                    if (data.tibiaUsers) {
-                        localStorage.setItem('tibiaUsers', JSON.stringify(data.tibiaUsers));
+                    // Handle new v3.0 backup format
+                    if (data.version === '3.0' && data.userId) {
+                        userId = data.userId;
+                        hunts = data.hunts || [];
+                        goals = data.goals || [];
+                        rareLoot = data.rareLoot || [];
+                        serverType = data.serverType || 'green';
+                        tibiaCharName = data.tibiaCharName || '';
+                        tcPrice = data.tcPrice || 0;
+                        dailyTarget = data.dailyTarget || 1000000;
+
+                        localStorage.setItem('tibiaUserId', userId);
+                        saveUserData();
                     }
-                    if (data.currentUser) {
-                        localStorage.setItem('currentUser', data.currentUser);
+                    // Handle old v2.0 backup format (legacy support)
+                    else if (data.tibiaUsers && data.currentUser) {
+                        const oldUserData = data.tibiaUsers[data.currentUser];
+                        if (oldUserData) {
+                            hunts = oldUserData.hunts || [];
+                            goals = oldUserData.goals || [];
+                            rareLoot = oldUserData.rareLoot || [];
+                            serverType = oldUserData.serverType || 'green';
+                            tibiaCharName = oldUserData.tibiaCharName || '';
+                            tcPrice = oldUserData.tcPrice || 0;
+                            saveUserData();
+                        }
                     }
+
                     if (data.dailyTarget) {
-                        localStorage.setItem('dailyTarget', data.dailyTarget);
+                        dailyTarget = parseInt(data.dailyTarget);
+                        localStorage.setItem('dailyTarget', dailyTarget);
                     }
 
                     hideLoading();
@@ -6672,7 +6720,7 @@ Member Name
             }
 
             const data = {
-                user: currentUser,
+                user: userId,
                 hunts: hunts,
                 goals: goals,
                 rareLoot: rareLoot,
@@ -6684,7 +6732,7 @@ Member Name
                 const url = URL.createObjectURL(blob);
                 const a = document.createElement('a');
                 a.href = url;
-                a.download = `tibia-hunt-data-${currentUser}-${new Date().toISOString().split('T')[0]}.json`;
+                a.download = `tibia-hunt-data-${userId}-${new Date().toISOString().split('T')[0]}.json`;
                 a.click();
                 URL.revokeObjectURL(url);
                 showToast('Data exported successfully as JSON!', 'success');
@@ -6701,7 +6749,7 @@ Member Name
                 const url = URL.createObjectURL(blob);
                 const a = document.createElement('a');
                 a.href = url;
-                a.download = `tibia-hunts-${currentUser}-${new Date().toISOString().split('T')[0]}.csv`;
+                a.download = `tibia-hunts-${userId}-${new Date().toISOString().split('T')[0]}.csv`;
                 a.click();
                 URL.revokeObjectURL(url);
                 showToast('Hunt data exported successfully as CSV!', 'success');
