@@ -1223,6 +1223,18 @@
             50% { transform: translateY(-15px) scale(1.05); }
         }
 
+        @keyframes characterSway {
+            0%, 100% { transform: translateX(0px) rotate(0deg); }
+            25% { transform: translateX(-10px) rotate(-5deg); }
+            75% { transform: translateX(10px) rotate(5deg); }
+        }
+
+        @keyframes characterFloat {
+            0%, 100% { transform: translateX(-50%) translateY(0px) rotate(0deg); }
+            33% { transform: translateX(-50%) translateY(-20px) rotate(3deg); }
+            66% { transform: translateX(-50%) translateY(-10px) rotate(-3deg); }
+        }
+
         /* APLICAR GRADIENTES ANIMADOS A LAS CARDS */
         .stat-card {
             background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 50%, var(--primary-color) 100%);
@@ -2124,38 +2136,43 @@
                 <div style="position: absolute; bottom: 20px; left: 20px; font-size: 4em; z-index: 1; pointer-events: none; animation: characterBounce 3s infinite ease-in-out; filter: drop-shadow(0 0 8px rgba(255,215,0,0.3));">🧙‍♂️</div>
                 <div style="position: absolute; bottom: 20px; right: 20px; font-size: 4em; z-index: 1; pointer-events: none; animation: characterBounce 3s infinite ease-in-out 1.5s; filter: drop-shadow(0 0 8px rgba(255,100,100,0.3));">🏹</div>
 
+                <!-- Additional Characters - More positions -->
+                <div style="position: absolute; bottom: 120px; left: 30px; font-size: 3.5em; z-index: 1; pointer-events: none; animation: characterSway 4s infinite ease-in-out; filter: drop-shadow(0 0 8px rgba(100,150,255,0.4));">⚔️</div>
+                <div style="position: absolute; bottom: 120px; right: 30px; font-size: 3.5em; z-index: 1; pointer-events: none; animation: characterSway 4s infinite ease-in-out 1s; filter: drop-shadow(0 0 8px rgba(150,255,150,0.4));">🛡️</div>
+                <div style="position: absolute; bottom: 200px; left: 50%; transform: translateX(-50%); font-size: 3em; z-index: 1; pointer-events: none; animation: characterFloat 5s infinite ease-in-out; filter: drop-shadow(0 0 10px rgba(255,100,255,0.4));">🧝‍♀️</div>
+
                 <!-- Main Stats Cards -->
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px; margin-bottom: 12px; position: relative; z-index: 1;">
-                    <!-- Total Profit Card -->
-                    <div style="background: linear-gradient(135deg, rgba(30, 40, 50, 0.9) 0%, rgba(35, 45, 55, 0.9) 100%); border: 1.5px solid rgba(100, 150, 200, 0.4); backdrop-filter: blur(15px); border-radius: 12px; padding: 10px 8px; text-align: center; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); position: relative; z-index: 1;">
-                        <div style="font-size: 1.8em; margin-bottom: 5px;">💰</div>
-                        <div id="dashTotalProfit" style="font-size: 1.3em; font-weight: 900; color: #7eb3d6; margin-bottom: 3px;">4.2kk gp</div>
-                        <div style="font-size: 0.6em; color: rgba(126, 179, 214, 0.7); text-transform: uppercase; letter-spacing: 1px; font-weight: 700; margin-bottom: 2px;">TOTAL PROFIT</div>
-                        <div id="dashTotalHunts" style="font-size: 0.6em; color: var(--text-secondary);">1 hunt</div>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 14px; margin-bottom: 16px; position: relative; z-index: 1;">
+                    <!-- Total Profit Card - IMPROVED -->
+                    <div class="stat-card-hover" style="background: linear-gradient(135deg, rgba(30, 40, 50, 0.95) 0%, rgba(35, 45, 55, 0.95) 100%); border: 2px solid rgba(100, 150, 200, 0.5); backdrop-filter: blur(20px); border-radius: 16px; padding: 18px 12px; text-align: center; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3), 0 0 20px rgba(100, 150, 200, 0.1); position: relative; z-index: 1; cursor: pointer;" onmouseover="this.style.transform='translateY(-6px) scale(1.02)'; this.style.boxShadow='0 12px 32px rgba(0, 0, 0, 0.4), 0 0 30px rgba(100, 150, 200, 0.2)'; this.style.borderColor='rgba(100, 150, 200, 0.8)'" onmouseout="this.style.transform=''; this.style.boxShadow='0 8px 24px rgba(0, 0, 0, 0.3), 0 0 20px rgba(100, 150, 200, 0.1)'; this.style.borderColor='rgba(100, 150, 200, 0.5)'">
+                        <div style="font-size: 2.6em; margin-bottom: 8px; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));">💰</div>
+                        <div id="dashTotalProfit" style="font-size: 1.65em; font-weight: 900; color: #7eb3d6; margin-bottom: 6px; text-shadow: 0 2px 8px rgba(126, 179, 214, 0.4);">4.2kk gp</div>
+                        <div style="font-size: 0.75em; color: rgba(126, 179, 214, 0.85); text-transform: uppercase; letter-spacing: 1.5px; font-weight: 800; margin-bottom: 4px;">TOTAL PROFIT</div>
+                        <div id="dashTotalHunts" style="font-size: 0.7em; color: rgba(255, 255, 255, 0.5); font-weight: 600;">1 hunt</div>
                     </div>
 
-                    <!-- Avg Profit/h Card -->
-                    <div style="background: linear-gradient(135deg, rgba(45, 35, 50, 0.9) 0%, rgba(50, 40, 55, 0.9) 100%); border: 1.5px solid rgba(200, 150, 180, 0.4); backdrop-filter: blur(15px); border-radius: 12px; padding: 10px 8px; text-align: center; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);">
-                        <div style="font-size: 1.8em; margin-bottom: 5px;">⚡</div>
-                        <div id="dashAvgProfitHour" style="font-size: 1.3em; font-weight: 900; color: #d89fbf; margin-bottom: 3px;">1.7kk gp/h</div>
-                        <div style="font-size: 0.6em; color: rgba(216, 159, 191, 0.7); text-transform: uppercase; letter-spacing: 1px; font-weight: 700; margin-bottom: 2px;">AVG PROFIT/HOUR</div>
-                        <div id="dashAvgProfit" style="font-size: 0.6em; color: var(--text-secondary);">4.2kk gp avg</div>
+                    <!-- Avg Profit/h Card - IMPROVED -->
+                    <div class="stat-card-hover" style="background: linear-gradient(135deg, rgba(45, 35, 50, 0.95) 0%, rgba(50, 40, 55, 0.95) 100%); border: 2px solid rgba(200, 150, 180, 0.5); backdrop-filter: blur(20px); border-radius: 16px; padding: 18px 12px; text-align: center; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3), 0 0 20px rgba(200, 150, 180, 0.1); cursor: pointer;" onmouseover="this.style.transform='translateY(-6px) scale(1.02)'; this.style.boxShadow='0 12px 32px rgba(0, 0, 0, 0.4), 0 0 30px rgba(200, 150, 180, 0.2)'; this.style.borderColor='rgba(200, 150, 180, 0.8)'" onmouseout="this.style.transform=''; this.style.boxShadow='0 8px 24px rgba(0, 0, 0, 0.3), 0 0 20px rgba(200, 150, 180, 0.1)'; this.style.borderColor='rgba(200, 150, 180, 0.5)'">
+                        <div style="font-size: 2.6em; margin-bottom: 8px; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));">⚡</div>
+                        <div id="dashAvgProfitHour" style="font-size: 1.65em; font-weight: 900; color: #d89fbf; margin-bottom: 6px; text-shadow: 0 2px 8px rgba(216, 159, 191, 0.4);">1.7kk gp/h</div>
+                        <div style="font-size: 0.75em; color: rgba(216, 159, 191, 0.85); text-transform: uppercase; letter-spacing: 1.5px; font-weight: 800; margin-bottom: 4px;">AVG PROFIT/HOUR</div>
+                        <div id="dashAvgProfit" style="font-size: 0.7em; color: rgba(255, 255, 255, 0.5); font-weight: 600;">4.2kk gp avg</div>
                     </div>
 
-                    <!-- Today's Profit Card -->
-                    <div style="background: linear-gradient(135deg, rgba(30, 45, 50, 0.9) 0%, rgba(35, 50, 55, 0.9) 100%); border: 1.5px solid rgba(100, 180, 200, 0.4); backdrop-filter: blur(15px); border-radius: 12px; padding: 10px 8px; text-align: center; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);">
-                        <div style="font-size: 1.8em; margin-bottom: 5px;">📈</div>
-                        <div id="dashTodayProfit" style="font-size: 1.3em; font-weight: 900; color: #7ec8d6; margin-bottom: 3px;">4.2kk gp</div>
-                        <div style="font-size: 0.6em; color: rgba(126, 200, 214, 0.7); text-transform: uppercase; letter-spacing: 1px; font-weight: 700; margin-bottom: 2px;">TODAY'S PROFIT</div>
-                        <div id="dashTodayHunts" style="font-size: 0.6em; color: var(--text-secondary);">1 hunt today</div>
+                    <!-- Today's Profit Card - IMPROVED -->
+                    <div class="stat-card-hover" style="background: linear-gradient(135deg, rgba(30, 45, 50, 0.95) 0%, rgba(35, 50, 55, 0.95) 100%); border: 2px solid rgba(100, 180, 200, 0.5); backdrop-filter: blur(20px); border-radius: 16px; padding: 18px 12px; text-align: center; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3), 0 0 20px rgba(100, 180, 200, 0.1); cursor: pointer;" onmouseover="this.style.transform='translateY(-6px) scale(1.02)'; this.style.boxShadow='0 12px 32px rgba(0, 0, 0, 0.4), 0 0 30px rgba(100, 180, 200, 0.2)'; this.style.borderColor='rgba(100, 180, 200, 0.8)'" onmouseout="this.style.transform=''; this.style.boxShadow='0 8px 24px rgba(0, 0, 0, 0.3), 0 0 20px rgba(100, 180, 200, 0.1)'; this.style.borderColor='rgba(100, 180, 200, 0.5)'">
+                        <div style="font-size: 2.6em; margin-bottom: 8px; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));">📈</div>
+                        <div id="dashTodayProfit" style="font-size: 1.65em; font-weight: 900; color: #7ec8d6; margin-bottom: 6px; text-shadow: 0 2px 8px rgba(126, 200, 214, 0.4);">4.2kk gp</div>
+                        <div style="font-size: 0.75em; color: rgba(126, 200, 214, 0.85); text-transform: uppercase; letter-spacing: 1.5px; font-weight: 800; margin-bottom: 4px;">TODAY'S PROFIT</div>
+                        <div id="dashTodayHunts" style="font-size: 0.7em; color: rgba(255, 255, 255, 0.5); font-weight: 600;">1 hunt today</div>
                     </div>
 
-                    <!-- Current Streak Card -->
-                    <div style="background: linear-gradient(135deg, rgba(50, 40, 35, 0.9) 0%, rgba(55, 45, 40, 0.9) 100%); border: 1.5px solid rgba(220, 160, 120, 0.4); backdrop-filter: blur(15px); border-radius: 12px; padding: 10px 8px; text-align: center; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);">
-                        <div style="font-size: 1.8em; margin-bottom: 5px;">🔥</div>
-                        <div id="dashStreak" style="font-size: 1.3em; font-weight: 900; color: #d9a87a; margin-bottom: 3px;">1 day</div>
-                        <div style="font-size: 0.6em; color: rgba(217, 168, 122, 0.7); text-transform: uppercase; letter-spacing: 1px; font-weight: 700; margin-bottom: 2px;">CURRENT STREAK</div>
-                        <div id="dashBestSpot" style="font-size: 0.6em; color: #d9a87a;">Best: warzone7</div>
+                    <!-- Current Streak Card - IMPROVED -->
+                    <div class="stat-card-hover" style="background: linear-gradient(135deg, rgba(50, 40, 35, 0.95) 0%, rgba(55, 45, 40, 0.95) 100%); border: 2px solid rgba(220, 160, 120, 0.5); backdrop-filter: blur(20px); border-radius: 16px; padding: 18px 12px; text-align: center; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3), 0 0 20px rgba(220, 160, 120, 0.1); cursor: pointer;" onmouseover="this.style.transform='translateY(-6px) scale(1.02)'; this.style.boxShadow='0 12px 32px rgba(0, 0, 0, 0.4), 0 0 30px rgba(220, 160, 120, 0.2)'; this.style.borderColor='rgba(220, 160, 120, 0.8)'" onmouseout="this.style.transform=''; this.style.boxShadow='0 8px 24px rgba(0, 0, 0, 0.3), 0 0 20px rgba(220, 160, 120, 0.1)'; this.style.borderColor='rgba(220, 160, 120, 0.5)'">
+                        <div style="font-size: 2.6em; margin-bottom: 8px; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));">🔥</div>
+                        <div id="dashStreak" style="font-size: 1.65em; font-weight: 900; color: #d9a87a; margin-bottom: 6px; text-shadow: 0 2px 8px rgba(217, 168, 122, 0.4);">1 day</div>
+                        <div style="font-size: 0.75em; color: rgba(217, 168, 122, 0.85); text-transform: uppercase; letter-spacing: 1.5px; font-weight: 800; margin-bottom: 4px;">CURRENT STREAK</div>
+                        <div id="dashBestSpot" style="font-size: 0.7em; color: rgba(217, 168, 122, 0.8); font-weight: 600;">Best: warzone7</div>
                     </div>
                 </div>
 
@@ -3269,9 +3286,20 @@ Member Name
                     serverType = data.serverType || 'green';
                     tibiaCharName = data.tibiaCharName || '';
                     tcPrice = data.tcPrice || 0;
-                    dailyTarget = data.dailyTarget || 1000000;
 
-                    console.log('✅ Data loaded:', hunts.length, 'hunts,', itemFarmingGoals.length, 'item goals');
+                    // Load daily target from saved data OR fallback to standalone localStorage
+                    if (data.dailyTarget) {
+                        dailyTarget = data.dailyTarget;
+                    } else {
+                        const standaloneDailyTarget = localStorage.getItem('dailyTarget');
+                        if (standaloneDailyTarget) {
+                            dailyTarget = parseInt(standaloneDailyTarget);
+                        } else {
+                            dailyTarget = 25000000; // Default 25kk
+                        }
+                    }
+
+                    console.log('✅ Data loaded:', hunts.length, 'hunts,', itemFarmingGoals.length, 'item goals, Daily Target:', formatProfit(dailyTarget));
                 } catch (error) {
                     console.error('Error loading data:', error);
                 }
@@ -5377,7 +5405,8 @@ Member Name
             document.getElementById('modalTargetInput').focus();
 
             // Preview on input
-            document.getElementById('modalTargetInput').oninput = function() {
+            const inputEl = document.getElementById('modalTargetInput');
+            inputEl.oninput = function() {
                 const val = this.value.trim();
                 const parsed = parsePrice(val);
                 const preview = document.getElementById('targetPreview');
@@ -5387,6 +5416,13 @@ Member Name
                     preview.style.fontWeight = 'bold';
                 } else {
                     preview.textContent = '';
+                }
+            };
+
+            // Add Enter key listener to save and close
+            inputEl.onkeypress = function(e) {
+                if (e.key === 'Enter') {
+                    saveTargetFromModal();
                 }
             };
         }
@@ -5402,11 +5438,21 @@ Member Name
                 const parsed = parsePrice(target);
                 if (parsed > 0) {
                     dailyTarget = parsed;
+                    // Save to BOTH locations to ensure persistence
                     localStorage.setItem('dailyTarget', dailyTarget);
-                    saveUserData(); // Save to main data object so it persists on refresh
+                    try {
+                        saveUserData(); // Save to main data object
+                    } catch (error) {
+                        console.error('Error saving user data:', error);
+                    }
                     updateDailyTarget();
                     showNotification(`✅ Daily target updated to ${formatProfit(parsed)}!`, 'success');
-                    closeTargetModal(); // Close modal immediately
+
+                    // Force close the modal
+                    const modal = document.getElementById('targetModal');
+                    if (modal) {
+                        modal.style.display = 'none';
+                    }
                 } else {
                     showNotification('⚠️ Please enter a valid target (e.g., 200kk, 50kk)', 'warning');
                 }
