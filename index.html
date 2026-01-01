@@ -4786,10 +4786,17 @@ Member Name
             const inProgressGoals = goals.filter(g => g.status === 'active').length;
             const completionRate = totalGoals > 0 ? Math.round((completedGoals / totalGoals) * 100) : 0;
 
-            document.getElementById('goalsTotalCount').textContent = totalGoals;
-            document.getElementById('goalsCompletedCount').textContent = completedGoals;
-            document.getElementById('goalsInProgressCount').textContent = inProgressGoals;
-            document.getElementById('goalsCompletionRate').textContent = completionRate + '%';
+            const goalsTotalCountEl = document.getElementById('goalsTotalCount');
+            if (goalsTotalCountEl) goalsTotalCountEl.textContent = totalGoals;
+
+            const goalsCompletedCountEl = document.getElementById('goalsCompletedCount');
+            if (goalsCompletedCountEl) goalsCompletedCountEl.textContent = completedGoals;
+
+            const goalsInProgressCountEl = document.getElementById('goalsInProgressCount');
+            if (goalsInProgressCountEl) goalsInProgressCountEl.textContent = inProgressGoals;
+
+            const goalsCompletionRateEl = document.getElementById('goalsCompletionRate');
+            if (goalsCompletionRateEl) goalsCompletionRateEl.textContent = completionRate + '%';
 
             if (goals.length === 0) {
                 goalsList.innerHTML = '<div class="empty-state"><p>No goals yet. Create your first goal above!</p></div>';
@@ -5543,14 +5550,29 @@ Member Name
             const huntsNeeded = avgProfit > 0 ? Math.ceil(remaining / avgProfit) : 0;
 
             // Update UI
-            document.getElementById('dailyProfitAmount').textContent = formatProfit(todayProfit);
-            document.getElementById('dailyTargetAmount').textContent = formatProfit(dailyTarget);
-            document.getElementById('dailyTargetPercentage').textContent = Math.round(percentage) + '%';
-            document.getElementById('dailyProgressBar').style.width = percentage + '%';
-            document.getElementById('dailyProgressText').textContent = Math.round(percentage) + '%';
-            document.getElementById('dailyHuntsCount').textContent = todayHunts.length;
-            document.getElementById('dailyRemaining').textContent = formatProfit(remaining);
-            document.getElementById('dailyNeeded').textContent = huntsNeeded + ' hunt' + (huntsNeeded !== 1 ? 's' : '');
+            const dailyProfitAmountEl = document.getElementById('dailyProfitAmount');
+            if (dailyProfitAmountEl) dailyProfitAmountEl.textContent = formatProfit(todayProfit);
+
+            const dailyTargetAmountEl = document.getElementById('dailyTargetAmount');
+            if (dailyTargetAmountEl) dailyTargetAmountEl.textContent = formatProfit(dailyTarget);
+
+            const dailyTargetPercentageEl = document.getElementById('dailyTargetPercentage');
+            if (dailyTargetPercentageEl) dailyTargetPercentageEl.textContent = Math.round(percentage) + '%';
+
+            const dailyProgressBarEl = document.getElementById('dailyProgressBar');
+            if (dailyProgressBarEl) dailyProgressBarEl.style.width = percentage + '%';
+
+            const dailyProgressTextEl = document.getElementById('dailyProgressText');
+            if (dailyProgressTextEl) dailyProgressTextEl.textContent = Math.round(percentage) + '%';
+
+            const dailyHuntsCountEl = document.getElementById('dailyHuntsCount');
+            if (dailyHuntsCountEl) dailyHuntsCountEl.textContent = todayHunts.length;
+
+            const dailyRemainingEl = document.getElementById('dailyRemaining');
+            if (dailyRemainingEl) dailyRemainingEl.textContent = formatProfit(remaining);
+
+            const dailyNeededEl = document.getElementById('dailyNeeded');
+            if (dailyNeededEl) dailyNeededEl.textContent = huntsNeeded + ' hunt' + (huntsNeeded !== 1 ? 's' : '');
 
             // Update emoji based on progress
             let emoji = '🎯';
@@ -5558,7 +5580,9 @@ Member Name
             else if (percentage >= 75) emoji = '🔥';
             else if (percentage >= 50) emoji = '💪';
             else if (percentage >= 25) emoji = '⚡';
-            document.getElementById('dailyTargetEmoji').textContent = emoji;
+
+            const dailyTargetEmojiEl = document.getElementById('dailyTargetEmoji');
+            if (dailyTargetEmojiEl) dailyTargetEmojiEl.textContent = emoji;
         }
 
         // Session Timer Functions
