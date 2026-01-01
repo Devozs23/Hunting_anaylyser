@@ -4780,6 +4780,9 @@ Member Name
         function updateGoalsList() {
             const goalsList = document.getElementById('goalsList');
 
+            // Check if element exists before accessing it
+            if (!goalsList) return;
+
             // Update stats cards
             const totalGoals = goals.length;
             const completedGoals = goals.filter(g => g.status === 'completed').length;
@@ -4979,6 +4982,9 @@ Member Name
 
         function displayFilteredHunts(filteredHunts) {
             const huntList = document.getElementById('huntList');
+
+            // Check if element exists before accessing it
+            if (!huntList) return;
 
             if (filteredHunts.length === 0) {
                 huntList.innerHTML = `
@@ -5346,6 +5352,9 @@ Member Name
         function updateSmartInsights() {
             const insightsDiv = document.getElementById('smartInsights');
 
+            // Check if element exists before accessing it
+            if (!insightsDiv) return;
+
             if (!hunts || hunts.length === 0) {
                 insightsDiv.style.display = 'none';
                 return;
@@ -5689,6 +5698,10 @@ Member Name
         // Performance Analytics Functions
         function updatePerformanceAnalytics() {
             const section = document.getElementById('performanceSection');
+
+            // Check if element exists before accessing it
+            if (!section) return;
+
             if (!hunts || hunts.length === 0) {
                 section.style.display = 'none';
                 return;
@@ -5863,7 +5876,8 @@ Member Name
         function updateUserStats() {
             const totalHunts = hunts.length;
             const totalProfit = hunts.reduce((sum, h) => sum + h.profit, 0);
-            document.getElementById('userStats').textContent = `${totalHunts} hunts • ${formatProfit(totalProfit)} profit`;
+            const userStatsEl = document.getElementById('userStats');
+            if (userStatsEl) userStatsEl.textContent = `${totalHunts} hunts • ${formatProfit(totalProfit)} profit`;
         }
 
         function updateHuntList() {
@@ -7644,15 +7658,26 @@ Member Name
                 const reason = !hunts || hunts.length === 0 ? 'No hunts added yet' : 'TC price not set';
                 console.log(`⚠️ TC Calendar: ${reason}`);
 
-                document.getElementById('bestTCDay').textContent = '-';
-                document.getElementById('bestTCDayDate').textContent = '-';
-                document.getElementById('worstTCDay').textContent = '-';
-                document.getElementById('worstTCDayDate').textContent = '-';
-                document.getElementById('tcCalendarGrid').innerHTML = `
-                    <div style="grid-column: 1 / -1; padding: 20px; text-align: center; color: var(--text-secondary); font-size: 0.75em;">
-                        ${reason}. ${tcPrice === 0 ? 'Set TC price above.' : 'Add your first hunt.'}
-                    </div>
-                `;
+                const bestTCDayEl = document.getElementById('bestTCDay');
+                if (bestTCDayEl) bestTCDayEl.textContent = '-';
+
+                const bestTCDayDateEl = document.getElementById('bestTCDayDate');
+                if (bestTCDayDateEl) bestTCDayDateEl.textContent = '-';
+
+                const worstTCDayEl = document.getElementById('worstTCDay');
+                if (worstTCDayEl) worstTCDayEl.textContent = '-';
+
+                const worstTCDayDateEl = document.getElementById('worstTCDayDate');
+                if (worstTCDayDateEl) worstTCDayDateEl.textContent = '-';
+
+                const tcCalendarGridEl = document.getElementById('tcCalendarGrid');
+                if (tcCalendarGridEl) {
+                    tcCalendarGridEl.innerHTML = `
+                        <div style="grid-column: 1 / -1; padding: 20px; text-align: center; color: var(--text-secondary); font-size: 0.75em;">
+                            ${reason}. ${tcPrice === 0 ? 'Set TC price above.' : 'Add your first hunt.'}
+                        </div>
+                    `;
+                }
                 return;
             }
 
@@ -7825,15 +7850,26 @@ Member Name
 
         function updateExpDailyTracking() {
             if (!hunts || hunts.length === 0) {
-                document.getElementById('bestExpDay').textContent = '-';
-                document.getElementById('bestExpDayDate').textContent = '-';
-                document.getElementById('worstExpDay').textContent = '-';
-                document.getElementById('worstExpDayDate').textContent = '-';
-                document.getElementById('expCalendarGrid').innerHTML = `
-                    <div style="grid-column: 1 / -1; padding: 15px; text-align: center; color: var(--text-secondary); font-size: 0.7em;">
-                        No data. Add hunts to see EXP tracking.
-                    </div>
-                `;
+                const bestExpDayEl = document.getElementById('bestExpDay');
+                if (bestExpDayEl) bestExpDayEl.textContent = '-';
+
+                const bestExpDayDateEl = document.getElementById('bestExpDayDate');
+                if (bestExpDayDateEl) bestExpDayDateEl.textContent = '-';
+
+                const worstExpDayEl = document.getElementById('worstExpDay');
+                if (worstExpDayEl) worstExpDayEl.textContent = '-';
+
+                const worstExpDayDateEl = document.getElementById('worstExpDayDate');
+                if (worstExpDayDateEl) worstExpDayDateEl.textContent = '-';
+
+                const expCalendarGridEl = document.getElementById('expCalendarGrid');
+                if (expCalendarGridEl) {
+                    expCalendarGridEl.innerHTML = `
+                        <div style="grid-column: 1 / -1; padding: 15px; text-align: center; color: var(--text-secondary); font-size: 0.7em;">
+                            No data. Add hunts to see EXP tracking.
+                        </div>
+                    `;
+                }
                 return;
             }
 
