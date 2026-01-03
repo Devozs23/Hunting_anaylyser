@@ -2759,13 +2759,13 @@ Member Name
 
             <!-- Rare Loot Tab -->
             <div class="main-tab-content" id="rareLootTab">
-                <div class="card" style="padding: 6px;">
-                    <h3 style="color: var(--primary-color); margin: 0 0 3px 0; font-size: 0.85em;">💎 Rare Loot Tracker</h3>
+                <!-- Server Type Selection - PROFESSIONAL -->
+                <div class="card" style="padding: 10px; background: linear-gradient(135deg, rgba(15, 23, 42, 0.6) 0%, rgba(30, 41, 59, 0.6) 100%); border: 2px solid rgba(34, 211, 238, 0.3);">
+                    <h3 style="color: #22d3ee; margin: 0 0 8px 0; font-size: 1em; text-shadow: 0 2px 8px rgba(34, 211, 238, 0.4);">💎 Rare Loot Tracker</h3>
 
-                    <!-- Server Type Selection - COMPACT -->
                     <div class="input-group" style="margin: 0;">
-                        <label for="serverType" style="font-size: 0.65em; margin-bottom: 2px;">🌍 Server Type</label>
-                        <select id="serverType" onchange="updateServerType()" style="padding: 4px 6px; border: 1px solid var(--border-color); border-radius: 4px; background: var(--card-bg); color: var(--text-primary); width: 100%; font-size: 0.7em;">
+                        <label for="serverType" style="font-size: 0.75em; margin-bottom: 4px; color: var(--text-primary); font-weight: 600;">🌍 Server Type</label>
+                        <select id="serverType" onchange="updateServerType()" style="padding: 8px 10px; border: 2px solid rgba(34, 211, 238, 0.4); border-radius: 6px; background: var(--card-bg); color: var(--text-primary); width: 100%; font-size: 0.85em; font-weight: 600;">
                             <option value="green">Green - BattlEye Protected</option>
                             <option value="yellow">Yellow - BattlEye Optional</option>
                             <option value="retro_open">Retro Open PvP</option>
@@ -2775,103 +2775,65 @@ Member Name
                     </div>
                 </div>
 
-                <!-- Monthly Statistics - PROFESSIONAL COLORS -->
-                <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; margin-top: 6px;">
+                <!-- Monthly Statistics - PROFESSIONAL -->
+                <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-top: 8px;">
                     <!-- Total Value Card -->
-                    <div style="background: linear-gradient(135deg, rgba(148, 163, 184, 0.1) 0%, rgba(148, 163, 184, 0.15) 100%); border: 1.5px solid rgba(148, 163, 184, 0.3); border-radius: 6px; padding: 6px; text-align: center;">
-                        <div style="font-size: 1.2em; margin-bottom: 2px;">💎</div>
-                        <div id="rareLootTotalValue" style="font-size: 1.1em; font-weight: 900; color: #94a3b8; margin-bottom: 2px; text-shadow: 0 2px 4px rgba(148, 163, 184, 0.3);">0 gp</div>
-                        <div style="font-size: 0.6em; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.3px;">All Time</div>
+                    <div style="background: linear-gradient(135deg, rgba(148, 163, 184, 0.1) 0%, rgba(148, 163, 184, 0.15) 100%); border: 2px solid rgba(148, 163, 184, 0.3); border-radius: 8px; padding: 8px; text-align: center;">
+                        <div style="font-size: 1.3em; margin-bottom: 3px;">💎</div>
+                        <div id="rareLootTotalValue" style="font-size: 1.15em; font-weight: 900; color: #94a3b8; margin-bottom: 3px; text-shadow: 0 2px 4px rgba(148, 163, 184, 0.3);">0 gp</div>
+                        <div style="font-size: 0.65em; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.5px; font-weight: 700;">All Time</div>
                     </div>
 
                     <!-- This Month Card -->
-                    <div style="background: linear-gradient(135deg, rgba(34, 211, 238, 0.1) 0%, rgba(34, 211, 238, 0.15) 100%); border: 1.5px solid rgba(34, 211, 238, 0.3); border-radius: 6px; padding: 6px; text-align: center;">
-                        <div style="font-size: 1.2em; margin-bottom: 2px;">📅</div>
-                        <div id="rareLootMonthValue" style="font-size: 1.1em; font-weight: 900; color: #22d3ee; margin-bottom: 2px; text-shadow: 0 2px 4px rgba(34, 211, 238, 0.3);">0 gp</div>
-                        <div style="font-size: 0.6em; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.3px;">This Month</div>
+                    <div style="background: linear-gradient(135deg, rgba(34, 211, 238, 0.1) 0%, rgba(34, 211, 238, 0.15) 100%); border: 2px solid rgba(34, 211, 238, 0.3); border-radius: 8px; padding: 8px; text-align: center;">
+                        <div style="font-size: 1.3em; margin-bottom: 3px;">📅</div>
+                        <div id="rareLootMonthValue" style="font-size: 1.15em; font-weight: 900; color: #22d3ee; margin-bottom: 3px; text-shadow: 0 2px 4px rgba(34, 211, 238, 0.3);">0 gp</div>
+                        <div style="font-size: 0.65em; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.5px; font-weight: 700;">This Month</div>
                     </div>
 
                     <!-- Total Items Card -->
-                    <div style="background: linear-gradient(135deg, rgba(6, 182, 212, 0.1) 0%, rgba(6, 182, 212, 0.15) 100%); border: 1.5px solid rgba(6, 182, 212, 0.3); border-radius: 6px; padding: 6px; text-align: center;">
-                        <div style="font-size: 1.2em; margin-bottom: 2px;">📦</div>
-                        <div id="rareLootTotalItems" style="font-size: 1.1em; font-weight: 900; color: #06b6d4; margin-bottom: 2px; text-shadow: 0 2px 4px rgba(6, 182, 212, 0.3);">0</div>
-                        <div style="font-size: 0.6em; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.3px;">Total Items</div>
+                    <div style="background: linear-gradient(135deg, rgba(6, 182, 212, 0.1) 0%, rgba(6, 182, 212, 0.15) 100%); border: 2px solid rgba(6, 182, 212, 0.3); border-radius: 8px; padding: 8px; text-align: center;">
+                        <div style="font-size: 1.3em; margin-bottom: 3px;">📦</div>
+                        <div id="rareLootTotalItems" style="font-size: 1.15em; font-weight: 900; color: #06b6d4; margin-bottom: 3px; text-shadow: 0 2px 4px rgba(6, 182, 212, 0.3);">0</div>
+                        <div style="font-size: 0.65em; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.5px; font-weight: 700;">Total Items</div>
                     </div>
 
                     <!-- Most Valuable Card -->
-                    <div style="background: linear-gradient(135deg, rgba(251, 191, 36, 0.1) 0%, rgba(251, 191, 36, 0.15) 100%); border: 1.5px solid rgba(251, 191, 36, 0.3); border-radius: 6px; padding: 6px; text-align: center;">
-                        <div style="font-size: 1.2em; margin-bottom: 2px;">👑</div>
-                        <div id="rareLootMostValuable" style="font-size: 0.85em; font-weight: 900; color: #fbbf24; margin-bottom: 2px; line-height: 1.2; text-shadow: 0 2px 4px rgba(251, 191, 36, 0.3);">-</div>
-                        <div style="font-size: 0.6em; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.3px;">Best Item</div>
+                    <div style="background: linear-gradient(135deg, rgba(251, 191, 36, 0.1) 0%, rgba(251, 191, 36, 0.15) 100%); border: 2px solid rgba(251, 191, 36, 0.3); border-radius: 8px; padding: 8px; text-align: center;">
+                        <div style="font-size: 1.3em; margin-bottom: 3px;">👑</div>
+                        <div id="rareLootMostValuable" style="font-size: 0.85em; font-weight: 900; color: #fbbf24; margin-bottom: 3px; line-height: 1.2; text-shadow: 0 2px 4px rgba(251, 191, 36, 0.3);">-</div>
+                        <div style="font-size: 0.65em; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.5px; font-weight: 700;">Best Item</div>
                     </div>
                 </div>
 
-                <!-- Rare Loot Calendar - COMPACT -->
-                <div class="card" style="margin-top: 6px; padding: 6px;">
-                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px;">
-                        <h4 style="margin: 0; font-size: 0.75em; color: #22d3ee;">📅 Rare Loot Calendar</h4>
-                        <div style="display: flex; gap: 4px; align-items: center;">
-                            <button onclick="previousRareLootMonth()" style="padding: 3px 6px; font-size: 0.7em; background: rgba(34, 211, 238, 0.15); border: 1.5px solid rgba(34, 211, 238, 0.4); border-radius: 4px; color: #22d3ee; cursor: pointer; font-weight: 700; transition: all 0.3s;" onmouseover="this.style.background='rgba(34, 211, 238, 0.25)'" onmouseout="this.style.background='rgba(34, 211, 238, 0.15)'">◀</button>
-                            <span id="rareLootCalendarMonthYear" style="font-size: 0.7em; font-weight: 700; min-width: 80px; text-align: center; color: #22d3ee;">Dec 2025</span>
-                            <button onclick="nextRareLootMonth()" style="padding: 3px 6px; font-size: 0.7em; background: rgba(34, 211, 238, 0.15); border: 1.5px solid rgba(34, 211, 238, 0.4); border-radius: 4px; color: #22d3ee; cursor: pointer; font-weight: 700; transition: all 0.3s;" onmouseover="this.style.background='rgba(34, 211, 238, 0.25)'" onmouseout="this.style.background='rgba(34, 211, 238, 0.15)'">▶</button>
-                        </div>
-                    </div>
+                <!-- Add Rare Item - PROFESSIONAL & LARGER -->
+                <div class="card" style="margin-top: 8px; padding: 12px; background: linear-gradient(135deg, rgba(15, 23, 42, 0.6) 0%, rgba(30, 41, 59, 0.6) 100%); border: 2px solid rgba(34, 211, 238, 0.3);">
+                    <h4 style="margin: 0 0 10px 0; font-size: 0.95em; color: #22d3ee; text-shadow: 0 2px 8px rgba(34, 211, 238, 0.4);">➕ Add Rare Item</h4>
 
-                    <!-- Calendar Grid -->
-                    <div style="background: rgba(0,0,0,0.2); padding: 4px; border-radius: 6px;">
-                        <!-- Weekday Headers -->
-                        <div style="display: grid; grid-template-columns: repeat(7, 1fr); gap: 2px; margin-bottom: 3px;">
-                            <div style="text-align: center; font-size: 0.6em; color: var(--text-secondary); font-weight: 600;">Sun</div>
-                            <div style="text-align: center; font-size: 0.6em; color: var(--text-secondary); font-weight: 600;">Mon</div>
-                            <div style="text-align: center; font-size: 0.6em; color: var(--text-secondary); font-weight: 600;">Tue</div>
-                            <div style="text-align: center; font-size: 0.6em; color: var(--text-secondary); font-weight: 600;">Wed</div>
-                            <div style="text-align: center; font-size: 0.6em; color: var(--text-secondary); font-weight: 600;">Thu</div>
-                            <div style="text-align: center; font-size: 0.6em; color: var(--text-secondary); font-weight: 600;">Fri</div>
-                            <div style="text-align: center; font-size: 0.6em; color: var(--text-secondary); font-weight: 600;">Sat</div>
-                        </div>
-                        <!-- Calendar Days -->
-                        <div id="rareLootCalendarGrid" style="display: grid; grid-template-columns: repeat(7, 1fr); gap: 2px;">
-                            <!-- Days will be generated by JS -->
-                        </div>
-                    </div>
-
-                    <!-- Items for selected day -->
-                    <div id="selectedDayItems" style="margin-top: 5px; display: none;">
-                        <div style="padding: 5px; background: rgba(34, 211, 238, 0.1); border-left: 2px solid #22d3ee; border-radius: 4px;">
-                            <div style="font-size: 0.65em; color: #22d3ee; font-weight: 700; margin-bottom: 3px;" id="selectedDayTitle">Items dropped on Dec 29, 2025</div>
-                            <div id="selectedDayItemsList" style="font-size: 0.6em; color: var(--text-primary);"></div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Add Rare Item - COMPACT -->
-                <div class="card" style="margin-top: 6px; padding: 6px;">
-                    <h4 style="margin: 0 0 5px 0; font-size: 0.75em;">➕ Add Rare Item</h4>
-
-                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 4px;">
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
                         <div class="input-group" style="margin: 0;">
-                            <label for="customItemName" style="font-size: 0.6em; margin-bottom: 2px;">Item Name</label>
-                            <input type="text" id="customItemName" placeholder="e.g., Falcon Bow" style="padding: 4px 6px; font-size: 0.7em;">
+                            <label for="customItemName" style="font-size: 0.75em; margin-bottom: 4px; color: var(--text-primary); font-weight: 600;">Item Name</label>
+                            <input type="text" id="customItemName" placeholder="e.g., Falcon Bow" style="padding: 8px 10px; font-size: 0.85em; border: 2px solid rgba(34, 211, 238, 0.4); border-radius: 6px; background: var(--card-bg); color: var(--text-primary);">
                         </div>
 
                         <div class="input-group" style="margin: 0;">
-                            <label for="itemQuantity" style="font-size: 0.6em; margin-bottom: 2px;">Quantity</label>
-                            <input type="number" id="itemQuantity" value="1" min="1" placeholder="1" style="padding: 4px 6px; font-size: 0.7em;">
+                            <label for="itemQuantity" style="font-size: 0.75em; margin-bottom: 4px; color: var(--text-primary); font-weight: 600;">Quantity</label>
+                            <input type="number" id="itemQuantity" value="1" min="1" placeholder="1" style="padding: 8px 10px; font-size: 0.85em; border: 2px solid rgba(34, 211, 238, 0.4); border-radius: 6px; background: var(--card-bg); color: var(--text-primary);">
                         </div>
 
                         <div class="input-group" style="margin: 0;">
-                            <label for="itemPrice" style="font-size: 0.6em; margin-bottom: 2px;">Price (e.g., 169kk)</label>
-                            <input type="text" id="itemPrice" placeholder="169kk" oninput="formatPriceInput(this)" style="padding: 4px 6px; font-size: 0.7em;">
+                            <label for="itemPrice" style="font-size: 0.75em; margin-bottom: 4px; color: var(--text-primary); font-weight: 600;">Price (e.g., 169kk)</label>
+                            <input type="text" id="itemPrice" placeholder="169kk" oninput="formatPriceInput(this)" style="padding: 8px 10px; font-size: 0.85em; border: 2px solid rgba(34, 211, 238, 0.4); border-radius: 6px; background: var(--card-bg); color: var(--text-primary);">
                         </div>
 
                         <div class="input-group" style="margin: 0;">
-                            <label for="itemDate" style="font-size: 0.6em; margin-bottom: 2px;">Date Dropped</label>
-                            <input type="date" id="itemDate" style="padding: 4px 6px; font-size: 0.7em;">
+                            <label for="itemDate" style="font-size: 0.75em; margin-bottom: 4px; color: var(--text-primary); font-weight: 600;">Date Dropped</label>
+                            <input type="date" id="itemDate" style="padding: 8px 10px; font-size: 0.85em; border: 2px solid rgba(34, 211, 238, 0.4); border-radius: 6px; background: var(--card-bg); color: var(--text-primary);">
                         </div>
 
                         <div class="input-group" style="margin: 0; grid-column: 1 / -1;">
-                            <label for="itemTier" style="font-size: 0.6em; margin-bottom: 2px;">Item Tier (optional)</label>
-                            <select id="itemTier" style="padding: 4px 6px; border: 1px solid var(--border-color); border-radius: 4px; background: var(--card-bg); color: var(--text-primary); width: 100%; font-size: 0.7em;">
+                            <label for="itemTier" style="font-size: 0.75em; margin-bottom: 4px; color: var(--text-primary); font-weight: 600;">Item Tier (optional)</label>
+                            <select id="itemTier" style="padding: 8px 10px; border: 2px solid rgba(34, 211, 238, 0.4); border-radius: 6px; background: var(--card-bg); color: var(--text-primary); width: 100%; font-size: 0.85em; font-weight: 600;">
                                 <option value="0">Tier 0 (Base item)</option>
                                 <option value="1">Tier 1</option>
                                 <option value="2">Tier 2</option>
@@ -2887,16 +2849,54 @@ Member Name
                         </div>
                     </div>
 
-                    <button class="btn-primary" onclick="addRareItem()" style="width: 100%; margin-top: 5px; padding: 5px 8px; font-size: 0.7em;">
+                    <button class="btn-primary" onclick="addRareItem()" style="width: 100%; margin-top: 10px; padding: 10px 12px; font-size: 0.85em; font-weight: 700; background: linear-gradient(135deg, #22d3ee 0%, #06b6d4 100%); border: 2px solid #22d3ee; box-shadow: 0 4px 15px rgba(34, 211, 238, 0.3);">
                         💎 Add Rare Item
                     </button>
                 </div>
 
-                <!-- Rare Items List - COMPACT -->
-                <div class="card" style="margin-top: 6px; padding: 6px;">
-                    <h4 style="margin: 0 0 5px 0; font-size: 0.75em;">📋 Your Rare Drops</h4>
+                <!-- Rare Loot Calendar - COMPACT -->
+                <div class="card" style="margin-top: 8px; padding: 8px;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                        <h4 style="margin: 0; font-size: 0.8em; color: #22d3ee; font-weight: 700;">📅 Rare Loot Calendar</h4>
+                        <div style="display: flex; gap: 5px; align-items: center;">
+                            <button onclick="previousRareLootMonth()" style="padding: 4px 8px; font-size: 0.75em; background: rgba(34, 211, 238, 0.15); border: 2px solid rgba(34, 211, 238, 0.4); border-radius: 5px; color: #22d3ee; cursor: pointer; font-weight: 700; transition: all 0.3s;" onmouseover="this.style.background='rgba(34, 211, 238, 0.25)'" onmouseout="this.style.background='rgba(34, 211, 238, 0.15)'">◀</button>
+                            <span id="rareLootCalendarMonthYear" style="font-size: 0.75em; font-weight: 700; min-width: 90px; text-align: center; color: #22d3ee;">Dec 2025</span>
+                            <button onclick="nextRareLootMonth()" style="padding: 4px 8px; font-size: 0.75em; background: rgba(34, 211, 238, 0.15); border: 2px solid rgba(34, 211, 238, 0.4); border-radius: 5px; color: #22d3ee; cursor: pointer; font-weight: 700; transition: all 0.3s;" onmouseover="this.style.background='rgba(34, 211, 238, 0.25)'" onmouseout="this.style.background='rgba(34, 211, 238, 0.15)'">▶</button>
+                        </div>
+                    </div>
+
+                    <!-- Calendar Grid -->
+                    <div style="background: rgba(0,0,0,0.2); padding: 5px; border-radius: 6px;">
+                        <!-- Weekday Headers -->
+                        <div style="display: grid; grid-template-columns: repeat(7, 1fr); gap: 2px; margin-bottom: 3px;">
+                            <div style="text-align: center; font-size: 0.65em; color: var(--text-secondary); font-weight: 600;">Sun</div>
+                            <div style="text-align: center; font-size: 0.65em; color: var(--text-secondary); font-weight: 600;">Mon</div>
+                            <div style="text-align: center; font-size: 0.65em; color: var(--text-secondary); font-weight: 600;">Tue</div>
+                            <div style="text-align: center; font-size: 0.65em; color: var(--text-secondary); font-weight: 600;">Wed</div>
+                            <div style="text-align: center; font-size: 0.65em; color: var(--text-secondary); font-weight: 600;">Thu</div>
+                            <div style="text-align: center; font-size: 0.65em; color: var(--text-secondary); font-weight: 600;">Fri</div>
+                            <div style="text-align: center; font-size: 0.65em; color: var(--text-secondary); font-weight: 600;">Sat</div>
+                        </div>
+                        <!-- Calendar Days -->
+                        <div id="rareLootCalendarGrid" style="display: grid; grid-template-columns: repeat(7, 1fr); gap: 2px;">
+                            <!-- Days will be generated by JS -->
+                        </div>
+                    </div>
+
+                    <!-- Items for selected day -->
+                    <div id="selectedDayItems" style="margin-top: 6px; display: none;">
+                        <div style="padding: 6px; background: rgba(34, 211, 238, 0.1); border-left: 3px solid #22d3ee; border-radius: 4px;">
+                            <div style="font-size: 0.7em; color: #22d3ee; font-weight: 700; margin-bottom: 4px;" id="selectedDayTitle">Items dropped on Dec 29, 2025</div>
+                            <div id="selectedDayItemsList" style="font-size: 0.65em; color: var(--text-primary);"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Rare Items List - PROFESSIONAL -->
+                <div class="card" style="margin-top: 8px; padding: 10px;">
+                    <h4 style="margin: 0 0 8px 0; font-size: 0.85em; color: #22d3ee; font-weight: 700;">📋 Your Rare Drops</h4>
                     <div id="rareItemsList">
-                        <div class="empty-state" style="padding: 6px; text-align: center; color: var(--text-secondary); font-size: 0.65em;">
+                        <div class="empty-state" style="padding: 12px; text-align: center; color: var(--text-secondary); font-size: 0.75em;">
                             <p style="margin: 0;">No rare items yet. Add your first drop above!</p>
                         </div>
                     </div>
