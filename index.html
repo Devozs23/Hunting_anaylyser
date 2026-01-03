@@ -2976,6 +2976,57 @@ Member Name
                     </div>
                 </div>
 
+                <!-- Popular Bosses Section -->
+                <div id="popularBossesSection" class="card" style="margin-top: 8px; padding: 12px; background: linear-gradient(135deg, rgba(251, 191, 36, 0.1) 0%, rgba(251, 191, 36, 0.15) 100%); border: 2px solid rgba(251, 191, 36, 0.4);">
+                    <h4 style="margin: 0 0 10px 0; font-size: 0.95em; color: #fbbf24; text-shadow: 0 2px 8px rgba(251, 191, 36, 0.4); display: flex; align-items: center; gap: 6px;">
+                        <span style="font-size: 1.2em;">⭐</span> Popular Bosses - Quick Search
+                    </h4>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 8px;">
+                        <button onclick="quickSearchBoss('Ferumbras')" style="background: linear-gradient(135deg, rgba(220, 38, 38, 0.2) 0%, rgba(220, 38, 38, 0.3) 100%); border: 2px solid rgba(220, 38, 38, 0.5); color: #dc2626; border-radius: 8px; padding: 10px; font-weight: 700; cursor: pointer; font-size: 0.8em; transition: all 0.3s; display: flex; flex-direction: column; align-items: center; gap: 4px;" onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 6px 16px rgba(220, 38, 38, 0.4)'" onmouseout="this.style.transform=''; this.style.boxShadow=''">
+                            <span style="font-size: 1.5em;">👹</span>
+                            <span>Ferumbras</span>
+                        </button>
+                        <button onclick="quickSearchBoss('Demon')" style="background: linear-gradient(135deg, rgba(220, 38, 38, 0.2) 0%, rgba(220, 38, 38, 0.3) 100%); border: 2px solid rgba(220, 38, 38, 0.5); color: #dc2626; border-radius: 8px; padding: 10px; font-weight: 700; cursor: pointer; font-size: 0.8em; transition: all 0.3s; display: flex; flex-direction: column; align-items: center; gap: 4px;" onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 6px 16px rgba(220, 38, 38, 0.4)'" onmouseout="this.style.transform=''; this.style.boxShadow=''">
+                            <span style="font-size: 1.5em;">😈</span>
+                            <span>Demon</span>
+                        </button>
+                        <button onclick="quickSearchBoss('Dragon Lord')" style="background: linear-gradient(135deg, rgba(251, 191, 36, 0.2) 0%, rgba(251, 191, 36, 0.3) 100%); border: 2px solid rgba(251, 191, 36, 0.5); color: #fbbf24; border-radius: 8px; padding: 10px; font-weight: 700; cursor: pointer; font-size: 0.8em; transition: all 0.3s; display: flex; flex-direction: column; align-items: center; gap: 4px;" onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 6px 16px rgba(251, 191, 36, 0.4)'" onmouseout="this.style.transform=''; this.style.boxShadow=''">
+                            <span style="font-size: 1.5em;">🐉</span>
+                            <span>Dragon Lord</span>
+                        </button>
+                        <button onclick="quickSearchBoss('Ghastly Dragon')" style="background: linear-gradient(135deg, rgba(168, 85, 247, 0.2) 0%, rgba(168, 85, 247, 0.3) 100%); border: 2px solid rgba(168, 85, 247, 0.5); color: #a855f7; border-radius: 8px; padding: 10px; font-weight: 700; cursor: pointer; font-size: 0.8em; transition: all 0.3s; display: flex; flex-direction: column; align-items: center; gap: 4px;" onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 6px 16px rgba(168, 85, 247, 0.4)'" onmouseout="this.style.transform=''; this.style.boxShadow=''">
+                            <span style="font-size: 1.5em;">🦎</span>
+                            <span>Ghastly Dragon</span>
+                        </button>
+                        <button onclick="quickSearchBoss('Medusa')" style="background: linear-gradient(135deg, rgba(34, 211, 238, 0.2) 0%, rgba(34, 211, 238, 0.3) 100%); border: 2px solid rgba(34, 211, 238, 0.5); color: #22d3ee; border-radius: 8px; padding: 10px; font-weight: 700; cursor: pointer; font-size: 0.8em; transition: all 0.3s; display: flex; flex-direction: column; align-items: center; gap: 4px;" onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 6px 16px rgba(34, 211, 238, 0.4)'" onmouseout="this.style.transform=''; this.style.boxShadow=''">
+                            <span style="font-size: 1.5em;">🐍</span>
+                            <span>Medusa</span>
+                        </button>
+                        <button onclick="quickSearchBoss('Grim Reaper')" style="background: linear-gradient(135deg, rgba(148, 163, 184, 0.2) 0%, rgba(148, 163, 184, 0.3) 100%); border: 2px solid rgba(148, 163, 184, 0.5); color: #94a3b8; border-radius: 8px; padding: 10px; font-weight: 700; cursor: pointer; font-size: 0.8em; transition: all 0.3s; display: flex; flex-direction: column; align-items: center; gap: 4px;" onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 6px 16px rgba(148, 163, 184, 0.4)'" onmouseout="this.style.transform=''; this.style.boxShadow=''">
+                            <span style="font-size: 1.5em;">💀</span>
+                            <span>Grim Reaper</span>
+                        </button>
+                        <button onclick="quickSearchBoss('Orshabaal')" style="background: linear-gradient(135deg, rgba(220, 38, 38, 0.2) 0%, rgba(220, 38, 38, 0.3) 100%); border: 2px solid rgba(220, 38, 38, 0.5); color: #dc2626; border-radius: 8px; padding: 10px; font-weight: 700; cursor: pointer; font-size: 0.8em; transition: all 0.3s; display: flex; flex-direction: column; align-items: center; gap: 4px;" onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 6px 16px rgba(220, 38, 38, 0.4)'" onmouseout="this.style.transform=''; this.style.boxShadow=''">
+                            <span style="font-size: 1.5em;">👿</span>
+                            <span>Orshabaal</span>
+                        </button>
+                        <button onclick="quickSearchBoss('Morgaroth')" style="background: linear-gradient(135deg, rgba(220, 38, 38, 0.2) 0%, rgba(220, 38, 38, 0.3) 100%); border: 2px solid rgba(220, 38, 38, 0.5); color: #dc2626; border-radius: 8px; padding: 10px; font-weight: 700; cursor: pointer; font-size: 0.8em; transition: all 0.3s; display: flex; flex-direction: column; align-items: center; gap: 4px;" onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 6px 16px rgba(220, 38, 38, 0.4)'" onmouseout="this.style.transform=''; this.style.boxShadow=''">
+                            <span style="font-size: 1.5em;">🔥</span>
+                            <span>Morgaroth</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Recent Searches Section -->
+                <div id="recentSearchesSection" style="display: none;" class="card" style="margin-top: 8px; padding: 12px; background: linear-gradient(135deg, rgba(34, 211, 238, 0.1) 0%, rgba(34, 211, 238, 0.15) 100%); border: 2px solid rgba(34, 211, 238, 0.4);">
+                    <h4 style="margin: 0 0 10px 0; font-size: 0.9em; color: #22d3ee; text-shadow: 0 2px 8px rgba(34, 211, 238, 0.4); display: flex; align-items: center; gap: 6px;">
+                        <span>🕐</span> Recent Searches
+                    </h4>
+                    <div id="recentSearchesList" style="display: flex; gap: 8px; flex-wrap: wrap;">
+                        <!-- Recent searches will be populated here -->
+                    </div>
+                </div>
+
                 <!-- Info Card -->
                 <div class="card" style="margin-top: 8px; padding: 10px; background: rgba(168, 85, 247, 0.1); border: 2px solid rgba(168, 85, 247, 0.3);">
                     <div style="font-size: 0.75em; color: var(--text-secondary); line-height: 1.6;">
@@ -2984,6 +3035,7 @@ Member Name
                             <li>Busca el nombre de la criatura o boss en inglés</li>
                             <li>Haz clic en "➕ Add to Rare Loot" para agregar items que ya looteaste</li>
                             <li>Los items se agregarán automáticamente al calendario de Rare Loot</li>
+                            <li>Usa los botones de búsqueda rápida para bosses populares</li>
                         </ul>
                     </div>
                 </div>
@@ -3769,6 +3821,7 @@ Member Name
                 'teamHunt': 'teamHuntTab',
                 'goals': 'goalsTab',
                 'rareLoot': 'rareLootTab',
+                'bossLoot': 'bossLootTab',
                 'comparator': 'comparatorTab',
                 'charts': 'chartsTab',
                 'tcConfig': 'tcConfigTab',
@@ -3793,6 +3846,10 @@ Member Name
                 displayRareItems();
                 displayMonthlyBreakdown();
                 renderRareLootCalendar(); // Render calendar when tab is opened
+            } else if (tab === 'bossLoot') {
+                displayRecentSearches(); // Display recent boss searches
+                // Show popular bosses section
+                document.getElementById('popularBossesSection').style.display = 'block';
             } else if (tab === 'dashboard') {
                 updateDashboardGoals();
             }
@@ -4714,9 +4771,13 @@ Member Name
                 // Display creature info
                 displayCreatureInfo(creature);
 
-                // Hide loading, show creature info
+                // Save to recent searches
+                saveRecentSearch(creature.name);
+
+                // Hide loading, show creature info, hide popular bosses section
                 document.getElementById('creatureLoadingState').style.display = 'none';
                 document.getElementById('creatureInfoDisplay').style.display = 'block';
+                document.getElementById('popularBossesSection').style.display = 'none';
 
                 showNotification(`✅ ${creature.name} encontrado!`, 'success');
 
@@ -4862,6 +4923,71 @@ Member Name
 
             // Switch to Rare Loot tab to show the added item
             // switchMainTab('rareLoot');
+        }
+
+        // Quick search boss from popular bosses
+        function quickSearchBoss(bossName) {
+            document.getElementById('creatureSearchInput').value = bossName;
+            searchCreature();
+        }
+
+        // Save recent searches to localStorage
+        function saveRecentSearch(creatureName) {
+            const recentSearches = getRecentSearches();
+
+            // Remove if already exists (to avoid duplicates)
+            const filtered = recentSearches.filter(s => s.toLowerCase() !== creatureName.toLowerCase());
+
+            // Add to beginning
+            filtered.unshift(creatureName);
+
+            // Keep only last 6 searches
+            const updated = filtered.slice(0, 6);
+
+            localStorage.setItem('bossLootRecentSearches', JSON.stringify(updated));
+            displayRecentSearches();
+        }
+
+        // Get recent searches from localStorage
+        function getRecentSearches() {
+            const stored = localStorage.getItem('bossLootRecentSearches');
+            return stored ? JSON.parse(stored) : [];
+        }
+
+        // Display recent searches
+        function displayRecentSearches() {
+            const recentSearches = getRecentSearches();
+            const container = document.getElementById('recentSearchesList');
+            const section = document.getElementById('recentSearchesSection');
+
+            if (recentSearches.length === 0) {
+                section.style.display = 'none';
+                return;
+            }
+
+            section.style.display = 'block';
+
+            let html = '';
+            recentSearches.forEach(creature => {
+                html += `
+                    <button onclick="quickSearchBoss('${creature.replace(/'/g, "\\'")}')"
+                            style="background: linear-gradient(135deg, rgba(34, 211, 238, 0.2) 0%, rgba(34, 211, 238, 0.3) 100%);
+                                   border: 2px solid rgba(34, 211, 238, 0.5);
+                                   color: #22d3ee;
+                                   border-radius: 8px;
+                                   padding: 8px 16px;
+                                   font-weight: 700;
+                                   cursor: pointer;
+                                   font-size: 0.8em;
+                                   transition: all 0.3s;"
+                            onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 4px 12px rgba(34, 211, 238, 0.4)'"
+                            onmouseout="this.style.transform=''; this.style.boxShadow=''">
+                        🔍 ${creature}
+                    </button>
+                `;
+            });
+
+            container.innerHTML = html;
         }
 
         // Gold Goal Calculator Function
