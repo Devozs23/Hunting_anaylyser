@@ -6423,14 +6423,24 @@ Member Name
             const average = profits.reduce((sum, p) => sum + p, 0) / profits.length;
             const trend = profits.length > 1 ? profits[profits.length - 1] - profits[0] : 0;
 
-            document.getElementById('profitHighest').textContent = formatProfit(highest);
-            document.getElementById('profitLowest').textContent = formatProfit(lowest);
-            document.getElementById('profitAverage').textContent = formatProfit(average);
-            document.getElementById('profitTrend').textContent = trend > 0 ? `📈 +${formatShort(trend)}` : trend < 0 ? `📉 ${formatShort(trend)}` : '➡️ Stable';
-            document.getElementById('profitTrend').style.color = trend > 0 ? '#28a745' : trend < 0 ? '#dc3545' : '#6c757d';
+            const profitHighestEl = document.getElementById('profitHighest');
+            if (profitHighestEl) profitHighestEl.textContent = formatProfit(highest);
+
+            const profitLowestEl = document.getElementById('profitLowest');
+            if (profitLowestEl) profitLowestEl.textContent = formatProfit(lowest);
+
+            const profitAverageEl = document.getElementById('profitAverage');
+            if (profitAverageEl) profitAverageEl.textContent = formatProfit(average);
+
+            const profitTrendEl = document.getElementById('profitTrend');
+            if (profitTrendEl) {
+                profitTrendEl.textContent = trend > 0 ? `📈 +${formatShort(trend)}` : trend < 0 ? `📉 ${formatShort(trend)}` : '➡️ Stable';
+                profitTrendEl.style.color = trend > 0 ? '#28a745' : trend < 0 ? '#dc3545' : '#6c757d';
+            }
 
             const periodLabel = currentPeriod === 'daily' ? 'Days' : currentPeriod === 'weekly' ? 'Weeks' : 'Months';
-            document.getElementById('profitPeriodLabel').textContent = `Last ${displayKeys.length} ${periodLabel}`;
+            const profitPeriodLabelEl = document.getElementById('profitPeriodLabel');
+            if (profitPeriodLabelEl) profitPeriodLabelEl.textContent = `Last ${displayKeys.length} ${periodLabel}`;
         }
 
         // Draw XP Chart
@@ -6522,14 +6532,24 @@ Member Name
             const average = xpValues.reduce((sum, xp) => sum + xp, 0) / xpValues.length;
             const trend = xpValues.length > 1 ? xpValues[xpValues.length - 1] - xpValues[0] : 0;
 
-            document.getElementById('xpHighest').textContent = formatXP(highest);
-            document.getElementById('xpLowest').textContent = formatXP(lowest);
-            document.getElementById('xpAverage').textContent = formatXP(average);
-            document.getElementById('xpTrend').textContent = trend > 0 ? `📈 +${formatShort(trend)}` : trend < 0 ? `📉 ${formatShort(trend)}` : '➡️ Stable';
-            document.getElementById('xpTrend').style.color = trend > 0 ? '#28a745' : trend < 0 ? '#dc3545' : '#6c757d';
+            const xpHighestEl = document.getElementById('xpHighest');
+            if (xpHighestEl) xpHighestEl.textContent = formatXP(highest);
+
+            const xpLowestEl = document.getElementById('xpLowest');
+            if (xpLowestEl) xpLowestEl.textContent = formatXP(lowest);
+
+            const xpAverageEl = document.getElementById('xpAverage');
+            if (xpAverageEl) xpAverageEl.textContent = formatXP(average);
+
+            const xpTrendEl = document.getElementById('xpTrend');
+            if (xpTrendEl) {
+                xpTrendEl.textContent = trend > 0 ? `📈 +${formatShort(trend)}` : trend < 0 ? `📉 ${formatShort(trend)}` : '➡️ Stable';
+                xpTrendEl.style.color = trend > 0 ? '#28a745' : trend < 0 ? '#dc3545' : '#6c757d';
+            }
 
             const periodLabel = currentPeriod === 'daily' ? 'Days' : currentPeriod === 'weekly' ? 'Weeks' : 'Months';
-            document.getElementById('xpPeriodLabel').textContent = `Last ${displayKeys.length} ${periodLabel}`;
+            const xpPeriodLabelEl = document.getElementById('xpPeriodLabel');
+            if (xpPeriodLabelEl) xpPeriodLabelEl.textContent = `Last ${displayKeys.length} ${periodLabel}`;
         }
 
         // Draw Comparison Chart (Profit vs XP)
@@ -8210,15 +8230,29 @@ Member Name
                 const bestDay = validDays.reduce((max, day) => day.exp > max.exp ? day : max);
                 const worstDay = validDays.reduce((min, day) => day.exp < min.exp ? day : min);
 
-                document.getElementById('bestExpDay').textContent = formatNumber(bestDay.exp) + ' XP';
-                document.getElementById('bestExpDayDate').textContent = formatDate(new Date(bestDay.date));
-                document.getElementById('worstExpDay').textContent = formatNumber(worstDay.exp) + ' XP';
-                document.getElementById('worstExpDayDate').textContent = formatDate(new Date(worstDay.date));
+                const bestExpDayEl = document.getElementById('bestExpDay');
+                if (bestExpDayEl) bestExpDayEl.textContent = formatNumber(bestDay.exp) + ' XP';
+
+                const bestExpDayDateEl = document.getElementById('bestExpDayDate');
+                if (bestExpDayDateEl) bestExpDayDateEl.textContent = formatDate(new Date(bestDay.date));
+
+                const worstExpDayEl = document.getElementById('worstExpDay');
+                if (worstExpDayEl) worstExpDayEl.textContent = formatNumber(worstDay.exp) + ' XP';
+
+                const worstExpDayDateEl = document.getElementById('worstExpDayDate');
+                if (worstExpDayDateEl) worstExpDayDateEl.textContent = formatDate(new Date(worstDay.date));
             } else {
-                document.getElementById('bestExpDay').textContent = '-';
-                document.getElementById('bestExpDayDate').textContent = '-';
-                document.getElementById('worstExpDay').textContent = '-';
-                document.getElementById('worstExpDayDate').textContent = '-';
+                const bestExpDayEl = document.getElementById('bestExpDay');
+                if (bestExpDayEl) bestExpDayEl.textContent = '-';
+
+                const bestExpDayDateEl = document.getElementById('bestExpDayDate');
+                if (bestExpDayDateEl) bestExpDayDateEl.textContent = '-';
+
+                const worstExpDayEl = document.getElementById('worstExpDay');
+                if (worstExpDayEl) worstExpDayEl.textContent = '-';
+
+                const worstExpDayDateEl = document.getElementById('worstExpDayDate');
+                if (worstExpDayDateEl) worstExpDayDateEl.textContent = '-';
             }
 
             // Build calendar
@@ -8228,7 +8262,8 @@ Member Name
         function renderExpCalendar(dailyExp) {
             // Update month/year display
             const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-            document.getElementById('expCalendarMonthYear').textContent = monthNames[currentExpCalendarMonth] + ' ' + currentExpCalendarYear;
+            const expCalendarMonthYearEl = document.getElementById('expCalendarMonthYear');
+            if (expCalendarMonthYearEl) expCalendarMonthYearEl.textContent = monthNames[currentExpCalendarMonth] + ' ' + currentExpCalendarYear;
 
             // Create date map for quick lookup
             const expMap = {};
