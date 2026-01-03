@@ -3028,24 +3028,34 @@ Member Name
 
             <!-- TC Config Tab -->
             <div class="main-tab-content" id="tcConfigTab">
-                <!-- TC Configuration - COMPACT -->
-                <div class="card" style="padding: 10px; background: linear-gradient(135deg, rgba(20, 30, 48, 0.6) 0%, rgba(36, 59, 85, 0.6) 100%); border: 2px solid rgba(34, 211, 238, 0.3);">
-                    <h3 style="color: #22d3ee; margin-bottom: 8px; font-size: 0.95em; display: flex; align-items: center; gap: 6px;">
-                        <span style="font-size: 1.1em;">💰</span> TC Configuration
-                    </h3>
-
-                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 8px;">
-                        <div class="input-group" style="margin: 0;">
-                            <label for="tcPriceInput" style="font-size: 0.75em; margin-bottom: 3px; color: #22d3ee; font-weight: 600;">TC Price (gp)</label>
-                            <input type="number" id="tcPriceInput" placeholder="39341" min="0" style="padding: 7px 10px; font-size: 0.85em; background: rgba(0, 0, 0, 0.3); border: 2px solid rgba(34, 211, 238, 0.4); color: white; font-weight: 600;">
-                        </div>
-                        <div class="input-group" style="margin: 0;">
-                            <label for="tibiaCharInput" style="font-size: 0.75em; margin-bottom: 3px; color: #22d3ee; font-weight: 600;">Character (optional)</label>
-                            <input type="text" id="tibiaCharInput" placeholder="Your Character" style="padding: 7px 10px; font-size: 0.85em; background: rgba(0, 0, 0, 0.3); border: 2px solid rgba(34, 211, 238, 0.4); color: white; font-weight: 600;">
+                <!-- TC Configuration - PROFESSIONAL UPGRADE -->
+                <div class="card" style="padding: 16px; background: linear-gradient(135deg, rgba(15, 23, 42, 0.95) 0%, rgba(30, 41, 59, 0.95) 100%); border: 2px solid rgba(34, 211, 238, 0.4); box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3), 0 0 20px rgba(34, 211, 238, 0.1);">
+                    <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; padding-bottom: 12px; border-bottom: 2px solid rgba(34, 211, 238, 0.2);">
+                        <h3 style="color: #22d3ee; margin: 0; font-size: 1.15em; display: flex; align-items: center; gap: 8px; text-shadow: 0 0 12px rgba(34, 211, 238, 0.4);">
+                            <span style="font-size: 1.3em; filter: drop-shadow(0 0 8px rgba(34, 211, 238, 0.6));">💰</span>
+                            <span style="font-weight: 800; letter-spacing: 0.3px;">TC Configuration</span>
+                        </h3>
+                        <div style="background: rgba(34, 211, 238, 0.15); padding: 4px 10px; border-radius: 8px; border: 1px solid rgba(34, 211, 238, 0.3);">
+                            <span style="font-size: 0.7em; color: #22d3ee; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px;">Settings</span>
                         </div>
                     </div>
 
-                    <button class="btn-primary" onclick="saveTCSettings()" style="width: 100%; padding: 7px 12px; font-size: 0.85em; background: linear-gradient(135deg, #22d3ee 0%, #06b6d4 100%); border: none; box-shadow: 0 4px 12px rgba(34, 211, 238, 0.3);">
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 12px;">
+                        <div class="input-group" style="margin: 0;">
+                            <label for="tcPriceInput" style="font-size: 0.8em; margin-bottom: 6px; color: #22d3ee; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; display: flex; align-items: center; gap: 4px;">
+                                <span style="font-size: 1.1em;">💎</span> TC Price (gp)
+                            </label>
+                            <input type="number" id="tcPriceInput" placeholder="39341" min="0" style="padding: 10px 12px; font-size: 0.95em; background: rgba(0, 0, 0, 0.4); border: 2px solid rgba(34, 211, 238, 0.5); border-radius: 8px; color: white; font-weight: 700; transition: all 0.3s; box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2);" onfocus="this.style.borderColor='#22d3ee'; this.style.boxShadow='0 0 16px rgba(34, 211, 238, 0.3), inset 0 2px 4px rgba(0, 0, 0, 0.2)';" onblur="this.style.borderColor='rgba(34, 211, 238, 0.5)'; this.style.boxShadow='inset 0 2px 4px rgba(0, 0, 0, 0.2)';">
+                        </div>
+                        <div class="input-group" style="margin: 0;">
+                            <label for="tibiaCharInput" style="font-size: 0.8em; margin-bottom: 6px; color: #22d3ee; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; display: flex; align-items: center; gap: 4px;">
+                                <span style="font-size: 1.1em;">⚔️</span> Character
+                            </label>
+                            <input type="text" id="tibiaCharInput" placeholder="Your Character" style="padding: 10px 12px; font-size: 0.95em; background: rgba(0, 0, 0, 0.4); border: 2px solid rgba(34, 211, 238, 0.5); border-radius: 8px; color: white; font-weight: 700; transition: all 0.3s; box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2);" onfocus="this.style.borderColor='#22d3ee'; this.style.boxShadow='0 0 16px rgba(34, 211, 238, 0.3), inset 0 2px 4px rgba(0, 0, 0, 0.2)';" onblur="this.style.borderColor='rgba(34, 211, 238, 0.5)'; this.style.boxShadow='inset 0 2px 4px rgba(0, 0, 0, 0.2)';">
+                        </div>
+                    </div>
+
+                    <button class="btn-primary" onclick="saveTCSettings()" style="width: 100%; padding: 12px 16px; font-size: 0.95em; font-weight: 800; background: linear-gradient(135deg, #22d3ee 0%, #06b6d4 100%); border: none; border-radius: 10px; box-shadow: 0 6px 20px rgba(34, 211, 238, 0.4), 0 0 30px rgba(34, 211, 238, 0.2); transition: all 0.3s; text-transform: uppercase; letter-spacing: 0.5px; cursor: pointer;" onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 8px 24px rgba(34, 211, 238, 0.5), 0 0 40px rgba(34, 211, 238, 0.3)';" onmouseout="this.style.transform=''; this.style.boxShadow='0 6px 20px rgba(34, 211, 238, 0.4), 0 0 30px rgba(34, 211, 238, 0.2)';">
                         💾 Save Configuration
                     </button>
                 </div>
@@ -3100,20 +3110,29 @@ Member Name
                     </div>
                 </div>
 
-                <!-- TC Summary - COMPACT -->
-                <div id="tcConversionDisplay" class="card" style="margin-top: 10px; padding: 10px; background: linear-gradient(135deg, rgba(30, 41, 59, 0.4) 0%, rgba(51, 65, 85, 0.4) 100%); border: 2px solid rgba(100, 116, 139, 0.3); display: none;">
-                    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px;">
-                        <div style="text-align: center; padding: 8px; background: rgba(51, 65, 85, 0.3); border-radius: 8px; border: 1px solid rgba(100, 116, 139, 0.4);">
-                            <p style="font-size: 0.65em; color: rgba(148, 163, 184, 0.9); margin-bottom: 4px; text-transform: uppercase; letter-spacing: 0.8px; font-weight: 700;">💎 Total</p>
-                            <p style="font-size: 1.4em; font-weight: 900; margin: 0; color: #94a3b8; text-shadow: 0 2px 4px rgba(148, 163, 184, 0.3);" id="tcTotalProfit">0 TC</p>
+                <!-- TC Summary - PROFESSIONAL STATS -->
+                <div id="tcConversionDisplay" class="card" style="margin-top: 12px; padding: 14px; background: linear-gradient(135deg, rgba(15, 23, 42, 0.9) 0%, rgba(30, 41, 59, 0.9) 100%); border: 2px solid rgba(100, 149, 237, 0.3); box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3), 0 0 20px rgba(100, 149, 237, 0.1); display: none;">
+                    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px;">
+                        <div style="text-align: center; padding: 14px 10px; background: linear-gradient(135deg, rgba(100, 149, 237, 0.15) 0%, rgba(148, 163, 184, 0.2) 100%); border-radius: 12px; border: 2px solid rgba(148, 163, 184, 0.4); box-shadow: 0 4px 12px rgba(100, 149, 237, 0.2); transition: all 0.3s;" onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 8px 20px rgba(100, 149, 237, 0.3)';" onmouseout="this.style.transform=''; this.style.boxShadow='0 4px 12px rgba(100, 149, 237, 0.2)';">
+                            <div style="display: flex; align-items: center; justify-content: center; gap: 6px; margin-bottom: 6px;">
+                                <span style="font-size: 1.3em; filter: drop-shadow(0 0 8px rgba(148, 163, 184, 0.6));">💎</span>
+                                <p style="font-size: 0.75em; color: rgba(148, 163, 184, 0.95); margin: 0; text-transform: uppercase; letter-spacing: 1px; font-weight: 800;">Total</p>
+                            </div>
+                            <p style="font-size: 1.7em; font-weight: 900; margin: 0; color: #E0E7FF; text-shadow: 0 0 12px rgba(148, 163, 184, 0.5), 0 2px 4px rgba(0, 0, 0, 0.3);" id="tcTotalProfit">0 TC</p>
                         </div>
-                        <div style="text-align: center; padding: 8px; background: rgba(34, 211, 238, 0.1); border-radius: 8px; border: 1px solid rgba(34, 211, 238, 0.3);">
-                            <p style="font-size: 0.65em; color: rgba(34, 211, 238, 0.9); margin-bottom: 4px; text-transform: uppercase; letter-spacing: 0.8px; font-weight: 700;">📅 Monthly</p>
-                            <p style="font-size: 1.4em; font-weight: 900; margin: 0; color: #22d3ee; text-shadow: 0 2px 4px rgba(34, 211, 238, 0.3);" id="tcMonthlyProfit">0 TC</p>
+                        <div style="text-align: center; padding: 14px 10px; background: linear-gradient(135deg, rgba(34, 211, 238, 0.2) 0%, rgba(6, 182, 212, 0.25) 100%); border-radius: 12px; border: 2px solid rgba(34, 211, 238, 0.5); box-shadow: 0 4px 12px rgba(34, 211, 238, 0.3), 0 0 16px rgba(34, 211, 238, 0.15); transition: all 0.3s;" onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 8px 20px rgba(34, 211, 238, 0.4), 0 0 24px rgba(34, 211, 238, 0.2)';" onmouseout="this.style.transform=''; this.style.boxShadow='0 4px 12px rgba(34, 211, 238, 0.3), 0 0 16px rgba(34, 211, 238, 0.15)';">
+                            <div style="display: flex; align-items: center; justify-content: center; gap: 6px; margin-bottom: 6px;">
+                                <span style="font-size: 1.3em; filter: drop-shadow(0 0 8px rgba(34, 211, 238, 0.8));">📅</span>
+                                <p style="font-size: 0.75em; color: rgba(34, 211, 238, 0.95); margin: 0; text-transform: uppercase; letter-spacing: 1px; font-weight: 800;">Monthly</p>
+                            </div>
+                            <p style="font-size: 1.7em; font-weight: 900; margin: 0; color: #E0F7FF; text-shadow: 0 0 12px rgba(34, 211, 238, 0.6), 0 2px 4px rgba(0, 0, 0, 0.3);" id="tcMonthlyProfit">0 TC</p>
                         </div>
-                        <div style="text-align: center; padding: 8px; background: rgba(6, 182, 212, 0.15); border-radius: 8px; border: 1px solid rgba(6, 182, 212, 0.3);">
-                            <p style="font-size: 0.65em; color: rgba(6, 182, 212, 0.9); margin-bottom: 4px; text-transform: uppercase; letter-spacing: 0.8px; font-weight: 700;">⚡ Per Hunt</p>
-                            <p style="font-size: 1.4em; font-weight: 900; margin: 0; color: #06b6d4; text-shadow: 0 2px 4px rgba(6, 182, 212, 0.3);" id="tcAvgProfit">0 TC</p>
+                        <div style="text-align: center; padding: 14px 10px; background: linear-gradient(135deg, rgba(6, 182, 212, 0.25) 0%, rgba(34, 211, 238, 0.2) 100%); border-radius: 12px; border: 2px solid rgba(6, 182, 212, 0.5); box-shadow: 0 4px 12px rgba(6, 182, 212, 0.3); transition: all 0.3s;" onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 8px 20px rgba(6, 182, 212, 0.4)';" onmouseout="this.style.transform=''; this.style.boxShadow='0 4px 12px rgba(6, 182, 212, 0.3)';">
+                            <div style="display: flex; align-items: center; justify-content: center; gap: 6px; margin-bottom: 6px;">
+                                <span style="font-size: 1.3em; filter: drop-shadow(0 0 8px rgba(6, 182, 212, 0.8));">⚡</span>
+                                <p style="font-size: 0.75em; color: rgba(6, 182, 212, 0.95); margin: 0; text-transform: uppercase; letter-spacing: 1px; font-weight: 800;">Per Hunt</p>
+                            </div>
+                            <p style="font-size: 1.7em; font-weight: 900; margin: 0; color: #E0F7FF; text-shadow: 0 0 12px rgba(6, 182, 212, 0.6), 0 2px 4px rgba(0, 0, 0, 0.3);" id="tcAvgProfit">0 TC</p>
                         </div>
                     </div>
                 </div>
@@ -3131,34 +3150,46 @@ Member Name
                         </div>
                     </div>
 
-                    <!-- Best/Worst Days - ELEGANT DESIGN -->
-                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 10px;">
-                        <div style="background: linear-gradient(135deg, rgba(100, 149, 237, 0.15) 0%, rgba(135, 206, 235, 0.2) 100%); padding: 10px; border-radius: 10px; border: 1.5px solid rgba(100, 149, 237, 0.4);">
-                            <div style="font-size: 0.7em; color: #87CEEB; margin-bottom: 4px; text-transform: uppercase; letter-spacing: 0.8px; font-weight: 700;">🏆 Best Day</div>
-                            <div id="bestTCDay" style="font-size: 1.3em; font-weight: 900; color: #6495ED; text-shadow: 0 0 8px rgba(100, 149, 237, 0.4);">-</div>
-                            <div id="bestTCDayDate" style="font-size: 0.7em; color: rgba(135, 206, 235, 0.8); margin-top: 3px; font-weight: 600;">-</div>
+                    <!-- Best/Worst Days - PROFESSIONAL SHOWCASE -->
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 14px;">
+                        <div style="background: linear-gradient(135deg, rgba(100, 149, 237, 0.25) 0%, rgba(135, 206, 235, 0.3) 100%); padding: 14px; border-radius: 14px; border: 2px solid rgba(100, 149, 237, 0.6); box-shadow: 0 6px 20px rgba(100, 149, 237, 0.25), 0 0 30px rgba(100, 149, 237, 0.1); position: relative; overflow: hidden; transition: all 0.3s;" onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 10px 30px rgba(100, 149, 237, 0.35), 0 0 40px rgba(100, 149, 237, 0.2)';" onmouseout="this.style.transform=''; this.style.boxShadow='0 6px 20px rgba(100, 149, 237, 0.25), 0 0 30px rgba(100, 149, 237, 0.1)';">
+                            <div style="position: absolute; top: -20px; right: -20px; font-size: 5em; opacity: 0.08; transform: rotate(15deg);">🏆</div>
+                            <div style="position: relative; z-index: 1;">
+                                <div style="display: flex; align-items: center; gap: 6px; margin-bottom: 6px;">
+                                    <span style="font-size: 1.2em; filter: drop-shadow(0 0 10px rgba(100, 149, 237, 0.8));">🏆</span>
+                                    <div style="font-size: 0.75em; color: #E0F7FF; text-transform: uppercase; letter-spacing: 1px; font-weight: 800; text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);">Best Day</div>
+                                </div>
+                                <div id="bestTCDay" style="font-size: 1.6em; font-weight: 900; color: #E0F7FF; text-shadow: 0 0 16px rgba(100, 149, 237, 0.8), 0 2px 8px rgba(0, 0, 0, 0.4); margin: 4px 0;">-</div>
+                                <div id="bestTCDayDate" style="font-size: 0.75em; color: rgba(135, 206, 235, 0.95); margin-top: 4px; font-weight: 700; text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);">-</div>
+                            </div>
                         </div>
-                        <div style="background: linear-gradient(135deg, rgba(220, 120, 95, 0.12) 0%, rgba(184, 134, 11, 0.15) 100%); padding: 10px; border-radius: 10px; border: 1.5px solid rgba(205, 133, 63, 0.35);">
-                            <div style="font-size: 0.7em; color: #CD853F; margin-bottom: 4px; text-transform: uppercase; letter-spacing: 0.8px; font-weight: 700;">📉 Worst Day</div>
-                            <div id="worstTCDay" style="font-size: 1.3em; font-weight: 900; color: #B8860B; text-shadow: 0 0 8px rgba(184, 134, 11, 0.3);">-</div>
-                            <div id="worstTCDayDate" style="font-size: 0.7em; color: rgba(205, 133, 63, 0.7); margin-top: 3px; font-weight: 600;">-</div>
+                        <div style="background: linear-gradient(135deg, rgba(220, 120, 95, 0.2) 0%, rgba(184, 134, 11, 0.25) 100%); padding: 14px; border-radius: 14px; border: 2px solid rgba(205, 133, 63, 0.5); box-shadow: 0 6px 20px rgba(184, 134, 11, 0.2); position: relative; overflow: hidden; transition: all 0.3s;" onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 10px 30px rgba(184, 134, 11, 0.3)';" onmouseout="this.style.transform=''; this.style.boxShadow='0 6px 20px rgba(184, 134, 11, 0.2)';">
+                            <div style="position: absolute; top: -20px; right: -20px; font-size: 5em; opacity: 0.08; transform: rotate(-15deg);">📉</div>
+                            <div style="position: relative; z-index: 1;">
+                                <div style="display: flex; align-items: center; gap: 6px; margin-bottom: 6px;">
+                                    <span style="font-size: 1.2em; filter: drop-shadow(0 0 10px rgba(184, 134, 11, 0.8));">📉</span>
+                                    <div style="font-size: 0.75em; color: #F4E4C1; text-transform: uppercase; letter-spacing: 1px; font-weight: 800; text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);">Worst Day</div>
+                                </div>
+                                <div id="worstTCDay" style="font-size: 1.6em; font-weight: 900; color: #F4E4C1; text-shadow: 0 0 16px rgba(184, 134, 11, 0.8), 0 2px 8px rgba(0, 0, 0, 0.4); margin: 4px 0;">-</div>
+                                <div id="worstTCDayDate" style="font-size: 0.75em; color: rgba(205, 133, 63, 0.95); margin-top: 4px; font-weight: 700; text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);">-</div>
+                            </div>
                         </div>
                     </div>
 
-                    <!-- Calendar Grid -->
-                    <div style="background: linear-gradient(135deg, rgba(0,0,0,0.35) 0%, rgba(10,15,25,0.5) 100%); padding: 10px; border-radius: 10px; border: 1px solid rgba(100, 149, 237, 0.15);">
+                    <!-- Calendar Grid - PROFESSIONAL SPACING -->
+                    <div style="background: linear-gradient(135deg, rgba(0,0,0,0.4) 0%, rgba(10,15,25,0.55) 100%); padding: 14px; border-radius: 12px; border: 2px solid rgba(100, 149, 237, 0.2); box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.3);">
                         <!-- Weekday Headers -->
-                        <div style="display: grid; grid-template-columns: repeat(7, 1fr); gap: 2px; margin-bottom: 6px;">
-                            <div style="text-align: center; font-size: 0.7em; color: #87CEEB; font-weight: 600;">Sun</div>
-                            <div style="text-align: center; font-size: 0.7em; color: #87CEEB; font-weight: 600;">Mon</div>
-                            <div style="text-align: center; font-size: 0.7em; color: #87CEEB; font-weight: 600;">Tue</div>
-                            <div style="text-align: center; font-size: 0.7em; color: #87CEEB; font-weight: 600;">Wed</div>
-                            <div style="text-align: center; font-size: 0.7em; color: #87CEEB; font-weight: 600;">Thu</div>
-                            <div style="text-align: center; font-size: 0.7em; color: #87CEEB; font-weight: 600;">Fri</div>
-                            <div style="text-align: center; font-size: 0.7em; color: #87CEEB; font-weight: 600;">Sat</div>
+                        <div style="display: grid; grid-template-columns: repeat(7, 1fr); gap: 5px; margin-bottom: 10px;">
+                            <div style="text-align: center; font-size: 0.8em; color: #E0F7FF; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px; text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);">Sun</div>
+                            <div style="text-align: center; font-size: 0.8em; color: #E0F7FF; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px; text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);">Mon</div>
+                            <div style="text-align: center; font-size: 0.8em; color: #E0F7FF; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px; text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);">Tue</div>
+                            <div style="text-align: center; font-size: 0.8em; color: #E0F7FF; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px; text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);">Wed</div>
+                            <div style="text-align: center; font-size: 0.8em; color: #E0F7FF; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px; text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);">Thu</div>
+                            <div style="text-align: center; font-size: 0.8em; color: #E0F7FF; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px; text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);">Fri</div>
+                            <div style="text-align: center; font-size: 0.8em; color: #E0F7FF; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px; text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);">Sat</div>
                         </div>
                         <!-- Calendar Days -->
-                        <div id="tcCalendarGrid" style="display: grid; grid-template-columns: repeat(7, 1fr); gap: 2px;">
+                        <div id="tcCalendarGrid" style="display: grid; grid-template-columns: repeat(7, 1fr); gap: 5px;">
                             <!-- Days will be generated by JS -->
                         </div>
                     </div>
@@ -8032,7 +8063,7 @@ Member Name
 
             // Empty cells before first day
             for (let i = 0; i < startingDayOfWeek; i++) {
-                calendarHTML += `<div style="aspect-ratio: 0.85; background: rgba(0,0,0,0.2); border-radius: 5px; border: 1px solid rgba(100, 149, 237, 0.1);"></div>`;
+                calendarHTML += `<div style="aspect-ratio: 1.1; background: rgba(0,0,0,0.2); border-radius: 8px; border: 1px solid rgba(100, 149, 237, 0.1);"></div>`;
             }
 
             // Days of month
@@ -8042,31 +8073,31 @@ Member Name
 
                 let bgColor = 'rgba(100, 149, 237, 0.08)';
                 let borderColor = 'rgba(100, 149, 237, 0.25)';
-                let textColor = 'rgba(135, 206, 235, 0.6)';
+                let textColor = 'rgba(135, 206, 235, 0.7)';
                 let tcText = '';
                 let hoverInfo = '';
 
                 if (dayData && dayData.tcs > 0) {
                     const intensity = Math.min(dayData.tcs / maxTCs, 1);
-                    const alpha = 0.12 + (intensity * 0.65); // Range from 0.12 to 0.77 (more subtle)
+                    const alpha = 0.15 + (intensity * 0.7); // Range from 0.15 to 0.85 (more vibrant)
 
                     // Blue gradient based on intensity - more professional
                     if (intensity > 0.7) {
-                        bgColor = `linear-gradient(135deg, rgba(135, 206, 235, ${alpha}) 0%, rgba(100, 149, 237, ${alpha * 0.9}) 100%)`;
-                        borderColor = 'rgba(135, 206, 235, 0.85)';
+                        bgColor = `linear-gradient(135deg, rgba(135, 206, 235, ${alpha}) 0%, rgba(100, 149, 237, ${alpha * 0.95}) 100%)`;
+                        borderColor = 'rgba(135, 206, 235, 0.9)';
                     } else if (intensity > 0.4) {
-                        bgColor = `linear-gradient(135deg, rgba(100, 149, 237, ${alpha}) 0%, rgba(135, 206, 235, ${alpha * 0.8}) 100%)`;
-                        borderColor = 'rgba(100, 149, 237, 0.75)';
+                        bgColor = `linear-gradient(135deg, rgba(100, 149, 237, ${alpha}) 0%, rgba(135, 206, 235, ${alpha * 0.85}) 100%)`;
+                        borderColor = 'rgba(100, 149, 237, 0.8)';
                     } else {
                         bgColor = `rgba(100, 149, 237, ${alpha})`;
-                        borderColor = `rgba(100, 149, 237, ${Math.min(alpha + 0.15, 0.7)})`;
+                        borderColor = `rgba(100, 149, 237, ${Math.min(alpha + 0.2, 0.75)})`;
                     }
 
-                    textColor = intensity > 0.5 ? '#E0F7FF' : '#87CEEB';
+                    textColor = intensity > 0.5 ? '#FFFFFF' : '#E0F7FF';
 
-                    // TC text with coin icon and larger font
-                    tcText = `<div style="display: flex; align-items: center; gap: 2px; font-size: ${intensity > 0.5 ? '0.95em' : '0.85em'}; font-weight: 900; color: ${intensity > 0.5 ? '#E0F7FF' : '#87CEEB'}; text-shadow: 0 0 8px rgba(100, 149, 237, ${intensity > 0.5 ? '0.6' : '0.3'});">
-                        <span style="font-size: 0.9em;">🪙</span>
+                    // TC text with coin icon and larger font - IMPROVED SIZE
+                    tcText = `<div style="display: flex; align-items: center; gap: 3px; font-size: ${intensity > 0.5 ? '1.1em' : '1em'}; font-weight: 900; color: ${intensity > 0.5 ? '#FFFFFF' : '#E0F7FF'}; text-shadow: 0 0 10px rgba(100, 149, 237, ${intensity > 0.5 ? '0.8' : '0.5'}), 0 2px 4px rgba(0, 0, 0, 0.3); margin-top: 2px;">
+                        <span style="font-size: 1em; filter: drop-shadow(0 0 6px rgba(135, 206, 235, 0.8));">🪙</span>
                         <span>${dayData.tcs}</span>
                     </div>`;
                     hoverInfo = `title="${formatProfit(dayData.profit)} = ${dayData.tcs} TC"`;
@@ -8079,22 +8110,22 @@ Member Name
                 let todayStyles = '';
                 if (isToday && dayData && dayData.tcs > 0) {
                     // TODAY with TCs - ELEGANT BLUE GLOW
-                    todayStyles = `border: 2.5px solid #87CEEB !important; box-shadow: 0 0 16px rgba(135, 206, 235, 0.7), 0 0 32px rgba(100, 149, 237, 0.4), inset 0 0 12px rgba(135, 206, 235, 0.2); transform: scale(1.05);`;
-                    tcText = `<div style="display: flex; align-items: center; gap: 2px; font-size: 1em; font-weight: 900; color: #E0F7FF; text-shadow: 0 0 12px rgba(135, 206, 235, 0.9), 0 0 20px rgba(100, 149, 237, 0.6);">
-                        <span style="font-size: 1em; filter: drop-shadow(0 0 6px rgba(135, 206, 235, 0.9));">🪙</span>
+                    todayStyles = `border: 3px solid #87CEEB !important; box-shadow: 0 0 20px rgba(135, 206, 235, 0.8), 0 0 40px rgba(100, 149, 237, 0.5), inset 0 0 16px rgba(135, 206, 235, 0.25); transform: scale(1.08);`;
+                    tcText = `<div style="display: flex; align-items: center; gap: 3px; font-size: 1.2em; font-weight: 900; color: #FFFFFF; text-shadow: 0 0 16px rgba(135, 206, 235, 1), 0 0 24px rgba(100, 149, 237, 0.7), 0 2px 6px rgba(0, 0, 0, 0.4); margin-top: 2px;">
+                        <span style="font-size: 1em; filter: drop-shadow(0 0 8px rgba(135, 206, 235, 1));">🪙</span>
                         <span>${dayData.tcs}</span>
                     </div>`;
                 } else if (isToday) {
                     // TODAY without TCs - Blue border highlight
-                    todayStyles = `border: 2px solid rgba(100, 149, 237, 0.6); box-shadow: 0 0 10px rgba(100, 149, 237, 0.4);`;
+                    todayStyles = `border: 2.5px solid rgba(100, 149, 237, 0.7); box-shadow: 0 0 12px rgba(100, 149, 237, 0.5);`;
                 }
 
                 calendarHTML += `
-                    <div ${hoverInfo} style="aspect-ratio: 0.85; background: ${bgColor}; border: 1.5px solid ${borderColor}; ${todayStyles} border-radius: 7px; display: flex; flex-direction: column; align-items: center; justify-content: center; cursor: pointer; transition: all 0.3s ease; position: relative; z-index: ${isToday ? '2' : '1'};"
-                         onmouseover="this.style.transform='scale(1.12)'; this.style.zIndex='10'; this.style.boxShadow='0 0 16px rgba(100, 149, 237, 0.6), 0 0 32px rgba(135, 206, 235, 0.3)';"
-                         onmouseout="this.style.transform='${isToday && dayData && dayData.tcs > 0 ? 'scale(1.05)' : ''}'; this.style.zIndex='${isToday ? '2' : '1'}'; this.style.boxShadow='${isToday && dayData && dayData.tcs > 0 ? '0 0 16px rgba(135, 206, 235, 0.7), 0 0 32px rgba(100, 149, 237, 0.4)' : ''}';">
-                        ${isToday && dayData && dayData.tcs > 0 ? '<div style="position: absolute; top: 1px; right: 2px; font-size: 0.7em; filter: drop-shadow(0 0 4px rgba(135, 206, 235, 0.8));">✨</div>' : ''}
-                        <div style="font-size: ${isToday ? '0.75em' : '0.65em'}; color: ${isToday ? '#87CEEB' : textColor}; font-weight: ${isToday ? '800' : '600'}; text-shadow: ${isToday ? '0 0 5px rgba(135, 206, 235, 0.5)' : 'none'};">${day}</div>
+                    <div ${hoverInfo} style="aspect-ratio: 1.1; background: ${bgColor}; border: 2px solid ${borderColor}; ${todayStyles} border-radius: 10px; display: flex; flex-direction: column; align-items: center; justify-content: center; cursor: pointer; transition: all 0.3s ease; position: relative; z-index: ${isToday ? '2' : '1'}; padding: 4px;"
+                         onmouseover="this.style.transform='scale(1.15)'; this.style.zIndex='10'; this.style.boxShadow='0 0 20px rgba(100, 149, 237, 0.7), 0 0 40px rgba(135, 206, 235, 0.4)';"
+                         onmouseout="this.style.transform='${isToday && dayData && dayData.tcs > 0 ? 'scale(1.08)' : ''}'; this.style.zIndex='${isToday ? '2' : '1'}'; this.style.boxShadow='${isToday && dayData && dayData.tcs > 0 ? '0 0 20px rgba(135, 206, 235, 0.8), 0 0 40px rgba(100, 149, 237, 0.5)' : ''}';">
+                        ${isToday && dayData && dayData.tcs > 0 ? '<div style="position: absolute; top: 2px; right: 3px; font-size: 0.8em; filter: drop-shadow(0 0 6px rgba(135, 206, 235, 1));">✨</div>' : ''}
+                        <div style="font-size: ${isToday ? '1em' : '0.9em'}; color: ${isToday ? '#FFFFFF' : textColor}; font-weight: ${isToday ? '900' : '700'}; text-shadow: ${isToday ? '0 0 8px rgba(135, 206, 235, 0.8), 0 2px 4px rgba(0, 0, 0, 0.4)' : '0 1px 2px rgba(0, 0, 0, 0.2)'};">${day}</div>
                         ${tcText}
                     </div>
                 `;
