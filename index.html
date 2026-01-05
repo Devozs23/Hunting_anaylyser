@@ -7397,22 +7397,33 @@ Member Name
                     'optional_pvp': 'Optional PvP'
                 };
 
+                const imgUrl = getTibiaItemImageUrl(item.itemName);
                 const tierDisplay = item.tier && item.tier > 0 ? `<span style="background: linear-gradient(135deg, gold, orange); padding: 2px 8px; border-radius: 4px; font-size: 0.85em; font-weight: bold; color: white; margin-left: 8px;">Tier ${item.tier}</span>` : '';
 
                 html += `
-                    <div style="background: rgba(34, 211, 238, 0.08); border-left: 3px solid var(--primary-color); padding: 12px; border-radius: 8px;">
-                        <div style="display: flex; justify-content: space-between; align-items: start;">
-                            <div style="flex: 1;">
-                                <h4 style="color: var(--primary-color); margin-bottom: 5px; display: flex; align-items: center;">💎 ${item.itemName}${tierDisplay}</h4>
+                    <div style="background: rgba(34, 211, 238, 0.08); border-left: 3px solid var(--primary-color); padding: 12px; border-radius: 8px; transition: all 0.2s;"
+                         onmouseover="this.style.background='rgba(34, 211, 238, 0.15)'; this.style.transform='translateX(4px)';"
+                         onmouseout="this.style.background='rgba(34, 211, 238, 0.08)'; this.style.transform='';">
+                        <div style="display: flex; gap: 15px; align-items: start;">
+                            <div style="width: 64px; height: 64px; background: rgba(0,0,0,0.3); border: 2px solid var(--primary-color); border-radius: 8px; padding: 6px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                                <img src="${imgUrl}"
+                                     alt="${item.itemName}"
+                                     style="max-width: 100%; max-height: 100%; image-rendering: pixelated; object-fit: contain;"
+                                     onerror="this.style.display='none'; this.parentElement.innerHTML='<div style=\\'font-size: 2em;\\'>💎</div>';">
+                            </div>
+                            <div style="flex: 1; min-width: 0;">
+                                <h4 style="color: var(--primary-color); margin-bottom: 5px; display: flex; align-items: center; flex-wrap: wrap; gap: 4px;">${item.itemName}${tierDisplay}</h4>
                                 <p style="color: var(--text-primary); margin: 5px 0;"><strong>Value:</strong> ${formatShort(item.totalValue)} gp</p>
                                 <p style="color: var(--text-secondary); font-size: 0.9em; margin: 3px 0;">
-                                    ${item.quantity}x @ ${formatShort(item.pricePerUnit)} gp each
+                                    📦 ${item.quantity}x @ ${formatShort(item.pricePerUnit)} gp each
                                 </p>
                                 <p style="color: var(--text-secondary); font-size: 0.9em; margin: 3px 0;">
                                     <strong>Server:</strong> ${serverTypeNames[item.serverType]} | <strong>Date:</strong> ${formatDate(item.date)}
                                 </p>
                             </div>
-                            <button onclick="deleteRareItem(${item.id})" style="background: var(--danger-color); color: white; border: none; padding: 8px 15px; border-radius: 5px; cursor: pointer; font-size: 0.9em;">
+                            <button onclick="deleteRareItem(${item.id})" style="background: var(--danger-color); color: white; border: none; padding: 8px 15px; border-radius: 5px; cursor: pointer; font-size: 0.9em; flex-shrink: 0; transition: all 0.2s;"
+                                    onmouseover="this.style.transform='scale(1.05)';"
+                                    onmouseout="this.style.transform='';">
                                 🗑️ Delete
                             </button>
                         </div>
@@ -7444,6 +7455,17 @@ Member Name
                 currentRareLootYear++;
             }
             renderRareLootCalendar();
+        }
+
+        // Helper function to get Tibia item image URL
+        function getTibiaItemImageUrl(itemName) {
+            // Normalize item name for TibiaWiki URL
+            const normalized = itemName
+                .trim()
+                .replace(/'/g, '') // Remove apostrophes
+                .replace(/\s+/g, '_'); // Replace spaces with underscores
+
+            return `https://static.tibiawiki.com.br/images/${normalized}.gif`;
         }
 
         function renderRareLootCalendar() {
@@ -7487,7 +7509,7 @@ Member Name
 
                 let bgColor = 'rgba(34, 211, 238, 0.05)';
                 let borderColor = 'rgba(34, 211, 238, 0.2)';
-                let itemCountText = '';
+                let itemsDisplay = '';
 
                 if (dayLoots.length > 0) {
                     const totalValue = dayLoots.reduce((sum, item) => sum + item.totalValue, 0);
@@ -7495,8 +7517,40 @@ Member Name
                     const alpha = 0.2 + (intensity * 0.6);
                     bgColor = `rgba(251, 191, 36, ${alpha})`; // Gold color
                     borderColor = `rgba(251, 191, 36, ${Math.min(alpha + 0.2, 1)})`;
-                    // IMPROVED: Números más grandes, con emoji y mejor contraste
-                    itemCountText = `<div style="font-size: 1.1em; font-weight: 900; color: white; text-shadow: 0 2px 6px rgba(0, 0, 0, 0.8), 0 0 10px rgba(251, 191, 36, 0.6); background: linear-gradient(135deg, rgba(251, 191, 36, 0.9), rgba(251, 146, 60, 0.9)); padding: 2px 6px; border-radius: 6px; margin-top: 2px; border: 2px solid rgba(255, 255, 255, 0.3);">💎 ${dayLoots.length}</div>`;
+
+                    // Display up to 4 items with their images
+                    const maxDisplay = 4;
+                    const itemsToShow = dayLoots.slice(0, maxDisplay);
+                    const remainingCount = dayLoots.length - maxDisplay;
+
+                    itemsDisplay = '<div style="display: flex; flex-wrap: wrap; gap: 2px; justify-content: center; align-items: center; margin-top: 2px;">';
+
+                    itemsToShow.forEach(item => {
+                        const imgUrl = getTibiaItemImageUrl(item.itemName);
+                        const tierBadge = item.tier && item.tier > 0 ? `<div style="position: absolute; top: -2px; right: -2px; background: linear-gradient(135deg, #fbbf24, #f59e0b); color: white; font-size: 0.5em; font-weight: 900; padding: 1px 3px; border-radius: 3px; line-height: 1; border: 1px solid rgba(255,255,255,0.5);">T${item.tier}</div>` : '';
+
+                        itemsDisplay += `
+                            <div style="position: relative; width: 24px; height: 24px; background: rgba(0,0,0,0.4); border: 1px solid rgba(251, 191, 36, 0.6); border-radius: 4px; padding: 2px; display: flex; align-items: center; justify-content: center;">
+                                <img src="${imgUrl}"
+                                     alt="${item.itemName}"
+                                     title="${item.itemName} (${formatShort(item.totalValue)} gp)"
+                                     style="max-width: 100%; max-height: 100%; image-rendering: pixelated; object-fit: contain;"
+                                     onerror="this.style.display='none'; this.parentElement.innerHTML='<div style=\\'font-size: 0.6em; color: #fbbf24;\\'>💎</div>';">
+                                ${tierBadge}
+                            </div>
+                        `;
+                    });
+
+                    // Show "+X more" if there are remaining items
+                    if (remainingCount > 0) {
+                        itemsDisplay += `
+                            <div style="width: 24px; height: 24px; background: linear-gradient(135deg, rgba(251, 191, 36, 0.9), rgba(251, 146, 60, 0.9)); border: 1px solid rgba(255, 255, 255, 0.5); border-radius: 4px; display: flex; align-items: center; justify-content: center; font-size: 0.65em; font-weight: 900; color: white; text-shadow: 0 1px 2px rgba(0,0,0,0.8);">
+                                +${remainingCount}
+                            </div>
+                        `;
+                    }
+
+                    itemsDisplay += '</div>';
                 }
 
                 // Check if today
@@ -7505,11 +7559,11 @@ Member Name
                 const todayBorder = isToday ? 'border: 2px solid #22d3ee;' : '';
 
                 calendarHTML += `
-                    <div onclick="showDayItems('${dateStr}')" style="aspect-ratio: 1; background: ${bgColor}; border: 1px solid ${borderColor}; ${todayBorder} border-radius: 6px; display: flex; flex-direction: column; align-items: center; justify-content: center; cursor: pointer; transition: all 0.2s; padding: 4px;"
+                    <div onclick="showDayItems('${dateStr}')" style="aspect-ratio: 1; background: ${bgColor}; border: 1px solid ${borderColor}; ${todayBorder} border-radius: 6px; display: flex; flex-direction: column; align-items: center; justify-content: flex-start; cursor: pointer; transition: all 0.2s; padding: 4px; overflow: hidden;"
                          onmouseover="this.style.transform='scale(1.1)'; this.style.zIndex='10';"
                          onmouseout="this.style.transform=''; this.style.zIndex='';">
-                        <div style="font-size: 0.75em; font-weight: 700; color: var(--text-primary);">${day}</div>
-                        ${itemCountText}
+                        <div style="font-size: 0.75em; font-weight: 700; color: var(--text-primary); margin-bottom: 2px;">${day}</div>
+                        ${itemsDisplay}
                     </div>
                 `;
             }
@@ -7530,15 +7584,35 @@ Member Name
 
             const date = new Date(dateStr);
             const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-            titleDiv.textContent = `💎 Items dropped on ${monthNames[date.getMonth()]} ${date.getDate()}, ${date.getFullYear()}`;
+            const totalDayValue = dayLoots.reduce((sum, item) => sum + item.totalValue, 0);
+            titleDiv.textContent = `💎 Items dropped on ${monthNames[date.getMonth()]} ${date.getDate()}, ${date.getFullYear()} - Total: ${formatShort(totalDayValue)} gp`;
 
-            let itemsHTML = '<div style="display: flex; flex-direction: column; gap: 6px;">';
+            let itemsHTML = '<div style="display: flex; flex-direction: column; gap: 8px;">';
             dayLoots.forEach(item => {
-                const tierDisplay = item.tier && item.tier > 0 ? ` [T${item.tier}]` : '';
+                const imgUrl = getTibiaItemImageUrl(item.itemName);
+                const tierDisplay = item.tier && item.tier > 0 ? `<span style="background: linear-gradient(135deg, #fbbf24, #f59e0b); color: white; font-size: 0.7em; font-weight: 900; padding: 2px 6px; border-radius: 4px; margin-left: 6px; border: 1px solid rgba(255,255,255,0.5);">T${item.tier}</span>` : '';
+
                 itemsHTML += `
-                    <div style="background: rgba(251, 191, 36, 0.15); padding: 6px; border-radius: 4px; border-left: 2px solid #fbbf24;">
-                        <div style="font-weight: 700; color: #fbbf24; font-size: 0.85em;">${item.itemName}${tierDisplay}</div>
-                        <div style="color: var(--text-secondary); font-size: 0.75em;">${item.quantity}x @ ${formatShort(item.pricePerUnit)} gp = ${formatShort(item.totalValue)} gp</div>
+                    <div style="background: linear-gradient(135deg, rgba(251, 191, 36, 0.2), rgba(251, 191, 36, 0.1)); padding: 10px; border-radius: 8px; border: 2px solid rgba(251, 191, 36, 0.3); display: flex; align-items: center; gap: 12px; transition: all 0.2s;"
+                         onmouseover="this.style.transform='translateX(4px)'; this.style.borderColor='rgba(251, 191, 36, 0.6)';"
+                         onmouseout="this.style.transform=''; this.style.borderColor='rgba(251, 191, 36, 0.3)';">
+                        <div style="width: 48px; height: 48px; background: rgba(0,0,0,0.4); border: 2px solid rgba(251, 191, 36, 0.8); border-radius: 6px; padding: 4px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                            <img src="${imgUrl}"
+                                 alt="${item.itemName}"
+                                 style="max-width: 100%; max-height: 100%; image-rendering: pixelated; object-fit: contain;"
+                                 onerror="this.style.display='none'; this.parentElement.innerHTML='<div style=\\'font-size: 1.5em;\\'>💎</div>';">
+                        </div>
+                        <div style="flex: 1; min-width: 0;">
+                            <div style="font-weight: 700; color: #fbbf24; font-size: 0.95em; display: flex; align-items: center; flex-wrap: wrap; gap: 4px; margin-bottom: 4px;">
+                                ${item.itemName}
+                                ${tierDisplay}
+                            </div>
+                            <div style="color: var(--text-secondary); font-size: 0.8em; display: flex; gap: 8px; flex-wrap: wrap;">
+                                <span>📦 ${item.quantity}x</span>
+                                <span>💰 ${formatShort(item.pricePerUnit)} gp each</span>
+                                <span style="color: #fbbf24; font-weight: 700;">= ${formatShort(item.totalValue)} gp</span>
+                            </div>
+                        </div>
                     </div>
                 `;
             });
