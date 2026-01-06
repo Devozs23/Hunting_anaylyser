@@ -3687,6 +3687,9 @@ Member Name
 
                 document.getElementById('huntData').value = '';
 
+                // Update preview with parsed data
+                updatePreview();
+
                 const profit = loot - supplies;
                 showNotification(`✅ Data parsed! Profit: ${formatNumber(profit)} gp`, 'success');
 
@@ -3810,10 +3813,10 @@ Member Name
                 updateDisplay();
                 updateGoalsProgress();
                 updateItemFarmingGoalsFromHunt(hunt); // Auto-update item farming goals
-                clearForm();
 
                 showNotification(`✅ Hunt added! Profit: ${formatProfit(profit)}`, 'success');
                 switchMainTab('dashboard');
+                clearForm();
             } catch (error) {
                 console.error('❌ Error in addHunt():', error);
                 showNotification('❌ Error adding hunt: ' + error.message, 'error');
