@@ -2474,43 +2474,43 @@ Member Name
                             </div>
                         </div>
 
-                        <!-- Manual Entry - EXTRA LARGE -->
-                        <div class="card" style="padding: 18px; background: rgba(90, 70, 80, 0.08); border-left: 3px solid rgba(180, 130, 150, 0.5);">
-                            <h4 style="color: #d89fbf; margin: 0 0 10px 0; font-size: 1.15em;">✏️ Manual Entry</h4>
-                            <div class="input-group" style="margin: 0 0 12px 0;">
-                                <label style="font-size: 0.95em; margin-bottom: 5px; font-weight: 600;">💰 Total Team Loot (gp)</label>
-                                <input type="number" id="teamLoot" placeholder="Total loot" style="padding: 11px 12px; font-size: 1em;">
+                        <!-- Manual Entry -->
+                        <div class="card" style="padding: 10px; background: linear-gradient(135deg, rgba(59, 130, 246, 0.05), rgba(147, 51, 234, 0.05)); border-left: 3px solid rgba(59, 130, 246, 0.4);">
+                            <h4 style="color: #60a5fa; margin: 0 0 8px 0; font-size: 0.95em; font-weight: 700;">✏️ Manual Entry</h4>
+                            <div class="input-group" style="margin: 0 0 8px 0;">
+                                <label style="font-size: 0.75em; margin-bottom: 3px; font-weight: 600; color: #93c5fd;">💰 Total Team Loot (gp)</label>
+                                <input type="number" id="teamLoot" placeholder="Total loot" style="padding: 6px 8px; font-size: 0.85em;">
                             </div>
 
-                            <div style="background: rgba(0,0,0,0.15); padding: 14px; border-radius: 10px;">
-                                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
-                                    <h5 style="color: var(--text-primary); margin: 0; font-size: 1em; font-weight: 600;">👥 Members</h5>
-                                    <button class="btn-primary" onclick="addTeamMember()" style="padding: 6px 12px; font-size: 0.9em;">➕</button>
+                            <div style="background: rgba(0,0,0,0.1); padding: 8px; border-radius: 6px;">
+                                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                                    <h5 style="color: var(--text-primary); margin: 0; font-size: 0.85em; font-weight: 600;">👥 Members</h5>
+                                    <button class="btn-primary" onclick="addTeamMember()" style="padding: 4px 8px; font-size: 0.75em;">➕</button>
                                 </div>
 
                                 <div id="teamMembers">
-                                    <div class="team-member" id="member1" style="background: rgba(80, 110, 90, 0.15); border: 1px solid rgba(100, 150, 120, 0.3); border-radius: 8px; padding: 12px; margin-bottom: 10px;">
-                                        <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 10px;">
+                                    <div class="team-member" id="member1" style="background: rgba(16, 185, 129, 0.08); border: 1px solid rgba(16, 185, 129, 0.25); border-radius: 6px; padding: 8px; margin-bottom: 6px;">
+                                        <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 6px;">
                                             <div class="input-group" style="margin: 0;">
-                                                <label style="font-size: 0.85em; margin-bottom: 4px; font-weight: 600;">Name</label>
-                                                <input type="text" class="member-name" placeholder="Player" style="padding: 9px 10px; font-size: 0.95em;">
+                                                <label style="font-size: 0.7em; margin-bottom: 2px; font-weight: 600; color: #6ee7b7;">Name</label>
+                                                <input type="text" class="member-name" placeholder="Player" style="padding: 6px 8px; font-size: 0.8em;">
                                             </div>
                                             <div class="input-group" style="margin: 0;">
-                                                <label style="font-size: 0.85em; margin-bottom: 4px; font-weight: 600;">Supplies</label>
-                                                <input type="number" class="member-supplies" placeholder="0" style="padding: 9px 10px; font-size: 0.95em;">
+                                                <label style="font-size: 0.7em; margin-bottom: 2px; font-weight: 600; color: #6ee7b7;">Supplies</label>
+                                                <input type="number" class="member-supplies" placeholder="0" style="padding: 6px 8px; font-size: 0.8em;">
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
 
-                            <button class="btn-success" onclick="calculateTeamHunt()" style="margin-top: 12px; width: 100%; padding: 12px; font-size: 1.05em; font-weight: 600;">💰 Calculate</button>
+                            <button class="btn-success" onclick="calculateTeamHunt()" style="margin-top: 8px; width: 100%; padding: 8px; font-size: 0.9em; font-weight: 600;">💰 Calculate</button>
                         </div>
 
-                        <!-- Results - EXTRA LARGE -->
+                        <!-- Results -->
                         <div id="teamResults" style="display: none;">
-                            <div class="card" style="padding: 18px; background: rgba(90, 70, 80, 0.08); border-left: 3px solid rgba(180, 130, 150, 0.5); margin-top: 16px;">
-                                <h4 style="color: #d89fbf; margin: 0 0 12px 0; font-size: 1.15em;">💎 Results</h4>
+                            <div class="card" style="padding: 10px; background: linear-gradient(135deg, rgba(16, 185, 129, 0.05), rgba(5, 150, 105, 0.05)); border-left: 3px solid rgba(16, 185, 129, 0.4); margin-top: 8px;">
+                                <h4 style="color: #34d399; margin: 0 0 8px 0; font-size: 0.95em; font-weight: 700;">💎 Results</h4>
                                 <div id="teamResultsContent"></div>
                             </div>
                         </div>
@@ -4240,15 +4240,15 @@ Member Name
             memberDiv.className = 'team-member';
             memberDiv.id = `member${teamMemberCount}`;
             memberDiv.innerHTML = `
-                <div style="background: rgba(80, 110, 90, 0.15); border: 1px solid rgba(100, 150, 120, 0.3); border-radius: 8px; padding: 12px; margin-bottom: 10px;">
-                    <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 10px;">
+                <div style="background: rgba(16, 185, 129, 0.08); border: 1px solid rgba(16, 185, 129, 0.25); border-radius: 6px; padding: 8px; margin-bottom: 6px;">
+                    <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 6px;">
                         <div class="input-group" style="margin: 0;">
-                            <label style="font-size: 0.85em; margin-bottom: 4px; font-weight: 600;">Name</label>
-                            <input type="text" class="member-name" placeholder="Player" style="padding: 9px 10px; font-size: 0.95em;">
+                            <label style="font-size: 0.7em; margin-bottom: 2px; font-weight: 600; color: #6ee7b7;">Name</label>
+                            <input type="text" class="member-name" placeholder="Player" style="padding: 6px 8px; font-size: 0.8em;">
                         </div>
                         <div class="input-group" style="margin: 0;">
-                            <label style="font-size: 0.85em; margin-bottom: 4px; font-weight: 600;">Supplies</label>
-                            <input type="number" class="member-supplies" placeholder="0" style="padding: 9px 10px; font-size: 0.95em;">
+                            <label style="font-size: 0.7em; margin-bottom: 2px; font-weight: 600; color: #6ee7b7;">Supplies</label>
+                            <input type="number" class="member-supplies" placeholder="0" style="padding: 6px 8px; font-size: 0.8em;">
                         </div>
                     </div>
                 </div>
@@ -4284,54 +4284,54 @@ Member Name
 
             let resultsHTML = `
                 <!-- Summary Cards -->
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 15px; margin-bottom: 25px;">
-                    <div style="background: rgba(168, 85, 247, 0.1); backdrop-filter: blur(10px); border: 2px solid rgba(168, 85, 247, 0.3); border-radius: 15px; padding: 22px; text-align: center;">
-                        <div style="font-size: 2.8em; margin-bottom: 8px;">💰</div>
-                        <div style="font-size: 2em; font-weight: 900; color: #a855f7; text-shadow: 0 2px 10px rgba(168, 85, 247, 0.4);">${formatNumber(totalLoot)}</div>
-                        <div style="font-size: 0.85em; color: var(--text-secondary); text-transform: uppercase; margin-top: 5px;">Total Loot</div>
+                <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 6px; margin-bottom: 10px;">
+                    <div style="background: linear-gradient(135deg, rgba(168, 85, 247, 0.15), rgba(139, 92, 246, 0.1)); border: 1.5px solid rgba(168, 85, 247, 0.4); border-radius: 8px; padding: 10px; text-align: center;">
+                        <div style="font-size: 1.4em; margin-bottom: 2px;">💰</div>
+                        <div style="font-size: 1.1em; font-weight: 800; color: #c084fc;">${formatNumber(totalLoot)}</div>
+                        <div style="font-size: 0.65em; color: var(--text-secondary); text-transform: uppercase; margin-top: 2px;">Total Loot</div>
                     </div>
-                    <div style="background: rgba(220, 53, 69, 0.1); backdrop-filter: blur(10px); border: 2px solid rgba(220, 53, 69, 0.3); border-radius: 15px; padding: 22px; text-align: center;">
-                        <div style="font-size: 2.8em; margin-bottom: 8px;">💸</div>
-                        <div style="font-size: 2em; font-weight: 900; color: #dc3545; text-shadow: 0 2px 10px rgba(220, 53, 69, 0.4);">${formatNumber(totalSupplies)}</div>
-                        <div style="font-size: 0.85em; color: var(--text-secondary); text-transform: uppercase; margin-top: 5px;">Total Supplies</div>
+                    <div style="background: linear-gradient(135deg, rgba(239, 68, 68, 0.15), rgba(220, 38, 38, 0.1)); border: 1.5px solid rgba(239, 68, 68, 0.4); border-radius: 8px; padding: 10px; text-align: center;">
+                        <div style="font-size: 1.4em; margin-bottom: 2px;">💸</div>
+                        <div style="font-size: 1.1em; font-weight: 800; color: #f87171;">${formatNumber(totalSupplies)}</div>
+                        <div style="font-size: 0.65em; color: var(--text-secondary); text-transform: uppercase; margin-top: 2px;">Supplies</div>
                     </div>
-                    <div style="background: rgba(40, 167, 69, 0.1); backdrop-filter: blur(10px); border: 2px solid rgba(40, 167, 69, 0.3); border-radius: 15px; padding: 22px; text-align: center;">
-                        <div style="font-size: 2.8em; margin-bottom: 8px;">✨</div>
-                        <div style="font-size: 2em; font-weight: 900; color: #28a745; text-shadow: 0 2px 10px rgba(40, 167, 69, 0.4);">${formatNumber(netProfit)}</div>
-                        <div style="font-size: 0.85em; color: var(--text-secondary); text-transform: uppercase; margin-top: 5px;">Net Profit</div>
+                    <div style="background: linear-gradient(135deg, rgba(16, 185, 129, 0.15), rgba(5, 150, 105, 0.1)); border: 1.5px solid rgba(16, 185, 129, 0.4); border-radius: 8px; padding: 10px; text-align: center;">
+                        <div style="font-size: 1.4em; margin-bottom: 2px;">✨</div>
+                        <div style="font-size: 1.1em; font-weight: 800; color: #34d399;">${formatNumber(netProfit)}</div>
+                        <div style="font-size: 0.65em; color: var(--text-secondary); text-transform: uppercase; margin-top: 2px;">Net Profit</div>
                     </div>
-                    <div style="background: rgba(34, 211, 238, 0.1); backdrop-filter: blur(10px); border: 2px solid rgba(34, 211, 238, 0.3); border-radius: 15px; padding: 22px; text-align: center;">
-                        <div style="font-size: 2.8em; margin-bottom: 8px;">🎯</div>
-                        <div style="font-size: 2em; font-weight: 900; color: #22d3ee; text-shadow: 0 2px 10px rgba(34, 211, 238, 0.4);">${formatNumber(Math.round(splitPerMember))}</div>
-                        <div style="font-size: 0.85em; color: var(--text-secondary); text-transform: uppercase; margin-top: 5px;">Per Member</div>
+                    <div style="background: linear-gradient(135deg, rgba(59, 130, 246, 0.15), rgba(37, 99, 235, 0.1)); border: 1.5px solid rgba(59, 130, 246, 0.4); border-radius: 8px; padding: 10px; text-align: center;">
+                        <div style="font-size: 1.4em; margin-bottom: 2px;">🎯</div>
+                        <div style="font-size: 1.1em; font-weight: 800; color: #60a5fa;">${formatNumber(Math.round(splitPerMember))}</div>
+                        <div style="font-size: 0.65em; color: var(--text-secondary); text-transform: uppercase; margin-top: 2px;">Per Member</div>
                     </div>
                 </div>
 
-                <h3 style="margin-bottom: 15px; font-size: 1.4em;">💸 Payment Breakdown</h3>
+                <h3 style="margin-bottom: 8px; font-size: 0.9em; font-weight: 700; color: #a78bfa;">💸 Payment Breakdown</h3>
             `;
 
             members.forEach(member => {
                 const memberProfit = splitPerMember - member.supplies;
                 const isPositive = memberProfit >= 0;
                 const action = isPositive ? 'Receives' : 'Pays';
-                const bgColor = isPositive ? 'rgba(40, 167, 69, 0.1)' : 'rgba(220, 53, 69, 0.1)';
-                const borderColor = isPositive ? 'rgba(40, 167, 69, 0.3)' : 'rgba(220, 53, 69, 0.3)';
-                const textColor = isPositive ? '#28a745' : '#dc3545';
+                const bgGradient = isPositive ? 'linear-gradient(135deg, rgba(16, 185, 129, 0.12), rgba(5, 150, 105, 0.08))' : 'linear-gradient(135deg, rgba(239, 68, 68, 0.12), rgba(220, 38, 38, 0.08))';
+                const borderColor = isPositive ? 'rgba(16, 185, 129, 0.35)' : 'rgba(239, 68, 68, 0.35)';
+                const textColor = isPositive ? '#34d399' : '#f87171';
                 const emoji = isPositive ? '💰' : '💸';
 
                 resultsHTML += `
-                    <div style="background: ${bgColor}; backdrop-filter: blur(10px); border: 2px solid ${borderColor}; border-radius: 12px; padding: 18px; margin-bottom: 12px; transition: all 0.3s ease;" onmouseover="this.style.transform='translateX(5px)'; this.style.boxShadow='0 4px 12px rgba(0,0,0,0.15)';" onmouseout="this.style.transform=''; this.style.boxShadow='';">
+                    <div style="background: ${bgGradient}; border: 1.5px solid ${borderColor}; border-radius: 8px; padding: 8px 10px; margin-bottom: 6px; transition: all 0.2s ease;" onmouseover="this.style.transform='translateX(3px)'; this.style.borderColor='${isPositive ? 'rgba(16, 185, 129, 0.6)' : 'rgba(239, 68, 68, 0.6)'}';" onmouseout="this.style.transform=''; this.style.borderColor='${borderColor}';">
                         <div style="display: flex; justify-content: space-between; align-items: center;">
-                            <div style="display: flex; align-items: center; gap: 12px;">
-                                <div style="font-size: 1.8em;">${emoji}</div>
+                            <div style="display: flex; align-items: center; gap: 8px;">
+                                <div style="font-size: 1.2em;">${emoji}</div>
                                 <div>
-                                    <div style="font-size: 1.2em; font-weight: 700; color: var(--text-primary);">${member.name}</div>
-                                    <div style="font-size: 0.85em; color: var(--text-secondary);">Supplies: ${formatNumber(member.supplies)} gp</div>
+                                    <div style="font-size: 0.85em; font-weight: 700; color: var(--text-primary);">${member.name}</div>
+                                    <div style="font-size: 0.65em; color: var(--text-secondary);">Supplies: ${formatNumber(member.supplies)} gp</div>
                                 </div>
                             </div>
                             <div style="text-align: right;">
-                                <div style="font-size: 0.75em; color: var(--text-secondary); text-transform: uppercase; margin-bottom: 3px;">${action}</div>
-                                <div style="font-size: 1.5em; font-weight: 900; color: ${textColor};">${formatNumber(Math.abs(Math.round(memberProfit)))} gp</div>
+                                <div style="font-size: 0.6em; color: var(--text-secondary); text-transform: uppercase; margin-bottom: 2px;">${action}</div>
+                                <div style="font-size: 1em; font-weight: 800; color: ${textColor};">${formatNumber(Math.abs(Math.round(memberProfit)))} gp</div>
                             </div>
                         </div>
                     </div>
