@@ -5104,15 +5104,17 @@ Member Name
 
             // Change button to "Update Hunt"
             const addBtn = document.querySelector('#addHuntTab .btn-primary');
-            addBtn.textContent = '💾 Update Hunt';
-            addBtn.setAttribute('onclick', 'updateHunt()');
+            if (addBtn) {
+                addBtn.textContent = '💾 Update Hunt';
+                addBtn.setAttribute('onclick', 'updateHunt()');
 
-            // Add cancel button
-            const cancelBtn = document.createElement('button');
-            cancelBtn.className = 'btn-secondary';
-            cancelBtn.textContent = '❌ Cancel Edit';
-            cancelBtn.onclick = cancelEditHunt;
-            addBtn.parentElement.insertBefore(cancelBtn, addBtn.nextSibling);
+                // Add cancel button
+                const cancelBtn = document.createElement('button');
+                cancelBtn.className = 'btn-secondary';
+                cancelBtn.textContent = '❌ Cancel Edit';
+                cancelBtn.onclick = cancelEditHunt;
+                addBtn.parentElement.insertBefore(cancelBtn, addBtn.nextSibling);
+            }
 
             // Switch to Add Hunt tab
             switchMainTab('addHunt');
@@ -5179,13 +5181,15 @@ Member Name
 
             // Restore original button
             const addBtn = document.querySelector('#addHuntTab .btn-primary');
-            addBtn.textContent = '➕ Add Hunt';
-            addBtn.setAttribute('onclick', 'addHunt()');
+            if (addBtn) {
+                addBtn.textContent = '➕ Add Hunt';
+                addBtn.setAttribute('onclick', 'addHunt()');
 
-            // Remove cancel button
-            const cancelBtn = addBtn.nextSibling;
-            if (cancelBtn && cancelBtn.textContent.includes('Cancel')) {
-                cancelBtn.remove();
+                // Remove cancel button
+                const cancelBtn = addBtn.nextSibling;
+                if (cancelBtn && cancelBtn.textContent.includes('Cancel')) {
+                    cancelBtn.remove();
+                }
             }
         }
 
