@@ -4006,8 +4006,10 @@ Member Name
 
         // Theme Management - MEJORADO
         function toggleTheme() {
+            console.log('Toggle theme clicked! Current isDarkMode:', isDarkMode);
             isDarkMode = !isDarkMode;
             localStorage.setItem('darkMode', isDarkMode);
+            console.log('New isDarkMode:', isDarkMode);
             applyTheme();
 
             // Efecto ripple en el botón
@@ -4018,16 +4020,30 @@ Member Name
         }
 
         function applyTheme() {
+            console.log('Applying theme. isDarkMode:', isDarkMode);
             const toggle = document.getElementById('themeToggle');
+            const body = document.body;
+
             if (isDarkMode) {
-                document.body.classList.remove('light-theme');
-                document.body.removeAttribute('data-theme');
-                if (toggle) toggle.innerHTML = '🌙<span class="tooltiptext">Switch to Light Mode</span>';
+                body.classList.remove('light-theme');
+                body.removeAttribute('data-theme');
+                if (toggle) {
+                    toggle.innerHTML = '🌙';
+                    toggle.title = 'Switch to Light Mode';
+                }
+                console.log('Applied DARK theme');
             } else {
-                document.body.classList.add('light-theme');
-                document.body.setAttribute('data-theme', 'light');
-                if (toggle) toggle.innerHTML = '☀️<span class="tooltiptext">Switch to Dark Mode</span>';
+                body.classList.add('light-theme');
+                body.setAttribute('data-theme', 'light');
+                if (toggle) {
+                    toggle.innerHTML = '☀️';
+                    toggle.title = 'Switch to Dark Mode';
+                }
+                console.log('Applied LIGHT theme');
             }
+
+            console.log('Body classes:', body.className);
+            console.log('Body data-theme:', body.getAttribute('data-theme'));
         }
 
         // ========================================
