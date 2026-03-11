@@ -32,14 +32,16 @@
             --parchment: #F5E6C8;
         }
 
-        [data-theme="light"] {
-            --bg-gradient-start: #3D2B14;
-            --bg-gradient-end: #5C3D1E;
+        body[data-theme="light"] {
+            --bg-gradient-start: #8B7355;
+            --bg-gradient-end: #A0826D;
             --card-bg: rgba(245, 230, 195, 0.95);
             --card-bg-solid: #F5E6C3;
             --text-primary: #2C1810;
             --text-secondary: #5C3D1E;
-            --border-color: rgba(150, 100, 30, 0.4);
+            --border-color: rgba(150, 100, 30, 0.6);
+            --primary-color: #8B6914;
+            --secondary-color: #A0826D;
         }
 
         * {
@@ -1696,20 +1698,48 @@
         }
 
         body.light-theme {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background:
+                radial-gradient(ellipse at 20% 20%, rgba(212, 175, 55, 0.15) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 80%, rgba(184, 134, 11, 0.15) 0%, transparent 50%),
+                linear-gradient(160deg, #8B7355 0%, #9D8469 40%, #A0826D 100%);
         }
 
         body.light-theme .card {
-            background: rgba(255, 255, 255, 0.95);
-            color: #333;
+            background: var(--card-bg);
+            color: var(--text-primary);
+            border-color: var(--border-color);
         }
 
         body.light-theme .top-nav {
-            background: rgba(255, 255, 255, 0.25);
+            background: rgba(245, 230, 195, 0.3);
+            border-bottom: 2px solid rgba(150, 100, 30, 0.3);
         }
 
         body.light-theme .main-tabs {
-            background: rgba(255, 255, 255, 0.3);
+            background: rgba(245, 230, 195, 0.25);
+            border-bottom: 2px solid rgba(150, 100, 30, 0.3);
+        }
+
+        body.light-theme .main-tab {
+            color: #5C3D1E;
+        }
+
+        body.light-theme .main-tab.active {
+            background: rgba(212, 175, 55, 0.3);
+            color: #2C1810;
+            border-bottom: 3px solid #8B6914;
+        }
+
+        body.light-theme input,
+        body.light-theme textarea,
+        body.light-theme select {
+            background: rgba(255, 255, 255, 0.8);
+            color: #2C1810;
+            border-color: rgba(150, 100, 30, 0.4);
+        }
+
+        body.light-theme button {
+            color: #2C1810;
         }
 
         /* 6. BADGES Y ETIQUETAS */
