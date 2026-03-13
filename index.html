@@ -3755,9 +3755,14 @@ Member Name
 
         // Show welcome screen for first-time users
         function showWelcomeScreen() {
-            document.getElementById('welcomeUserId').textContent = userId;
-            document.getElementById('welcomeScreen').style.display = 'flex';
-            document.getElementById('appContainer').classList.remove('active');
+            const userIdEl = document.getElementById('welcomeUserId');
+            if (userIdEl) userIdEl.textContent = userId;
+
+            const welcomeEl = document.getElementById('welcomeScreen');
+            if (welcomeEl) welcomeEl.style.display = 'flex';
+
+            const containerEl = document.getElementById('appContainer');
+            if (containerEl) containerEl.classList.remove('active');
         }
 
         // Start using app (called from welcome screen button)
@@ -3907,10 +3912,14 @@ Member Name
 
         // Show main app
         function showApp() {
-            document.getElementById('welcomeScreen').style.display = 'none';
-            document.getElementById('appContainer').classList.add('active');
+            const welcomeEl = document.getElementById('welcomeScreen');
+            if (welcomeEl) welcomeEl.style.display = 'none';
 
-            document.getElementById('userIdDisplay').textContent = userId;
+            const containerEl = document.getElementById('appContainer');
+            if (containerEl) containerEl.classList.add('active');
+
+            const userIdEl = document.getElementById('userIdDisplay');
+            if (userIdEl) userIdEl.textContent = userId;
 
             updateDisplay();
             updateTCDisplay();
@@ -4239,16 +4248,25 @@ Member Name
 
         // App Display Functions
         function showApp() {
-            document.getElementById('welcomeScreen').style.display = 'none';
-            document.getElementById('appContainer').classList.add('active');
+            const welcomeEl = document.getElementById('welcomeScreen');
+            if (welcomeEl) welcomeEl.style.display = 'none';
+
+            const containerEl = document.getElementById('appContainer');
+            if (containerEl) containerEl.classList.add('active');
 
             // Display user ID in header
-            document.getElementById('userName').textContent = userId;
-            document.getElementById('userAvatar').textContent = '🎮';
+            const userNameEl = document.getElementById('userName');
+            if (userNameEl) userNameEl.textContent = userId;
+
+            const userAvatarEl = document.getElementById('userAvatar');
+            if (userAvatarEl) userAvatarEl.textContent = '🎮';
 
             // Load TC settings into inputs
-            document.getElementById('tcPriceInput').value = tcPrice || '';
-            document.getElementById('tibiaCharInput').value = tibiaCharName || '';
+            const tcPriceEl = document.getElementById('tcPriceInput');
+            if (tcPriceEl) tcPriceEl.value = tcPrice || '';
+
+            const tibiaCharEl = document.getElementById('tibiaCharInput');
+            if (tibiaCharEl) tibiaCharEl.value = tibiaCharName || '';
 
             updateDisplay();
             updateTCDisplay();
@@ -4462,7 +4480,8 @@ Member Name
         }
 
         function closeClearDataModal() {
-            document.getElementById('clearDataModal').style.display = 'none';
+            const modalEl = document.getElementById('clearDataModal');
+            if (modalEl) modalEl.style.display = 'none';
         }
 
         function confirmClearAllData() {
@@ -4480,16 +4499,23 @@ Member Name
         // Share Code Functions
         function showShareCodeModal() {
             const shareCode = generateShareCode();
-            document.getElementById('shareCodeDisplay').textContent = shareCode;
-            document.getElementById('shareCodeModal').style.display = 'flex';
+            const displayEl = document.getElementById('shareCodeDisplay');
+            if (displayEl) displayEl.textContent = shareCode;
+
+            const modalEl = document.getElementById('shareCodeModal');
+            if (modalEl) modalEl.style.display = 'flex';
         }
 
         function closeShareCodeModal() {
-            document.getElementById('shareCodeModal').style.display = 'none';
+            const modalEl = document.getElementById('shareCodeModal');
+            if (modalEl) modalEl.style.display = 'none';
         }
 
         function copyShareCode() {
-            const shareCode = document.getElementById('shareCodeDisplay').textContent;
+            const displayEl = document.getElementById('shareCodeDisplay');
+            if (!displayEl) return;
+
+            const shareCode = displayEl.textContent;
             navigator.clipboard.writeText(shareCode).then(() => {
                 showNotification('📋 Share Code copied to clipboard!', 'success');
             }).catch(err => {
@@ -4499,12 +4525,16 @@ Member Name
         }
 
         function showRestoreCodeModal() {
-            document.getElementById('restoreCodeInput').value = '';
-            document.getElementById('restoreCodeModal').style.display = 'flex';
+            const inputEl = document.getElementById('restoreCodeInput');
+            if (inputEl) inputEl.value = '';
+
+            const modalEl = document.getElementById('restoreCodeModal');
+            if (modalEl) modalEl.style.display = 'flex';
         }
 
         function closeRestoreCodeModal() {
-            document.getElementById('restoreCodeModal').style.display = 'none';
+            const modalEl = document.getElementById('restoreCodeModal');
+            if (modalEl) modalEl.style.display = 'none';
         }
 
         function restoreFromShareCodeUI() {
@@ -5017,13 +5047,21 @@ Member Name
 
             if (currentGold >= targetGold) {
                 showNotification('🎉 You already have enough gold!', 'success');
-                document.getElementById('goldGoalResults').style.display = 'block';
-                document.getElementById('goldGoalProgressBar').style.width = '100%';
-                document.getElementById('goldGoalProgressText').textContent = '100%';
-                document.getElementById('goldGoalRemaining').textContent = '0 gp remaining';
-                document.getElementById('goldGoalDaysLeft').textContent = '0';
-                document.getElementById('goldGoalETA').textContent = 'Today!';
-                document.getElementById('goldGoalDailyAvg').textContent = '-';
+                const resultsEl = document.getElementById('goldGoalResults');
+                const progressBarEl = document.getElementById('goldGoalProgressBar');
+                const progressTextEl = document.getElementById('goldGoalProgressText');
+                const remainingEl = document.getElementById('goldGoalRemaining');
+                const daysLeftEl = document.getElementById('goldGoalDaysLeft');
+                const etaEl = document.getElementById('goldGoalETA');
+                const dailyAvgEl = document.getElementById('goldGoalDailyAvg');
+
+                if (resultsEl) resultsEl.style.display = 'block';
+                if (progressBarEl) progressBarEl.style.width = '100%';
+                if (progressTextEl) progressTextEl.textContent = '100%';
+                if (remainingEl) remainingEl.textContent = '0 gp remaining';
+                if (daysLeftEl) daysLeftEl.textContent = '0';
+                if (etaEl) etaEl.textContent = 'Today!';
+                if (dailyAvgEl) dailyAvgEl.textContent = '-';
                 return;
             }
 
@@ -5067,13 +5105,21 @@ Member Name
             const etaStr = eta.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
 
             // Update UI
-            document.getElementById('goldGoalResults').style.display = 'block';
-            document.getElementById('goldGoalProgressBar').style.width = progress.toFixed(1) + '%';
-            document.getElementById('goldGoalProgressText').textContent = progress.toFixed(1) + '%';
-            document.getElementById('goldGoalRemaining').textContent = formatShort(remaining) + ' gp remaining';
-            document.getElementById('goldGoalDaysLeft').textContent = daysNeeded;
-            document.getElementById('goldGoalETA').textContent = etaStr;
-            document.getElementById('goldGoalDailyAvg').textContent = formatShort(dailyAvg) + '/day';
+            const resultsEl = document.getElementById('goldGoalResults');
+            const progressBarEl = document.getElementById('goldGoalProgressBar');
+            const progressTextEl = document.getElementById('goldGoalProgressText');
+            const remainingEl = document.getElementById('goldGoalRemaining');
+            const daysLeftEl = document.getElementById('goldGoalDaysLeft');
+            const etaEl = document.getElementById('goldGoalETA');
+            const dailyAvgEl = document.getElementById('goldGoalDailyAvg');
+
+            if (resultsEl) resultsEl.style.display = 'block';
+            if (progressBarEl) progressBarEl.style.width = progress.toFixed(1) + '%';
+            if (progressTextEl) progressTextEl.textContent = progress.toFixed(1) + '%';
+            if (remainingEl) remainingEl.textContent = formatShort(remaining) + ' gp remaining';
+            if (daysLeftEl) daysLeftEl.textContent = daysNeeded;
+            if (etaEl) etaEl.textContent = etaStr;
+            if (dailyAvgEl) dailyAvgEl.textContent = formatShort(dailyAvg) + '/day';
 
             // Show notification with summary
             const goalText = goalName ? ` for ${goalName}` : '';
@@ -5135,25 +5181,34 @@ Member Name
             currentItemGoalId = goalId;
 
             // Update modal title
-            document.getElementById('addGoldModalTitle').textContent = `Add Gold to ${goal.itemName}`;
-            document.getElementById('addGoldModalSubtitle').textContent = `Current: ${formatShort(goal.currentGold)} / ${formatShort(goal.targetGold)} (${((goal.currentGold / goal.targetGold) * 100).toFixed(1)}%)`;
+            const titleEl = document.getElementById('addGoldModalTitle');
+            const subtitleEl = document.getElementById('addGoldModalSubtitle');
+            if (titleEl) titleEl.textContent = `Add Gold to ${goal.itemName}`;
+            if (subtitleEl) subtitleEl.textContent = `Current: ${formatShort(goal.currentGold)} / ${formatShort(goal.targetGold)} (${((goal.currentGold / goal.targetGold) * 100).toFixed(1)}%)`;
 
             // Clear inputs
-            document.getElementById('addGoldAmountInput').value = '';
-            document.getElementById('addGoldNoteInput').value = '';
-            document.getElementById('addGoldPreview').textContent = '';
+            const amountInputEl = document.getElementById('addGoldAmountInput');
+            const noteInputEl = document.getElementById('addGoldNoteInput');
+            if (amountInputEl) amountInputEl.value = '';
+            if (noteInputEl) noteInputEl.value = '';
+
+            const previewEl = document.getElementById('addGoldPreview');
+            if (previewEl) previewEl.textContent = '';
 
             // Show modal
-            document.getElementById('addGoldItemModal').style.display = 'flex';
+            const modalEl = document.getElementById('addGoldItemModal');
+            if (modalEl) modalEl.style.display = 'flex';
 
             // Focus on amount input
             setTimeout(() => {
-                document.getElementById('addGoldAmountInput').focus();
+                const focusEl = document.getElementById('addGoldAmountInput');
+                if (focusEl) focusEl.focus();
             }, 100);
         }
 
         function closeAddGoldItemModal() {
-            document.getElementById('addGoldItemModal').style.display = 'none';
+            const modalEl = document.getElementById('addGoldItemModal');
+            if (modalEl) modalEl.style.display = 'none';
             currentItemGoalId = null;
         }
 
