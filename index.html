@@ -3241,7 +3241,8 @@ Member Name
 
                         <div class="input-group" style="margin: 0;">
                             <label style="font-size: 0.9em; margin-bottom: 4px; color: #D4AF37; font-weight: 700;">Target</label>
-                            <input type="number" id="goalTarget" placeholder="Target" style="padding: 8px 12px; font-size: 0.95em; background: rgba(0, 0, 0, 0.4); border: 2px solid rgba(212, 175, 55, 0.4); border-radius: 6px; color: #E8D5B7;">
+                            <input type="text" id="goalTarget" placeholder="e.g., 16kk, 50k, 1000000" oninput="formatGoalTargetInput(this)" style="padding: 8px 12px; font-size: 0.95em; background: rgba(0, 0, 0, 0.4); border: 2px solid rgba(212, 175, 55, 0.4); border-radius: 6px; color: #E8D5B7;">
+                            <div id="goalTargetPreview" style="margin-top: 4px; font-size: 0.8em; color: #D4AF37; font-weight: 600; min-height: 18px;"></div>
                         </div>
 
                         <div class="input-group" style="margin: 0;">
@@ -4963,7 +4964,7 @@ Member Name
         function addGoal() {
             const name = document.getElementById('goalName').value.trim();
             const type = document.getElementById('goalType').value;
-            const target = parseInt(document.getElementById('goalTarget').value) || 0;
+            const target = parsePrice(document.getElementById('goalTarget').value) || 0;
             const deadline = document.getElementById('goalDeadline').value;
 
             if (!name || !target) {
@@ -7498,6 +7499,29 @@ Member Name
             } else {
                 preview.textContent = '';
                 input.style.borderColor = '';
+            }
+        }
+
+        // Format goal target input as user types
+        function formatGoalTargetInput(input) {
+            const value = input.value.trim().toLowerCase();
+            const preview = document.getElementById('goalTargetPreview');
+
+            if (!value) {
+                preview.textContent = '';
+                input.style.borderColor = 'rgba(212, 175, 55, 0.4)';
+                return;
+            }
+
+            // Parse the value
+            const parsed = parsePrice(value);
+
+            if (parsed > 0) {
+                preview.textContent = `= ${formatProfit(parsed)}`;
+                input.style.borderColor = '#D4AF37';
+            } else {
+                preview.textContent = '';
+                input.style.borderColor = 'rgba(212, 175, 55, 0.4)';
             }
         }
 
