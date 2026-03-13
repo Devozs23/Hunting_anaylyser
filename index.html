@@ -331,7 +331,7 @@
 
         .top-nav-actions {
             display: flex;
-            gap: 10px;
+            gap: 18px;
             align-items: center;
         }
 
@@ -3803,6 +3803,22 @@ Member Name
         function startUsingApp() {
             localStorage.removeItem('firstVisit'); // Clear first visit flag
             loadUserDataAndStart();
+        }
+
+        // Logout function - Clear all data and restart
+        function handleLogout() {
+            if (confirm('⚠️ Are you sure you want to logout?\n\nThis will clear all your local data and you will need to restore from a share code to get it back.')) {
+                // Clear all localStorage
+                localStorage.clear();
+
+                // Show notification
+                showNotification('👋 Logged out successfully! Refreshing...', 'info');
+
+                // Reload page after short delay
+                setTimeout(() => {
+                    window.location.reload();
+                }, 1000);
+            }
         }
 
         // Share Code System - For multi-device access
