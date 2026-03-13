@@ -3808,16 +3808,28 @@ Member Name
         // Logout function - Clear all data and restart
         function handleLogout() {
             if (confirm('⚠️ Are you sure you want to logout?\n\nThis will clear all your local data and you will need to restore from a share code to get it back.')) {
-                // Clear all localStorage
-                localStorage.clear();
+                try {
+                    // Clear all localStorage
+                    localStorage.clear();
 
-                // Show notification
-                showNotification('👋 Logged out successfully! Refreshing...', 'info');
+                    // Clear session data
+                    sessionStorage.clear();
 
-                // Reload page after short delay
-                setTimeout(() => {
-                    window.location.reload();
-                }, 1000);
+                    // Show notification
+                    showNotification('👋 Logged out successfully! Refreshing...', 'info');
+
+                    // Reload page immediately with forced reload
+                    setTimeout(() => {
+                        window.location.href = window.location.href.split('?')[0];
+                        window.location.reload(true);
+                    }, 500);
+                } catch (error) {
+                    console.error('Logout error:', error);
+                    showNotification('❌ Error during logout. Trying to refresh...', 'error');
+                    setTimeout(() => {
+                        window.location.reload(true);
+                    }, 1000);
+                }
             }
         }
 
@@ -6301,6 +6313,8 @@ Member Name
 
         function updateDailyTarget() {
             const section = document.getElementById('dailyTargetSection');
+            if (!section) return;
+
             if (!hunts || hunts.length === 0) {
                 section.style.display = 'none';
                 return;
@@ -8531,11 +8545,16 @@ Member Name
                 const avgProfitPerHunt = totalProfit / hunts.length;
                 const avgTCPerHunt = (avgProfitPerHunt / tcPrice).toFixed(1);
 
-                document.getElementById('tcTotalProfit').textContent = formatNumber(totalTC) + ' TC';
-                document.getElementById('tcMonthlyProfit').textContent = formatNumber(monthlyAvgTC) + ' TC';
-                document.getElementById('tcAvgProfit').textContent = avgTCPerHunt + ' TC';
+                const tcTotalProfitEl = document.getElementById('tcTotalProfit');
+                if (tcTotalProfitEl) tcTotalProfitEl.textContent = formatNumber(totalTC) + ' TC';
 
-                display.style.display = 'block';
+                const tcMonthlyProfitEl = document.getElementById('tcMonthlyProfit');
+                if (tcMonthlyProfitEl) tcMonthlyProfitEl.textContent = formatNumber(monthlyAvgTC) + ' TC';
+
+                const tcAvgProfitEl = document.getElementById('tcAvgProfit');
+                if (tcAvgProfitEl) tcAvgProfitEl.textContent = avgTCPerHunt + ' TC';
+
+                if (display) display.style.display = 'block';
 
                 // Calculate TODAY'S TCs - REAL TIME UPDATE
                 const today = new Date();
@@ -8548,19 +8567,28 @@ Member Name
                     const targetTC = 100; // Default target, can be customized
                     const progressPercent = Math.min((todayTC / targetTC) * 100, 100);
 
-                    document.getElementById('todayTCAmount').textContent = todayTC + ' TC';
-                    document.getElementById('todayTCProfit').textContent = formatProfit(todayProfit) + ' farmed';
-                    document.getElementById('todayTCBar').style.width = progressPercent + '%';
-                    document.getElementById('todayTCPercentage').textContent = Math.floor(progressPercent) + '%';
-                    document.getElementById('todayTCTarget').textContent = `Target: ${targetTC} TC`;
+                    const todayTCAmountEl = document.getElementById('todayTCAmount');
+                    if (todayTCAmountEl) todayTCAmountEl.textContent = todayTC + ' TC';
 
-                    todayProgress.style.display = 'block';
+                    const todayTCProfitEl = document.getElementById('todayTCProfit');
+                    if (todayTCProfitEl) todayTCProfitEl.textContent = formatProfit(todayProfit) + ' farmed';
+
+                    const todayTCBarEl = document.getElementById('todayTCBar');
+                    if (todayTCBarEl) todayTCBarEl.style.width = progressPercent + '%';
+
+                    const todayTCPercentageEl = document.getElementById('todayTCPercentage');
+                    if (todayTCPercentageEl) todayTCPercentageEl.textContent = Math.floor(progressPercent) + '%';
+
+                    const todayTCTargetEl = document.getElementById('todayTCTarget');
+                    if (todayTCTargetEl) todayTCTargetEl.textContent = `Target: ${targetTC} TC`;
+
+                    if (todayProgress) todayProgress.style.display = 'block';
                 } else {
-                    todayProgress.style.display = 'none';
+                    if (todayProgress) todayProgress.style.display = 'none';
                 }
             } else {
-                display.style.display = 'none';
-                todayProgress.style.display = 'none';
+                if (display) display.style.display = 'none';
+                if (todayProgress) todayProgress.style.display = 'none';
             }
 
             // Update daily TC tracking
