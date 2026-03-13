@@ -1742,6 +1742,37 @@
             color: #2C1810;
         }
 
+        /* Additional light theme improvements */
+        body.light-theme .btn-primary {
+            background: linear-gradient(135deg, #D4AF37 0%, #B8860B 100%);
+            color: #1a1410;
+            border-color: #8B6914;
+        }
+
+        body.light-theme .btn-secondary {
+            background: rgba(139, 105, 20, 0.2);
+            color: #5C3D1E;
+            border-color: rgba(139, 105, 20, 0.4);
+        }
+
+        body.light-theme h1,
+        body.light-theme h2,
+        body.light-theme h3,
+        body.light-theme h4,
+        body.light-theme h5 {
+            color: #2C1810;
+        }
+
+        body.light-theme .stat-card-hover {
+            background: rgba(245, 230, 195, 0.8) !important;
+            border-color: rgba(139, 105, 20, 0.5) !important;
+        }
+
+        body.light-theme .stat-card-hover:hover {
+            background: rgba(240, 220, 180, 0.9) !important;
+            border-color: rgba(139, 105, 20, 0.7) !important;
+        }
+
         /* 6. BADGES Y ETIQUETAS */
         .badge {
             display: inline-block;
@@ -3825,7 +3856,8 @@ Member Name
         let rareLoot = [];
         let itemFarmingGoals = []; // NEW: Item farming tracker with persistent progress
         let serverType = 'green';
-        let isDarkMode = localStorage.getItem('darkMode') !== 'false';
+        // Initialize theme - default to dark mode if not set
+        let isDarkMode = localStorage.getItem('darkMode') === null ? true : localStorage.getItem('darkMode') === 'true';
         let teamMemberCount = 1;
         let currentPeriod = 'daily';
         let tibiaCharName = '';
@@ -4021,7 +4053,7 @@ Member Name
         function toggleTheme() {
             console.log('Toggle theme clicked! Current isDarkMode:', isDarkMode);
             isDarkMode = !isDarkMode;
-            localStorage.setItem('darkMode', isDarkMode);
+            localStorage.setItem('darkMode', isDarkMode.toString());
             console.log('New isDarkMode:', isDarkMode);
             applyTheme();
 
@@ -4030,6 +4062,9 @@ Member Name
             if (toggle) {
                 createRipple(toggle);
             }
+
+            // Show notification
+            showNotification(`${isDarkMode ? '🌙' : '☀️'} ${isDarkMode ? 'Dark' : 'Light'} mode activated`, 'info');
         }
 
         function applyTheme() {
