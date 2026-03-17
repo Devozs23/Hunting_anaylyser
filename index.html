@@ -2610,6 +2610,7 @@
             <div class="main-tabs" role="tablist" aria-label="Main navigation">
                 <button class="main-tab active" onclick="switchMainTab('dashboard')" role="tab" aria-selected="true" aria-controls="dashboardTab">📊 Dashboard</button>
                 <button class="main-tab" onclick="switchMainTab('addHunt')" role="tab" aria-selected="false" aria-controls="addHuntTab">➕ Add Hunt</button>
+                <button class="main-tab" onclick="switchMainTab('duoHunt')" role="tab" aria-selected="false" aria-controls="duoHuntTab">👫 Duo Hunt</button>
                 <button class="main-tab" onclick="switchMainTab('teamHunt')" role="tab" aria-selected="false" aria-controls="teamHuntTab">👥 Team Hunt</button>
                 <button class="main-tab" onclick="switchMainTab('goals')" role="tab" aria-selected="false" aria-controls="goalsTab">🎯 Goals</button>
                 <button class="main-tab" onclick="switchMainTab('rareLoot')" role="tab" aria-selected="false" aria-controls="rareLootTab">💎 Rare Loot</button>
@@ -3086,6 +3087,120 @@ Supplies: 488..." style="min-height: 140px; font-family: monospace; font-size: 0
                         <li><strong>Manual Mode:</strong> Fill the numbers manually - watch the preview update in real-time!</li>
                         <li><strong>Notes:</strong> Add context like "rare spawn", "too crowded", or "best profit ever"</li>
                     </ul>
+                </div>
+            </div>
+
+            <!-- Duo Hunt Tab -->
+            <div class="main-tab-content" id="duoHuntTab">
+                <div class="card" style="padding: 18px;">
+                    <h3 style="font-family:'Cinzel',serif; color: #D4AF37; margin: 0 0 6px 0; font-size: 1.35em; letter-spacing: 0.5px;">👫 Duo Hunt Tracker</h3>
+                    <p style="font-family:'IM Fell English',serif; color: var(--text-secondary); font-size:0.85em; font-style:italic; margin:0;">Track your duo hunting sessions and cumulative profit over time</p>
+                </div>
+
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+                    <!-- Left: Add Session -->
+                    <div>
+                        <!-- Stats Overview -->
+                        <div class="card" style="padding: 14px; background: linear-gradient(135deg, rgba(212, 175, 55, 0.08), rgba(184, 134, 11, 0.08)); border-left: 3px solid rgba(212, 175, 55, 0.5); margin-bottom: 16px;">
+                            <h4 style="color: #D4AF37; margin: 0 0 10px 0; font-size: 1em;">📊 Overall Statistics</h4>
+                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+                                <div style="background: rgba(0,0,0,0.2); padding: 10px; border-radius: 6px; text-align: center;">
+                                    <div style="font-size: 0.75em; color: var(--text-secondary); margin-bottom: 4px;">Total Sessions</div>
+                                    <div id="duoTotalSessions" style="font-size: 1.3em; font-weight: 900; color: #7eb3d6;">0</div>
+                                </div>
+                                <div style="background: rgba(0,0,0,0.2); padding: 10px; border-radius: 6px; text-align: center;">
+                                    <div style="font-size: 0.75em; color: var(--text-secondary); margin-bottom: 4px;">Total Profit</div>
+                                    <div id="duoTotalProfit" style="font-size: 1.3em; font-weight: 900; color: #4CAF50;">0 gp</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Auto-Fill from Party Analyzer -->
+                        <div class="card" style="padding: 16px; background: rgba(70, 90, 110, 0.08); border-left: 3px solid rgba(100, 150, 200, 0.5); margin-bottom: 16px;">
+                            <h4 style="color: #7eb3d6; margin: 0 0 10px 0; font-size: 1.05em;">🔍 Quick Add - Party Analyzer</h4>
+                            <div class="input-group" style="margin: 0;">
+                                <label style="font-size: 0.9em; margin-bottom: 5px; font-weight: 600;">📋 Paste Party Hunt Data</label>
+                                <textarea id="duoHuntData" placeholder="Session data: From...
+Loot: 51,190,619
+Supplies: 21,395,364
+Member Name
+  Loot: 8,563,582..." style="min-height: 140px; font-family: monospace; font-size: 0.85em; padding: 12px;"></textarea>
+                                <button class="btn-primary" onclick="parseDuoHuntData()" style="margin-top: 10px; width: 100%; padding: 10px; font-size: 0.95em; font-weight: 600;">🔍 Auto-Fill & Add</button>
+                            </div>
+                        </div>
+
+                        <!-- Manual Entry -->
+                        <div class="card" style="padding: 16px; background: linear-gradient(135deg, rgba(59, 130, 246, 0.05), rgba(147, 51, 234, 0.05)); border-left: 3px solid rgba(59, 130, 246, 0.4);">
+                            <h4 style="color: #60a5fa; margin: 0 0 10px 0; font-size: 1.05em; font-weight: 700;">✏️ Manual Entry</h4>
+
+                            <div class="input-group" style="margin-bottom: 10px;">
+                                <label style="font-size: 0.85em; margin-bottom: 4px; font-weight: 600; color: var(--text-primary);">📅 Date</label>
+                                <input type="date" id="duoHuntDate" style="padding: 8px; font-size: 0.9em;">
+                            </div>
+
+                            <div class="input-group" style="margin-bottom: 10px;">
+                                <label style="font-size: 0.85em; margin-bottom: 4px; font-weight: 600; color: var(--text-primary);">🗺️ Location</label>
+                                <input type="text" id="duoHuntLocation" placeholder="Hunt location" style="padding: 8px; font-size: 0.9em;">
+                            </div>
+
+                            <div class="input-group" style="margin-bottom: 10px;">
+                                <label style="font-size: 0.85em; margin-bottom: 4px; font-weight: 600; color: #93c5fd;">💰 Loot (gp)</label>
+                                <input type="number" id="duoHuntLoot" placeholder="Total loot" style="padding: 8px; font-size: 0.9em;">
+                            </div>
+
+                            <div class="input-group" style="margin-bottom: 10px;">
+                                <label style="font-size: 0.85em; margin-bottom: 4px; font-weight: 600; color: #f87171;">🧪 Supplies (gp)</label>
+                                <input type="number" id="duoHuntSupplies" placeholder="Total supplies" style="padding: 8px; font-size: 0.9em;">
+                            </div>
+
+                            <div class="input-group" style="margin-bottom: 10px;">
+                                <label style="font-size: 0.85em; margin-bottom: 4px; font-weight: 600; color: #fbbf24;">⭐ Experience</label>
+                                <input type="number" id="duoHuntExp" placeholder="Total experience" style="padding: 8px; font-size: 0.9em;">
+                            </div>
+
+                            <div class="input-group" style="margin-bottom: 12px;">
+                                <label style="font-size: 0.85em; margin-bottom: 4px; font-weight: 600; color: var(--text-primary);">📝 Notes</label>
+                                <textarea id="duoHuntNotes" placeholder="Optional notes..." style="min-height: 60px; padding: 8px; font-size: 0.9em;"></textarea>
+                            </div>
+
+                            <button class="btn-success" onclick="addDuoHunt()" style="width: 100%; padding: 10px; font-size: 1em; font-weight: 600;">⚔️ Add Session</button>
+                        </div>
+                    </div>
+
+                    <!-- Right: Session History -->
+                    <div>
+                        <div class="card" style="padding: 16px;">
+                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+                                <h4 style="color: #7db89d; margin: 0; font-size: 1.15em;">📜 Session History</h4>
+                                <button onclick="clearAllDuoHunts()" class="btn-secondary" style="padding: 6px 12px; font-size: 0.8em;">🗑️ Clear All</button>
+                            </div>
+
+                            <!-- Daily Profit Summary -->
+                            <div id="duoDailyProfitSummary" style="background: rgba(0,0,0,0.2); padding: 12px; border-radius: 8px; margin-bottom: 12px; max-height: 250px; overflow-y: auto;">
+                                <div style="font-size: 0.85em; color: var(--text-secondary); margin-bottom: 8px; font-weight: 600;">Daily Profit Breakdown</div>
+                                <div id="duoDailyProfitContent" style="font-family: monospace; font-size: 0.8em; line-height: 1.8;">
+                                    <div style="color: var(--text-secondary); font-style: italic; text-align: center; padding: 20px;">No sessions recorded yet</div>
+                                </div>
+                            </div>
+
+                            <!-- Session List -->
+                            <div style="background: rgba(0,0,0,0.15); padding: 12px; border-radius: 8px; max-height: 400px; overflow-y: auto;">
+                                <div style="font-size: 0.85em; color: var(--text-secondary); margin-bottom: 8px; font-weight: 600;">All Sessions</div>
+                                <div id="duoHuntList">
+                                    <div style="color: var(--text-secondary); font-style: italic; text-align: center; padding: 20px;">No sessions recorded yet</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Chart Section (Optional Enhancement) -->
+                        <div class="card" style="padding: 16px; margin-top: 16px;">
+                            <h4 style="color: #D4AF37; margin: 0 0 10px 0; font-size: 1em;">📈 Profit Trend</h4>
+                            <div id="duoProfitChart" style="background: rgba(0,0,0,0.2); padding: 20px; border-radius: 8px; text-align: center; min-height: 200px;">
+                                <canvas id="duoProfitCanvas" style="max-width: 100%; max-height: 180px;"></canvas>
+                                <div id="duoChartPlaceholder" style="color: var(--text-secondary); font-style: italic; padding: 60px 20px;">Chart will appear after adding sessions</div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -4012,6 +4127,7 @@ Member Name
 
             updateDisplay();
             updateTCDisplay();
+            loadDuoHunts(); // Load duo hunt data
 
             // Setup Add Gold Modal event listeners
             setupAddGoldModalListeners();
@@ -4301,6 +4417,7 @@ Member Name
             const tabMap = {
                 'dashboard': 'dashboardTab',
                 'addHunt': 'addHuntTab',
+                'duoHunt': 'duoHuntTab',
                 'teamHunt': 'teamHuntTab',
                 'goals': 'goalsTab',
                 'rareLoot': 'rareLootTab',
@@ -4363,6 +4480,7 @@ Member Name
             updateDisplay();
             updateTCDisplay();
             updateDisplayUserId(); // Update userId in Share Code UI
+            loadDuoHunts(); // Load duo hunt data
         }
 
         // Hunt Management
@@ -5092,6 +5210,370 @@ Member Name
             if (teamResultsEl) {
                 teamResultsEl.style.display = 'block';
             }
+        }
+
+        // ============================================
+        // DUO HUNT SYSTEM
+        // ============================================
+
+        let duoHunts = [];
+
+        // Load duo hunts from localStorage
+        function loadDuoHunts() {
+            try {
+                const saved = localStorage.getItem('duoHunts_' + userId);
+                if (saved) {
+                    duoHunts = JSON.parse(saved);
+                    console.log('✅ Loaded', duoHunts.length, 'duo hunt sessions');
+                } else {
+                    duoHunts = [];
+                }
+            } catch (error) {
+                console.error('❌ Error loading duo hunts:', error);
+                duoHunts = [];
+            }
+            updateDuoHuntDisplay();
+        }
+
+        // Save duo hunts to localStorage
+        function saveDuoHunts() {
+            try {
+                localStorage.setItem('duoHunts_' + userId, JSON.stringify(duoHunts));
+                console.log('✅ Saved', duoHunts.length, 'duo hunt sessions');
+            } catch (error) {
+                console.error('❌ Error saving duo hunts:', error);
+            }
+        }
+
+        // Parse party hunt data (auto-fill from party analyzer)
+        function parseDuoHuntData() {
+            const data = document.getElementById('duoHuntData').value;
+
+            if (!data.trim()) {
+                showNotification('⚠️ Please paste party hunt data!', 'warning');
+                return;
+            }
+
+            try {
+                // Parse loot
+                const lootMatch = data.match(/Loot:\s*([\d,]+)/);
+                const loot = lootMatch ? parseInt(lootMatch[1].replace(/,/g, '')) : 0;
+
+                // Parse supplies
+                const suppliesMatch = data.match(/Supplies:\s*([\d,]+)/);
+                const supplies = suppliesMatch ? parseInt(suppliesMatch[1].replace(/,/g, '')) : 0;
+
+                if (loot === 0 && supplies === 0) {
+                    showNotification('⚠️ Could not parse hunt data. Please check format!', 'error');
+                    return;
+                }
+
+                // Add the duo hunt session
+                const profit = loot - supplies;
+                const session = {
+                    id: Date.now(),
+                    date: new Date().toISOString().split('T')[0],
+                    location: 'Party Hunt',
+                    loot: loot,
+                    supplies: supplies,
+                    profit: profit,
+                    experience: 0,
+                    notes: '',
+                    timestamp: Date.now()
+                };
+
+                duoHunts.unshift(session);
+                saveDuoHunts();
+                updateDuoHuntDisplay();
+
+                // Clear textarea
+                document.getElementById('duoHuntData').value = '';
+
+                showNotification(`✅ Session added! Profit: ${formatProfit(profit)}`, 'success');
+            } catch (error) {
+                console.error('❌ Error parsing duo hunt data:', error);
+                showNotification('❌ Error parsing data: ' + error.message, 'error');
+            }
+        }
+
+        // Add duo hunt session manually
+        function addDuoHunt() {
+            try {
+                const dateInput = document.getElementById('duoHuntDate').value;
+                const location = document.getElementById('duoHuntLocation').value.trim() || 'Unknown Location';
+                const loot = parseInt(document.getElementById('duoHuntLoot').value) || 0;
+                const supplies = parseInt(document.getElementById('duoHuntSupplies').value) || 0;
+                const experience = parseInt(document.getElementById('duoHuntExp').value) || 0;
+                const notes = document.getElementById('duoHuntNotes').value.trim();
+
+                // Validation
+                if (loot === 0 && supplies === 0 && experience === 0) {
+                    showNotification('⚠️ Please fill in at least one field!', 'warning');
+                    return;
+                }
+
+                const profit = loot - supplies;
+                const date = dateInput || new Date().toISOString().split('T')[0];
+
+                const session = {
+                    id: Date.now(),
+                    date: date,
+                    location: location,
+                    loot: loot,
+                    supplies: supplies,
+                    profit: profit,
+                    experience: experience,
+                    notes: notes,
+                    timestamp: Date.now()
+                };
+
+                duoHunts.unshift(session);
+                saveDuoHunts();
+                updateDuoHuntDisplay();
+
+                // Clear form
+                document.getElementById('duoHuntDate').value = '';
+                document.getElementById('duoHuntLocation').value = '';
+                document.getElementById('duoHuntLoot').value = '';
+                document.getElementById('duoHuntSupplies').value = '';
+                document.getElementById('duoHuntExp').value = '';
+                document.getElementById('duoHuntNotes').value = '';
+
+                showNotification(`✅ Session added! Profit: ${formatProfit(profit)}`, 'success');
+            } catch (error) {
+                console.error('❌ Error adding duo hunt:', error);
+                showNotification('❌ Error adding session: ' + error.message, 'error');
+            }
+        }
+
+        // Delete a duo hunt session
+        function deleteDuoHunt(id) {
+            if (!confirm('Are you sure you want to delete this session?')) {
+                return;
+            }
+
+            duoHunts = duoHunts.filter(h => h.id !== id);
+            saveDuoHunts();
+            updateDuoHuntDisplay();
+            showNotification('🗑️ Session deleted', 'success');
+        }
+
+        // Clear all duo hunts
+        function clearAllDuoHunts() {
+            if (!confirm('⚠️ Delete ALL duo hunt sessions?\n\nThis cannot be undone!')) {
+                return;
+            }
+
+            duoHunts = [];
+            saveDuoHunts();
+            updateDuoHuntDisplay();
+            showNotification('🗑️ All sessions cleared', 'success');
+        }
+
+        // Update the duo hunt display
+        function updateDuoHuntDisplay() {
+            // Update statistics
+            const totalSessions = duoHunts.length;
+            const totalProfit = duoHunts.reduce((sum, h) => sum + h.profit, 0);
+
+            const totalSessionsEl = document.getElementById('duoTotalSessions');
+            const totalProfitEl = document.getElementById('duoTotalProfit');
+
+            if (totalSessionsEl) {
+                totalSessionsEl.textContent = totalSessions;
+            }
+            if (totalProfitEl) {
+                totalProfitEl.textContent = formatProfit(totalProfit);
+                totalProfitEl.style.color = totalProfit >= 0 ? '#4CAF50' : '#e53935';
+            }
+
+            // Update daily profit summary
+            updateDuoDailyProfitSummary();
+
+            // Update session list
+            updateDuoHuntList();
+
+            // Update chart
+            updateDuoProfitChart();
+        }
+
+        // Update daily profit summary (cumulative by date)
+        function updateDuoDailyProfitSummary() {
+            const container = document.getElementById('duoDailyProfitContent');
+            if (!container) return;
+
+            if (duoHunts.length === 0) {
+                container.innerHTML = '<div style="color: var(--text-secondary); font-style: italic; text-align: center; padding: 20px;">No sessions recorded yet</div>';
+                return;
+            }
+
+            // Group by date and calculate daily totals
+            const dailyData = {};
+            duoHunts.forEach(hunt => {
+                const date = hunt.date;
+                if (!dailyData[date]) {
+                    dailyData[date] = {
+                        profit: 0,
+                        sessions: 0,
+                        loot: 0,
+                        supplies: 0
+                    };
+                }
+                dailyData[date].profit += hunt.profit;
+                dailyData[date].sessions += 1;
+                dailyData[date].loot += hunt.loot;
+                dailyData[date].supplies += hunt.supplies;
+            });
+
+            // Sort dates (newest first)
+            const sortedDates = Object.keys(dailyData).sort((a, b) => new Date(b) - new Date(a));
+
+            // Calculate cumulative profit
+            let cumulativeProfit = 0;
+            let html = '';
+
+            sortedDates.forEach(date => {
+                const data = dailyData[date];
+                cumulativeProfit += data.profit;
+
+                const profitColor = data.profit >= 0 ? '#4CAF50' : '#e53935';
+                const cumulativeColor = cumulativeProfit >= 0 ? '#4CAF50' : '#e53935';
+                const formattedDate = new Date(date + 'T00:00:00').toLocaleDateString('en-US', {
+                    month: 'short',
+                    day: 'numeric',
+                    year: 'numeric'
+                });
+
+                html += `
+                    <div style="background: rgba(0,0,0,0.15); border-left: 3px solid ${profitColor}; padding: 8px; margin-bottom: 6px; border-radius: 4px;">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px;">
+                            <div style="font-size: 0.85em; font-weight: 700; color: var(--text-primary);">${formattedDate}</div>
+                            <div style="font-size: 0.75em; color: var(--text-secondary);">${data.sessions} session${data.sessions > 1 ? 's' : ''}</div>
+                        </div>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; font-size: 0.75em;">
+                            <div>
+                                <div style="color: var(--text-secondary);">Daily Profit:</div>
+                                <div style="font-weight: 700; color: ${profitColor};">${formatProfit(data.profit)}</div>
+                            </div>
+                            <div>
+                                <div style="color: var(--text-secondary);">Cumulative:</div>
+                                <div style="font-weight: 700; color: ${cumulativeColor};">${formatProfit(cumulativeProfit)}</div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+
+            container.innerHTML = html;
+        }
+
+        // Update session list
+        function updateDuoHuntList() {
+            const container = document.getElementById('duoHuntList');
+            if (!container) return;
+
+            if (duoHunts.length === 0) {
+                container.innerHTML = '<div style="color: var(--text-secondary); font-style: italic; text-align: center; padding: 20px;">No sessions recorded yet</div>';
+                return;
+            }
+
+            let html = '';
+            duoHunts.forEach(hunt => {
+                const profitColor = hunt.profit >= 0 ? '#4CAF50' : '#e53935';
+                const formattedDate = new Date(hunt.date + 'T00:00:00').toLocaleDateString('en-US', {
+                    month: 'short',
+                    day: 'numeric',
+                    year: 'numeric'
+                });
+
+                html += `
+                    <div style="background: rgba(0,0,0,0.2); border: 1px solid rgba(212,175,55,0.2); border-radius: 6px; padding: 10px; margin-bottom: 8px;">
+                        <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 6px;">
+                            <div>
+                                <div style="font-size: 0.9em; font-weight: 700; color: var(--text-primary);">${hunt.location}</div>
+                                <div style="font-size: 0.75em; color: var(--text-secondary);">${formattedDate}</div>
+                            </div>
+                            <button onclick="deleteDuoHunt(${hunt.id})" style="background: rgba(220, 53, 69, 0.2); border: 1px solid rgba(220, 53, 69, 0.4); color: #f87171; padding: 4px 8px; border-radius: 4px; font-size: 0.75em; cursor: pointer;">🗑️</button>
+                        </div>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 6px; font-size: 0.75em;">
+                            <div>
+                                <div style="color: var(--text-secondary);">Loot:</div>
+                                <div style="font-weight: 700; color: #60a5fa;">${formatNumber(hunt.loot)}</div>
+                            </div>
+                            <div>
+                                <div style="color: var(--text-secondary);">Supplies:</div>
+                                <div style="font-weight: 700; color: #f87171;">${formatNumber(hunt.supplies)}</div>
+                            </div>
+                            <div>
+                                <div style="color: var(--text-secondary);">Profit:</div>
+                                <div style="font-weight: 700; color: ${profitColor};">${formatProfit(hunt.profit)}</div>
+                            </div>
+                        </div>
+                        ${hunt.experience > 0 ? `<div style="font-size: 0.75em; margin-top: 6px; color: var(--text-secondary);">⭐ Exp: ${formatNumber(hunt.experience)}</div>` : ''}
+                        ${hunt.notes ? `<div style="font-size: 0.75em; margin-top: 6px; color: var(--text-secondary); font-style: italic;">📝 ${hunt.notes}</div>` : ''}
+                    </div>
+                `;
+            });
+
+            container.innerHTML = html;
+        }
+
+        // Update profit chart (simple text-based for now)
+        function updateDuoProfitChart() {
+            const placeholder = document.getElementById('duoChartPlaceholder');
+            if (!placeholder) return;
+
+            if (duoHunts.length === 0) {
+                placeholder.style.display = 'block';
+                placeholder.textContent = 'Chart will appear after adding sessions';
+                return;
+            }
+
+            // Group by date
+            const dailyData = {};
+            duoHunts.forEach(hunt => {
+                const date = hunt.date;
+                if (!dailyData[date]) {
+                    dailyData[date] = 0;
+                }
+                dailyData[date] += hunt.profit;
+            });
+
+            // Sort dates
+            const sortedDates = Object.keys(dailyData).sort((a, b) => new Date(a) - new Date(b));
+
+            // Calculate cumulative profit for chart
+            let cumulativeProfit = 0;
+            const chartData = sortedDates.map(date => {
+                cumulativeProfit += dailyData[date];
+                return {
+                    date: new Date(date + 'T00:00:00').toLocaleDateString('en-US', { month: 'short', day: 'numeric' }),
+                    profit: cumulativeProfit
+                };
+            });
+
+            // Simple text representation
+            const maxProfit = Math.max(...chartData.map(d => Math.abs(d.profit)));
+            let html = '<div style="font-family: monospace; font-size: 0.7em; line-height: 1.6;">';
+
+            chartData.slice(-10).forEach(data => {
+                const barLength = Math.round((Math.abs(data.profit) / maxProfit) * 30);
+                const bar = '█'.repeat(Math.max(1, barLength));
+                const color = data.profit >= 0 ? '#4CAF50' : '#e53935';
+
+                html += `
+                    <div style="display: flex; gap: 8px; align-items: center; margin-bottom: 4px;">
+                        <div style="width: 60px; text-align: right; color: var(--text-secondary);">${data.date}</div>
+                        <div style="color: ${color};">${bar}</div>
+                        <div style="color: ${color}; font-weight: 700;">${formatProfit(data.profit)}</div>
+                    </div>
+                `;
+            });
+
+            html += '</div>';
+
+            placeholder.style.display = 'block';
+            placeholder.innerHTML = html;
         }
 
         // Goals System
