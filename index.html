@@ -6942,11 +6942,20 @@ Member Name
             sessionHuntsStart = hunts.length;
             sessionProfitStart = hunts.reduce((sum, h) => sum + h.profit, 0);
 
-            document.getElementById('sessionInactive').style.display = 'none';
-            document.getElementById('sessionActive').style.display = 'block';
-            document.getElementById('sessionStartBtn').style.display = 'none';
-            document.getElementById('sessionPauseBtn').style.display = 'inline-block';
-            document.getElementById('sessionStopBtn').style.display = 'inline-block';
+            const sessionInactiveEl = document.getElementById('sessionInactive');
+            if (sessionInactiveEl) sessionInactiveEl.style.display = 'none';
+
+            const sessionActiveEl = document.getElementById('sessionActive');
+            if (sessionActiveEl) sessionActiveEl.style.display = 'block';
+
+            const sessionStartBtnEl = document.getElementById('sessionStartBtn');
+            if (sessionStartBtnEl) sessionStartBtnEl.style.display = 'none';
+
+            const sessionPauseBtnEl = document.getElementById('sessionPauseBtn');
+            if (sessionPauseBtnEl) sessionPauseBtnEl.style.display = 'inline-block';
+
+            const sessionStopBtnEl = document.getElementById('sessionStopBtn');
+            if (sessionStopBtnEl) sessionStopBtnEl.style.display = 'inline-block';
 
             sessionInterval = setInterval(updateSessionTimer, 1000);
             showNotification('⏱️ Session started! Good hunting!', 'success');
@@ -6957,8 +6966,11 @@ Member Name
                 clearInterval(sessionInterval);
                 sessionInterval = null;
                 sessionPausedTime = Date.now() - sessionStartTime;
-                document.getElementById('sessionPauseBtn').textContent = '▶️ Resume';
-                document.getElementById('sessionPauseBtn').setAttribute('onclick', 'resumeSession()');
+                const pauseBtn = document.getElementById('sessionPauseBtn');
+                if (pauseBtn) {
+                    pauseBtn.textContent = '▶️ Resume';
+                    pauseBtn.setAttribute('onclick', 'resumeSession()');
+                }
                 showNotification('⏸️ Session paused', 'info');
             }
         }
@@ -6966,8 +6978,11 @@ Member Name
         function resumeSession() {
             sessionStartTime = Date.now() - sessionPausedTime;
             sessionInterval = setInterval(updateSessionTimer, 1000);
-            document.getElementById('sessionPauseBtn').textContent = '⏸️ Pause';
-            document.getElementById('sessionPauseBtn').setAttribute('onclick', 'pauseSession()');
+            const pauseBtn = document.getElementById('sessionPauseBtn');
+            if (pauseBtn) {
+                pauseBtn.textContent = '⏸️ Pause';
+                pauseBtn.setAttribute('onclick', 'pauseSession()');
+            }
             showNotification('▶️ Session resumed!', 'success');
         }
 
@@ -6978,11 +6993,20 @@ Member Name
                 sessionPausedTime = 0;
                 sessionInterval = null;
 
-                document.getElementById('sessionInactive').style.display = 'block';
-                document.getElementById('sessionActive').style.display = 'none';
-                document.getElementById('sessionStartBtn').style.display = 'inline-block';
-                document.getElementById('sessionPauseBtn').style.display = 'none';
-                document.getElementById('sessionStopBtn').style.display = 'none';
+                const sessionInactiveEl = document.getElementById('sessionInactive');
+                if (sessionInactiveEl) sessionInactiveEl.style.display = 'block';
+
+                const sessionActiveEl = document.getElementById('sessionActive');
+                if (sessionActiveEl) sessionActiveEl.style.display = 'none';
+
+                const sessionStartBtnEl = document.getElementById('sessionStartBtn');
+                if (sessionStartBtnEl) sessionStartBtnEl.style.display = 'inline-block';
+
+                const sessionPauseBtnEl = document.getElementById('sessionPauseBtn');
+                if (sessionPauseBtnEl) sessionPauseBtnEl.style.display = 'none';
+
+                const sessionStopBtnEl = document.getElementById('sessionStopBtn');
+                if (sessionStopBtnEl) sessionStopBtnEl.style.display = 'none';
 
                 showNotification('⏹️ Session ended!', 'info');
             }
@@ -7001,10 +7025,13 @@ Member Name
             const minutes = Math.floor((elapsed % 3600000) / 60000);
             const seconds = Math.floor((elapsed % 60000) / 1000);
 
-            document.getElementById('sessionTime').textContent =
-                String(hours).padStart(2, '0') + ':' +
-                String(minutes).padStart(2, '0') + ':' +
-                String(seconds).padStart(2, '0');
+            const sessionTimeEl = document.getElementById('sessionTime');
+            if (sessionTimeEl) {
+                sessionTimeEl.textContent =
+                    String(hours).padStart(2, '0') + ':' +
+                    String(minutes).padStart(2, '0') + ':' +
+                    String(seconds).padStart(2, '0');
+            }
 
             // Calculate session stats
             const sessionHunts = hunts.length - sessionHuntsStart;
@@ -7013,17 +7040,25 @@ Member Name
             const hoursElapsed = elapsed / 3600000;
             const avgProfit = hoursElapsed > 0 ? sessionProfit / hoursElapsed : 0;
 
-            document.getElementById('sessionHunts').textContent = sessionHunts;
-            document.getElementById('sessionProfit').textContent = formatProfit(sessionProfit);
-            document.getElementById('sessionAvgProfit').textContent = formatProfit(avgProfit) + '/h';
+            const sessionHuntsEl = document.getElementById('sessionHunts');
+            if (sessionHuntsEl) sessionHuntsEl.textContent = sessionHunts;
+
+            const sessionProfitEl = document.getElementById('sessionProfit');
+            if (sessionProfitEl) sessionProfitEl.textContent = formatProfit(sessionProfit);
+
+            const sessionAvgProfitEl = document.getElementById('sessionAvgProfit');
+            if (sessionAvgProfitEl) sessionAvgProfitEl.textContent = formatProfit(avgProfit) + '/h';
 
             // Next break recommendation (every 90 minutes)
             const nextBreakMinutes = 90 - minutes - (hours * 60);
-            if (nextBreakMinutes > 0) {
-                document.getElementById('nextBreak').textContent = 'in ' + nextBreakMinutes + ' minutes';
-            } else {
-                document.getElementById('nextBreak').textContent = 'NOW! Take a break!';
-                document.getElementById('nextBreak').style.color = 'var(--danger-color)';
+            const nextBreakEl = document.getElementById('nextBreak');
+            if (nextBreakEl) {
+                if (nextBreakMinutes > 0) {
+                    nextBreakEl.textContent = 'in ' + nextBreakMinutes + ' minutes';
+                } else {
+                    nextBreakEl.textContent = 'NOW! Take a break!';
+                    nextBreakEl.style.color = 'var(--danger-color)';
+                }
             }
         }
 
@@ -7161,8 +7196,11 @@ Member Name
                 }
             });
 
-            document.getElementById('bestSpot7d').textContent = bestSpot.length > 20 ? bestSpot.substring(0, 20) + '...' : bestSpot;
-            document.getElementById('bestSpot7dProfit').textContent = formatProfit(bestSpotProfit);
+            const bestSpot7dEl = document.getElementById('bestSpot7d');
+            if (bestSpot7dEl) bestSpot7dEl.textContent = bestSpot.length > 20 ? bestSpot.substring(0, 20) + '...' : bestSpot;
+
+            const bestSpot7dProfitEl = document.getElementById('bestSpot7dProfit');
+            if (bestSpot7dProfitEl) bestSpot7dProfitEl.textContent = formatProfit(bestSpotProfit);
 
             // Performance Trend
             const last3Days = hunts.filter(h => {
