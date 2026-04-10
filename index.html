@@ -7740,6 +7740,7 @@ Looted Items:
 
         // Clear boss form
         function clearBossForm() {
+            // Clear input fields
             const bossNameEl = document.getElementById('bossRoundName');
             const lootValueEl = document.getElementById('bossLootValue');
             const itemCountEl = document.getElementById('bossItemCount');
@@ -7752,7 +7753,16 @@ Looted Items:
             if (analyzerEl) analyzerEl.value = '';
             if (notesEl) notesEl.value = '';
 
-            updateBossPreview();
+            // Clear preview displays
+            const previewBossNameEl = document.getElementById('previewBossName');
+            const previewBossLootEl = document.getElementById('previewBossLoot');
+            const previewBossItemsEl = document.getElementById('previewBossItems');
+
+            if (previewBossNameEl) previewBossNameEl.textContent = '-';
+            if (previewBossLootEl) previewBossLootEl.textContent = '0 gp';
+            if (previewBossItemsEl) previewBossItemsEl.textContent = '0';
+
+            showNotification('✅ Form cleared!', 'success');
         }
 
         // Built-in price database for common items (fallback when API doesn't work)
