@@ -2453,10 +2453,10 @@
                         </div>
                     </div>
                     <div style="display: flex; align-items: start; gap: 10px;">
-                        <div style="font-size: 1.3em;">💎</div>
+                        <div style="font-size: 1.3em;">👹</div>
                         <div>
-                            <div style="font-weight: 700; color: var(--text-primary); margin-bottom: 3px;">TC Calculator & Rare Loot</div>
-                            <div style="font-size: 0.85em; color: var(--text-secondary);">Visual calendars showing TCs farmed & rare items</div>
+                            <div style="font-weight: 700; color: var(--text-primary); margin-bottom: 3px;">TC Calculator & Boss Loot Tracker</div>
+                            <div style="font-size: 0.85em; color: var(--text-secondary);">Track boss kills, items with Tibia API prices, weekly statistics & visual calendar</div>
                         </div>
                     </div>
                     <div style="display: flex; align-items: start; gap: 10px;">
@@ -2534,7 +2534,7 @@
                 <button class="main-tab" onclick="switchMainTab('duoHunt')" role="tab" aria-selected="false" aria-controls="duoHuntTab">👫 Duo Hunt</button>
                 <button class="main-tab" onclick="switchMainTab('teamHunt')" role="tab" aria-selected="false" aria-controls="teamHuntTab">👥 Team Hunt</button>
                 <button class="main-tab" onclick="switchMainTab('goals')" role="tab" aria-selected="false" aria-controls="goalsTab">🎯 Goals</button>
-                <button class="main-tab" onclick="switchMainTab('rareLoot')" role="tab" aria-selected="false" aria-controls="rareLootTab">💎 Rare Loot</button>
+                <button class="main-tab" onclick="switchMainTab('rareLoot')" role="tab" aria-selected="false" aria-controls="rareLootTab">👹 Boss Loot</button>
                 <button class="main-tab" onclick="switchMainTab('tcConfig')" role="tab" aria-selected="false" aria-controls="tcConfigTab">💰 TC Config</button>
                 <button class="main-tab" onclick="switchMainTab('history')" role="tab" aria-selected="false" aria-controls="historyTab">📜 History</button>
             </div>
@@ -3386,11 +3386,11 @@ Member Name
                 </div>
             </div>
 
-            <!-- Rare Loot Tab -->
+            <!-- Rare Loot Tab - NOW BOSS LOOT TRACKER -->
             <div class="main-tab-content" id="rareLootTab">
-                <!-- Server Type Selection - PROFESSIONAL -->
+                <!-- Boss Loot Tracker Header -->
                 <div class="card" style="padding: 10px;">
-                    <h3 style="font-family:'Cinzel',serif; color: #D4AF37; margin: 0 0 8px 0; font-size: 1em; letter-spacing:0.5px;">💎 Rare Loot Tracker</h3>
+                    <h3 style="font-family:'Cinzel',serif; color: #D4AF37; margin: 0 0 8px 0; font-size: 1em; letter-spacing:0.5px;">👹 Boss Loot Tracker</h3>
 
                     <div class="input-group" style="margin: 0;">
                         <label for="serverType" style="font-size: 0.75em; margin-bottom: 4px; color: var(--text-primary); font-weight: 600;">🌍 Server Type</label>
@@ -3404,7 +3404,7 @@ Member Name
                     </div>
                 </div>
 
-                <!-- Rare Loot Statistics -->
+                <!-- Boss Loot Statistics -->
                 <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-top: 8px;">
                     <!-- Total Value Card -->
                     <div style="background: linear-gradient(160deg, rgba(18,10,3,0.95) 0%, rgba(12,7,2,0.97) 100%); border: 1px solid rgba(212,175,55,0.3); border-radius: 8px; padding: 8px; text-align: center; box-shadow: 0 4px 12px rgba(0,0,0,0.4);">
@@ -3413,18 +3413,18 @@ Member Name
                         <div style="font-family:'Cinzel',serif; font-size: 0.6em; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 1px;">All Time</div>
                     </div>
 
-                    <!-- This Month Card -->
+                    <!-- This Week Card -->
                     <div style="background: linear-gradient(160deg, rgba(18,10,3,0.95) 0%, rgba(12,7,2,0.97) 100%); border: 1px solid rgba(212,175,55,0.3); border-radius: 8px; padding: 8px; text-align: center; box-shadow: 0 4px 12px rgba(0,0,0,0.4);">
                         <div style="font-size: 1.3em; margin-bottom: 3px;">📅</div>
-                        <div id="rareLootMonthValue" style="font-family:'Cinzel',serif; font-size: 1em; font-weight: 900; color: #D4AF37; margin-bottom: 3px;">0 gp</div>
-                        <div style="font-family:'Cinzel',serif; font-size: 0.6em; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 1px;">This Month</div>
+                        <div id="rareLootWeekValue" style="font-family:'Cinzel',serif; font-size: 1em; font-weight: 900; color: #D4AF37; margin-bottom: 3px;">0 gp</div>
+                        <div style="font-family:'Cinzel',serif; font-size: 0.6em; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 1px;">This Week</div>
                     </div>
 
-                    <!-- Total Items Card -->
+                    <!-- Total Boss Kills Card -->
                     <div style="background: linear-gradient(160deg, rgba(18,10,3,0.95) 0%, rgba(12,7,2,0.97) 100%); border: 1px solid rgba(212,175,55,0.3); border-radius: 8px; padding: 8px; text-align: center; box-shadow: 0 4px 12px rgba(0,0,0,0.4);">
-                        <div style="font-size: 1.3em; margin-bottom: 3px;">📦</div>
-                        <div id="rareLootTotalItems" style="font-family:'Cinzel',serif; font-size: 1em; font-weight: 900; color: #D4AF37; margin-bottom: 3px;">0</div>
-                        <div style="font-family:'Cinzel',serif; font-size: 0.6em; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 1px;">Total Items</div>
+                        <div style="font-size: 1.3em; margin-bottom: 3px;">👹</div>
+                        <div id="rareLootTotalBosses" style="font-family:'Cinzel',serif; font-size: 1em; font-weight: 900; color: #D4AF37; margin-bottom: 3px;">0</div>
+                        <div style="font-family:'Cinzel',serif; font-size: 0.6em; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 1px;">Boss Kills</div>
                     </div>
 
                     <!-- Most Valuable Card -->
@@ -3435,14 +3435,37 @@ Member Name
                     </div>
                 </div>
 
-                <!-- Add Rare Item -->
+                <!-- Add Boss Kill & Loot -->
                 <div class="card" style="margin-top: 8px; padding: 12px;">
-                    <h4 style="font-family:'Cinzel',serif; margin: 0 0 10px 0; font-size: 0.9em; color: #D4AF37; letter-spacing:0.5px;">⚔️ Record Rare Drop</h4>
+                    <h4 style="font-family:'Cinzel',serif; margin: 0 0 10px 0; font-size: 0.9em; color: #D4AF37; letter-spacing:0.5px;">⚔️ Record Boss Kill & Loot</h4>
 
                     <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+                        <div class="input-group" style="margin: 0; grid-column: 1 / -1;">
+                            <label for="bossName" style="font-size: 0.75em; margin-bottom: 4px; color: var(--text-primary); font-weight: 600;">👹 Boss Name</label>
+                            <input type="text" id="bossName" placeholder="e.g., Ferumbras, Gaz'haragoth, Scarlett Etzel" list="popularBosses" style="padding: 8px 10px; font-size: 0.85em; border: 2px solid rgba(34, 211, 238, 0.4); border-radius: 6px; background: var(--card-bg); color: var(--text-primary);">
+                            <datalist id="popularBosses">
+                                <option value="Ferumbras">
+                                <option value="Gaz'haragoth">
+                                <option value="Scarlett Etzel">
+                                <option value="Lloyd">
+                                <option value="Brain Head">
+                                <option value="The Pale Count">
+                                <option value="The Nightmare Beast">
+                                <option value="Ratmiral Blackwhiskers">
+                                <option value="Oberon">
+                                <option value="Drume">
+                                <option value="Eradicator">
+                                <option value="Plagueroot">
+                                <option value="The Welter">
+                                <option value="Urmahlullu the Immaculate">
+                                <option value="Timira the Many-Headed">
+                                <option value="Bakragore">
+                            </datalist>
+                        </div>
+
                         <div class="input-group" style="margin: 0;">
-                            <label for="customItemName" style="font-size: 0.75em; margin-bottom: 4px; color: var(--text-primary); font-weight: 600;">Item Name</label>
-                            <input type="text" id="customItemName" placeholder="e.g., Falcon Bow" style="padding: 8px 10px; font-size: 0.85em; border: 2px solid rgba(34, 211, 238, 0.4); border-radius: 6px; background: var(--card-bg); color: var(--text-primary);">
+                            <label for="customItemName" style="font-size: 0.75em; margin-bottom: 4px; color: var(--text-primary); font-weight: 600;">💎 Item Name</label>
+                            <input type="text" id="customItemName" placeholder="e.g., Giant Amethyst, Creature Products" oninput="fetchItemPrice(this.value)" style="padding: 8px 10px; font-size: 0.85em; border: 2px solid rgba(34, 211, 238, 0.4); border-radius: 6px; background: var(--card-bg); color: var(--text-primary);">
                         </div>
 
                         <div class="input-group" style="margin: 0;">
@@ -3451,8 +3474,9 @@ Member Name
                         </div>
 
                         <div class="input-group" style="margin: 0;">
-                            <label for="itemPrice" style="font-size: 0.75em; margin-bottom: 4px; color: var(--text-primary); font-weight: 600;">Price (e.g., 169kk)</label>
-                            <input type="text" id="itemPrice" placeholder="169kk" oninput="formatPriceInput(this)" style="padding: 8px 10px; font-size: 0.85em; border: 2px solid rgba(34, 211, 238, 0.4); border-radius: 6px; background: var(--card-bg); color: var(--text-primary);">
+                            <label for="itemPrice" style="font-size: 0.75em; margin-bottom: 4px; color: var(--text-primary); font-weight: 600;">Price (auto-fetched or manual)</label>
+                            <input type="text" id="itemPrice" placeholder="Will auto-fetch from API..." oninput="formatPriceInput(this)" style="padding: 8px 10px; font-size: 0.85em; border: 2px solid rgba(34, 211, 238, 0.4); border-radius: 6px; background: var(--card-bg); color: var(--text-primary);">
+                            <div id="priceStatus" style="font-size: 0.7em; margin-top: 3px; color: var(--text-secondary);"></div>
                         </div>
 
                         <div class="input-group" style="margin: 0;">
@@ -3478,15 +3502,15 @@ Member Name
                         </div>
                     </div>
 
-                    <button class="btn-primary" onclick="addRareItem()" style="width: 100%; margin-top: 10px; padding: 10px 12px; font-size: 0.85em; font-weight: 700;">
-                        💎 Record Rare Drop
+                    <button class="btn-primary" onclick="addBossLoot()" style="width: 100%; margin-top: 10px; padding: 10px 12px; font-size: 0.85em; font-weight: 700;">
+                        👹 Record Boss Loot
                     </button>
                 </div>
 
-                <!-- Rare Loot Calendar - COMPACT -->
+                <!-- Boss Loot Calendar - COMPACT -->
                 <div class="card" style="margin-top: 8px; padding: 8px;">
                     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
-                        <h4 style="margin: 0; font-size: 0.8em; color: #22d3ee; font-weight: 700;">📅 Rare Loot Calendar</h4>
+                        <h4 style="margin: 0; font-size: 0.8em; color: #22d3ee; font-weight: 700;">📅 Boss Loot Calendar</h4>
                         <div style="display: flex; gap: 5px; align-items: center;">
                             <button onclick="previousRareLootMonth()" style="padding: 4px 8px; font-size: 0.75em; background: rgba(34, 211, 238, 0.15); border: 2px solid rgba(34, 211, 238, 0.4); border-radius: 5px; color: #22d3ee; cursor: pointer; font-weight: 700; transition: all 0.3s;" onmouseover="this.style.background='rgba(34, 211, 238, 0.25)'" onmouseout="this.style.background='rgba(34, 211, 238, 0.15)'">◀</button>
                             <span id="rareLootCalendarMonthYear" style="font-size: 0.75em; font-weight: 700; min-width: 90px; text-align: center; color: #22d3ee;">Dec 2025</span>
@@ -3521,12 +3545,12 @@ Member Name
                     </div>
                 </div>
 
-                <!-- Rare Items List - PROFESSIONAL -->
+                <!-- Boss Loot List - PROFESSIONAL -->
                 <div class="card" style="margin-top: 8px; padding: 10px;">
-                    <h4 style="margin: 0 0 8px 0; font-size: 0.85em; color: #22d3ee; font-weight: 700;">📋 Your Rare Drops</h4>
+                    <h4 style="margin: 0 0 8px 0; font-size: 0.85em; color: #22d3ee; font-weight: 700;">📋 Your Boss Kills & Loot</h4>
                     <div id="rareItemsList">
                         <div class="empty-state" style="padding: 12px; text-align: center; color: var(--text-secondary); font-size: 0.75em;">
-                            <p style="margin: 0;">No rare items yet. Add your first drop above!</p>
+                            <p style="margin: 0;">No boss loot yet. Kill some bosses and record their drops!</p>
                         </div>
                     </div>
                 </div>
@@ -7591,14 +7615,69 @@ Member Name
             }
         }
 
-        function addRareItem() {
+        // Tibia API Integration - Fetch item price
+        let itemPriceFetchTimeout = null;
+        async function fetchItemPrice(itemName) {
+            if (!itemName || itemName.length < 3) {
+                document.getElementById('priceStatus').textContent = '';
+                return;
+            }
+
+            // Clear previous timeout
+            if (itemPriceFetchTimeout) {
+                clearTimeout(itemPriceFetchTimeout);
+            }
+
+            // Debounce - wait 500ms after user stops typing
+            itemPriceFetchTimeout = setTimeout(async () => {
+                try {
+                    document.getElementById('priceStatus').textContent = '🔄 Fetching price...';
+
+                    // Use TibiaData API v4 to search for items
+                    const searchUrl = `https://api.tibiadata.com/v4/item/${encodeURIComponent(itemName)}`;
+                    const response = await fetch(searchUrl);
+                    const data = await response.json();
+
+                    if (data && data.item && data.item.value) {
+                        const price = data.item.value;
+                        const priceEl = document.getElementById('itemPrice');
+
+                        // Format the price nicely
+                        if (price >= 1000000) {
+                            priceEl.value = (price / 1000000).toFixed(2) + 'kk';
+                        } else if (price >= 1000) {
+                            priceEl.value = (price / 1000).toFixed(0) + 'k';
+                        } else {
+                            priceEl.value = price.toString();
+                        }
+
+                        document.getElementById('priceStatus').innerHTML = `✅ Price from Tibia API: <span style="color: #D4AF37; font-weight: 700;">${formatNumber(price)} gp</span>`;
+                    } else {
+                        document.getElementById('priceStatus').textContent = '⚠️ Item not found in API - enter price manually';
+                    }
+                } catch (error) {
+                    console.error('Error fetching item price:', error);
+                    document.getElementById('priceStatus').textContent = '⚠️ Could not fetch price - enter manually';
+                }
+            }, 500);
+        }
+
+        function addBossLoot() {
+            const bossNameEl = document.getElementById('bossName');
             const customNameEl = document.getElementById('customItemName');
             const quantityEl = document.getElementById('itemQuantity');
             const priceEl = document.getElementById('itemPrice');
             const dateEl = document.getElementById('itemDate');
             const tierEl = document.getElementById('itemTier');
 
+            const bossName = bossNameEl.value.trim();
             const itemName = customNameEl.value.trim();
+
+            if (!bossName) {
+                showNotification('⚠️ Please enter a boss name', 'warning');
+                return;
+            }
+
             if (!itemName) {
                 showNotification('⚠️ Please enter an item name', 'warning');
                 return;
@@ -7616,8 +7695,9 @@ Member Name
 
             const totalValue = quantity * price;
 
-            const rareItem = {
+            const bossLootItem = {
                 id: Date.now(),
+                bossName: bossName,
                 itemName: itemName,
                 quantity: quantity,
                 pricePerUnit: price,
@@ -7628,37 +7708,43 @@ Member Name
                 createdAt: new Date().toISOString()
             };
 
-            rareLoot.push(rareItem);
+            rareLoot.push(bossLootItem);
             saveUserData();
 
             // Clear form
+            bossNameEl.value = '';
             customNameEl.value = '';
             quantityEl.value = 1;
             priceEl.value = '';
             dateEl.value = '';
             tierEl.value = 0;
+            document.getElementById('priceStatus').textContent = '';
 
             updateRareLootStats();
             displayRareItems();
             displayMonthlyBreakdown();
             renderRareLootCalendar(); // Update calendar to show new items
 
-            showNotification(`💎 ${itemName} added! Value: ${formatNumber(totalValue)} gp`);
+            showNotification(`👹 ${bossName} loot recorded: ${itemName} (${formatNumber(totalValue)} gp)`);
         }
 
-        // Update rare loot statistics
+        // Keep old function for backward compatibility
+        function addRareItem() {
+            addBossLoot();
+        }
+
+        // Update boss loot statistics
         function updateRareLootStats() {
             const totalValue = rareLoot.reduce((sum, item) => sum + item.totalValue, 0);
-            const totalItems = rareLoot.reduce((sum, item) => sum + item.quantity, 0);
+            const totalBossKills = rareLoot.length; // Each entry is a boss kill
 
-            // Calculate this month's value
+            // Calculate this week's value (last 7 days)
             const now = new Date();
-            const currentMonth = now.getMonth();
-            const currentYear = now.getFullYear();
-            const monthValue = rareLoot
+            const oneWeekAgo = new Date(now.getTime() - 7 * 24 * 60 * 60 * 1000);
+            const weekValue = rareLoot
                 .filter(item => {
                     const itemDate = new Date(item.date);
-                    return itemDate.getMonth() === currentMonth && itemDate.getFullYear() === currentYear;
+                    return itemDate >= oneWeekAgo && itemDate <= now;
                 })
                 .reduce((sum, item) => sum + item.totalValue, 0);
 
@@ -7668,8 +7754,8 @@ Member Name
                 : null;
 
             document.getElementById('rareLootTotalValue').textContent = formatShort(totalValue) + ' gp';
-            document.getElementById('rareLootMonthValue').textContent = formatShort(monthValue) + ' gp';
-            document.getElementById('rareLootTotalItems').textContent = totalItems;
+            document.getElementById('rareLootWeekValue').textContent = formatShort(weekValue) + ' gp';
+            document.getElementById('rareLootTotalBosses').textContent = totalBossKills;
 
             if (mostValuable) {
                 document.getElementById('rareLootMostValuable').textContent =
@@ -7682,19 +7768,58 @@ Member Name
             renderRareLootCalendar();
         }
 
-        // Display rare items list
+        // Display boss loot items list
         function displayRareItems() {
             const container = document.getElementById('rareItemsList');
 
             if (rareLoot.length === 0) {
-                container.innerHTML = '<div class="empty-state"><p>No rare items yet. Add your first drop above!</p></div>';
+                container.innerHTML = '<div class="empty-state"><p>No boss loot yet. Kill some bosses and record their drops!</p></div>';
                 return;
             }
 
             // Sort by date (most recent first)
             const sortedItems = [...rareLoot].sort((a, b) => new Date(b.date) - new Date(a.date));
 
-            let html = '<div style="display: grid; gap: 15px;">';
+            // Group by item to show weekly statistics
+            const itemStats = {};
+            const oneWeekAgo = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000);
+
+            rareLoot.forEach(item => {
+                const itemDate = new Date(item.date);
+                if (itemDate >= oneWeekAgo) {
+                    if (!itemStats[item.itemName]) {
+                        itemStats[item.itemName] = { count: 0, totalValue: 0 };
+                    }
+                    itemStats[item.itemName].count += item.quantity;
+                    itemStats[item.itemName].totalValue += item.totalValue;
+                }
+            });
+
+            // Show weekly summary first if there are items this week
+            let html = '';
+            if (Object.keys(itemStats).length > 0) {
+                html += `
+                    <div style="background: linear-gradient(135deg, rgba(34,211,238,0.1) 0%, rgba(6,182,212,0.05) 100%); border: 2px solid rgba(34,211,238,0.4); padding: 12px; border-radius: 8px; margin-bottom: 15px;">
+                        <h5 style="margin: 0 0 10px 0; color: #22d3ee; font-size: 0.9em; font-weight: 700;">📊 This Week's Item Summary</h5>
+                        <div style="display: grid; gap: 8px;">
+                `;
+
+                for (const [itemName, stats] of Object.entries(itemStats)) {
+                    html += `
+                        <div style="display: flex; justify-content: space-between; align-items: center; padding: 6px; background: rgba(0,0,0,0.3); border-radius: 4px;">
+                            <span style="color: var(--text-primary); font-size: 0.85em; font-weight: 600;">${itemName}</span>
+                            <span style="color: #22d3ee; font-size: 0.85em; font-weight: 700;">${stats.count}x (${formatShort(stats.totalValue)} gp)</span>
+                        </div>
+                    `;
+                }
+
+                html += `
+                        </div>
+                    </div>
+                `;
+            }
+
+            html += '<div style="display: grid; gap: 15px;">';
 
             sortedItems.forEach(item => {
                 const serverTypeNames = {
@@ -7707,6 +7832,7 @@ Member Name
 
                 const imgUrl = getTibiaItemImageUrl(item.itemName);
                 const tierDisplay = item.tier && item.tier > 0 ? `<span style="background: linear-gradient(135deg, gold, orange); padding: 2px 8px; border-radius: 4px; font-size: 0.85em; font-weight: bold; color: white; margin-left: 8px;">Tier ${item.tier}</span>` : '';
+                const bossNameDisplay = item.bossName ? `<div style="color: #ff6b6b; font-size: 0.85em; font-weight: 700; margin-bottom: 4px;">👹 ${item.bossName}</div>` : '';
 
                 html += `
                     <div style="background: linear-gradient(135deg, rgba(212,175,55,0.07) 0%, rgba(10,6,2,0.6) 100%); border-left: 3px solid rgba(212,175,55,0.6); border: 1px solid rgba(212,175,55,0.25); border-left: 3px solid #D4AF37; padding: 12px; border-radius: 8px; transition: all 0.2s; position:relative; overflow:hidden;"
@@ -7720,6 +7846,7 @@ Member Name
                                      onerror="this.style.display='none'; this.parentElement.innerHTML='<div style=\\'font-size: 2em;\\'>💎</div>';">
                             </div>
                             <div style="flex: 1; min-width: 0;">
+                                ${bossNameDisplay}
                                 <h4 style="font-family:'Cinzel',serif; color: #D4AF37; margin-bottom: 5px; display: flex; align-items: center; flex-wrap: wrap; gap: 4px; font-size:0.95em;">${item.itemName}${tierDisplay}</h4>
                                 <p style="color: #FFD700; margin: 4px 0; font-weight:700;"><strong style="color:var(--text-secondary); font-family:'Cinzel',serif; font-size:0.75em;">VALUE</strong> ${formatShort(item.totalValue)} gp</p>
                                 <p style="color: var(--text-secondary); font-size: 0.85em; margin: 3px 0;">
@@ -8434,7 +8561,7 @@ Member Name
                 'addHunt': 'Add Hunt',
                 'teamHunt': 'Team Hunt',
                 'goals': 'Goals',
-                'rareLoot': 'Rare Loot',
+                'rareLoot': 'Boss Loot',
                 'comparator': 'Hunt Spots',
                 'tcConfig': 'TC Config',
                 'calculators': 'Calculators',
