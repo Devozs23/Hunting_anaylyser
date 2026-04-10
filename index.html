@@ -3435,73 +3435,95 @@ Member Name
                     </div>
                 </div>
 
-                <!-- Add Boss Kill & Loot - ANALYZER PASTE -->
-                <div class="card" style="margin-top: 8px; padding: 12px;">
-                    <h4 style="font-family:'Cinzel',serif; margin: 0 0 10px 0; font-size: 0.9em; color: #D4AF37; letter-spacing:0.5px;">⚔️ Record Boss Round</h4>
-
-                    <!-- Boss Name Input -->
-                    <div class="input-group" style="margin-bottom: 10px;">
-                        <label for="bossRoundName" style="font-size: 0.75em; margin-bottom: 4px; color: var(--text-primary); font-weight: 600;">👹 Boss Round Name</label>
-                        <input type="text" id="bossRoundName" placeholder="e.g., Ferumbras Ascendant, Gaz Round, Weekly Bosses" list="popularBosses" style="padding: 8px 10px; font-size: 0.85em; border: 2px solid rgba(34, 211, 238, 0.4); border-radius: 6px; background: var(--card-bg); color: var(--text-primary); width: 100%;">
-                        <datalist id="popularBosses">
-                            <option value="Ferumbras Ascendant">
-                            <option value="Gaz'haragoth">
-                            <option value="Scarlett Etzel">
-                            <option value="Lloyd">
-                            <option value="Brain Head">
-                            <option value="The Pale Count">
-                            <option value="The Nightmare Beast">
-                            <option value="Ratmiral Blackwhiskers">
-                            <option value="Oberon">
-                            <option value="Drume">
-                            <option value="Eradicator">
-                            <option value="Plagueroot">
-                            <option value="The Welter">
-                            <option value="Urmahlullu the Immaculate">
-                            <option value="Timira the Many-Headed">
-                            <option value="Bakragore">
-                            <option value="Weekly Boss Round">
-                            <option value="Dream Courts">
-                        </datalist>
-                    </div>
-
-                    <!-- Analyzer Data Paste -->
-                    <div class="input-group" style="margin-bottom: 10px;">
-                        <label for="bossAnalyzerData" style="font-size: 0.85em; margin-bottom: 6px; color: var(--text-primary); font-weight: 700; display: flex; justify-content: space-between; align-items: center;">
-                            <span>📋 Paste Tibia Analyzer Data</span>
-                            <span style="color: var(--text-secondary); font-size: 0.85em; font-weight: 500;">Ctrl+V your Session Data</span>
-                        </label>
-                        <textarea
-                            id="bossAnalyzerData"
-                            placeholder="Paste your Tibia Session Analyzer data here...&#10;&#10;Example:&#10;Session data: From 2026-04-10, 17:54:58 to 2026-04-10, 17:57:35&#10;Loot: 12,704,030&#10;Looted Items:&#10;  87x a strong mana potion&#10;  3x a giant amethyst&#10;  ..."
-                            oninput="parseAnalyzerData(this.value)"
-                            style="padding: 12px; font-size: 0.9em; line-height: 1.4; border: 2px solid rgba(34, 211, 238, 0.4); border-radius: 6px; background: var(--card-bg); color: var(--text-primary); width: 100%; min-height: 180px; font-family: 'Courier New', monospace; resize: vertical;"
-                        ></textarea>
-                        <div id="analyzerParseStatus" style="font-size: 0.85em; margin-top: 6px; color: var(--text-secondary);"></div>
-                    </div>
-
-                    <!-- Parsed Items Preview -->
-                    <div id="parsedItemsPreview" style="display: none; margin-bottom: 10px; padding: 12px; background: rgba(34, 211, 238, 0.1); border: 2px solid rgba(34, 211, 238, 0.4); border-radius: 8px;">
-                        <div style="font-size: 1em; color: #22d3ee; font-weight: 700; margin-bottom: 12px; display: flex; justify-content: space-between; align-items: center;">
-                            <span>📦 Detected Items</span>
-                            <span style="font-size: 0.9em; color: #D4AF37;"><span id="parsedItemCount">0</span> items</span>
-                        </div>
-                        <div id="parsedItemsList" style="max-height: 400px; overflow-y: auto; font-size: 0.85em;">
-                            <!-- Will be populated by JS -->
-                        </div>
-                        <div style="margin-top: 12px; padding-top: 12px; border-top: 2px solid rgba(34, 211, 238, 0.3);">
-                            <div style="font-size: 1.1em; color: #22d3ee; font-weight: 700; margin-bottom: 5px;">
-                                💰 Total Value: <span id="parsedTotalValue" style="color: #D4AF37; font-size: 1.2em;">Calculating...</span>
+                <!-- Add Boss Loot - SIMPLE LIKE ADD HUNT -->
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+                    <!-- Left Column -->
+                    <div>
+                        <!-- Boss Name -->
+                        <div class="card" style="padding: 18px; border-left: 3px solid rgba(212,175,55,0.5); margin-bottom: 16px;">
+                            <h4 style="font-family:'Cinzel',serif; color: #D4AF37; margin: 0 0 10px 0; font-size: 1em; letter-spacing:0.5px;">👹 Boss Round Name</h4>
+                            <div class="input-group" style="margin: 0;">
+                                <input type="text" id="bossRoundName" placeholder="e.g., Ferumbras, Gaz, Weekly Bosses..." list="popularBosses" oninput="updateBossPreview()" style="padding: 12px 14px; font-size: 1.05em;">
+                                <datalist id="popularBosses">
+                                    <option value="Ferumbras Ascendant">
+                                    <option value="Gaz'haragoth">
+                                    <option value="Scarlett Etzel">
+                                    <option value="Lloyd">
+                                    <option value="Brain Head">
+                                    <option value="The Pale Count">
+                                    <option value="Oberon">
+                                    <option value="Drume">
+                                    <option value="Weekly Boss Round">
+                                    <option value="Dream Courts">
+                                </datalist>
                             </div>
-                            <div style="font-size: 0.85em; color: var(--text-secondary); margin-top: 5px;">
-                                <span id="priceFetchStatus">Fetching prices from Tibia API...</span>
+                        </div>
+
+                        <!-- Manual Entry (Optional) -->
+                        <div class="card" style="padding: 18px; border-left: 3px solid rgba(212,175,55,0.4);">
+                            <h4 style="font-family:'Cinzel',serif; color: #D4AF37; margin: 0 0 10px 0; font-size: 1em; letter-spacing:0.5px;">✏️ Manual Entry (Optional)</h4>
+                            <div style="display: grid; gap: 12px;">
+                                <div class="input-group" style="margin: 0;">
+                                    <label style="font-size: 0.95em; margin-bottom: 5px; font-weight: 600;">💰 Loot Value (gp)</label>
+                                    <input type="number" id="bossLootValue" placeholder="0" oninput="updateBossPreview()" style="padding: 11px 12px; font-size: 1em;">
+                                </div>
+                                <div class="input-group" style="margin: 0;">
+                                    <label style="font-size: 0.95em; margin-bottom: 5px; font-weight: 600;">📦 Item Count</label>
+                                    <input type="number" id="bossItemCount" placeholder="0" oninput="updateBossPreview()" style="padding: 11px 12px; font-size: 1em;">
+                                </div>
                             </div>
                         </div>
                     </div>
 
-                    <button class="btn-primary" onclick="saveBossRound()" id="saveBossRoundBtn" disabled style="width: 100%; margin-top: 10px; padding: 10px 12px; font-size: 0.85em; font-weight: 700; opacity: 0.5;">
-                        👹 Save Boss Round
-                    </button>
+                    <!-- Right Column -->
+                    <div>
+                        <!-- Auto-Fill from Analyzer -->
+                        <div class="card" style="padding: 18px; border-left: 3px solid rgba(212,175,55,0.4); margin-bottom: 16px;">
+                            <h4 style="font-family:'Cinzel',serif; color: #D4AF37; margin: 0 0 10px 0; font-size: 1em; letter-spacing:0.5px;">🔍 Auto-Fill from Analyzer</h4>
+                            <div class="input-group" style="margin: 0;">
+                                <label style="font-size: 0.95em; margin-bottom: 5px; font-weight: 600;">📋 Paste Tibia Analyzer Data</label>
+                                <textarea id="bossAnalyzerData" placeholder="Session data: From...
+Loot: 12,704,030
+Looted Items:
+  87x a strong mana potion
+  3x a giant amethyst..." style="min-height: 140px; font-family: monospace; font-size: 0.9em; padding: 12px;"></textarea>
+                                <button class="btn-warning" onclick="parseBossData()" style="margin-top: 10px; width: 100%; padding: 11px; font-size: 1em;">🔍 Auto-Fill</button>
+                            </div>
+                        </div>
+
+                        <!-- Notes -->
+                        <div class="card" style="padding: 18px; border-left: 3px solid rgba(212,175,55,0.35);">
+                            <h4 style="font-family:'Cinzel',serif; color: #D4AF37; margin: 0 0 10px 0; font-size: 1em; letter-spacing:0.5px;">📜 Notes</h4>
+                            <div class="input-group" style="margin: 0;">
+                                <textarea id="bossNotes" placeholder="Optional notes about this boss round..." style="min-height: 95px; font-size: 0.95em; padding: 12px;"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quick Stats Preview -->
+                <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin: 16px 0;">
+                    <div style="background: linear-gradient(160deg, rgba(18,10,3,0.95) 0%, rgba(12,7,2,0.97) 100%); border: 1px solid rgba(212,175,55,0.3); border-radius: 8px; padding: 14px; text-align: center; box-shadow: 0 4px 12px rgba(0,0,0,0.4);">
+                        <div style="font-size: 1.4em; margin-bottom: 6px;">👹</div>
+                        <div style="font-family:'Cinzel',serif; font-size: 0.65em; color: var(--text-secondary); text-transform:uppercase; letter-spacing:1px;">Boss Round</div>
+                        <div id="previewBossName" style="font-family:'Cinzel',serif; font-size: 0.9em; font-weight: 700; color: #D4AF37; margin-top: 6px;">-</div>
+                    </div>
+                    <div style="background: linear-gradient(160deg, rgba(18,10,3,0.95) 0%, rgba(12,7,2,0.97) 100%); border: 1px solid rgba(212,175,55,0.3); border-radius: 8px; padding: 14px; text-align: center; box-shadow: 0 4px 12px rgba(0,0,0,0.4);">
+                        <div style="font-size: 1.4em; margin-bottom: 6px;">💰</div>
+                        <div style="font-family:'Cinzel',serif; font-size: 0.65em; color: var(--text-secondary); text-transform:uppercase; letter-spacing:1px;">Total Loot</div>
+                        <div id="previewBossLoot" style="font-family:'Cinzel',serif; font-size: 0.9em; font-weight: 700; color: #D4AF37; margin-top: 6px;">0 gp</div>
+                    </div>
+                    <div style="background: linear-gradient(160deg, rgba(18,10,3,0.95) 0%, rgba(12,7,2,0.97) 100%); border: 1px solid rgba(212,175,55,0.3); border-radius: 8px; padding: 14px; text-align: center; box-shadow: 0 4px 12px rgba(0,0,0,0.4);">
+                        <div style="font-size: 1.4em; margin-bottom: 6px;">📦</div>
+                        <div style="font-family:'Cinzel',serif; font-size: 0.65em; color: var(--text-secondary); text-transform:uppercase; letter-spacing:1px;">Items</div>
+                        <div id="previewBossItems" style="font-family:'Cinzel',serif; font-size: 0.9em; font-weight: 700; color: #D4AF37; margin-top: 6px;">0</div>
+                    </div>
+                </div>
+
+                <!-- Action Buttons -->
+                <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 14px;">
+                    <button class="btn-primary" onclick="addBossLoot()" style="padding: 14px; font-size: 1em; font-weight: 600; letter-spacing:0.5px;">👹 Record Boss Loot</button>
+                    <button class="btn-secondary" onclick="clearBossForm()" style="padding: 14px; font-size: 1em; font-weight: 600;">🗑️ Clear</button>
                 </div>
 
                 <!-- Boss Loot Calendar - COMPACT -->
@@ -7612,11 +7634,99 @@ Member Name
             }
         }
 
-        // ==================== BOSS LOOT ANALYZER PARSER ====================
+        // ==================== BOSS LOOT FUNCTIONS ====================
 
         let parsedBossItems = [];
-        let parseTimeout = null;
         let totalLootValue = 0;
+        let totalBossItems = 0;
+
+        // Update boss preview as user types
+        function updateBossPreview() {
+            const bossName = document.getElementById('bossRoundName').value.trim();
+            const lootValue = parseInt(document.getElementById('bossLootValue').value) || 0;
+            const itemCount = parseInt(document.getElementById('bossItemCount').value) || 0;
+
+            document.getElementById('previewBossName').textContent = bossName || '-';
+            document.getElementById('previewBossLoot').textContent = formatNumber(lootValue) + ' gp';
+            document.getElementById('previewBossItems').textContent = itemCount;
+        }
+
+        // Parse boss analyzer data (same as parseHuntData)
+        function parseBossData() {
+            const analyzerData = document.getElementById('bossAnalyzerData').value;
+
+            if (!analyzerData.trim()) {
+                showNotification('⚠️ Please paste Boss Analyzer data first!', 'warning');
+                return;
+            }
+
+            try {
+                // Parse total loot value
+                const lootMatch = analyzerData.match(/Loot:\s*([\d,]+)/i);
+                const loot = lootMatch ? parseInt(lootMatch[1].replace(/,/g, '')) : 0;
+
+                // Count items from "Looted Items:" section
+                const lines = analyzerData.split('\n');
+                let inLootedItems = false;
+                let itemCount = 0;
+
+                for (let line of lines) {
+                    line = line.trim();
+
+                    if (line.toLowerCase().includes('looted items:')) {
+                        inLootedItems = true;
+                        continue;
+                    }
+
+                    if (inLootedItems && line && !line.match(/^\d+x\s+/i)) {
+                        if (line.toLowerCase().includes('killed monsters:') ||
+                            line.toLowerCase().includes('session') ||
+                            line.toLowerCase().includes('damage:')) {
+                            break;
+                        }
+                    }
+
+                    if (inLootedItems && line.match(/^\d+x\s+/i)) {
+                        itemCount++;
+                    }
+                }
+
+                // Extract date
+                const fromMatch = analyzerData.match(/From\s*(\d{4}-\d{2}-\d{2})/i);
+                const dateStr = fromMatch ? fromMatch[1] : new Date().toISOString().split('T')[0];
+
+                // Fill the form
+                document.getElementById('bossLootValue').value = loot;
+                document.getElementById('bossItemCount').value = itemCount;
+
+                // Auto-fill boss name if empty
+                if (!document.getElementById('bossRoundName').value) {
+                    document.getElementById('bossRoundName').value = `Boss Round ${dateStr}`;
+                }
+
+                // Clear analyzer textarea
+                document.getElementById('bossAnalyzerData').value = '';
+
+                // Update preview
+                updateBossPreview();
+
+                showNotification(`✅ Data parsed! Loot: ${formatNumber(loot)} gp, Items: ${itemCount}`, 'success');
+
+            } catch (error) {
+                console.error('Parse error:', error);
+                showNotification('❌ Error parsing data. Check format and try again.', 'error');
+            }
+        }
+
+        // Clear boss form
+        function clearBossForm() {
+            document.getElementById('bossRoundName').value = '';
+            document.getElementById('bossLootValue').value = '';
+            document.getElementById('bossItemCount').value = '';
+            document.getElementById('bossAnalyzerData').value = '';
+            document.getElementById('bossNotes').value = '';
+            updateBossPreview();
+        }
 
         // Built-in price database for common items (fallback when API doesn't work)
         const commonItemPrices = {
@@ -8073,10 +8183,61 @@ Member Name
             }, 500);
         }
 
-        // Legacy function - kept for backward compatibility (not used in new UI)
+        // Add boss loot (simple version like addHunt)
         function addBossLoot() {
-            // This is now replaced by saveBossRound() which handles analyzer data
-            showNotification('ℹ️ Please use the analyzer paste feature to record boss loot', 'info');
+            try {
+                const bossName = document.getElementById('bossRoundName').value.trim();
+                const lootValue = parseInt(document.getElementById('bossLootValue').value) || 0;
+                const itemCount = parseInt(document.getElementById('bossItemCount').value) || 0;
+                const notes = document.getElementById('bossNotes').value.trim();
+
+                if (!bossName) {
+                    showNotification('⚠️ Please enter a boss round name', 'warning');
+                    return;
+                }
+
+                if (lootValue <= 0) {
+                    showNotification('⚠️ Please enter a loot value or use Auto-Fill', 'warning');
+                    return;
+                }
+
+                const date = new Date().toISOString().split('T')[0];
+
+                // Save as a single entry (like a hunt)
+                const bossLootEntry = {
+                    id: Date.now(),
+                    bossName: bossName,
+                    itemName: `Boss Round - ${itemCount} items`,
+                    quantity: 1,
+                    pricePerUnit: lootValue,
+                    totalValue: lootValue,
+                    serverType: serverType,
+                    date: date,
+                    tier: 0,
+                    notes: notes,
+                    createdAt: new Date().toISOString()
+                };
+
+                rareLoot.push(bossLootEntry);
+                saveUserData();
+
+                // Clear form
+                clearBossForm();
+
+                // Update displays
+                updateRareLootStats();
+                displayRareItems();
+                displayMonthlyBreakdown();
+                renderRareLootCalendar();
+
+                // Switch to dashboard or show success
+                showNotification(`👹 Boss loot saved! ${bossName}: ${formatNumber(lootValue)} gp`);
+                switchMainTab('dashboard');
+
+            } catch (error) {
+                console.error('❌ Error in addBossLoot():', error);
+                showNotification('❌ Error adding boss loot: ' + error.message, 'error');
+            }
         }
 
         // Keep old function for backward compatibility
