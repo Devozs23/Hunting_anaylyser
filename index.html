@@ -7642,18 +7642,34 @@ Looted Items:
 
         // Update boss preview as user types
         function updateBossPreview() {
-            const bossName = document.getElementById('bossRoundName').value.trim();
-            const lootValue = parseInt(document.getElementById('bossLootValue').value) || 0;
-            const itemCount = parseInt(document.getElementById('bossItemCount').value) || 0;
+            const bossNameEl = document.getElementById('bossRoundName');
+            const lootValueEl = document.getElementById('bossLootValue');
+            const itemCountEl = document.getElementById('bossItemCount');
 
-            document.getElementById('previewBossName').textContent = bossName || '-';
-            document.getElementById('previewBossLoot').textContent = formatNumber(lootValue) + ' gp';
-            document.getElementById('previewBossItems').textContent = itemCount;
+            if (!bossNameEl || !lootValueEl || !itemCountEl) return;
+
+            const bossName = bossNameEl.value.trim();
+            const lootValue = parseInt(lootValueEl.value) || 0;
+            const itemCount = parseInt(itemCountEl.value) || 0;
+
+            const previewBossNameEl = document.getElementById('previewBossName');
+            const previewBossLootEl = document.getElementById('previewBossLoot');
+            const previewBossItemsEl = document.getElementById('previewBossItems');
+
+            if (previewBossNameEl) previewBossNameEl.textContent = bossName || '-';
+            if (previewBossLootEl) previewBossLootEl.textContent = formatNumber(lootValue) + ' gp';
+            if (previewBossItemsEl) previewBossItemsEl.textContent = itemCount;
         }
 
         // Parse boss analyzer data (same as parseHuntData)
         function parseBossData() {
-            const analyzerData = document.getElementById('bossAnalyzerData').value;
+            const analyzerDataEl = document.getElementById('bossAnalyzerData');
+            if (!analyzerDataEl) {
+                showNotification('❌ Error: Analyzer field not found', 'error');
+                return;
+            }
+
+            const analyzerData = analyzerDataEl.value;
 
             if (!analyzerData.trim()) {
                 showNotification('⚠️ Please paste Boss Analyzer data first!', 'warning');
@@ -7696,16 +7712,20 @@ Looted Items:
                 const dateStr = fromMatch ? fromMatch[1] : new Date().toISOString().split('T')[0];
 
                 // Fill the form
-                document.getElementById('bossLootValue').value = loot;
-                document.getElementById('bossItemCount').value = itemCount;
+                const lootValueEl = document.getElementById('bossLootValue');
+                const itemCountEl = document.getElementById('bossItemCount');
+                const bossNameEl = document.getElementById('bossRoundName');
+
+                if (lootValueEl) lootValueEl.value = loot;
+                if (itemCountEl) itemCountEl.value = itemCount;
 
                 // Auto-fill boss name if empty
-                if (!document.getElementById('bossRoundName').value) {
-                    document.getElementById('bossRoundName').value = `Boss Round ${dateStr}`;
+                if (bossNameEl && !bossNameEl.value) {
+                    bossNameEl.value = `Boss Round ${dateStr}`;
                 }
 
                 // Clear analyzer textarea
-                document.getElementById('bossAnalyzerData').value = '';
+                if (analyzerDataEl) analyzerDataEl.value = '';
 
                 // Update preview
                 updateBossPreview();
@@ -7720,11 +7740,18 @@ Looted Items:
 
         // Clear boss form
         function clearBossForm() {
-            document.getElementById('bossRoundName').value = '';
-            document.getElementById('bossLootValue').value = '';
-            document.getElementById('bossItemCount').value = '';
-            document.getElementById('bossAnalyzerData').value = '';
-            document.getElementById('bossNotes').value = '';
+            const bossNameEl = document.getElementById('bossRoundName');
+            const lootValueEl = document.getElementById('bossLootValue');
+            const itemCountEl = document.getElementById('bossItemCount');
+            const analyzerEl = document.getElementById('bossAnalyzerData');
+            const notesEl = document.getElementById('bossNotes');
+
+            if (bossNameEl) bossNameEl.value = '';
+            if (lootValueEl) lootValueEl.value = '';
+            if (itemCountEl) itemCountEl.value = '';
+            if (analyzerEl) analyzerEl.value = '';
+            if (notesEl) notesEl.value = '';
+
             updateBossPreview();
         }
 
@@ -8186,10 +8213,20 @@ Looted Items:
         // Add boss loot (simple version like addHunt)
         function addBossLoot() {
             try {
-                const bossName = document.getElementById('bossRoundName').value.trim();
-                const lootValue = parseInt(document.getElementById('bossLootValue').value) || 0;
-                const itemCount = parseInt(document.getElementById('bossItemCount').value) || 0;
-                const notes = document.getElementById('bossNotes').value.trim();
+                const bossNameEl = document.getElementById('bossRoundName');
+                const lootValueEl = document.getElementById('bossLootValue');
+                const itemCountEl = document.getElementById('bossItemCount');
+                const notesEl = document.getElementById('bossNotes');
+
+                if (!bossNameEl || !lootValueEl || !itemCountEl) {
+                    showNotification('❌ Error: Form fields not found. Please refresh the page.', 'error');
+                    return;
+                }
+
+                const bossName = bossNameEl.value.trim();
+                const lootValue = parseInt(lootValueEl.value) || 0;
+                const itemCount = parseInt(itemCountEl.value) || 0;
+                const notes = notesEl ? notesEl.value.trim() : '';
 
                 if (!bossName) {
                     showNotification('⚠️ Please enter a boss round name', 'warning');
