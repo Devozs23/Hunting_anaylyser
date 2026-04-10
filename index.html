@@ -7616,6 +7616,107 @@ Member Name
 
         let parsedBossItems = [];
         let parseTimeout = null;
+        let totalLootValue = 0;
+
+        // Built-in price database for common items (fallback when API doesn't work)
+        const commonItemPrices = {
+            // Creature Products
+            'Demon Horn': 1000,
+            'Piece Of Hell Steel': 500,
+            'Magic Sulphur': 300,
+            'Demonic Essence': 400,
+            'Mystical Hourglass': 1000,
+
+            // Gems
+            'Giant Amethyst': 45000,
+            'Giant Sapphire': 40000,
+            'Giant Emerald': 50000,
+            'White Gem': 30000,
+            'Violet Gem': 15000,
+            'Yellow Gem': 20000,
+            'Green Gem': 18000,
+            'Red Gem': 16000,
+            'Blue Gem': 14000,
+            'Small Amethyst': 200,
+            'Small Sapphire': 250,
+            'Small Emerald': 250,
+            'Small Ruby': 250,
+            'Small Diamond': 300,
+            'Small Topaz': 200,
+            'Amber With A Bug': 40000,
+            'Moonstone': 25000,
+            'Raw Watermelon Tourmaline': 35000,
+
+            // Equipment
+            'Lightning Boots': 35000,
+            'Magma Legs': 40000,
+            'Glacier Robe': 20000,
+            'Lightning Robe': 15000,
+            'Glacier Mask': 12000,
+            'Terra Hood': 10000,
+            'Void Boots': 50000,
+
+            // Rings/Amulets
+            'Crystal Ring': 250,
+            'Emerald Bangle': 800,
+            'Demonbone Amulet': 32000,
+            'Death Ring': 1000,
+            'Ring Of Blue Plasma': 25000,
+            'Ring Of Green Plasma': 30000,
+            'Golden Hyaena Pendant': 5000,
+
+            // Potions
+            'Strong Mana Potion': 80,
+            'Great Mana Potion': 120,
+            'Ultimate Mana Potion': 380,
+            'Ultimate Spirit Potion': 438,
+            'Supreme Health Potion': 625,
+            'Ultimate Health Potion': 379,
+            'Great Spirit Potion': 228,
+            'Berserk Potion': 500,
+            'Mastermind Potion': 500,
+            'Bullseye Potion': 500,
+            'Transcendence Potion': 1000,
+
+            // Special Items
+            'Gold Coin': 1,
+            'Platinum Coin': 100,
+            'Crystal Coin': 10000,
+            'Silver Token': 20000,
+            'Gold Token': 50000,
+            'Gold Ingot': 5000,
+
+            // Wands/Rods
+            'Wand Of Inferno': 15000,
+            'Wand Of Cosmic Energy': 10000,
+            'Glacial Rod': 6500,
+
+            // Crystal Shards
+            'Blue Crystal Shard': 900,
+            'Violet Crystal Shard': 900,
+            'Green Crystal Shard': 900,
+            'Onyx Chip': 800,
+
+            // Energy Items
+            'Mysterious Remains': 30000,
+            'Curious Matter': 25000,
+            'Instable Proto Matter': 15000,
+            'Solid Rage': 20000,
+            'Spark Sphere': 18000,
+            'Frozen Lightning': 22000,
+            'Plasmatic Lightning': 28000,
+            'Energy Ball': 12000,
+            'Energy Bar': 15000,
+            'Collar Of Green Plasma': 32000,
+            'Collar Of Red Plasma': 35000,
+            'Energy Drink': 10000,
+
+            // Other
+            'Giant Shimmering Pearl': 3000,
+            'Frosty Heart': 20000,
+            'Smoldering Eye': 35000,
+            'Royal Star': 60
+        };
 
         // Parse Tibia Analyzer output
         function parseAnalyzerData(text) {
@@ -7635,8 +7736,19 @@ Member Name
             parseTimeout = setTimeout(async () => {
                 try {
                     parsedBossItems = [];
+                    totalLootValue = 0;
                     const lines = text.split('\n');
                     let inLootedItems = false;
+
+                    // First, try to extract the total loot value from "Loot: X" line
+                    for (let line of lines) {
+                        const lootMatch = line.match(/Loot:\s*([\d,]+)/i);
+                        if (lootMatch) {
+                            totalLootValue = parseInt(lootMatch[1].replace(/,/g, ''));
+                            console.log(`📊 Found total loot value: ${totalLootValue} gp`);
+                            break;
+                        }
+                    }
 
                     // Parse looted items
                     for (let line of lines) {
@@ -7672,11 +7784,15 @@ Member Name
                                     word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()
                                 ).join(' ');
 
+                                // Check if we have a price in our database
+                                const price = commonItemPrices[itemName] || 0;
+
                                 parsedBossItems.push({
                                     itemName: itemName,
                                     quantity: quantity,
-                                    price: 0,
-                                    fetching: true
+                                    price: price,
+                                    fetching: false,
+                                    priceSource: price > 0 ? 'database' : 'unknown'
                                 });
                             }
                         }
@@ -7686,19 +7802,31 @@ Member Name
                         // Show preview
                         document.getElementById('parsedItemsPreview').style.display = 'block';
                         document.getElementById('parsedItemCount').innerHTML = `<strong>${parsedBossItems.length}</strong>`;
-                        document.getElementById('analyzerParseStatus').innerHTML = `<span style="color: #22d3ee; font-weight: 700;">✅ Found ${parsedBossItems.length} items! Fetching prices...</span>`;
 
-                        // Show items immediately (with fetching status)
+                        // Calculate value from our database
+                        const calculatedValue = parsedBossItems.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+                        const itemsWithPrices = parsedBossItems.filter(item => item.price > 0).length;
+
+                        // Display items immediately
                         displayParsedItems();
 
-                        // Fetch prices for all items
-                        await fetchPricesForParsedItems();
+                        // Show the total loot value from analyzer if available
+                        if (totalLootValue > 0) {
+                            document.getElementById('parsedTotalValue').innerHTML = `<span style="color: #D4AF37; font-weight: 900;">${formatNumber(totalLootValue)} gp</span> <span style="font-size: 0.7em; color: var(--text-secondary);">(from analyzer)</span>`;
+                            document.getElementById('analyzerParseStatus').innerHTML = `<span style="color: #22d3ee; font-weight: 700;">✅ Found ${parsedBossItems.length} items! Total: ${formatNumber(totalLootValue)} gp</span>`;
+                        } else if (calculatedValue > 0) {
+                            document.getElementById('parsedTotalValue').innerHTML = `<span style="color: #D4AF37; font-weight: 900;">${formatNumber(calculatedValue)} gp</span> <span style="font-size: 0.7em; color: var(--text-secondary);">(calculated)</span>`;
+                            document.getElementById('analyzerParseStatus').innerHTML = `<span style="color: #22d3ee; font-weight: 700;">✅ Found ${parsedBossItems.length} items! ${itemsWithPrices} with prices</span>`;
+                        } else {
+                            document.getElementById('parsedTotalValue').innerHTML = `<span style="color: var(--text-secondary);">Unknown</span>`;
+                            document.getElementById('analyzerParseStatus').innerHTML = `<span style="color: #fbbf24; font-weight: 700;">⚠️ ${parsedBossItems.length} items found, but no prices available</span>`;
+                        }
+
+                        document.getElementById('priceFetchStatus').innerHTML = `<span style="color: #22d3ee;">✅ ${itemsWithPrices} items have prices from database</span>`;
 
                         // Enable save button
                         document.getElementById('saveBossRoundBtn').disabled = false;
                         document.getElementById('saveBossRoundBtn').style.opacity = '1';
-
-                        document.getElementById('analyzerParseStatus').innerHTML = `<span style="color: #22d3ee; font-weight: 700;">✅ Ready to save! ${parsedBossItems.length} items parsed.</span>`;
                     } else {
                         document.getElementById('analyzerParseStatus').innerHTML = `<span style="color: #ff6b6b; font-weight: 600;">⚠️ No items found. Make sure to paste the "Looted Items:" section.</span>`;
                         document.getElementById('parsedItemsPreview').style.display = 'none';
@@ -7793,10 +7921,15 @@ Member Name
                     '<span style="color: #22d3ee; font-weight: 700;">🔄 Fetching price...</span>' :
                     (item.price > 0 ?
                         `<span style="color: #D4AF37; font-weight: 700; font-size: 1.05em;">${formatNumber(totalItemValue)} gp</span>` :
-                        '<span style="color: #ff6b6b; font-weight: 600;">No price data</span>');
+                        '<span style="color: var(--text-secondary); font-weight: 500;">-</span>');
 
                 const unitPriceDisplay = item.price > 0 ?
                     `<span style="color: var(--text-secondary);">${formatNumber(item.price)} gp each</span>` :
+                    '<span style="color: var(--text-secondary); font-size: 0.8em;">Price unknown</span>';
+
+                // Show source indicator
+                const sourceIndicator = item.priceSource === 'database' ?
+                    '<span style="color: #22d3ee; font-size: 0.75em;">📚</span>' :
                     '';
 
                 html += `
@@ -7811,11 +7944,11 @@ Member Name
                         </div>
                         <div style="flex: 1; min-width: 0;">
                             <div style="color: var(--text-primary); font-weight: 700; font-size: 0.95em; margin-bottom: 3px;">
-                                <span style="color: #22d3ee;">${item.quantity}x</span> ${item.itemName}
+                                <span style="color: #22d3ee;">${item.quantity}x</span> ${item.itemName} ${sourceIndicator}
                             </div>
                             <div style="display: flex; gap: 8px; align-items: center; font-size: 0.85em;">
                                 ${unitPriceDisplay}
-                                ${item.price > 0 && unitPriceDisplay ? '<span style="color: var(--text-secondary);">•</span>' : ''}
+                                ${item.price > 0 ? '<span style="color: var(--text-secondary);">•</span>' : ''}
                                 ${priceDisplay}
                             </div>
                         </div>
@@ -7842,36 +7975,51 @@ Member Name
             }
 
             const date = new Date().toISOString().split('T')[0];
-            let totalValue = 0;
+            let calculatedValue = 0;
             let savedCount = 0;
+
+            // Use total loot value from analyzer, or calculate from individual items
+            const finalTotalValue = totalLootValue > 0 ? totalLootValue :
+                parsedBossItems.reduce((sum, item) => sum + (item.price * item.quantity), 0);
 
             // Save each item as a separate boss loot entry
             parsedBossItems.forEach(item => {
-                if (item.price > 0) { // Only save items with valid prices
-                    const totalItemValue = item.quantity * item.price;
-                    totalValue += totalItemValue;
+                const totalItemValue = item.quantity * item.price;
+                calculatedValue += totalItemValue;
 
-                    const bossLootItem = {
-                        id: Date.now() + savedCount, // Unique ID for each
-                        bossName: bossName,
-                        itemName: item.itemName,
-                        quantity: item.quantity,
-                        pricePerUnit: item.price,
-                        totalValue: totalItemValue,
-                        serverType: serverType,
-                        date: date,
-                        tier: 0,
-                        createdAt: new Date().toISOString()
-                    };
+                const bossLootItem = {
+                    id: Date.now() + savedCount, // Unique ID for each
+                    bossName: bossName,
+                    itemName: item.itemName,
+                    quantity: item.quantity,
+                    pricePerUnit: item.price,
+                    totalValue: totalItemValue,
+                    serverType: serverType,
+                    date: date,
+                    tier: 0,
+                    createdAt: new Date().toISOString()
+                };
 
-                    rareLoot.push(bossLootItem);
-                    savedCount++;
-                }
+                rareLoot.push(bossLootItem);
+                savedCount++;
             });
 
-            if (savedCount === 0) {
-                showNotification('⚠️ No items with valid prices to save', 'warning');
-                return;
+            // Also save a summary entry with the total loot value if we have it from analyzer
+            if (totalLootValue > 0 && totalLootValue !== calculatedValue) {
+                const summaryItem = {
+                    id: Date.now() + savedCount,
+                    bossName: bossName,
+                    itemName: '💰 Total Loot (from analyzer)',
+                    quantity: 1,
+                    pricePerUnit: totalLootValue,
+                    totalValue: totalLootValue,
+                    serverType: serverType,
+                    date: date,
+                    tier: 0,
+                    createdAt: new Date().toISOString()
+                };
+                rareLoot.push(summaryItem);
+                savedCount++;
             }
 
             saveUserData();
@@ -7884,6 +8032,7 @@ Member Name
             document.getElementById('saveBossRoundBtn').disabled = true;
             document.getElementById('saveBossRoundBtn').style.opacity = '0.5';
             parsedBossItems = [];
+            totalLootValue = 0;
 
             // Update displays
             updateRareLootStats();
@@ -7891,7 +8040,7 @@ Member Name
             displayMonthlyBreakdown();
             renderRareLootCalendar();
 
-            showNotification(`👹 Boss round saved! ${savedCount} items worth ${formatNumber(totalValue)} gp`);
+            showNotification(`👹 Boss round saved! ${savedCount} items worth ${formatNumber(finalTotalValue)} gp`);
         }
 
         // Tibia API Integration - Fetch single item price (legacy function for backward compatibility)
