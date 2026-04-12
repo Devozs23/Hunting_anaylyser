@@ -7762,6 +7762,30 @@ Looted Items:
             if (previewBossLootEl) previewBossLootEl.textContent = '0 gp';
             if (previewBossItemsEl) previewBossItemsEl.textContent = '0';
 
+            // Clear parsed items preview section
+            const parsedItemsPreviewEl = document.getElementById('parsedItemsPreview');
+            if (parsedItemsPreviewEl) parsedItemsPreviewEl.style.display = 'none';
+
+            // Clear analyzer status message
+            const analyzerParseStatusEl = document.getElementById('analyzerParseStatus');
+            if (analyzerParseStatusEl) analyzerParseStatusEl.textContent = '';
+
+            // Disable and reset save button
+            const saveBossRoundBtnEl = document.getElementById('saveBossRoundBtn');
+            if (saveBossRoundBtnEl) {
+                saveBossRoundBtnEl.disabled = true;
+                saveBossRoundBtnEl.style.opacity = '0.5';
+            }
+
+            // Clear parsed items list
+            const parsedItemsListEl = document.getElementById('parsedItemsList');
+            if (parsedItemsListEl) parsedItemsListEl.innerHTML = '';
+
+            // Reset global variables
+            parsedBossItems = [];
+            totalLootValue = 0;
+            totalBossItems = 0;
+
             showNotification('✅ Form cleared!', 'success');
         }
 
