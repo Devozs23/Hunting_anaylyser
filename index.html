@@ -7267,17 +7267,6 @@ Looted Items:
             });
 
 
-                totalHunts: hunts.length,
-                todayHunts: todayHunts.length,
-                todayProfit: todayHunts.reduce((sum, h) => sum + h.profit, 0),
-                todayDate: today.toISOString(),
-                huntsDebug: hunts.map(h => ({
-                    name: h.name,
-                    profit: h.profit,
-                    date: h.date,
-                    dateObj: new Date(h.date).toISOString()
-                }))
-            });
 
             const todayProfit = todayHunts.reduce((sum, h) => sum + h.profit, 0);
             const yesterdayProfit = yesterdayHunts.reduce((sum, h) => sum + h.profit, 0);
