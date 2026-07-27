@@ -2442,6 +2442,140 @@
             background: rgba(212,175,55,0.25) !important;
             border-color: rgba(212,175,55,0.7) !important;
         }
+
+        /* ======================================================
+           ENTRANCE ANIMATIONS — cards reveal on tab switch
+           ====================================================== */
+        @keyframes _fadeUp {
+            from { opacity: 0; transform: translateY(22px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes _fadeLeft {
+            from { opacity: 0; transform: translateX(-18px); }
+            to   { opacity: 1; transform: translateX(0); }
+        }
+        @keyframes _fadeIn {
+            from { opacity: 0; }
+            to   { opacity: 1; }
+        }
+        @keyframes _scaleIn {
+            from { opacity: 0; transform: scale(0.94); }
+            to   { opacity: 1; transform: scale(1); }
+        }
+
+        /* All direct children of a tab get this class via JS */
+        ._anim-item {
+            opacity: 0;
+            animation: _fadeUp 0.45s cubic-bezier(0.22,1,0.36,1) forwards;
+        }
+        ._anim-stat {
+            opacity: 0;
+            animation: _scaleIn 0.4s cubic-bezier(0.22,1,0.36,1) forwards;
+        }
+
+        /* Stagger delays 1–12 */
+        ._d1  { animation-delay: 0.04s; }
+        ._d2  { animation-delay: 0.09s; }
+        ._d3  { animation-delay: 0.14s; }
+        ._d4  { animation-delay: 0.19s; }
+        ._d5  { animation-delay: 0.24s; }
+        ._d6  { animation-delay: 0.29s; }
+        ._d7  { animation-delay: 0.34s; }
+        ._d8  { animation-delay: 0.39s; }
+        ._d9  { animation-delay: 0.44s; }
+        ._d10 { animation-delay: 0.49s; }
+        ._d11 { animation-delay: 0.54s; }
+        ._d12 { animation-delay: 0.59s; }
+
+        /* ======================================================
+           TOOLTIP SYSTEM  — data-tip="…" on any element
+           ====================================================== */
+        [data-tip] {
+            position: relative;
+        }
+        [data-tip]::before {
+            content: attr(data-tip);
+            position: absolute;
+            bottom: calc(100% + 10px);
+            left: 50%;
+            transform: translateX(-50%) translateY(4px);
+            background: linear-gradient(135deg, rgba(8,4,1,0.98) 0%, rgba(18,9,2,0.99) 100%);
+            border: 1px solid rgba(212,175,55,0.55);
+            color: #F5E6C8;
+            padding: 9px 14px;
+            border-radius: 8px;
+            font-size: 0.78em;
+            line-height: 1.5;
+            white-space: normal;
+            max-width: 240px;
+            text-align: center;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.2s ease, transform 0.2s ease;
+            z-index: 99998;
+            font-family: 'IM Fell English', Georgia, serif;
+            font-weight: 400;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.7), 0 0 12px rgba(212,175,55,0.12);
+            width: max-content;
+        }
+        [data-tip]::after {
+            content: '';
+            position: absolute;
+            bottom: calc(100% + 4px);
+            left: 50%;
+            transform: translateX(-50%) translateY(4px);
+            border: 6px solid transparent;
+            border-top-color: rgba(212,175,55,0.55);
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.2s ease, transform 0.2s ease;
+            z-index: 99998;
+        }
+        [data-tip]:hover::before,
+        [data-tip]:hover::after {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
+        /* Tooltip that opens downward */
+        [data-tip-down]::before {
+            bottom: auto;
+            top: calc(100% + 10px);
+            transform: translateX(-50%) translateY(-4px);
+        }
+        [data-tip-down]::after {
+            bottom: auto;
+            top: calc(100% + 4px);
+            transform: translateX(-50%) translateY(-4px);
+            border-top-color: transparent;
+            border-bottom-color: rgba(212,175,55,0.55);
+        }
+        [data-tip-down]:hover::before { transform: translateX(-50%) translateY(0); }
+        [data-tip-down]:hover::after  { transform: translateX(-50%) translateY(0); }
+
+        /* The ℹ help button */
+        .help-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: rgba(212,175,55,0.15);
+            border: 1px solid rgba(212,175,55,0.4);
+            color: #D4AF37;
+            font-size: 0.72em;
+            font-weight: 700;
+            cursor: default;
+            flex-shrink: 0;
+            transition: background 0.2s ease, border-color 0.2s ease;
+            font-family: 'Cinzel', serif;
+            font-style: normal;
+            line-height: 1;
+        }
+        .help-btn:hover {
+            background: rgba(212,175,55,0.28);
+            border-color: rgba(212,175,55,0.7);
+        }
     </style>
 </head>
 <body>
@@ -2893,8 +3027,11 @@
                 <div id="dailyTargetSection" style="margin-top: 8px;">
                     <div class="card" style="background: linear-gradient(160deg, rgba(22,12,4,0.97) 0%, rgba(14,8,2,0.98) 100%); border: 1px solid rgba(212,175,55,0.5); backdrop-filter: blur(15px); border-radius: 10px; padding: 8px; box-shadow: 0 0 0 2px rgba(80,48,10,0.3), 0 8px 25px rgba(0,0,0,0.5), 0 0 20px rgba(212,175,55,0.08);">
                         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px;">
-                            <h3 style="font-family:'Cinzel',serif; color: #D4AF37; margin: 0; font-size: 0.85em; letter-spacing:0.5px;">🎯 Daily Target</h3>
-                            <button class="btn-secondary" onclick="setDailyTarget()" style="padding: 3px 8px; font-size: 0.75em;">⚙️</button>
+                            <h3 style="font-family:'Cinzel',serif; color: #D4AF37; margin: 0; font-size: 0.85em; letter-spacing:0.5px; display: flex; align-items: center; gap: 6px;">
+                                🎯 Daily Target
+                                <span class="help-btn" data-tip-down data-tip="Set a daily gold profit goal. The bar fills as you add hunts throughout the day. Resets every midnight automatically.">?</span>
+                            </h3>
+                            <button class="btn-secondary" onclick="setDailyTarget()" style="padding: 3px 8px; font-size: 0.75em;" data-tip="Click to set or change your daily profit goal">⚙️</button>
                         </div>
 
                         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
@@ -3074,14 +3211,18 @@
                     <div>
                         <!-- Auto-Fill -->
                         <div class="card" style="padding: 18px; border-left: 3px solid rgba(212,175,55,0.4); margin-bottom: 16px;">
-                            <h4 style="font-family:'Cinzel',serif; color: #D4AF37; margin: 0 0 10px 0; font-size: 1em; letter-spacing:0.5px;">🔍 Auto-Fill from Analyzer</h4>
+                            <h4 style="font-family:'Cinzel',serif; color: #D4AF37; margin: 0 0 10px 0; font-size: 1em; letter-spacing:0.5px; display: flex; align-items: center; gap: 6px;">
+                                🔍 Auto-Fill from Analyzer
+                                <span class="help-btn" data-tip="In Tibia: open Hunt Analyser → choose your session → click Copy. Paste the full text here, then click Auto-Fill to populate Loot, Supplies and XP automatically.">?</span>
+                            </h4>
                             <div class="input-group" style="margin: 0;">
                                 <label style="font-size: 0.95em; margin-bottom: 5px; font-weight: 600;">📋 Paste Tibia Analyzer Data</label>
                                 <textarea id="huntData" placeholder="Session data: From...
 XP Gain: 0
 Loot: 0
 Supplies: 488..." style="min-height: 140px; font-family: monospace; font-size: 0.9em; padding: 12px;"></textarea>
-                                <button class="btn-warning" onclick="parseHuntData()" style="margin-top: 10px; width: 100%; padding: 11px; font-size: 1em;">🔍 Auto-Fill</button>
+                                <button class="btn-warning" onclick="parseHuntData()" style="margin-top: 10px; width: 100%; padding: 11px; font-size: 1em;"
+                                    data-tip="Reads the pasted text and fills in Loot, Supplies, XP and Duration automatically.">🔍 Auto-Fill</button>
                             </div>
                         </div>
 
@@ -3557,13 +3698,19 @@ Member Name
                         <div class="card" style="padding: 18px; border-left: 3px solid rgba(212,175,55,0.4); margin-bottom: 16px;">
                             <h4 style="font-family:'Cinzel',serif; color: #D4AF37; margin: 0 0 10px 0; font-size: 1em; letter-spacing:0.5px;">🔍 Auto-Fill from Analyzer</h4>
                             <div class="input-group" style="margin: 0;">
-                                <label style="font-size: 0.95em; margin-bottom: 5px; font-weight: 600;">📋 Paste Tibia Analyzer Data</label>
+                                <label style="font-size: 0.95em; margin-bottom: 5px; font-weight: 600; display: flex; align-items: center; gap: 6px;">
+                                    📋 Paste Tibia Analyzer Data
+                                    <span class="help-btn" data-tip="In Tibia client: open Hunt Analyser → select your session → click Copy. Then paste the full text here and click Auto-Fill to extract loot automatically.">?</span>
+                                </label>
                                 <textarea id="bossAnalyzerData" placeholder="Session data: From...
 Loot: 12,704,030
 Looted Items:
   87x a strong mana potion
   3x a giant amethyst..." style="min-height: 140px; font-family: monospace; font-size: 0.9em; padding: 12px;"></textarea>
-                                <button class="btn-warning" onclick="parseBossData()" style="margin-top: 10px; width: 100%; padding: 11px; font-size: 1em;">🔍 Auto-Fill</button>
+                                <button class="btn-warning" onclick="parseBossData()" style="margin-top: 10px; width: 100%; padding: 11px; font-size: 1em;"
+                                    data-tip="Parses the pasted session text and auto-fills Loot Value, Item Count and the items list with market prices.">
+                                    🔍 Auto-Fill
+                                </button>
                             </div>
                         </div>
 
@@ -3707,14 +3854,16 @@ Looted Items:
 
                     <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 10px;">
                         <div class="input-group" style="margin: 0;">
-                            <label for="tcPriceInput" style="font-size: 0.95em; margin-bottom: 5px; color: #D4AF37; font-weight: 700; text-transform: uppercase; letter-spacing: 0.3px; display: flex; align-items: center; gap: 3px;">
+                            <label for="tcPriceInput" style="font-size: 0.95em; margin-bottom: 5px; color: #D4AF37; font-weight: 700; text-transform: uppercase; letter-spacing: 0.3px; display: flex; align-items: center; gap: 6px;">
                                 <span style="font-size: 1.1em;">💎</span> TC Price (gp)
+                                <span class="help-btn" data-tip="Current Tibia Coin price in gold. The calendar converts your daily hunt profits into TC equivalents so you can see how many TCs you earn each day.">?</span>
                             </label>
                             <input type="number" id="tcPriceInput" placeholder="39341" min="0" style="padding: 8px 12px; font-size: 1em; background: rgba(0, 0, 0, 0.4); border: 2px solid rgba(212, 175, 55, 0.4); border-radius: 6px; color: #E8D5B7; font-weight: 700; transition: all 0.3s; box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3);" onfocus="this.style.borderColor='#D4AF37'; this.style.boxShadow='0 0 12px rgba(212, 175, 55, 0.3), inset 0 2px 4px rgba(0, 0, 0, 0.3)';" onblur="this.style.borderColor='rgba(212, 175, 55, 0.4)'; this.style.boxShadow='inset 0 2px 4px rgba(0, 0, 0, 0.3)';">
                         </div>
                         <div class="input-group" style="margin: 0;">
-                            <label for="tibiaCharInput" style="font-size: 0.95em; margin-bottom: 5px; color: #D4AF37; font-weight: 700; text-transform: uppercase; letter-spacing: 0.3px; display: flex; align-items: center; gap: 3px;">
+                            <label for="tibiaCharInput" style="font-size: 0.95em; margin-bottom: 5px; color: #D4AF37; font-weight: 700; text-transform: uppercase; letter-spacing: 0.3px; display: flex; align-items: center; gap: 6px;">
                                 <span style="font-size: 1.1em;">⚔️</span> Character
+                                <span class="help-btn" data-tip="Your Tibia character name. Used to label your profile and personalize your session data.">?</span>
                             </label>
                             <input type="text" id="tibiaCharInput" placeholder="Your Character" style="padding: 8px 12px; font-size: 1em; background: rgba(0, 0, 0, 0.4); border: 2px solid rgba(212, 175, 55, 0.4); border-radius: 6px; color: #E8D5B7; font-weight: 700; transition: all 0.3s; box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3);" onfocus="this.style.borderColor='#D4AF37'; this.style.boxShadow='0 0 12px rgba(212, 175, 55, 0.3), inset 0 2px 4px rgba(0, 0, 0, 0.3)';" onblur="this.style.borderColor='rgba(212, 175, 55, 0.4)'; this.style.boxShadow='inset 0 2px 4px rgba(0, 0, 0, 0.3)';">
                         </div>
@@ -3727,8 +3876,9 @@ Looted Items:
 
                 <!-- SHARE CODE - COMPACT -->
                 <div class="card" style="margin-top: 10px; padding: 10px; background: rgba(18, 10, 4, 0.92); border: 2px solid rgba(212, 175, 55, 0.4);">
-                    <h3 style="color: #D4AF37; margin-bottom: 8px; font-size: 1.1em; display: flex; align-items: center; gap: 6px;">
+                    <h3 style="color: #D4AF37; margin-bottom: 8px; font-size: 1.1em; display: flex; align-items: center; gap: 8px;">
                         <span style="font-size: 1.2em;">📱</span> Multi-Device Sync
+                        <span class="help-btn" data-tip="Generate a Share Code to export your data as a text string. On another device, click Restore and paste the code to import all your hunts, goals and boss loot.">?</span>
                     </h3>
 
                     <div style="background: rgba(0, 0, 0, 0.4); padding: 8px; border-radius: 6px; margin-bottom: 8px; border: 1px solid rgba(212, 175, 55, 0.3);">
@@ -4387,11 +4537,10 @@ Looted Items:
         }
 
         // Tab Management
-        function switchMainTab(tab) {
+        function switchMainTab(tab, triggerEl) {
             document.querySelectorAll('.main-tab-content').forEach(content => {
                 content.classList.remove('active');
             });
-
             document.querySelectorAll('.main-tab').forEach(tabBtn => {
                 tabBtn.classList.remove('active');
             });
@@ -4410,8 +4559,14 @@ Looted Items:
                 'history': 'historyTab'
             };
 
-            document.getElementById(tabMap[tab]).classList.add('active');
-            event.target.classList.add('active');
+            const tabEl = document.getElementById(tabMap[tab]);
+            tabEl.classList.add('active');
+
+            const btn = triggerEl || (typeof event !== 'undefined' && event && event.target);
+            if (btn && btn.classList) btn.classList.add('active');
+
+            // ---- Entrance animations ----
+            _animateTabContent(tabEl);
 
             if (tab === 'comparator') {
                 updateSpotComparison();
@@ -4424,14 +4579,38 @@ Looted Items:
                 updateRareLootStats();
                 displayRareItems();
                 displayMonthlyBreakdown();
-                renderRareLootCalendar(); // Render calendar when tab is opened
+                renderRareLootCalendar();
             } else if (tab === 'bossLoot') {
-                displayRecentSearches(); // Display recent boss searches
-                // Show popular bosses section
+                displayRecentSearches();
                 document.getElementById('popularBossesSection').style.display = 'block';
             } else if (tab === 'dashboard') {
                 updateDashboardGoals();
             }
+        }
+
+        // Staggered entrance animation for tab content
+        function _animateTabContent(tabEl) {
+            if (!tabEl) return;
+
+            // Stat cards (dashboard top row) get scale-in
+            const statCards = tabEl.querySelectorAll('.stat-card-hover');
+            statCards.forEach((el, i) => {
+                el.classList.remove('_anim-item', '_anim-stat');
+                // Force reflow to restart animation
+                void el.offsetWidth;
+                el.classList.add('_anim-stat', `_d${Math.min(i + 1, 12)}`);
+            });
+
+            // Main cards (.card) and direct section divs get fade-up
+            const cards = tabEl.querySelectorAll(':scope > .card, :scope > div[style*="margin"]');
+            let idx = statCards.length;
+            cards.forEach((el) => {
+                if (el.classList.contains('floating-icons')) return;
+                el.classList.remove('_anim-item');
+                void el.offsetWidth;
+                el.classList.add('_anim-item', `_d${Math.min(idx + 1, 12)}`);
+                idx++;
+            });
         }
 
         // App Display Functions
