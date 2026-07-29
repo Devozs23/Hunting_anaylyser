@@ -481,7 +481,9 @@
                 0 0 0 1px rgba(212, 175, 55, 0.5),
                 0 0 0 3px rgba(100, 60, 10, 0.35),
                 0 20px 50px rgba(0,0,0,0.7),
-                0 0 30px rgba(212, 175, 55, 0.08);
+                0 0 30px rgba(212, 175, 55, 0.08),
+                0 8px 40px rgba(212, 175, 55, 0.18),
+                0 0 70px rgba(180, 140, 20, 0.09);
         }
 
         .card:hover::after {
@@ -2198,6 +2200,11 @@
         @keyframes gold-shimmer {
             0% { background-position: -200% 0; }
             100% { background-position: 200% 0; }
+        }
+
+        @keyframes gold-flow {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
         }
 
         /* Scroll customization */
@@ -6775,6 +6782,20 @@ Looted Items:
             updateDashboardStats();
         }
 
+        function _animateCount(el, targetValue, duration, formatter) {
+            if (!el) return;
+            duration = duration !== undefined ? duration : 800;
+            formatter = formatter || function(v) { return formatNumber(Math.round(v)); };
+            var startTime = performance.now();
+            function tick(now) {
+                var t = Math.min((now - startTime) / duration, 1);
+                var eased = 1 - Math.pow(1 - t, 3);
+                el.textContent = formatter(targetValue * eased);
+                if (t < 1) { requestAnimationFrame(tick); }
+            }
+            requestAnimationFrame(tick);
+        }
+
         function updateDashboardStats() {
             if (!hunts || hunts.length === 0) {
                 const dashElements = {
@@ -6800,7 +6821,7 @@ Looted Items:
             const totalHunts = hunts.length;
 
             const elem1 = document.getElementById('dashTotalProfit');
-            if (elem1) elem1.textContent = formatProfit(totalProfit);
+            _animateCount(elem1, totalProfit, 800, function(v) { return formatProfit(Math.round(v)); });
 
             const elem2 = document.getElementById('dashTotalHunts');
             if (elem2) elem2.textContent = `${totalHunts} hunt${totalHunts !== 1 ? 's' : ''}`;
@@ -6818,10 +6839,10 @@ Looted Items:
             const avgProfit = Math.round(totalProfit / totalHunts);
 
             const elem3 = document.getElementById('dashAvgProfitHour');
-            if (elem3) elem3.textContent = formatProfit(avgProfitHour) + '/h';
+            _animateCount(elem3, avgProfitHour, 800, function(v) { return formatProfit(Math.round(v)) + '/h'; });
 
             const elem4 = document.getElementById('dashAvgProfit');
-            if (elem4) elem4.textContent = formatProfit(avgProfit) + ' avg';
+            _animateCount(elem4, avgProfit, 800, function(v) { return formatProfit(Math.round(v)) + ' avg'; });
 
             // Today's Profit
             const today = new Date();
@@ -6834,7 +6855,7 @@ Looted Items:
             const todayProfit = todayHunts.reduce((sum, h) => sum + h.profit, 0);
 
             const elem5 = document.getElementById('dashTodayProfit');
-            if (elem5) elem5.textContent = formatProfit(todayProfit);
+            _animateCount(elem5, todayProfit, 800, function(v) { return formatProfit(Math.round(v)); });
 
             const elem6 = document.getElementById('dashTodayHunts');
             if (elem6) elem6.textContent = `${todayHunts.length} hunt${todayHunts.length !== 1 ? 's' : ''} today`;
