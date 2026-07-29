@@ -3068,6 +3068,9 @@
                     </div>
                 </div>
 
+                <!-- Active Goals on Dashboard -->
+                <div id="dashboardGoalsSection" style="margin-top: 12px;"></div>
+
                 <!-- Performance Analytics - LARGER -->
                 <div id="performanceSection" style="margin-top: 12px;">
                     <div class="card" style="background: linear-gradient(135deg, rgba(50, 30, 40, 0.8) 0%, rgba(40, 20, 30, 0.8) 100%); border: 2px solid #dc3545; border-radius: 14px; padding: 14px; box-shadow: 0 8px 25px rgba(220, 53, 69, 0.3);">
@@ -6389,31 +6392,31 @@ Looted Items:
         }
 
         function updateDashboardGoals() {
-            const dashboardGoals = document.getElementById('dashboardGoals');
-
-            // Check if element exists (it was removed from the new dashboard design)
-            if (!dashboardGoals) {
-                return;
-            }
+            const container = document.getElementById('dashboardGoalsSection');
+            if (!container) return;
 
             const activeGoals = goals.filter(g => g.status === 'active');
 
             if (activeGoals.length === 0) {
-                dashboardGoals.innerHTML = '<div class="empty-state"><p>No active goals. Create one in the Goals tab!</p></div>';
+                container.innerHTML = `
+                    <div style="background: rgba(10,5,1,0.97); border: 1px solid rgba(212,175,55,0.3); border-radius: 12px; padding: 14px; text-align: center; margin-top: 4px;">
+                        <div style="color: rgba(212,175,55,0.5); font-family:'Cinzel',serif; font-size: 0.85em; margin-bottom: 8px;">No active goals set</div>
+                        <button onclick="switchMainTab('goals', null)" style="background: rgba(212,175,55,0.15); border: 1px solid rgba(212,175,55,0.4); color: #D4AF37; font-family:'Cinzel',serif; font-size: 0.8em; padding: 5px 14px; border-radius: 6px; cursor: pointer;">+ Set a Goal</button>
+                    </div>`;
                 return;
             }
 
-            dashboardGoals.innerHTML = activeGoals.slice(0, 3).map(goal => {
-                const progress = Math.min((goal.current / goal.target) * 100, 100);
-                const typeLabels = {
-                    'profit': '',
-                    'xp': '',
-                    'hunts': 'hunts',
-                    'time': 'hours'
-                };
+            const shown = activeGoals.slice(0, 4);
+            const extra = activeGoals.length - shown.length;
 
-                // Format values based on type
-                let currentFormatted, targetFormatted;
+            const typeLabels = { profit: 'PROFIT GOAL', xp: 'XP GOAL', hunts: 'HUNT GOAL', time: 'TIME GOAL' };
+
+            const goalsHTML = shown.map(function(goal) {
+                const progress = Math.min((goal.current / goal.target) * 100, 100);
+                const isNearComplete = progress >= 80;
+                const shimmerStyle = isNearComplete ? 'animation: gold-flow 1.5s linear infinite;' : '';
+
+                var currentFormatted, targetFormatted;
                 if (goal.type === 'profit') {
                     currentFormatted = formatProfit(goal.current);
                     targetFormatted = formatProfit(goal.target);
@@ -6425,22 +6428,44 @@ Looted Items:
                     targetFormatted = formatNumber(goal.target);
                 }
 
-                return `
-                    <div class="goal-item" style="margin-bottom: 10px;">
-                        <div style="margin-bottom: 10px;">
-                            <div class="goal-title" style="font-size: 1.1em;">${goal.name}</div>
-                        </div>
-                        <div class="progress-bar-container">
-                            <div class="progress-bar" style="width: ${progress}%">
-                                ${progress.toFixed(0)}%
-                            </div>
-                        </div>
-                        <div style="margin-top: 5px; color: var(--text-secondary); font-size: 0.9em;">
-                            ${currentFormatted} / ${targetFormatted} ${typeLabels[goal.type]}
-                        </div>
-                    </div>
-                `;
+                var deadlineHTML = '';
+                if (goal.deadline) {
+                    var daysLeft = Math.ceil((new Date(goal.deadline) - new Date()) / (1000 * 60 * 60 * 24));
+                    var dColor = daysLeft <= 3 ? '#dc3545' : daysLeft <= 7 ? '#ffc107' : 'rgba(212,175,55,0.6)';
+                    deadlineHTML = '<span style="color:' + dColor + '; font-size:0.78em; margin-left:auto;">' + (daysLeft > 0 ? daysLeft + 'd left' : 'Overdue') + '</span>';
+                }
+
+                var label = typeLabels[goal.type] || goal.type.toUpperCase();
+
+                return '<div style="background: rgba(10,5,1,0.97); border: 1px solid rgba(212,175,55,0.35); border-radius: 10px; padding: 11px 13px; margin-bottom: 8px;">'
+                    + '<div style="display:flex; align-items:center; gap:8px; margin-bottom:7px; flex-wrap:wrap;">'
+                    + '<span style="font-family:\'Cinzel\',serif; font-size:0.9em; font-weight:700; color:#D4AF37; flex:1; min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">' + goal.name + '</span>'
+                    + '<span style="background:rgba(212,175,55,0.12); border:1px solid rgba(212,175,55,0.3); color:rgba(212,175,55,0.75); font-size:0.65em; padding:2px 7px; border-radius:4px; letter-spacing:0.5px; white-space:nowrap;">' + label + '</span>'
+                    + deadlineHTML
+                    + '</div>'
+                    + '<div style="position:relative; background:rgba(0,0,0,0.5); height:10px; border-radius:5px; overflow:hidden; border:1px solid rgba(212,175,55,0.15); margin-bottom:5px;">'
+                    + '<div style="position:absolute; top:0; left:0; height:100%; width:' + progress.toFixed(1) + '%; background: linear-gradient(90deg, #8B6914, #D4AF37, #FFD700, #D4AF37, #8B6914); background-size:200% 100%; border-radius:5px; transition:width 0.5s ease; ' + shimmerStyle + '"></div>'
+                    + '<div style="position:absolute; top:0; right:4px; height:100%; display:flex; align-items:center; font-size:0.65em; font-weight:700; color:rgba(255,255,255,0.85);">' + progress.toFixed(0) + '%</div>'
+                    + '</div>'
+                    + '<div style="display:flex; align-items:center; font-size:0.78em; color:rgba(212,175,55,0.6);">'
+                    + '<span>' + currentFormatted + ' <span style="color:rgba(212,175,55,0.35);">/</span> ' + targetFormatted + '</span>'
+                    + '</div>'
+                    + '</div>';
             }).join('');
+
+            var viewAllHTML = extra > 0
+                ? '<div style="text-align:center; margin-top:2px;"><button onclick="switchMainTab(\'goals\', null)" style="background:none; border:none; color:rgba(212,175,55,0.6); font-family:\'Cinzel\',serif; font-size:0.78em; cursor:pointer; text-decoration:underline;">View all ' + activeGoals.length + ' goals →</button></div>'
+                : '<div style="text-align:right; margin-top:2px;"><button onclick="switchMainTab(\'goals\', null)" style="background:none; border:none; color:rgba(212,175,55,0.45); font-family:\'Cinzel\',serif; font-size:0.75em; cursor:pointer;">→ Goals</button></div>';
+
+            var separatorHTML = '<div style="display:flex; align-items:center; gap:8px; margin: 6px 0 10px;">'
+                + '<div style="flex:1; height:1px; background: linear-gradient(90deg, transparent, rgba(212,175,55,0.4));"></div>'
+                + '<span style="color:#D4AF37; font-size:0.75em;">✦</span>'
+                + '<div style="font-family:\'Cinzel\',serif; font-size:0.7em; color:rgba(212,175,55,0.7); letter-spacing:1px; text-transform:uppercase;">Active Goals</div>'
+                + '<span style="color:#D4AF37; font-size:0.75em;">✦</span>'
+                + '<div style="flex:1; height:1px; background: linear-gradient(270deg, transparent, rgba(212,175,55,0.4));"></div>'
+                + '</div>';
+
+            container.innerHTML = separatorHTML + goalsHTML + viewAllHTML;
         }
 
         // Hunt Search and Filter
