@@ -64,7 +64,7 @@
                 linear-gradient(160deg, var(--bg-gradient-start) 0%, #110902 40%, var(--bg-gradient-end) 100%);
             background-attachment: fixed;
             min-height: 100vh;
-            padding: 20px;
+            padding: 12px;
             transition: all 0.3s ease;
         }
 
@@ -384,7 +384,7 @@
             background: linear-gradient(180deg, rgba(25, 14, 5, 0.97) 0%, rgba(18, 10, 3, 0.98) 100%);
             border-radius: 8px;
             padding: 8px;
-            margin-bottom: 20px;
+            margin-bottom: 12px;
             display: flex;
             gap: 4px;
             overflow-x: auto;
@@ -438,13 +438,13 @@
         .card {
             background: linear-gradient(160deg, rgba(20, 12, 4, 0.95) 0%, rgba(14, 8, 2, 0.97) 100%);
             border-radius: 8px;
-            padding: 20px;
+            padding: 14px;
             box-shadow:
                 0 0 0 1px rgba(212, 175, 55, 0.35),
                 0 0 0 3px rgba(70, 42, 8, 0.3),
                 0 12px 35px rgba(0,0,0,0.6),
                 inset 0 1px 0 rgba(212, 175, 55, 0.1);
-            margin-bottom: 18px;
+            margin-bottom: 10px;
             transition: all 0.3s ease;
             border: none;
             position: relative;
@@ -2591,31 +2591,6 @@
     <!-- Partículas de fondo (gold particles) -->
     <div class="particles-container" id="particlesContainer"></div>
 
-    <!-- TIBIA CORNER CREATURES -->
-    <!-- Left: Dragon -->
-    <div id="cornerPikachu" onclick="spinCharacter('cornerPikachu')" title="Dragon - Click me!"
-         style="position: fixed; bottom: 20px; left: 20px; z-index: 9999; cursor: pointer; transition: transform 0.6s ease; user-select: none; display: flex; flex-direction: column; align-items: center; gap: 4px;">
-        <img src="https://tibia.fandom.com/wiki/Special:FilePath/Dragon.gif"
-             onerror="this.parentElement.innerHTML='🐉'"
-             alt="Dragon" style="width: 80px; height: 80px; object-fit: contain; image-rendering: pixelated; filter: drop-shadow(0 0 18px rgba(255,120,0,0.8));">
-        <span style="font-family:'Cinzel',serif; font-size:0.6em; color:rgba(212,175,55,0.7); letter-spacing:1px;">DRAGON</span>
-    </div>
-    <!-- Center: Demon -->
-    <div id="cornerCharizard" onclick="spinCharacter('cornerCharizard')" title="Demon - Click me!"
-         style="position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); z-index: 9999; cursor: pointer; transition: transform 0.6s ease; user-select: none; display: flex; flex-direction: column; align-items: center; gap: 4px;">
-        <img src="https://tibia.fandom.com/wiki/Special:FilePath/Demon.gif"
-             onerror="this.parentElement.innerHTML='👹'"
-             alt="Demon" style="width: 80px; height: 80px; object-fit: contain; image-rendering: pixelated; filter: drop-shadow(0 0 18px rgba(180,0,0,0.9));">
-        <span style="font-family:'Cinzel',serif; font-size:0.6em; color:rgba(212,175,55,0.7); letter-spacing:1px;">DEMON</span>
-    </div>
-    <!-- Right: Elf Arcanist -->
-    <div id="cornerSquirtle" onclick="spinCharacter('cornerSquirtle')" title="Hero - Click me!"
-         style="position: fixed; bottom: 20px; right: 20px; z-index: 9999; cursor: pointer; transition: transform 0.6s ease; user-select: none; display: flex; flex-direction: column; align-items: center; gap: 4px;">
-        <img src="https://tibia.fandom.com/wiki/Special:FilePath/Hero.gif"
-             onerror="this.parentElement.innerHTML='⚔️'"
-             alt="Hero" style="width: 80px; height: 80px; object-fit: contain; image-rendering: pixelated; filter: drop-shadow(0 0 18px rgba(100,180,255,0.8));">
-        <span style="font-family:'Cinzel',serif; font-size:0.6em; color:rgba(212,175,55,0.7); letter-spacing:1px;">HERO</span>
-    </div>
 
     <!-- Loading Overlay -->
     <div class="loading-overlay" id="loadingOverlay">
@@ -2978,18 +2953,6 @@
 
             <!-- Dashboard Tab -->
             <div class="main-tab-content active" id="dashboardTab" style="position: relative; overflow: hidden;">
-                <!-- Floating Animated Icons - Tibia themed -->
-                <div class="floating-icons" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; pointer-events: none; z-index: 0; overflow: hidden;">
-                    <div style="position: absolute; font-size: 2.5em; animation: float1 15s infinite ease-in-out; opacity: 0.15;">🪙</div>
-                    <div style="position: absolute; font-size: 2em; animation: float2 18s infinite ease-in-out; opacity: 0.12;">⚔️</div>
-                    <div style="position: absolute; font-size: 1.8em; animation: float3 20s infinite ease-in-out; opacity: 0.1;">🛡️</div>
-                    <div style="position: absolute; font-size: 2.2em; animation: float4 16s infinite ease-in-out; opacity: 0.13;">📈</div>
-                    <div style="position: absolute; font-size: 1.9em; animation: float5 22s infinite ease-in-out; opacity: 0.11;">🔥</div>
-                    <div style="position: absolute; font-size: 2.3em; animation: float6 19s infinite ease-in-out; opacity: 0.14;">💎</div>
-                    <div style="position: absolute; font-size: 2.1em; animation: float7 17s infinite ease-in-out; opacity: 0.12;">🐉</div>
-                    <div style="position: absolute; font-size: 1.7em; animation: float8 21s infinite ease-in-out; opacity: 0.09;">🏆</div>
-                </div>
-
 
                 <!-- Main Stats Cards - Tibia Gold Theme -->
                 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 14px; margin-bottom: 16px; position: relative; z-index: 1;">
@@ -7013,42 +6976,6 @@ Looted Items:
             document.getElementById('targetModal').style.display = 'none';
         }
 
-        // Interactive Corner Characters - Spin on Click
-        let spinningChars = {};
-        function spinCharacter(charId) {
-            const char = document.getElementById(charId);
-            if (!char) return;
-
-            // Prevent multiple spins at once
-            if (spinningChars[charId]) return;
-            spinningChars[charId] = true;
-
-            // Random rotation direction
-            const direction = Math.random() > 0.5 ? 1 : -1;
-            const rotations = 2 + Math.floor(Math.random() * 2); // 2-3 full rotations
-            const degrees = direction * rotations * 360;
-
-            // Apply spin animation
-            char.style.transform = `rotate(${degrees}deg) scale(1.3)`;
-
-            // Add bounce effect
-            setTimeout(() => {
-                char.style.transform = `rotate(${degrees}deg) scale(1)`;
-            }, 300);
-
-            // Reset after animation
-            setTimeout(() => {
-                char.style.transform = 'rotate(0deg) scale(1)';
-                spinningChars[charId] = false;
-            }, 600);
-
-            // Play sound effect (optional - silent if no sound)
-            try {
-                const audio = new Audio('data:audio/wav;base64,UklGRnoGAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQoGAACBhYqFbF1fdJivrJBhNjVgodDbq2EcBj+a2/LDciUFLIHO8tiJNwgZaLvt559NEAxQp+PwtmMcBjiR1/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+DyvmwhBSuBzvLZiTYIG2m98OScTgwOUKjo8LllHAU2kdXzzncsB');
-                audio.volume = 0.3;
-                audio.play().catch(() => {}); // Ignore if audio fails
-            } catch(e) {}
-        }
 
         function saveTargetFromModal() {
             const target = document.getElementById('modalTargetInput').value.trim();
