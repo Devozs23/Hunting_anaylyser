@@ -2841,6 +2841,420 @@
             .r-perf-grid { grid-template-columns: repeat(2, 1fr); }
             .r-insights-grid { grid-template-columns: repeat(2, 1fr); }
         }
+
+        /* ════════════════════════════════════════════════
+           DESIGN SYSTEM v6.0 — COMPLETE PROFESSIONAL
+           ════════════════════════════════════════════════ */
+
+        /* ── Updated design tokens ── */
+        :root {
+            --bg-primary: #0D0D0D;
+            --bg-surface: #141414;
+            --bg-elevated: #1A1A1A;
+            --bg-input: #0F0F0F;
+            --border-subtle: #262626;
+            --border-focus: #404040;
+            --accent-gold: #C9A84C;
+            --accent-gold-hover: #D4B55A;
+            --accent-gold-muted: rgba(201,168,76,0.14);
+            --profit-positive: #22C55E;
+            --profit-negative: #EF4444;
+            --info-blue: #3B82F6;
+            --warning-amber: #F59E0B;
+            /* Remap legacy variables */
+            --primary-color: #C9A84C;
+            --secondary-color: #8B7340;
+            --success-color: #22C55E;
+            --danger-color: #EF4444;
+            --warning-color: #F59E0B;
+            --text-primary: #F5F5F5;
+            --text-secondary: #A3A3A3;
+            --text-muted: #737373;
+            --border-color: #262626;
+            --card-bg: #141414;
+            --card-bg-solid: #141414;
+            --parchment: #F5F5F5;
+            --stone-dark: #0D0D0D;
+            --stone-mid: #1A1A1A;
+            --gold-glow: rgba(201,168,76,0.3);
+            --bg-gradient-start: #0D0D0D;
+            --bg-gradient-end: #0D0D0D;
+        }
+
+        /* ── Body ── */
+        body {
+            background: var(--bg-primary) !important;
+            color: var(--text-primary) !important;
+            font-family: 'Inter', system-ui, sans-serif !important;
+            padding: 20px !important;
+        }
+        body::before { display: none !important; }
+
+        /* ── Cards ── */
+        .card {
+            background: var(--bg-surface) !important;
+            border: 1px solid var(--border-subtle) !important;
+            border-radius: 12px !important;
+            box-shadow: none !important;
+            margin-bottom: 12px !important;
+            padding: 18px !important;
+        }
+        .card:hover { transform: none !important; box-shadow: none !important; }
+
+        /* ── Login card ── */
+        .login-card {
+            background: var(--bg-surface) !important;
+            border: 1px solid var(--border-subtle) !important;
+            box-shadow: none !important;
+        }
+
+        /* ── Page title/subtitle ── */
+        .ds-page-title {
+            font-family: 'Inter', sans-serif !important;
+            font-size: 1.1em !important;
+            font-weight: 700 !important;
+            color: var(--text-primary) !important;
+            margin: 0 0 4px 0 !important;
+            letter-spacing: -0.01em !important;
+        }
+        .ds-page-subtitle {
+            font-family: 'Inter', sans-serif !important;
+            font-size: 0.8em !important;
+            color: var(--text-muted) !important;
+            margin: 0 !important;
+            font-style: normal !important;
+        }
+
+        /* ── Buttons base ── */
+        button {
+            font-family: 'Inter', sans-serif !important;
+            letter-spacing: 0 !important;
+        }
+
+        .btn-primary {
+            background: var(--accent-gold) !important;
+            color: #111111 !important;
+            border: none !important;
+            border-radius: 8px !important;
+            font-family: 'Inter', sans-serif !important;
+            font-weight: 600 !important;
+            font-size: 0.88em !important;
+            letter-spacing: 0 !important;
+            text-shadow: none !important;
+            box-shadow: none !important;
+        }
+        .btn-primary:hover {
+            background: var(--accent-gold-hover) !important;
+            transform: none !important;
+            box-shadow: 0 0 0 2px rgba(201,168,76,0.25) !important;
+        }
+
+        .btn-secondary {
+            background: transparent !important;
+            color: var(--text-secondary) !important;
+            border: 1px solid var(--border-subtle) !important;
+            border-radius: 8px !important;
+            font-family: 'Inter', sans-serif !important;
+            font-weight: 500 !important;
+            font-size: 0.85em !important;
+            letter-spacing: 0 !important;
+            box-shadow: none !important;
+        }
+        .btn-secondary:hover {
+            background: var(--bg-elevated) !important;
+            color: var(--text-primary) !important;
+            border-color: var(--border-focus) !important;
+            transform: none !important;
+            box-shadow: none !important;
+        }
+
+        .btn-success {
+            background: var(--accent-gold) !important;
+            color: #111111 !important;
+            border: none !important;
+            border-radius: 8px !important;
+            font-family: 'Inter', sans-serif !important;
+            font-weight: 600 !important;
+            text-shadow: none !important;
+            box-shadow: none !important;
+        }
+        .btn-success:hover {
+            background: var(--accent-gold-hover) !important;
+            transform: none !important;
+            box-shadow: none !important;
+        }
+
+        .btn-danger {
+            background: transparent !important;
+            color: var(--profit-negative) !important;
+            border: 1px solid rgba(239,68,68,0.22) !important;
+            border-radius: 8px !important;
+            font-family: 'Inter', sans-serif !important;
+            font-weight: 500 !important;
+            font-size: 0.85em !important;
+            text-shadow: none !important;
+            box-shadow: none !important;
+        }
+        .btn-danger:hover {
+            background: rgba(239,68,68,0.08) !important;
+            border-color: rgba(239,68,68,0.4) !important;
+            transform: none !important;
+            box-shadow: none !important;
+        }
+
+        .btn-warning {
+            background: var(--accent-gold) !important;
+            color: #111111 !important;
+            border: none !important;
+            border-radius: 8px !important;
+            font-family: 'Inter', sans-serif !important;
+            font-weight: 600 !important;
+            text-shadow: none !important;
+            box-shadow: none !important;
+        }
+        .btn-warning:hover {
+            background: var(--accent-gold-hover) !important;
+            transform: none !important;
+            box-shadow: none !important;
+        }
+
+        .btn-logout {
+            background: transparent !important;
+            color: var(--text-muted) !important;
+            border: 1px solid var(--border-subtle) !important;
+            border-radius: 6px !important;
+            font-family: 'Inter', sans-serif !important;
+            font-size: 0.75em !important;
+            font-weight: 500 !important;
+            letter-spacing: 0 !important;
+            padding: 5px 12px !important;
+            box-shadow: none !important;
+        }
+        .btn-logout:hover {
+            background: var(--bg-elevated) !important;
+            color: var(--text-secondary) !important;
+            border-color: var(--border-focus) !important;
+            transform: none !important;
+            box-shadow: none !important;
+        }
+
+        /* Kill all hover lift effects */
+        .btn-primary:hover, .btn-secondary:hover, .btn-success:hover,
+        .btn-danger:hover, .btn-warning:hover, .btn-logout:hover {
+            transform: none !important;
+        }
+
+        /* ── Form inputs ── */
+        input:focus, select:focus, textarea:focus {
+            transform: none !important;
+        }
+
+        .input-group label {
+            font-family: 'Inter', sans-serif !important;
+            font-size: 0.68em !important;
+            font-weight: 600 !important;
+            text-transform: uppercase !important;
+            letter-spacing: 0.07em !important;
+            color: var(--text-secondary) !important;
+            margin-bottom: 5px !important;
+        }
+
+        .input-group input,
+        .input-group textarea,
+        .input-group select {
+            background: var(--bg-input) !important;
+            border: 1px solid var(--border-subtle) !important;
+            border-radius: 8px !important;
+            color: var(--text-primary) !important;
+            font-family: 'Inter', sans-serif !important;
+            font-size: 0.9em !important;
+            padding: 10px 13px !important;
+            box-shadow: none !important;
+            transition: border-color 0.15s !important;
+        }
+
+        .input-group input:focus,
+        .input-group textarea:focus,
+        .input-group select:focus {
+            border-color: var(--accent-gold) !important;
+            box-shadow: 0 0 0 2px rgba(201,168,76,0.1) !important;
+            outline: none !important;
+            transform: none !important;
+        }
+
+        .input-group input::placeholder,
+        .input-group textarea::placeholder {
+            color: var(--text-muted) !important;
+            font-style: normal !important;
+            opacity: 1 !important;
+        }
+
+        /* ── Empty states ── */
+        .empty-state {
+            padding: 44px 20px !important;
+            text-align: center !important;
+        }
+        .empty-state p {
+            color: var(--text-muted) !important;
+            font-family: 'Inter', sans-serif !important;
+            font-size: 0.85em !important;
+            line-height: 1.6 !important;
+        }
+        .empty-state svg { opacity: 0.2 !important; margin-bottom: 12px !important; }
+
+        /* ── User avatar ── */
+        .user-avatar {
+            background: rgba(201,168,76,0.16) !important;
+            color: var(--accent-gold) !important;
+            font-family: 'Inter', sans-serif !important;
+            font-weight: 700 !important;
+            width: 34px !important;
+            height: 34px !important;
+            font-size: 0.88em !important;
+            border-radius: 50% !important;
+            box-shadow: none !important;
+        }
+        .user-details p { color: var(--text-muted) !important; }
+
+        /* ── Theme toggle ── */
+        .theme-toggle {
+            background: transparent !important;
+            border: 1px solid var(--border-subtle) !important;
+            color: var(--text-muted) !important;
+            padding: 5px 9px !important;
+            border-radius: 6px !important;
+            font-size: 0.9em !important;
+            box-shadow: none !important;
+        }
+        .theme-toggle:hover {
+            background: var(--bg-elevated) !important;
+            border-color: var(--border-focus) !important;
+            transform: none !important;
+            box-shadow: none !important;
+        }
+
+        /* ── Goal KPI mini-cards ── */
+        .ds-stat-mini {
+            background: var(--bg-surface);
+            border: 1px solid var(--border-subtle);
+            border-radius: 10px;
+            padding: 12px 8px;
+            text-align: center;
+        }
+        .ds-stat-mini-value {
+            font-family: 'Inter', sans-serif;
+            font-size: 1.4em;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 3px;
+            line-height: 1;
+        }
+        .ds-stat-mini-label {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.62em;
+            color: var(--text-muted);
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .ds-stat-mini-icon {
+            width: 24px; height: 24px;
+            border-radius: 5px;
+            background: rgba(201,168,76,0.1);
+            display: flex; align-items: center; justify-content: center;
+            margin: 0 auto 8px;
+            color: var(--accent-gold);
+        }
+
+        /* ── Preview cards in Add Hunt ── */
+        .ds-preview-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            margin-bottom: 14px;
+        }
+        .ds-preview-card {
+            background: var(--bg-surface);
+            border: 1px solid var(--border-subtle);
+            border-radius: 10px;
+            padding: 14px;
+            text-align: center;
+        }
+        .ds-preview-icon {
+            width: 26px; height: 26px;
+            border-radius: 6px;
+            background: rgba(201,168,76,0.1);
+            display: flex; align-items: center; justify-content: center;
+            margin: 0 auto 8px;
+            color: var(--accent-gold);
+        }
+        .ds-preview-label {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.62em;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-weight: 500;
+            margin-bottom: 4px;
+        }
+        .ds-preview-value {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.95em;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        /* ── Section cards in form tabs ── */
+        .ds-section-label {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.68em;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--text-secondary);
+            margin: 0 0 12px 0;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .ds-section-label svg { opacity: 0.6; }
+
+        /* ── Tips box ── */
+        .ds-tips-box {
+            background: var(--bg-surface);
+            border: 1px solid var(--border-subtle);
+            border-radius: 10px;
+            padding: 16px;
+            margin-top: 14px;
+        }
+        .ds-tips-box ul {
+            color: var(--text-secondary);
+            font-family: 'Inter', sans-serif;
+            font-size: 0.82em;
+            line-height: 1.9;
+            margin: 0;
+            padding-left: 18px;
+        }
+        .ds-tips-box ul strong { color: var(--text-primary); }
+
+        /* ── Modals ── */
+        [id$="Modal"] > div {
+            background: var(--bg-surface) !important;
+            border: 1px solid var(--border-subtle) !important;
+            border-radius: 12px !important;
+            box-shadow: 0 24px 64px rgba(0,0,0,0.7) !important;
+        }
+
+        /* ── Scrollbars ── */
+        ::-webkit-scrollbar { width: 5px; height: 5px; }
+        ::-webkit-scrollbar-track { background: var(--bg-primary); }
+        ::-webkit-scrollbar-thumb { background: var(--border-focus); border-radius: 3px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--text-muted); }
+
+        /* ── Responsive extras ── */
+        @media (max-width: 600px) {
+            .ds-preview-grid { grid-template-columns: repeat(2, 1fr); }
+        }
     </style>
 </head>
 <body>
@@ -3357,32 +3771,32 @@
 
             <!-- Add Hunt Tab -->
             <div class="main-tab-content" id="addHuntTab">
-                <div class="card" style="padding: 14px;">
-                    <h3 style="font-family:'Cinzel',serif; color: #D4AF37; margin: 0 0 6px 0; font-size: 1.2em; letter-spacing: 0.5px;">⚔️ Record Hunt Session</h3>
-                    <p style="font-family:'IM Fell English',serif; color: var(--text-secondary); font-size:0.85em; font-style:italic; margin:0;">Enter your hunting data manually or paste from Tibia's analyzer</p>
+                <div class="card">
+                    <h3 class="ds-page-title">Record Hunt Session</h3>
+                    <p class="ds-page-subtitle">Enter your hunting data manually or paste from Tibia's analyzer</p>
                 </div>
 
                 <!-- Quick Stats Preview -->
-                <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-bottom: 16px;">
-                    <div style="background: linear-gradient(160deg, rgba(18,10,3,0.95) 0%, rgba(12,7,2,0.97) 100%); border: 1px solid rgba(212,175,55,0.3); border-radius: 8px; padding: 14px; text-align: center; box-shadow: 0 4px 12px rgba(0,0,0,0.4);">
-                        <div style="font-size: 1.4em; margin-bottom: 6px;">📍</div>
-                        <div style="font-family:'Cinzel',serif; font-size: 0.65em; color: var(--text-secondary); text-transform:uppercase; letter-spacing:1px;">Location</div>
-                        <div id="previewLocation" style="font-family:'Cinzel',serif; font-size: 0.9em; font-weight: 700; color: #D4AF37; margin-top: 6px;">-</div>
+                <div class="ds-preview-grid">
+                    <div class="ds-preview-card">
+                        <div class="ds-preview-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+                        <div class="ds-preview-label">Location</div>
+                        <div id="previewLocation" class="ds-preview-value">-</div>
                     </div>
-                    <div style="background: linear-gradient(160deg, rgba(18,10,3,0.95) 0%, rgba(12,7,2,0.97) 100%); border: 1px solid rgba(212,175,55,0.3); border-radius: 8px; padding: 14px; text-align: center; box-shadow: 0 4px 12px rgba(0,0,0,0.4);">
-                        <div style="font-size: 1.4em; margin-bottom: 6px;">🪙</div>
-                        <div style="font-family:'Cinzel',serif; font-size: 0.65em; color: var(--text-secondary); text-transform:uppercase; letter-spacing:1px;">Profit</div>
-                        <div id="previewProfit" style="font-family:'Cinzel',serif; font-size: 0.9em; font-weight: 700; color: #D4AF37; margin-top: 6px;">0 gp</div>
+                    <div class="ds-preview-card">
+                        <div class="ds-preview-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
+                        <div class="ds-preview-label">Profit</div>
+                        <div id="previewProfit" class="ds-preview-value">0 gp</div>
                     </div>
-                    <div style="background: linear-gradient(160deg, rgba(18,10,3,0.95) 0%, rgba(12,7,2,0.97) 100%); border: 1px solid rgba(212,175,55,0.3); border-radius: 8px; padding: 14px; text-align: center; box-shadow: 0 4px 12px rgba(0,0,0,0.4);">
-                        <div style="font-size: 1.4em; margin-bottom: 6px;">⭐</div>
-                        <div style="font-family:'Cinzel',serif; font-size: 0.65em; color: var(--text-secondary); text-transform:uppercase; letter-spacing:1px;">XP</div>
-                        <div id="previewXP" style="font-family:'Cinzel',serif; font-size: 0.9em; font-weight: 700; color: #D4AF37; margin-top: 6px;">0</div>
+                    <div class="ds-preview-card">
+                        <div class="ds-preview-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
+                        <div class="ds-preview-label">XP</div>
+                        <div id="previewXP" class="ds-preview-value">0</div>
                     </div>
-                    <div style="background: linear-gradient(160deg, rgba(18,10,3,0.95) 0%, rgba(12,7,2,0.97) 100%); border: 1px solid rgba(212,175,55,0.3); border-radius: 8px; padding: 14px; text-align: center; box-shadow: 0 4px 12px rgba(0,0,0,0.4);">
-                        <div style="font-size: 1.4em; margin-bottom: 6px;">⏱️</div>
-                        <div style="font-family:'Cinzel',serif; font-size: 0.65em; color: var(--text-secondary); text-transform:uppercase; letter-spacing:1px;">Duration</div>
-                        <div id="previewDuration" style="font-family:'Cinzel',serif; font-size: 0.9em; font-weight: 700; color: #D4AF37; margin-top: 6px;">0m</div>
+                    <div class="ds-preview-card">
+                        <div class="ds-preview-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+                        <div class="ds-preview-label">Duration</div>
+                        <div id="previewDuration" class="ds-preview-value">0m</div>
                     </div>
                 </div>
 
@@ -3390,32 +3804,32 @@
                     <!-- Left Column -->
                     <div>
                         <!-- Location -->
-                        <div class="card" style="padding: 18px; border-left: 3px solid rgba(212,175,55,0.5); margin-bottom: 16px;">
-                            <h4 style="font-family:'Cinzel',serif; color: #D4AF37; margin: 0 0 10px 0; font-size: 1em; letter-spacing:0.5px;">📍 Hunt Location</h4>
+                        <div class="card" style="margin-bottom: 16px;">
+                            <div class="ds-section-label">Hunt Location</div>
                             <div class="input-group" style="margin: 0;">
-                                <input type="text" id="huntName" placeholder="e.g., Roshamuul, Prison..." oninput="updatePreview()" style="padding: 12px 14px; font-size: 1.05em;">
+                                <input type="text" id="huntName" placeholder="e.g., Roshamuul, Prison..." oninput="updatePreview()">
                             </div>
                         </div>
 
                         <!-- Manual Entry -->
-                        <div class="card" style="padding: 18px; border-left: 3px solid rgba(212,175,55,0.4);">
-                            <h4 style="font-family:'Cinzel',serif; color: #D4AF37; margin: 0 0 10px 0; font-size: 1em; letter-spacing:0.5px;">✏️ Manual Entry</h4>
+                        <div class="card">
+                            <div class="ds-section-label">Manual Entry</div>
                             <div style="display: grid; gap: 12px;">
                                 <div class="input-group" style="margin: 0;">
-                                    <label style="font-size: 0.95em; margin-bottom: 5px; font-weight: 600;">💰 Loot (gp)</label>
-                                    <input type="number" id="loot" placeholder="0" oninput="updatePreview()" style="padding: 11px 12px; font-size: 1em;">
+                                    <label>Loot (gp)</label>
+                                    <input type="number" id="loot" placeholder="0" oninput="updatePreview()">
                                 </div>
                                 <div class="input-group" style="margin: 0;">
-                                    <label style="font-size: 0.95em; margin-bottom: 5px; font-weight: 600;">💸 Supplies (gp)</label>
-                                    <input type="number" id="supplies" placeholder="0" oninput="updatePreview()" style="padding: 11px 12px; font-size: 1em;">
+                                    <label>Supplies (gp)</label>
+                                    <input type="number" id="supplies" placeholder="0" oninput="updatePreview()">
                                 </div>
                                 <div class="input-group" style="margin: 0;">
-                                    <label style="font-size: 0.95em; margin-bottom: 5px; font-weight: 600;">⭐ Experience</label>
-                                    <input type="number" id="experience" placeholder="0" oninput="updatePreview()" style="padding: 11px 12px; font-size: 1em;">
+                                    <label>Experience</label>
+                                    <input type="number" id="experience" placeholder="0" oninput="updatePreview()">
                                 </div>
                                 <div class="input-group" style="margin: 0;">
-                                    <label style="font-size: 0.95em; margin-bottom: 5px; font-weight: 600;">⏱️ Duration (min)</label>
-                                    <input type="number" id="duration" placeholder="0" oninput="updatePreview()" style="padding: 11px 12px; font-size: 1em;">
+                                    <label>Duration (min)</label>
+                                    <input type="number" id="duration" placeholder="0" oninput="updatePreview()">
                                 </div>
                             </div>
                         </div>
@@ -3424,27 +3838,27 @@
                     <!-- Right Column -->
                     <div>
                         <!-- Auto-Fill -->
-                        <div class="card" style="padding: 18px; border-left: 3px solid rgba(212,175,55,0.4); margin-bottom: 16px;">
-                            <h4 style="font-family:'Cinzel',serif; color: #D4AF37; margin: 0 0 10px 0; font-size: 1em; letter-spacing:0.5px; display: flex; align-items: center; gap: 6px;">
-                                🔍 Auto-Fill from Analyzer
+                        <div class="card" style="margin-bottom: 16px;">
+                            <div class="ds-section-label" style="display:flex; align-items:center; gap:6px;">
+                                Auto-Fill from Analyzer
                                 <span class="help-btn" data-tip="In Tibia: open Hunt Analyser → choose your session → click Copy. Paste the full text here, then click Auto-Fill to populate Loot, Supplies and XP automatically.">?</span>
-                            </h4>
+                            </div>
                             <div class="input-group" style="margin: 0;">
-                                <label style="font-size: 0.95em; margin-bottom: 5px; font-weight: 600;">📋 Paste Tibia Analyzer Data</label>
+                                <label>Paste Tibia Analyzer Data</label>
                                 <textarea id="huntData" placeholder="Session data: From...
 XP Gain: 0
 Loot: 0
 Supplies: 488..." style="min-height: 140px; font-family: monospace; font-size: 0.9em; padding: 12px;"></textarea>
-                                <button class="btn-warning" onclick="parseHuntData()" style="margin-top: 10px; width: 100%; padding: 11px; font-size: 1em;"
-                                    data-tip="Reads the pasted text and fills in Loot, Supplies, XP and Duration automatically.">🔍 Auto-Fill</button>
+                                <button class="btn-warning" onclick="parseHuntData()" style="margin-top: 10px; width: 100%;"
+                                    data-tip="Reads the pasted text and fills in Loot, Supplies, XP and Duration automatically.">Auto-Fill</button>
                             </div>
                         </div>
 
                         <!-- Notes -->
-                        <div class="card" style="padding: 18px; border-left: 3px solid rgba(212,175,55,0.35);">
-                            <h4 style="font-family:'Cinzel',serif; color: #D4AF37; margin: 0 0 10px 0; font-size: 1em; letter-spacing:0.5px;">📜 Notes</h4>
+                        <div class="card">
+                            <div class="ds-section-label">Notes</div>
                             <div class="input-group" style="margin: 0;">
-                                <textarea id="huntNotes" placeholder="Optional notes..." style="min-height: 95px; font-size: 0.95em; padding: 12px;"></textarea>
+                                <textarea id="huntNotes" placeholder="Optional notes..." style="min-height: 95px;"></textarea>
                             </div>
                         </div>
                     </div>
@@ -3452,14 +3866,14 @@ Supplies: 488..." style="min-height: 140px; font-family: monospace; font-size: 0
 
                 <!-- Action Buttons -->
                 <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 14px; margin-top: 16px;">
-                    <button class="btn-primary" onclick="addHunt()" style="padding: 14px; font-size: 1em; font-weight: 600; letter-spacing:0.5px;">⚔️ Record Hunt</button>
-                    <button class="btn-secondary" onclick="clearForm()" style="padding: 14px; font-size: 1em; font-weight: 600;">🗑️ Clear</button>
+                    <button class="btn-primary" onclick="addHunt()">Record Hunt</button>
+                    <button class="btn-secondary" onclick="clearForm()">Clear</button>
                 </div>
 
                 <!-- Tip Box -->
-                <div style="background: linear-gradient(160deg, rgba(18,10,3,0.9) 0%, rgba(12,7,2,0.95) 100%); backdrop-filter: blur(10px); border: 1px solid rgba(212,175,55,0.25); border-radius: 8px; padding: 18px; margin-top: 20px;">
-                    <h4 style="font-family:'Cinzel',serif; color: #D4AF37; margin-bottom: 12px; font-size: 0.95em; letter-spacing:0.5px;">💡 Pro Tips</h4>
-                    <ul style="color: var(--text-secondary); line-height: 2; margin: 0; padding-left: 20px; font-size: 1em;">
+                <div class="ds-tips-box">
+                    <div class="ds-section-label" style="margin-bottom:10px;">Pro Tips</div>
+                    <ul style="color: var(--text-secondary); line-height: 2; margin: 0; padding-left: 20px; font-size: 0.88em;">
                         <li><strong>Easy Mode:</strong> Copy Hunt Analyzer text from Tibia → Paste above → Click "Auto-Fill" → Add!</li>
                         <li><strong>Manual Mode:</strong> Fill the numbers manually - watch the preview update in real-time!</li>
                         <li><strong>Notes:</strong> Add context like "rare spawn", "too crowded", or "best profit ever"</li>
@@ -3710,61 +4124,52 @@ Member Name
 
             <!-- Goals Tab -->
             <div class="main-tab-content" id="goalsTab">
-                <div class="card" style="padding: 6px;">
-                    <h3 style="color: var(--primary-color); margin: 0 0 3px 0; font-size: 0.85em;">🎯 Goals</h3>
+                <div class="card">
+                    <h3 class="ds-page-title">Goals</h3>
+                    <p class="ds-page-subtitle">Track your hunting targets and farming goals</p>
                 </div>
 
-                <!-- Goals Stats - COMPACT -->
-                <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; margin-bottom: 6px;">
-                    <div style="background: rgba(70, 90, 110, 0.12); border: 1px solid rgba(100, 150, 200, 0.3); border-radius: 6px; padding: 6px; text-align: center;">
-                        <div style="font-size: 1.2em; margin-bottom: 2px;">🎯</div>
-                        <div id="goalsTotalCount" style="font-size: 1.3em; font-weight: 900; color: #7eb3d6; margin-bottom: 2px;">0</div>
-                        <div style="font-size: 0.65em; color: var(--text-secondary); text-transform: uppercase;">Total</div>
+                <!-- Goals Stats -->
+                <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-bottom: 8px;">
+                    <div class="ds-stat-mini">
+                        <div class="ds-stat-mini-icon"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></div>
+                        <div id="goalsTotalCount" class="ds-stat-mini-value">0</div>
+                        <div class="ds-stat-mini-label">Total</div>
                     </div>
-
-                    <div style="background: rgba(80, 110, 90, 0.12); border: 1px solid rgba(100, 150, 120, 0.3); border-radius: 6px; padding: 6px; text-align: center;">
-                        <div style="font-size: 1.2em; margin-bottom: 2px;">✅</div>
-                        <div id="goalsCompletedCount" style="font-size: 1.3em; font-weight: 900; color: #7db89d; margin-bottom: 2px;">0</div>
-                        <div style="font-size: 0.65em; color: var(--text-secondary); text-transform: uppercase;">Done</div>
+                    <div class="ds-stat-mini">
+                        <div class="ds-stat-mini-icon"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg></div>
+                        <div id="goalsCompletedCount" class="ds-stat-mini-value">0</div>
+                        <div class="ds-stat-mini-label">Done</div>
                     </div>
-
-                    <div style="background: rgba(110, 90, 70, 0.12); border: 1px solid rgba(180, 140, 100, 0.3); border-radius: 6px; padding: 6px; text-align: center;">
-                        <div style="font-size: 1.2em; margin-bottom: 2px;">⚡</div>
-                        <div id="goalsInProgressCount" style="font-size: 1.3em; font-weight: 900; color: #d9a87a; margin-bottom: 2px;">0</div>
-                        <div style="font-size: 0.65em; color: var(--text-secondary); text-transform: uppercase;">Active</div>
+                    <div class="ds-stat-mini">
+                        <div class="ds-stat-mini-icon"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
+                        <div id="goalsInProgressCount" class="ds-stat-mini-value">0</div>
+                        <div class="ds-stat-mini-label">Active</div>
                     </div>
-
-                    <div style="background: rgba(90, 70, 90, 0.12); border: 1px solid rgba(160, 120, 160, 0.3); border-radius: 6px; padding: 6px; text-align: center;">
-                        <div style="font-size: 1.2em; margin-bottom: 2px;">📊</div>
-                        <div id="goalsCompletionRate" style="font-size: 1.3em; font-weight: 900; color: #b89dc8; margin-bottom: 2px;">0%</div>
-                        <div style="font-size: 0.65em; color: var(--text-secondary); text-transform: uppercase;">Rate</div>
+                    <div class="ds-stat-mini">
+                        <div class="ds-stat-mini-icon"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></div>
+                        <div id="goalsCompletionRate" class="ds-stat-mini-value">0%</div>
+                        <div class="ds-stat-mini-label">Rate</div>
                     </div>
                 </div>
 
-                <!-- Item Farming Tracker - PROFESSIONAL SYSTEM -->
-                <div class="card" style="padding: 12px; margin-bottom: 10px; background: rgba(18, 10, 4, 0.92); border: 2px solid rgba(212, 175, 55, 0.4); box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4), 0 0 10px rgba(212, 175, 55, 0.15);">
-                    <h4 style="margin: 0 0 10px 0; font-size: 1.2em; color: #D4AF37; display: flex; align-items: center; gap: 6px; font-weight: 900; text-shadow: 0 0 8px rgba(212, 175, 55, 0.4);">
-                        🎯 Item Farming Tracker
-                    </h4>
-
-                    <p style="font-size: 0.95em; color: #D4AF37; margin: 0 0 10px 0; line-height: 1.4; opacity: 0.9;">
-                        Track your progress farming items like Sanguine Rod, EK Set, etc. Your goals persist between sessions!
+                <!-- Item Farming Tracker -->
+                <div class="card" style="margin-bottom: 10px;">
+                    <div class="ds-section-label">Item Farming Tracker</div>
+                    <p style="font-size: 0.82em; color: var(--text-secondary); margin: 0 0 12px 0; line-height: 1.5;">
+                        Track your progress farming items like Sanguine Rod, EK Set, etc. Goals persist between sessions.
                     </p>
-
                     <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 10px; margin-bottom: 10px;">
                         <div class="input-group" style="margin: 0;">
-                            <label style="font-size: 0.95em; margin-bottom: 5px; color: #D4AF37; font-weight: 700; text-transform: uppercase; letter-spacing: 0.3px;">💎 Item Name</label>
-                            <input type="text" id="farmItemName" placeholder="e.g., Sanguine Rod, EK Set" style="padding: 8px 12px; font-size: 1em; background: rgba(0, 0, 0, 0.4); border: 2px solid rgba(212, 175, 55, 0.4); border-radius: 6px; color: #E8D5B7; font-weight: 700; transition: all 0.3s; box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3);" onfocus="this.style.borderColor='#D4AF37'; this.style.boxShadow='0 0 12px rgba(212, 175, 55, 0.3), inset 0 2px 4px rgba(0, 0, 0, 0.3)';" onblur="this.style.borderColor='rgba(212, 175, 55, 0.4)'; this.style.boxShadow='inset 0 2px 4px rgba(0, 0, 0, 0.3)';">
+                            <label>Item Name</label>
+                            <input type="text" id="farmItemName" placeholder="e.g., Sanguine Rod, EK Set">
                         </div>
                         <div class="input-group" style="margin: 0;">
-                            <label style="font-size: 0.95em; margin-bottom: 5px; color: #D4AF37; font-weight: 700; text-transform: uppercase; letter-spacing: 0.3px;">💰 Target Gold</label>
-                            <input type="text" id="farmTargetGold" placeholder="190kk" style="padding: 8px 12px; font-size: 1em; background: rgba(0, 0, 0, 0.4); border: 2px solid rgba(212, 175, 55, 0.4); border-radius: 6px; color: #E8D5B7; font-weight: 700; transition: all 0.3s; box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3);" onfocus="this.style.borderColor='#D4AF37'; this.style.boxShadow='0 0 12px rgba(212, 175, 55, 0.3), inset 0 2px 4px rgba(0, 0, 0, 0.3)';" onblur="this.style.borderColor='rgba(212, 175, 55, 0.4)'; this.style.boxShadow='inset 0 2px 4px rgba(0, 0, 0, 0.3)';">
+                            <label>Target Gold</label>
+                            <input type="text" id="farmTargetGold" placeholder="190kk">
                         </div>
                     </div>
-
-                    <button onclick="createItemFarmingGoal()" style="width: 100%; background: linear-gradient(135deg, #D4AF37 0%, #B8860B 100%); color: #1a0e05; border: none; border-radius: 8px; padding: 10px; font-weight: 900; cursor: pointer; font-size: 1em; box-shadow: 0 4px 12px rgba(212, 175, 55, 0.4), 0 0 20px rgba(212, 175, 55, 0.2); transition: all 0.3s; text-transform: uppercase; letter-spacing: 0.5px;" onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 16px rgba(212, 175, 55, 0.5), 0 0 30px rgba(212, 175, 55, 0.3)';" onmouseout="this.style.transform=''; this.style.boxShadow='0 4px 12px rgba(212, 175, 55, 0.4), 0 0 20px rgba(212, 175, 55, 0.2)';">
-                        🎯 Create Farming Goal
-                    </button>
+                    <button class="btn-primary" onclick="createItemFarmingGoal()" style="width: 100%;">Create Farming Goal</button>
                 </div>
 
                 <!-- Active Farming Goals List -->
@@ -3772,38 +4177,34 @@ Member Name
                     <!-- Goals will be displayed here by JavaScript -->
                 </div>
 
-                <!-- Add Goal Form - COMPACT -->
-                <div class="card" style="padding: 12px; margin-bottom: 10px; background: rgba(18, 10, 4, 0.92); border: 2px solid rgba(212, 175, 55, 0.4);">
-                    <h4 style="margin: 0 0 10px 0; font-size: 1.1em; color: #D4AF37; font-weight: 800;">➕ New Goal</h4>
+                <!-- Add Goal Form -->
+                <div class="card" style="margin-bottom: 10px;">
+                    <div class="ds-section-label">New Goal</div>
                     <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
                         <div class="input-group" style="margin: 0;">
-                            <label style="font-size: 0.9em; margin-bottom: 4px; color: #D4AF37; font-weight: 700;">Goal Name</label>
-                            <input type="text" id="goalName" placeholder="e.g., Make 10kk" style="padding: 8px 12px; font-size: 0.95em; background: rgba(0, 0, 0, 0.4); border: 2px solid rgba(212, 175, 55, 0.4); border-radius: 6px; color: #E8D5B7;">
+                            <label>Goal Name</label>
+                            <input type="text" id="goalName" placeholder="e.g., Make 10kk">
                         </div>
-
                         <div class="input-group" style="margin: 0;">
-                            <label style="font-size: 0.9em; margin-bottom: 4px; color: #D4AF37; font-weight: 700;">Type</label>
-                            <select id="goalType" style="padding: 8px 12px; font-size: 0.95em; background: rgba(0, 0, 0, 0.4); border: 2px solid rgba(212, 175, 55, 0.4); border-radius: 6px; color: #E8D5B7;">
+                            <label>Type</label>
+                            <select id="goalType">
                                 <option value="profit">Profit</option>
                                 <option value="xp">XP</option>
                                 <option value="hunts">Hunts</option>
                                 <option value="time">Time</option>
                             </select>
                         </div>
-
                         <div class="input-group" style="margin: 0;">
-                            <label style="font-size: 0.9em; margin-bottom: 4px; color: #D4AF37; font-weight: 700;">Target</label>
-                            <input type="text" id="goalTarget" placeholder="e.g., 16kk, 50k, 1000000" oninput="formatGoalTargetInput(this)" style="padding: 8px 12px; font-size: 0.95em; background: rgba(0, 0, 0, 0.4); border: 2px solid rgba(212, 175, 55, 0.4); border-radius: 6px; color: #E8D5B7;">
-                            <div id="goalTargetPreview" style="margin-top: 4px; font-size: 0.8em; color: #D4AF37; font-weight: 600; min-height: 18px;"></div>
+                            <label>Target</label>
+                            <input type="text" id="goalTarget" placeholder="e.g., 16kk, 50k, 1000000" oninput="formatGoalTargetInput(this)">
+                            <div id="goalTargetPreview" style="margin-top: 4px; font-size: 0.78em; color: var(--accent-gold); font-weight: 600; min-height: 18px;"></div>
                         </div>
-
                         <div class="input-group" style="margin: 0;">
-                            <label style="font-size: 0.9em; margin-bottom: 4px; color: #D4AF37; font-weight: 700;">Deadline</label>
-                            <input type="date" id="goalDeadline" style="padding: 8px 12px; font-size: 0.95em; background: rgba(0, 0, 0, 0.4); border: 2px solid rgba(212, 175, 55, 0.4); border-radius: 6px; color: #E8D5B7;">
+                            <label>Deadline</label>
+                            <input type="date" id="goalDeadline">
                         </div>
                     </div>
-
-                    <button class="btn-primary" onclick="addGoal()" style="width: 100%; margin-top: 10px; padding: 10px; font-size: 1em; background: linear-gradient(135deg, #D4AF37 0%, #B8860B 100%); color: #1a0e05; border: none; border-radius: 8px; font-weight: 800; text-transform: uppercase;">➕ Create</button>
+                    <button class="btn-primary" onclick="addGoal()" style="width: 100%; margin-top: 10px;">Create Goal</button>
                 </div>
 
                 <!-- Goals List - COMPACT -->
