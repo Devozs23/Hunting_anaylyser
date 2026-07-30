@@ -11,7 +11,7 @@
     <!-- Tibia-themed medieval fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Cinzel+Decorative:wght@400;700&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Cinzel+Decorative:wght@400;700&family=IM+Fell+English:ital@0;1&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
             /* Tibia Medieval Dark Theme - Lighter Version */
@@ -2583,6 +2583,264 @@
             background: rgba(212,175,55,0.28);
             border-color: rgba(212,175,55,0.7);
         }
+
+        /* ════════════════════════════════════════════════
+           PROFESSIONAL REDESIGN — UI v5.0
+           ════════════════════════════════════════════════ */
+
+        :root {
+            --r-surface-1: #161616;
+            --r-surface-2: #1E1E1E;
+            --r-surface-3: #272727;
+            --r-border: rgba(255,255,255,0.07);
+            --r-border-hover: rgba(212,175,55,0.22);
+            --r-gold: #D4AF37;
+            --r-gold-dim: rgba(212,175,55,0.12);
+            --r-text-1: #EFEFEF;
+            --r-text-2: #A3A3A3;
+            --r-text-3: #555;
+            --r-radius: 10px;
+            --r-radius-sm: 7px;
+        }
+
+        body { font-family: 'Inter', 'Segoe UI', system-ui, sans-serif; }
+
+        /* ── Header ── */
+        .top-nav {
+            background: var(--r-surface-1) !important;
+            border: 1px solid var(--r-border) !important;
+            box-shadow: 0 1px 0 rgba(0,0,0,0.4) !important;
+            padding: 10px 18px !important;
+            margin-bottom: 10px !important;
+        }
+        .top-nav::before, .top-nav::after { display: none !important; }
+        .app-logo-icon { animation: none !important; }
+        .app-logo-text p { display: none !important; }
+        .app-logo-text h2 { font-size: 1em !important; letter-spacing: 0 !important; }
+        .user-details h3 { font-family: 'Inter', sans-serif !important; font-size: 0.88em !important; }
+        .user-details p  { font-family: 'Inter', sans-serif !important; font-size: 0.72em !important; color: var(--r-text-2) !important; }
+
+        /* ── Tab navigation ── */
+        .main-tabs {
+            background: var(--r-surface-1) !important;
+            border: 1px solid var(--r-border) !important;
+            box-shadow: none !important;
+            padding: 5px !important;
+            margin-bottom: 12px !important;
+            gap: 2px !important;
+        }
+        .main-tab {
+            font-family: 'Inter', sans-serif !important;
+            font-size: 0.78em !important;
+            font-weight: 500 !important;
+            letter-spacing: 0 !important;
+            padding: 6px 12px !important;
+            border-radius: 6px !important;
+            border: none !important;
+            background: transparent !important;
+            color: var(--r-text-2) !important;
+            display: inline-flex !important;
+            align-items: center !important;
+            gap: 5px !important;
+            transition: background 0.15s, color 0.15s !important;
+            box-shadow: none !important;
+            text-shadow: none !important;
+        }
+        .main-tab:hover {
+            background: rgba(212,175,55,0.09) !important;
+            color: var(--r-gold) !important;
+            border: none !important;
+        }
+        .main-tab.active {
+            background: rgba(212,175,55,0.14) !important;
+            color: var(--r-gold) !important;
+            font-weight: 600 !important;
+            border: none !important;
+            box-shadow: none !important;
+            text-shadow: none !important;
+        }
+        .main-tab svg { flex-shrink: 0; opacity: 0.65; transition: opacity 0.15s; }
+        .main-tab:hover svg, .main-tab.active svg { opacity: 1; }
+
+        /* ── Card base ── */
+        .card {
+            background: var(--r-surface-1) !important;
+            border: 1px solid var(--r-border) !important;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.3) !important;
+        }
+
+        /* ── KPI cards ── */
+        .r-kpi-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+        .r-kpi-card {
+            background: var(--r-surface-1);
+            border: 1px solid var(--r-border);
+            border-radius: var(--r-radius);
+            padding: 16px;
+            position: relative;
+            overflow: hidden;
+            cursor: default;
+            transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
+        }
+        .r-kpi-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(212,175,55,0.35), transparent);
+        }
+        .r-kpi-card:hover {
+            border-color: var(--r-border-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.35), 0 0 0 1px rgba(212,175,55,0.12);
+        }
+        .r-kpi-icon {
+            width: 30px; height: 30px;
+            border-radius: 7px;
+            background: var(--r-gold-dim);
+            display: flex; align-items: center; justify-content: center;
+            margin-bottom: 12px;
+            color: var(--r-gold);
+        }
+        .r-kpi-value {
+            font-family: 'Inter', sans-serif;
+            font-size: 1.45em;
+            font-weight: 700;
+            color: var(--r-text-1);
+            letter-spacing: -0.02em;
+            line-height: 1.1;
+            margin-bottom: 3px;
+        }
+        .r-kpi-label {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.7em;
+            color: var(--r-text-2);
+            font-weight: 500;
+            margin-bottom: 3px;
+        }
+        .r-kpi-sub {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.65em;
+            color: var(--r-text-3);
+        }
+
+        /* ── Daily target ── */
+        .r-daily-target {
+            background: var(--r-surface-1);
+            border: 1px solid var(--r-border);
+            border-radius: var(--r-radius);
+            padding: 14px;
+        }
+        .r-progress-track {
+            height: 5px;
+            background: var(--r-surface-3);
+            border-radius: 3px;
+            overflow: hidden;
+            margin: 8px 0;
+        }
+        .r-progress-fill {
+            height: 100%;
+            border-radius: 3px;
+            background: linear-gradient(90deg, #8B6914, #D4AF37, #FFD700, #D4AF37, #8B6914);
+            background-size: 200% 100%;
+            animation: gold-shimmer 3s infinite linear;
+            transition: width 0.5s ease;
+        }
+
+        /* ── Performance ── */
+        .r-perf-card {
+            background: var(--r-surface-1);
+            border: 1px solid var(--r-border);
+            border-radius: var(--r-radius);
+            padding: 14px;
+        }
+        .r-perf-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 8px;
+        }
+        .r-perf-cell {
+            background: var(--r-surface-2);
+            border-radius: var(--r-radius-sm);
+            padding: 11px 8px;
+            text-align: center;
+            border: 1px solid var(--r-border);
+            transition: border-color 0.18s;
+        }
+        .r-perf-cell:hover { border-color: var(--r-border-hover); }
+        .r-perf-cell-label {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.67em;
+            color: var(--r-text-2);
+            margin-bottom: 5px;
+            font-weight: 500;
+            display: flex; align-items: center; justify-content: center; gap: 3px;
+        }
+        .r-perf-cell-label svg { opacity: 0.55; }
+
+        /* ── Hunt Insights ── */
+        .r-insights-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 8px;
+        }
+        .r-insight-cell {
+            background: var(--r-surface-2);
+            border-radius: var(--r-radius-sm);
+            padding: 14px 10px;
+            text-align: center;
+            border: 1px solid var(--r-border);
+            transition: border-color 0.18s;
+        }
+        .r-insight-cell:hover { border-color: var(--r-border-hover); }
+        .r-insight-icon {
+            width: 28px; height: 28px;
+            border-radius: 6px;
+            background: var(--r-gold-dim);
+            display: flex; align-items: center; justify-content: center;
+            margin: 0 auto 8px;
+            color: var(--r-gold);
+        }
+        .r-insight-label {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.63em;
+            color: var(--r-text-2);
+            margin-bottom: 5px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .r-insight-value {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.88em;
+            font-weight: 700;
+            color: var(--r-gold);
+        }
+
+        /* ── Section heading ── */
+        .r-section-header {
+            font-family: 'Cinzel', serif;
+            font-size: 0.82em;
+            font-weight: 600;
+            color: var(--r-gold);
+            letter-spacing: 0.3px;
+            margin: 0 0 12px 0;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .r-section-header svg { opacity: 0.75; }
+
+        /* ── Responsive ── */
+        @media (max-width: 600px) {
+            .r-kpi-grid { grid-template-columns: repeat(2, 1fr); }
+            .r-perf-grid { grid-template-columns: repeat(2, 1fr); }
+            .r-insights-grid { grid-template-columns: repeat(2, 1fr); }
+        }
     </style>
 </head>
 <body>
@@ -2721,14 +2979,14 @@
 
             <!-- Main Tabs -->
             <div class="main-tabs" role="tablist" aria-label="Main navigation">
-                <button class="main-tab active" onclick="switchMainTab('dashboard')" role="tab" aria-selected="true" aria-controls="dashboardTab">📊 Dashboard</button>
-                <button class="main-tab" onclick="switchMainTab('addHunt')" role="tab" aria-selected="false" aria-controls="addHuntTab">➕ Add Hunt</button>
-                <button class="main-tab" onclick="switchMainTab('duoHunt')" role="tab" aria-selected="false" aria-controls="duoHuntTab">👫 Duo Hunt</button>
-                <button class="main-tab" onclick="switchMainTab('teamHunt')" role="tab" aria-selected="false" aria-controls="teamHuntTab">👥 Team Hunt</button>
-                <button class="main-tab" onclick="switchMainTab('goals')" role="tab" aria-selected="false" aria-controls="goalsTab">🎯 Goals</button>
-                <button class="main-tab" onclick="switchMainTab('rareLoot')" role="tab" aria-selected="false" aria-controls="rareLootTab">👹 Boss Loot</button>
-                <button class="main-tab" onclick="switchMainTab('tcConfig')" role="tab" aria-selected="false" aria-controls="tcConfigTab">💰 TC Config</button>
-                <button class="main-tab" onclick="switchMainTab('history')" role="tab" aria-selected="false" aria-controls="historyTab">📜 History</button>
+                <button class="main-tab active" onclick="switchMainTab('dashboard')" role="tab" aria-selected="true" aria-controls="dashboardTab"><svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg> Dashboard</button>
+                <button class="main-tab" onclick="switchMainTab('addHunt')" role="tab" aria-selected="false" aria-controls="addHuntTab"><svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg> Add Hunt</button>
+                <button class="main-tab" onclick="switchMainTab('duoHunt')" role="tab" aria-selected="false" aria-controls="duoHuntTab"><svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg> Duo Hunt</button>
+                <button class="main-tab" onclick="switchMainTab('teamHunt')" role="tab" aria-selected="false" aria-controls="teamHuntTab"><svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg> Team Hunt</button>
+                <button class="main-tab" onclick="switchMainTab('goals')" role="tab" aria-selected="false" aria-controls="goalsTab"><svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg> Goals</button>
+                <button class="main-tab" onclick="switchMainTab('rareLoot')" role="tab" aria-selected="false" aria-controls="rareLootTab"><svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg> Boss Loot</button>
+                <button class="main-tab" onclick="switchMainTab('tcConfig')" role="tab" aria-selected="false" aria-controls="tcConfigTab"><svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v12"/><path d="M9 8.5h4a1.5 1.5 0 0 1 0 3H9m0 0h4a1.5 1.5 0 0 1 0 3H9"/></svg> TC Config</button>
+                <button class="main-tab" onclick="switchMainTab('history')" role="tab" aria-selected="false" aria-controls="historyTab"><svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> History</button>
             </div>
 
             <!-- Toast Container -->
@@ -2954,85 +3212,73 @@
             <!-- Dashboard Tab -->
             <div class="main-tab-content active" id="dashboardTab" style="position: relative; overflow: hidden;">
 
-                <!-- Main Stats Cards - Tibia Gold Theme -->
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 14px; margin-bottom: 16px; position: relative; z-index: 1;">
-                    <!-- Total Profit Card -->
-                    <div class="stat-card-hover" style="background: linear-gradient(160deg, rgba(20,11,3,0.97) 0%, rgba(14,8,2,0.98) 100%); border: 1px solid rgba(212,175,55,0.45); backdrop-filter: blur(20px); border-radius: 10px; padding: 18px 12px; text-align: center; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 0 0 1px rgba(70,42,8,0.3), 0 8px 24px rgba(0,0,0,0.5), 0 0 20px rgba(212,175,55,0.07); position: relative; z-index: 1; cursor: pointer; overflow:hidden;" onmouseover="this.style.transform='translateY(-6px) scale(1.02)'; this.style.boxShadow='0 0 0 1px rgba(80,50,10,0.4), 0 12px 32px rgba(0,0,0,0.6), 0 0 30px rgba(212,175,55,0.15)'; this.style.borderColor='rgba(212,175,55,0.7)'" onmouseout="this.style.transform=''; this.style.boxShadow='0 0 0 1px rgba(70,42,8,0.3), 0 8px 24px rgba(0,0,0,0.5), 0 0 20px rgba(212,175,55,0.07)'; this.style.borderColor='rgba(212,175,55,0.45)'">
-                        <div style="position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,rgba(212,175,55,0.7),transparent);"></div>
-                        <div style="font-size: 2.2em; margin-bottom: 8px; filter: drop-shadow(0 0 10px rgba(212,175,55,0.5));">🪙</div>
-                        <div id="dashTotalProfit" style="font-family:'Cinzel',serif; font-size: 1.5em; font-weight: 900; background: linear-gradient(135deg,#FFD700,#D4AF37); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; margin-bottom: 6px; filter:drop-shadow(0 0 6px rgba(212,175,55,0.3));">0 gp</div>
-                        <div style="font-family:'Cinzel',serif; font-size: 0.65em; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 4px;">Total Profit</div>
-                        <div id="dashTotalHunts" style="font-size: 0.7em; color: rgba(212,175,55,0.5); font-weight: 600;">0 hunts</div>
+                <!-- KPI Cards -->
+                <div class="r-kpi-grid" style="margin-bottom: 10px;">
+                    <div class="r-kpi-card stat-card-hover">
+                        <div class="r-kpi-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v12"/><path d="M9 8.5h4a1.5 1.5 0 0 1 0 3H9m0 0h4a1.5 1.5 0 0 1 0 3H9"/></svg></div>
+                        <div id="dashTotalProfit" class="r-kpi-value">0 gp</div>
+                        <div class="r-kpi-label">Total Profit</div>
+                        <div id="dashTotalHunts" class="r-kpi-sub">0 hunts</div>
                     </div>
-
-                    <!-- Avg Profit/h Card -->
-                    <div class="stat-card-hover" style="background: linear-gradient(160deg, rgba(20,11,3,0.97) 0%, rgba(14,8,2,0.98) 100%); border: 1px solid rgba(212,175,55,0.45); backdrop-filter: blur(20px); border-radius: 10px; padding: 18px 12px; text-align: center; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 0 0 1px rgba(70,42,8,0.3), 0 8px 24px rgba(0,0,0,0.5); cursor: pointer; overflow:hidden;" onmouseover="this.style.transform='translateY(-6px) scale(1.02)'; this.style.borderColor='rgba(212,175,55,0.7)'" onmouseout="this.style.transform=''; this.style.borderColor='rgba(212,175,55,0.45)'">
-                        <div style="position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,rgba(212,175,55,0.7),transparent);"></div>
-                        <div style="font-size: 2.2em; margin-bottom: 8px; filter: drop-shadow(0 0 10px rgba(212,175,55,0.4));">⚔️</div>
-                        <div id="dashAvgProfitHour" style="font-family:'Cinzel',serif; font-size: 1.5em; font-weight: 900; background: linear-gradient(135deg,#FFD700,#D4AF37); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; margin-bottom: 6px;">0 gp/h</div>
-                        <div style="font-family:'Cinzel',serif; font-size: 0.65em; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 4px;">Avg Profit/Hour</div>
-                        <div id="dashAvgProfit" style="font-size: 0.7em; color: rgba(212,175,55,0.5); font-weight: 600;">0 gp avg</div>
+                    <div class="r-kpi-card stat-card-hover">
+                        <div class="r-kpi-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
+                        <div id="dashAvgProfitHour" class="r-kpi-value">0 gp/h</div>
+                        <div class="r-kpi-label">Avg Profit / Hour</div>
+                        <div id="dashAvgProfit" class="r-kpi-sub">0 gp avg</div>
                     </div>
-
-                    <!-- Today's Profit Card -->
-                    <div class="stat-card-hover" style="background: linear-gradient(160deg, rgba(20,11,3,0.97) 0%, rgba(14,8,2,0.98) 100%); border: 1px solid rgba(212,175,55,0.45); backdrop-filter: blur(20px); border-radius: 10px; padding: 18px 12px; text-align: center; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 0 0 1px rgba(70,42,8,0.3), 0 8px 24px rgba(0,0,0,0.5); cursor: pointer; overflow:hidden;" onmouseover="this.style.transform='translateY(-6px) scale(1.02)'; this.style.borderColor='rgba(212,175,55,0.7)'" onmouseout="this.style.transform=''; this.style.borderColor='rgba(212,175,55,0.45)'">
-                        <div style="position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,rgba(212,175,55,0.7),transparent);"></div>
-                        <div style="font-size: 2.2em; margin-bottom: 8px; filter: drop-shadow(0 0 10px rgba(212,175,55,0.4));">📈</div>
-                        <div id="dashTodayProfit" style="font-family:'Cinzel',serif; font-size: 1.5em; font-weight: 900; background: linear-gradient(135deg,#FFD700,#D4AF37); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; margin-bottom: 6px;">0 gp</div>
-                        <div style="font-family:'Cinzel',serif; font-size: 0.65em; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 4px;">Today's Profit</div>
-                        <div id="dashTodayHunts" style="font-size: 0.7em; color: rgba(212,175,55,0.5); font-weight: 600;">0 hunts today</div>
+                    <div class="r-kpi-card stat-card-hover">
+                        <div class="r-kpi-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></div>
+                        <div id="dashTodayProfit" class="r-kpi-value">0 gp</div>
+                        <div class="r-kpi-label">Today's Profit</div>
+                        <div id="dashTodayHunts" class="r-kpi-sub">0 hunts today</div>
                     </div>
-
-                    <!-- Current Streak Card -->
-                    <div class="stat-card-hover" style="background: linear-gradient(160deg, rgba(20,11,3,0.97) 0%, rgba(14,8,2,0.98) 100%); border: 1px solid rgba(212,175,55,0.45); backdrop-filter: blur(20px); border-radius: 10px; padding: 18px 12px; text-align: center; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 0 0 1px rgba(70,42,8,0.3), 0 8px 24px rgba(0,0,0,0.5); cursor: pointer; overflow:hidden;" onmouseover="this.style.transform='translateY(-6px) scale(1.02)'; this.style.borderColor='rgba(212,175,55,0.7)'" onmouseout="this.style.transform=''; this.style.borderColor='rgba(212,175,55,0.45)'">
-                        <div style="position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,rgba(212,175,55,0.7),transparent);"></div>
-                        <div style="font-size: 2.2em; margin-bottom: 8px; filter: drop-shadow(0 0 10px rgba(212,175,55,0.4));">🔥</div>
-                        <div id="dashStreak" style="font-family:'Cinzel',serif; font-size: 1.5em; font-weight: 900; background: linear-gradient(135deg,#FFD700,#D4AF37); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; margin-bottom: 6px;">0 days</div>
-                        <div style="font-family:'Cinzel',serif; font-size: 0.65em; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 4px;">Hunt Streak</div>
-                        <div id="dashBestSpot" style="font-size: 0.7em; color: rgba(212,175,55,0.5); font-weight: 600;">Best spot: -</div>
+                    <div class="r-kpi-card stat-card-hover">
+                        <div class="r-kpi-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"/></svg></div>
+                        <div id="dashStreak" class="r-kpi-value">0 days</div>
+                        <div class="r-kpi-label">Hunt Streak</div>
+                        <div id="dashBestSpot" class="r-kpi-sub">Best spot: -</div>
                     </div>
                 </div>
 
-                <!-- Daily Profit Target - Gold Theme -->
+                <!-- Daily Profit Target -->
                 <div id="dailyTargetSection" style="margin-top: 8px;">
-                    <div class="card" style="background: linear-gradient(160deg, rgba(22,12,4,0.97) 0%, rgba(14,8,2,0.98) 100%); border: 1px solid rgba(212,175,55,0.5); backdrop-filter: blur(15px); border-radius: 10px; padding: 8px; box-shadow: 0 0 0 2px rgba(80,48,10,0.3), 0 8px 25px rgba(0,0,0,0.5), 0 0 20px rgba(212,175,55,0.08);">
-                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px;">
-                            <h3 style="font-family:'Cinzel',serif; color: #D4AF37; margin: 0; font-size: 0.85em; letter-spacing:0.5px; display: flex; align-items: center; gap: 6px;">
-                                🎯 Daily Target
+                    <div class="r-daily-target">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                            <h3 class="r-section-header" style="margin:0;">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+                                Daily Target
                                 <span class="help-btn" data-tip-down data-tip="Set a daily gold profit goal. The bar fills as you add hunts throughout the day. Resets every midnight automatically.">?</span>
                             </h3>
-                            <button class="btn-secondary" onclick="setDailyTarget()" style="padding: 3px 8px; font-size: 0.75em;" data-tip="Click to set or change your daily profit goal">⚙️</button>
+                            <button class="btn-secondary" onclick="setDailyTarget()" style="padding: 3px 9px; font-size: 0.73em;" data-tip="Click to set or change your daily profit goal">Edit</button>
                         </div>
 
-                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
-                            <div style="flex: 1;">
-                                <div style="font-family:'Cinzel',serif; font-size: 1.2em; font-weight: 900; color: #FFD700;" id="dailyProfitAmount">0 gp</div>
-                                <div style="font-size: 0.65em; color: var(--text-secondary);">of <span id="dailyTargetAmount" style="color: #D4AF37; font-weight: 600;">1kk gp</span></div>
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px;">
+                            <div>
+                                <div style="font-family:'Inter',sans-serif; font-size: 1.35em; font-weight: 700; color: #F0F0F0; line-height:1;" id="dailyProfitAmount">0 gp</div>
+                                <div style="font-size: 0.68em; color: #A3A3A3; margin-top:3px;">of <span id="dailyTargetAmount" style="color: #D4AF37;">1kk gp</span></div>
                             </div>
-                            <div style="text-align: center;">
-                                <div style="font-size: 1.5em;" id="dailyTargetEmoji">🎯</div>
-                                <div style="font-family:'Cinzel',serif; font-size: 0.7em; font-weight: bold; color: #D4AF37;" id="dailyTargetPercentage">0%</div>
+                            <div style="text-align: right;">
+                                <span id="dailyTargetEmoji" style="display:none;"></span>
+                                <div style="font-family:'Inter',sans-serif; font-size: 1.4em; font-weight: 700; color: #D4AF37; line-height:1;" id="dailyTargetPercentage">0%</div>
                             </div>
                         </div>
 
-                        <!-- Progress Bar - Gold theme -->
-                        <div style="background: rgba(0,0,0,0.4); height: 12px; border-radius: 4px; overflow: hidden; margin-bottom: 6px; border: 1px solid rgba(212,175,55,0.15);">
-                            <div id="dailyProgressBar" style="background: linear-gradient(90deg, #8B6914, #D4AF37, #FFD700, #D4AF37, #8B6914); background-size: 200% 100%; animation: gold-shimmer 3s infinite linear; height: 100%; width: 0%; transition: width 0.5s ease;"></div>
+                        <div class="r-progress-track">
+                            <div id="dailyProgressBar" class="r-progress-fill" style="width:0%;"></div>
                         </div>
 
-                        <!-- Stats -->
-                        <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 5px;">
-                            <div style="background: rgba(212,175,55,0.07); border: 1px solid rgba(212,175,55,0.15); padding: 5px; border-radius: 5px; text-align: center;">
-                                <div style="font-family:'Cinzel',serif; font-size: 0.6em; color: var(--text-secondary); text-transform:uppercase; letter-spacing:0.5px;">Hunts</div>
-                                <div id="dailyHuntsCount" style="font-family:'Cinzel',serif; font-size: 1.0em; font-weight: bold; color: #D4AF37;">0</div>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 6px; margin-top: 6px;">
+                            <div style="background: rgba(255,255,255,0.04); border-radius: 6px; padding: 7px 5px; text-align: center; border: 1px solid rgba(255,255,255,0.06);">
+                                <div style="font-size: 0.6em; color: #A3A3A3; text-transform:uppercase; letter-spacing:0.4px; margin-bottom:2px;">Hunts</div>
+                                <div id="dailyHuntsCount" style="font-family:'Inter',sans-serif; font-size: 1em; font-weight: 700; color: #D4AF37;">0</div>
                             </div>
-                            <div style="background: rgba(212,175,55,0.07); border: 1px solid rgba(212,175,55,0.15); padding: 5px; border-radius: 5px; text-align: center;">
-                                <div style="font-family:'Cinzel',serif; font-size: 0.6em; color: var(--text-secondary); text-transform:uppercase; letter-spacing:0.5px;">Left</div>
-                                <div id="dailyRemaining" style="font-family:'Cinzel',serif; font-size: 1.0em; font-weight: bold; color: #D4AF37;">0</div>
+                            <div style="background: rgba(255,255,255,0.04); border-radius: 6px; padding: 7px 5px; text-align: center; border: 1px solid rgba(255,255,255,0.06);">
+                                <div style="font-size: 0.6em; color: #A3A3A3; text-transform:uppercase; letter-spacing:0.4px; margin-bottom:2px;">Left</div>
+                                <div id="dailyRemaining" style="font-family:'Inter',sans-serif; font-size: 1em; font-weight: 700; color: #D4AF37;">0</div>
                             </div>
-                            <div style="background: rgba(212,175,55,0.07); border: 1px solid rgba(212,175,55,0.15); padding: 5px; border-radius: 5px; text-align: center;">
-                                <div style="font-family:'Cinzel',serif; font-size: 0.6em; color: var(--text-secondary); text-transform:uppercase; letter-spacing:0.5px;">Need</div>
-                                <div id="dailyNeeded" style="font-family:'Cinzel',serif; font-size: 1.0em; font-weight: bold; color: #D4AF37;">0</div>
+                            <div style="background: rgba(255,255,255,0.04); border-radius: 6px; padding: 7px 5px; text-align: center; border: 1px solid rgba(255,255,255,0.06);">
+                                <div style="font-size: 0.6em; color: #A3A3A3; text-transform:uppercase; letter-spacing:0.4px; margin-bottom:2px;">Need</div>
+                                <div id="dailyNeeded" style="font-family:'Inter',sans-serif; font-size: 1em; font-weight: 700; color: #D4AF37;">0</div>
                             </div>
                         </div>
                     </div>
@@ -3041,72 +3287,67 @@
                 <!-- Active Goals on Dashboard -->
                 <div id="dashboardGoalsSection" style="margin-top: 12px;"></div>
 
-                <!-- Performance Analytics - LARGER -->
-                <div id="performanceSection" style="margin-top: 12px;">
-                    <div class="card" style="background: linear-gradient(135deg, rgba(50, 30, 40, 0.8) 0%, rgba(40, 20, 30, 0.8) 100%); border: 2px solid #dc3545; border-radius: 14px; padding: 14px; box-shadow: 0 8px 25px rgba(220, 53, 69, 0.3);">
-                        <h3 style="color: var(--danger-color); margin-bottom: 10px; font-size: 1.1em; font-weight: 700;">📈 Performance</h3>
-
-                        <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px;">
-                            <div style="background: rgba(0,0,0,0.3); padding: 12px; border-radius: 8px; text-align: center; border: 1px solid rgba(220, 53, 69, 0.2);">
-                                <div style="font-size: 0.85em; color: var(--text-secondary); margin-bottom: 6px; font-weight: 600;">Today</div>
-                                <div style="display: flex; align-items: center; justify-content: center; gap: 6px;">
-                                    <div id="todayVsYesterday" style="font-size: 1.15em; font-weight: 900; color: var(--text-primary);">-</div>
-                                    <div id="todayVsYesterdayIndicator" style="font-size: 1.05em;"></div>
+                <!-- Performance Analytics -->
+                <div id="performanceSection" style="margin-top: 10px;">
+                    <div class="r-perf-card">
+                        <h3 class="r-section-header">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>
+                            Performance
+                        </h3>
+                        <div class="r-perf-grid">
+                            <div class="r-perf-cell">
+                                <div class="r-perf-cell-label"><svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg> Today</div>
+                                <div style="display:flex; align-items:center; justify-content:center; gap:5px;">
+                                    <div id="todayVsYesterday" style="font-family:'Inter',sans-serif; font-size:1em; font-weight:700; color:#EFEFEF;">-</div>
+                                    <div id="todayVsYesterdayIndicator" style="font-size:0.9em;"></div>
                                 </div>
                             </div>
-
-                            <div style="background: rgba(0,0,0,0.3); padding: 12px; border-radius: 8px; text-align: center; border: 1px solid rgba(220, 53, 69, 0.2);">
-                                <div style="font-size: 0.85em; color: var(--text-secondary); margin-bottom: 6px; font-weight: 600;">Week</div>
-                                <div style="display: flex; align-items: center; justify-content: center; gap: 6px;">
-                                    <div id="weekVsWeek" style="font-size: 1.15em; font-weight: 900; color: var(--text-primary);">-</div>
-                                    <div id="weekVsWeekIndicator" style="font-size: 1.05em;"></div>
+                            <div class="r-perf-cell">
+                                <div class="r-perf-cell-label"><svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg> Week</div>
+                                <div style="display:flex; align-items:center; justify-content:center; gap:5px;">
+                                    <div id="weekVsWeek" style="font-family:'Inter',sans-serif; font-size:1em; font-weight:700; color:#EFEFEF;">-</div>
+                                    <div id="weekVsWeekIndicator" style="font-size:0.9em;"></div>
                                 </div>
                             </div>
-
-                            <div style="background: rgba(0,0,0,0.3); padding: 12px; border-radius: 8px; text-align: center; border: 1px solid rgba(220, 53, 69, 0.2);">
-                                <div style="font-size: 0.85em; color: var(--text-secondary); margin-bottom: 6px; font-weight: 600;">Best</div>
-                                <div id="bestSpot7d" style="font-size: 1em; font-weight: 900; color: var(--text-primary);">-</div>
+                            <div class="r-perf-cell">
+                                <div class="r-perf-cell-label"><svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg> Best</div>
+                                <div id="bestSpot7d" style="font-family:'Inter',sans-serif; font-size:1em; font-weight:700; color:#EFEFEF;">-</div>
                             </div>
-
-                            <div style="background: rgba(0,0,0,0.3); padding: 12px; border-radius: 8px; text-align: center; border: 1px solid rgba(220, 53, 69, 0.2);">
-                                <div style="font-size: 0.85em; color: var(--text-secondary); margin-bottom: 6px; font-weight: 600;">Trend</div>
-                                <div id="performanceTrend" style="font-size: 1.15em; font-weight: 900;">-</div>
+                            <div class="r-perf-cell">
+                                <div class="r-perf-cell-label"><svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg> Trend</div>
+                                <div id="performanceTrend" style="font-family:'Inter',sans-serif; font-size:1em; font-weight:700;">-</div>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Smart Insights - Tibia Gold Theme -->
-                <div id="smartInsights" style="margin-top: 12px;">
-                    <div class="card" style="border-left: 3px solid rgba(212,175,55,0.5); padding: 14px;">
-                        <h3 style="font-family:'Cinzel',serif; color: #D4AF37; margin-bottom: 10px; font-size: 1em; letter-spacing:0.5px;">⚔️ Hunt Insights</h3>
-                        <!-- Tibia creature decorations row -->
-                        <div style="display:flex; justify-content:center; gap:15px; margin-bottom:12px; overflow:hidden; opacity:0.7;">
-                            <img src="https://tibia.fandom.com/wiki/Special:FilePath/Warzone_Hellhound.gif" onerror="this.style.display='none'" alt="" style="height:36px;object-fit:contain;image-rendering:pixelated;filter:drop-shadow(0 0 6px rgba(212,175,55,0.4));">
-                            <img src="https://tibia.fandom.com/wiki/Special:FilePath/Falcon_Knight.gif" onerror="this.style.display='none'" alt="" style="height:36px;object-fit:contain;image-rendering:pixelated;filter:drop-shadow(0 0 6px rgba(212,175,55,0.4));">
-                            <img src="https://tibia.fandom.com/wiki/Special:FilePath/Grim_Reaper.gif" onerror="this.style.display='none'" alt="" style="height:36px;object-fit:contain;image-rendering:pixelated;filter:drop-shadow(0 0 6px rgba(212,175,55,0.4));">
-                            <img src="https://tibia.fandom.com/wiki/Special:FilePath/Dragon_Lord.gif" onerror="this.style.display='none'" alt="" style="height:36px;object-fit:contain;image-rendering:pixelated;filter:drop-shadow(0 0 6px rgba(212,175,55,0.4));">
-                        </div>
-                        <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px;">
-                            <div style="background: rgba(212,175,55,0.07); padding: 12px; border-radius: 6px; text-align: center; border: 1px solid rgba(212,175,55,0.2);">
-                                <div style="font-size: 1.4em; margin-bottom: 6px;">📅</div>
-                                <div style="font-family:'Cinzel',serif; font-size: 0.65em; color: var(--text-secondary); margin-bottom: 6px; text-transform:uppercase; letter-spacing:0.5px;">Best Day</div>
-                                <div id="insightBestDay" style="font-family:'Cinzel',serif; font-size: 0.9em; font-weight: 900; color: #D4AF37;">-</div>
+                <!-- Hunt Insights -->
+                <div id="smartInsights" style="margin-top: 10px;">
+                    <div class="card" style="padding: 14px;">
+                        <h3 class="r-section-header">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m2 4 3 12h14l3-12-6 7-4-7-4 7-6-7z"/><line x1="5" y1="16" x2="5" y2="21"/><line x1="19" y1="16" x2="19" y2="21"/><line x1="8" y1="21" x2="16" y2="21"/></svg>
+                            Hunt Insights
+                        </h3>
+                        <div class="r-insights-grid">
+                            <div class="r-insight-cell">
+                                <div class="r-insight-icon"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></div>
+                                <div class="r-insight-label">Best Day</div>
+                                <div id="insightBestDay" class="r-insight-value">-</div>
                             </div>
-                            <div style="background: rgba(212,175,55,0.07); padding: 12px; border-radius: 6px; text-align: center; border: 1px solid rgba(212,175,55,0.2);">
-                                <div style="font-size: 1.4em; margin-bottom: 6px;">🏆</div>
-                                <div style="font-family:'Cinzel',serif; font-size: 0.65em; color: var(--text-secondary); margin-bottom: 6px; text-transform:uppercase; letter-spacing:0.5px;">Best Hunt</div>
-                                <div id="insightBestHunt" style="font-family:'Cinzel',serif; font-size: 0.9em; font-weight: 900; color: #D4AF37;">-</div>
+                            <div class="r-insight-cell">
+                                <div class="r-insight-icon"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
+                                <div class="r-insight-label">Best Hunt</div>
+                                <div id="insightBestHunt" class="r-insight-value">-</div>
                             </div>
-                            <div style="background: rgba(212,175,55,0.07); padding: 12px; border-radius: 6px; text-align: center; border: 1px solid rgba(212,175,55,0.2);">
-                                <div style="font-size: 1.4em; margin-bottom: 6px;">🔥</div>
-                                <div style="font-family:'Cinzel',serif; font-size: 0.65em; color: var(--text-secondary); margin-bottom: 6px; text-transform:uppercase; letter-spacing:0.5px;">Streak</div>
-                                <div id="insightStreak" style="font-family:'Cinzel',serif; font-size: 0.9em; font-weight: 900; color: #D4AF37;">-</div>
+                            <div class="r-insight-cell">
+                                <div class="r-insight-icon"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"/></svg></div>
+                                <div class="r-insight-label">Streak</div>
+                                <div id="insightStreak" class="r-insight-value">-</div>
                             </div>
-                            <div style="background: rgba(212,175,55,0.07); padding: 12px; border-radius: 6px; text-align: center; border: 1px solid rgba(212,175,55,0.2);">
-                                <div style="font-size: 1.4em; margin-bottom: 6px;">⚡</div>
-                                <div style="font-family:'Cinzel',serif; font-size: 0.65em; color: var(--text-secondary); margin-bottom: 6px; text-transform:uppercase; letter-spacing:0.5px;">Avg/Hour</div>
-                                <div id="insightAvgProfitHour" style="font-family:'Cinzel',serif; font-size: 0.9em; font-weight: 900; color: #D4AF37;">-</div>
+                            <div class="r-insight-cell">
+                                <div class="r-insight-icon"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
+                                <div class="r-insight-label">Avg / Hour</div>
+                                <div id="insightAvgProfitHour" class="r-insight-value">-</div>
                             </div>
                         </div>
                     </div>
